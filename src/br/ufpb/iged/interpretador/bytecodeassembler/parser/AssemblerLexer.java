@@ -15,7 +15,7 @@ public class AssemblerLexer extends Lexer {
     public static final int T__11=11;
     public static final int T__12=12;
     public static final int T__13=13;
-    public static final int T__14=14;
+    public static final int T__14=14;;
     public static final int T__15=15;
     public static final int T__16=16;
     public static final int T__17=17;
