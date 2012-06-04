@@ -2,19 +2,20 @@ grammar Intermediario;
 
 @members {
 
-  public void traduzirLoad(Token opc, Token op);
-  public void traduzirStore(Token opc, Token op);
-  public void traduzirArimetica(Token opc);
+  protected void adicionarVariavel(Token op);
+  protected void traduzirLoad(Token opc, Token op);
+  protected void traduzirStore(Token opc, Token op);
+  protected void traduzirArimetica(Token opc);
 
 }
 
 programa : instrucao*;
 
-instrucao : (nop | load | store | aritmetica);
+instrucao : (create | load | store | aritmetica);
 
-nop : 'CREATE_INT' ID
-    | 'WRITE_INT' ID
-    ;
+create : 'CREATE_INT' a = ID {adicionarVariavel($a);}
+       | 'DELETE_INT' a = ID
+       ;
 
 load : a = 'READ_INT' b = ID {traduzirLoad($a, $b);}
      | a = 'READ_INTC' INT {traduzirLoad($a, $INT);}
@@ -22,7 +23,7 @@ load : a = 'READ_INT' b = ID {traduzirLoad($a, $b);}
      
 store : a = 'WRITE_INT' b = ID {traduzirStore($a, $b);};
 
-artimetica : a = 'ADD' {traduzirArimetica($a);}
+aritmetica : a = 'ADD' {traduzirArimetica($a);}
            | a = 'SUB' {traduzirArimetica($a);}
            | a = 'MULT' {traduzirArimetica($a);}
            | a = 'DIV' {traduzirArimetica($a);}

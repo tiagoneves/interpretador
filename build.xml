@@ -2,10 +2,16 @@
 <project name="Interpretador" default="gerar" basedir=".">
  
 	<property name = "src.dir" value = 
+			"src/br/ufpb/iged/interpretador/tradutor/intermediario/gramatica"/>
+		<property name = "dest.dir" value = 
+			"src/br/ufpb/iged/interpretador/tradutor/intermediario/parser"/>
+	<property name="grammar" value = "Intermediario.g"/>
+	
+	<!--<property name = "src.dir" value = 
 		"src/br/ufpb/iged/interpretador/bytecodeassembler/grammars"/>
 	<property name = "dest.dir" value = 
 			"src/br/ufpb/iged/interpretador/bytecodeassembler/parser"/>
-	<property name="grammar" value = "Assembler.g"/>
+	<property name="grammar" value = "Assembler.g"/>-->
 	
     
     <target name="clean">
