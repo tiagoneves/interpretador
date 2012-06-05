@@ -1,8 +1,10 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g 2012-06-04 12:30:44
+// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g 2012-06-04 23:46:57
 
 package br.ufpb.iged.interpretador.tradutor.intermediario.parser;
 
 import org.antlr.runtime.*;
+
+import java.io.IOException;
 import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
@@ -48,15 +50,16 @@ public abstract class IntermediarioParser extends Parser {
 
 
     protected abstract void adicionarVariavel(Token op);
-    protected abstract void traduzirLoad(Token opc, Token op);
-    protected abstract void traduzirStore(Token opc, Token op);
-    protected abstract void traduzirArimetica(Token opc);
+    protected abstract void traduzirLoad(Token opc, Token op) throws IOException;
+    protected abstract void traduzirStore(Token opc, Token op) throws IOException;
+    protected abstract void traduzirArimetica(Token opc) throws IOException;
+
 
 
 
     // $ANTLR start "programa"
     // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:12:1: programa : ( instrucao )* ;
-    public final void programa() throws RecognitionException {
+    public final void programa() throws RecognitionException, IOException {
         try {
             // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:12:10: ( ( instrucao )* )
             // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:12:12: ( instrucao )*
@@ -110,7 +113,7 @@ public abstract class IntermediarioParser extends Parser {
 
     // $ANTLR start "instrucao"
     // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:14:1: instrucao : ( create | load | store | aritmetica ) ;
-    public final void instrucao() throws RecognitionException {
+    public final void instrucao() throws RecognitionException, IOException {
         try {
             // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:14:11: ( ( create | load | store | aritmetica ) )
             // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:14:13: ( create | load | store | aritmetica )
@@ -280,7 +283,7 @@ public abstract class IntermediarioParser extends Parser {
 
     // $ANTLR start "load"
     // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:20:1: load : (a= 'READ_INT' b= ID |a= 'READ_INTC' INT );
-    public final void load() throws RecognitionException {
+    public final void load() throws RecognitionException, IOException {
         Token a=null;
         Token b=null;
         Token INT1=null;
@@ -345,7 +348,7 @@ public abstract class IntermediarioParser extends Parser {
 
     // $ANTLR start "store"
     // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:24:1: store : a= 'WRITE_INT' b= ID ;
-    public final void store() throws RecognitionException {
+    public final void store() throws RecognitionException, IOException {
         Token a=null;
         Token b=null;
 
@@ -378,7 +381,7 @@ public abstract class IntermediarioParser extends Parser {
 
     // $ANTLR start "aritmetica"
     // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:26:1: aritmetica : (a= 'ADD' |a= 'SUB' |a= 'MULT' |a= 'DIV' );
-    public final void aritmetica() throws RecognitionException {
+    public final void aritmetica() throws RecognitionException, IOException {
         Token a=null;
 
         try {

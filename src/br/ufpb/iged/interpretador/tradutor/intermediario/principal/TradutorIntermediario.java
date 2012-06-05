@@ -45,7 +45,7 @@ public class TradutorIntermediario extends IntermediarioParser{
 	}
 
 	@Override
-	protected void traduzirLoad(Token opc, Token op) {
+	protected void traduzirLoad(Token opc, Token op) throws IOException {
 		
 		String opcode = opc.getText();
 		
@@ -78,7 +78,7 @@ public class TradutorIntermediario extends IntermediarioParser{
 				switch(inteiro) {
 				case -1: toWrite += "_m1"; break;
 				case 0: toWrite += "_0"; break;
-				case 1: toWrite += "1"; break;
+				case 1: toWrite += "_1"; break;
 				case 2: toWrite += "_2"; break;
 				case 3: toWrite += "_3"; break;
 				case 4: toWrite += "_4"; break;
@@ -87,25 +87,59 @@ public class TradutorIntermediario extends IntermediarioParser{
 				
 			} else 
 				
-				toWrite = "ldc "+inteiro;
-			
-			
+				toWrite = "ldc "+inteiro;			
 			
 		}
 		
-		//bufferedWriter.write(toWrite+"\n");
+		bufferedWriter.write(toWrite+"\n");
 		
 	}
 
 	@Override
-	protected void traduzirStore(Token opc, Token op) {
-		// TODO Auto-generated method stub
+	protected void traduzirStore(Token opc, Token op) throws IOException{
+		
+		String id = op.getText();
+		
+		Integer endereco = variaveisMap.get(id);
+		
+		String toWrite = "istore";
+		
+		switch(endereco) {
+		case 0: toWrite += "_0"; break;
+		case 1: toWrite += "_1"; break;
+		case 2: toWrite += "_2"; break;
+		case 3: toWrite += "_3"; break;
+		default: toWrite += " "+endereco; break;
+		}
+		
+		bufferedWriter.write(toWrite+"\n");
 		
 	}
 
 	@Override
-	protected void traduzirArimetica(Token opc) {
-		// TODO Auto-generated method stub
+	protected void traduzirArimetica(Token opc) throws IOException{
+		
+		String opcode = opc.getText();
+		
+		String toWrite;
+		
+		if (opcode.equals("ADD")) 
+			
+			toWrite = "iadd";
+		
+		else if (opcode.equals("SUB"))
+			
+			toWrite = "isub";
+		
+		else if (opcode.equals("MULT"))
+			
+			toWrite = "imul";
+		
+		else 
+			
+			toWrite = "idiv";
+		
+		bufferedWriter.write(toWrite+"\n");
 		
 	}
 	

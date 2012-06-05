@@ -3,9 +3,9 @@ grammar Intermediario;
 @members {
 
   protected void adicionarVariavel(Token op);
-  protected void traduzirLoad(Token opc, Token op);
-  protected void traduzirStore(Token opc, Token op);
-  protected void traduzirArimetica(Token opc);
+  protected void traduzirLoad(Token opc, Token op) throws IOException;
+  protected void traduzirStore(Token opc, Token op) throws IOException;
+  protected void traduzirArimetica(Token opc) throws IOException;
 
 }
 
