@@ -71,7 +71,7 @@ public class TradutorIntermediario extends IntermediarioParser{
 			
 			Integer inteiro = new Integer(op.getText());
 			
-			if (inteiro > -2 || inteiro < 6) {
+			if (inteiro > -2 && inteiro < 6) {
 				
 				toWrite = "iconst";
 				

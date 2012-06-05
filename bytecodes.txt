@@ -1,0 +1,7 @@
+iload_0
+ldc 10
+istore_0
+iadd
+isub
+imul
+idiv
