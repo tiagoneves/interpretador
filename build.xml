@@ -8,7 +8,7 @@
 	<property name="grammar" value = "Intermediario.g"/>
 	
 	<!--<property name = "src.dir" value = 
-		"src/br/ufpb/iged/interpretador/bytecodeassembler/grammars"/>
+		"src/br/ufpb/iged/interpretador/bytecodeassembler/gramaticas"/>
 	<property name = "dest.dir" value = 
 			"src/br/ufpb/iged/interpretador/bytecodeassembler/parser"/>
 	<property name="grammar" value = "Assembler.g"/>-->
