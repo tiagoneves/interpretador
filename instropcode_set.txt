@@ -45,4 +45,25 @@ if_icmplt a1 161
 if_icmpge a2 162 
 if_icmpgt a3 163 
 if_icmple a4 164 
-goto a7 167  
+goto a7 167
+
+new java/lang/Integer     ; Create the integer
+dup                       ; Make a copy of the reference to it
+bipush 27                 ; Push an argument
+                          ; Call the constructor
+invokespecial java/lang/Integer/<init> (I)V
+
+
+.class MyClass
+.super MySuperClass
+; A constructor taking no arguments
+.method <init>()V
+aload_0                                   ; Push this
+invokespecial MySuperClass/<init>()V      ; Call a superclass
+                                          ; constructor on this
+
+return                                    ; Return to the caller
+.end method 
+
+getfield
+putfield  
