@@ -10,4 +10,5 @@ public class EscopoLocal extends EscopoBase {
     	return "local"; 
     }
     
+    
 }

@@ -9,7 +9,7 @@ import org.antlr.runtime.CommonTokenStream;
 
 import br.ufpb.iged.interpretador.bytecodeassembler.asm.BytecodeAssembler;
 import br.ufpb.iged.interpretador.bytecodeassembler.asm.Definicao;
-import br.ufpb.iged.interpretador.bytecodeassembler.parser.AssemblerLexer;
+import br.ufpb.iged.interpretador.bytecodeassembler.parser.BytecodesLexer;
 
 public class Interpretador {
 
@@ -43,7 +43,7 @@ public class Interpretador {
 			throws Exception {
 		
 		try {
-			AssemblerLexer assemblerLexer = new AssemblerLexer(
+			BytecodesLexer assemblerLexer = new BytecodesLexer(
 					new ANTLRInputStream(input));
 			CommonTokenStream tokens = new CommonTokenStream(assemblerLexer);
 			BytecodeAssembler assembler = new BytecodeAssembler(tokens,

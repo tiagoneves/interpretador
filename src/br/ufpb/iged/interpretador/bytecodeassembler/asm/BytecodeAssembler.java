@@ -6,11 +6,11 @@ import java.util.Map;
 import org.antlr.runtime.TokenStream;
 
 import org.antlr.runtime.Token;
-import br.ufpb.iged.interpretador.bytecodeassembler.parser.AssemblerParser;
+import br.ufpb.iged.interpretador.bytecodeassembler.parser.BytecodesParser;
 import br.ufpb.iged.interpretador.excecoes.AcessoIndevidoMemoriaException;
 import br.ufpb.iged.interpretador.excecoes.LabelException;
 
-public class BytecodeAssembler extends AssemblerParser{
+public class BytecodeAssembler extends BytecodesParser{
 
 	public static final int TAMANHO_INICIAL_MEMORIA_CODIGO = 1024;
 	public static final int TAMANHO_INICIAL_MEMORIA_GLOBAL = 1024;

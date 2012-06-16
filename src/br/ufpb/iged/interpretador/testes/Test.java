@@ -4,8 +4,8 @@ import org.antlr.runtime.*;
 
 import br.ufpb.iged.interpretador.bytecodeassembler.asm.BytecodeAssembler;
 import br.ufpb.iged.interpretador.bytecodeassembler.asm.Definicao;
-import br.ufpb.iged.interpretador.bytecodeassembler.parser.AssemblerLexer;
-import br.ufpb.iged.interpretador.bytecodeassembler.parser.AssemblerParser;
+import br.ufpb.iged.interpretador.bytecodeassembler.parser.BytecodesLexer;
+import br.ufpb.iged.interpretador.bytecodeassembler.parser.BytecodesParser;
 
 public class Test {
 
@@ -13,11 +13,11 @@ public class Test {
     
        CharStream entrada = new ANTLRFileStream("entrada.txt");
         
-        AssemblerLexer lexer = new AssemblerLexer(entrada);
+       BytecodesLexer lexer = new BytecodesLexer(entrada);
         
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         
-        AssemblerParser parser = new BytecodeAssembler(tokens, Definicao.instrucoes);
+        BytecodesParser parser = new BytecodeAssembler(tokens, Definicao.instrucoes);
         parser.programa();
         
         for (int i = 0; i < BytecodeAssembler.codigo.length ; i++) {

@@ -1,4 +1,15 @@
-grammar Assembler;
+grammar Bytecodes;
+
+options {
+  output = AST;
+  ASTLabelType = BytecodesAST;
+}
+
+tokens {
+  MEMBRO_CLASSE;
+  FIELD_DECL;
+  EXTENDS;
+}
 
 @members {
 
@@ -17,10 +28,30 @@ comando : (label instrucao | instrucao);
          
 label : a = ID ':' {definirLabel($a);};
 
-instrucao: (aritmetica | load | store | desvio | logica | 'nop'
+instrucao: (definicaoClasse | manipulacaoObjetos | aritmetica | load | store | desvio | logica 
+                  | 'nop'
               | a = 'pop' {escreverOpcode($a);}
               | a = 'pop2'{escreverOpcode($a);}
               )? NOVA_LINHA;
+                            
+definicaoClasse : '.class' ID membroClasse+  -> ^('.class' ID ^(MEMBRO_CLASSE membroClasse+))
+                | '.class' ID NOVA_LINHA superClasse membroClasse+  
+                  -> ^('.class' ID superClasse ^(MEMBRO_CLASSE membroClasse+))
+                | '.method' construtorDefault
+                ;
+    
+superClasse : '.super' ID -> ^(EXTENDS ID) ;
+
+membroClasse : '.field' ID tipo NOVA_LINHA -> ^(FIELD_DECL ID tipo) ;
+
+manipulacaoObjetos : 'getfield' ID '/' ID tipo
+                   | 'putfield' ID '/' ID tipo
+                   | 'invokespecial' ID '/' INIT '()' VOID 
+                   ;
+                   
+construtorDefault : INIT '()' VOID ; 
+  
+tipo : INT | VOID | 'L'ID ;
 
 aritmetica : a = 'iadd' {escreverOpcode($a);}
            | a = 'isub' {escreverOpcode($a);}
@@ -42,15 +73,20 @@ load : a = 'iconst_m1'{escreverOpcode($a);}
      | a = 'iload_1' {escreverOpcode($a);}
      | a = 'iload_2' {escreverOpcode($a);}
      | a = 'iload_3' {escreverOpcode($a);}
-     | a = 'iload' INT {escreverOpcode($a, $INT);}
-     | a = 'ldc' INT {escreverOpcode($a, $INT);}
+     | a = 'iload' INTEIRO {escreverOpcode($a, $INTEIRO);}
+     | a = 'ldc' INTEIRO {escreverOpcode($a, $INTEIRO);}
+     | a = 'aload' INTEIRO
+     | a = 'aload_0'
+     | a = 'aload_1'
+     | a = 'aload_2'
+     | a = 'aload_3'
      ;
      
 store : a = 'istore_0' {verificarAumentoMemoriaGlobal($a);}
       | a = 'istore_1' {verificarAumentoMemoriaGlobal($a);}
       | a = 'istore_2' {verificarAumentoMemoriaGlobal($a);}
       | a = 'istore_3' {verificarAumentoMemoriaGlobal($a);}
-      | a = 'istore' INT {verificarAumentoMemoriaGlobal($a, $INT);}
+      | a = 'istore' INTEIRO {verificarAumentoMemoriaGlobal($a, $INTEIRO);}
       ;
 
 logica : a = 'iand' {escreverOpcode($a);}
@@ -73,9 +109,15 @@ desvio : a = 'ifeq' b = ID {escreverOpcode($a, $b);}
        | a = 'goto' b = ID {escreverOpcode($a, $b);}
        ;
 
-NULL: ('null' | 'NULL');
+INIT : '<init>';
 
-INT : '-'? '0'..'9'+ ;
+INT : 'I';
+
+VOID : 'V';
+
+NULL : ('null' | 'NULL');
+
+INTEIRO : '-'? '0'..'9'+ ;
 
 ID: ('a'..'z' | 'A'..'Z') ('a'..'z' | 'A'..'Z' | '0'..'9' | '.')* ;
 

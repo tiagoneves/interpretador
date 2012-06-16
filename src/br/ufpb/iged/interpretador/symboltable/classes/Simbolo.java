@@ -8,7 +8,7 @@ public class Simbolo {
 	
 	Escopo escopo;
 	
-	private CimboloAST def;
+	private BytecodesAST def;
 	
 	public Simbolo(String nome) {
 		this.nome = nome; 

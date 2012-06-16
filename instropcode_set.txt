@@ -46,6 +46,14 @@ if_icmpge a2 162
 if_icmpgt a3 163 
 if_icmple a4 164 
 goto a7 167
+aload 19 25
+aload_0 2a 42
+aload_1 2b 43
+aload_2 2c 44
+aload_3 2d 45
+invokespecial b7 183
+getfield b4 180
+putfield b5 181
 
 new java/lang/Integer     ; Create the integer
 dup                       ; Make a copy of the reference to it
