@@ -2,13 +2,13 @@ package br.ufpb.iged.interpretador.symboltable.classes;
 
 public class Simbolo {
 	
-	String nome;
+	public String nome;
 	
-	private Tipo tipo;
+	public Tipo tipo;
 	
 	Escopo escopo;
 	
-	private BytecodesAST def;
+	public BytecodesAST def;
 	
 	public Simbolo(String nome) {
 		this.nome = nome; 

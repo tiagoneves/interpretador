@@ -6,7 +6,7 @@ public class SimboloClasse extends SimboloComEscopo implements Escopo, Tipo {
     /** This is the superclass not escopoEnvolvente field. We still record
      *  the enclosing Escopo so we can push in and pop out of class defs.
      */
-    SimboloClasse superClasse;
+    public SimboloClasse superClasse;
     
     /** List of all fields and methods */
     public Map<String,Simbolo> membros=new LinkedHashMap<String,Simbolo>();
