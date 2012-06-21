@@ -3,36 +3,34 @@
 	
 	<property name = "src.dir" value = 
 		"src/br/ufpb/iged/interpretador/gramaticas"/>
-	<property name = "destBytecodes.dir" value = 
+	<property name = "destAssembler.dir" value = 
 			"src/br/ufpb/iged/interpretador/bytecodeassembler/parser"/>
-	<property name="bytecodes.gram" value = "Bytecodes.g"/>
+	<property name="assembler.gram" value = "Assembler.g"/>
 	<property name = "destIntermediario.dir" value = 
 				"src/br/ufpb/iged/interpretador/tradutor/intermediario/parser"/>
 	<property name="intermediario.gram" value = "Intermediario.g"/>
 	<property name = "destSymtab.dir" value = 
 				"src/br/ufpb/iged/interpretador/symboltable/parser"/>
 	<property name="def.gram" value = "Def.g"/>
-	<property name = "destSymtab.dir" value = 
-				"src/br/ufpb/iged/interpretador/symboltable/parser"/>
-	<property name="ref.gram" value = "Ref.g"/>
+	<property name="classe.gram" value = "Classe.g"/>
 	
     
-    <target name="cleanBytecodes">
+    <target name="cleanAssembler">
     	<delete>
-			<fileset dir="${destBytecodes.dir}">
+			<fileset dir="${destAssembler.dir}">
 	    		<include name="*.java"/>
 				<include name="*.tokens"/>
 			</fileset>
 		</delete>
 	</target>
     	
-	<target name="gerarBytecodes" depends="cleanBytecodes">
+	<target name="gerarAssembler" depends="cleanAssembler">
 		<java classname="org.antlr.Tool" fork="true" failonerror="true">
 			<arg value="-verbose"/>
 			<arg value="-make"/>
 			<arg value="-o"/>
-			<arg path="${destBytecodes.dir}"/>
-			<arg path="${src.dir}/${bytecodes.gram}"/>
+			<arg path="${destAssembler.dir}"/>
+			<arg path="${src.dir}/${assembler.gram}"/>
 		</java>
 	</target>
 	
@@ -56,7 +54,7 @@
 		</java>
 	</target>
 	
-	<target name="cleanSymtab">
+	<target name="cleanSymtab" depends="gerarAssembler">
 		<delete>
 			<fileset dir="${destSymtab.dir}">
 			    <include name="*.java"/>
@@ -71,8 +69,8 @@
 			<arg value="-make"/>
 			<arg value="-o"/>
 			<arg path="${destSymtab.dir}"/>
+			<arg path="${src.dir}/${classe.gram}"/>
 			<arg path="${src.dir}/${def.gram}"/>
-			<arg path="${src.dir}/${ref.gram}"/>
 		</java>
 	</target>
  

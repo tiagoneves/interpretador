@@ -1,33 +1,79 @@
 package br.ufpb.iged.interpretador.principal;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
 
+import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.ANTLRInputStream;
+import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
+import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.RuleReturnScope;
+import org.antlr.runtime.Token;
+import org.antlr.runtime.TokenStream;
+import org.antlr.runtime.tree.CommonTree;
+import org.antlr.runtime.tree.CommonTreeNodeStream;
+import org.antlr.runtime.tree.TreeAdaptor;
+import org.antlr.runtime.tree.CommonTreeAdaptor;
 
 import br.ufpb.iged.interpretador.bytecodeassembler.asm.BytecodeAssembler;
 import br.ufpb.iged.interpretador.bytecodeassembler.asm.Definicao;
-import br.ufpb.iged.interpretador.bytecodeassembler.parser.BytecodesLexer;
+import br.ufpb.iged.interpretador.bytecodeassembler.parser.AssemblerLexer;
+import br.ufpb.iged.interpretador.symboltable.classes.BytecodesAST;
+import br.ufpb.iged.interpretador.symboltable.classes.BytecodesErrorNode;
+import br.ufpb.iged.interpretador.symboltable.classes.EscopoGlobal;
+import br.ufpb.iged.interpretador.symboltable.classes.TabelaSimbolos;
+import br.ufpb.iged.interpretador.symboltable.parser.ClasseLexer;
+import br.ufpb.iged.interpretador.symboltable.parser.ClasseParser;
+import br.ufpb.iged.interpretador.symboltable.parser.Def;
 
 public class Interpretador {
 
 	public static final String NOME_ARQUIVO_ENTRADA = "entrada.txt";
+	
+	static TabelaSimbolos tabelaSimbolos;
+	
+	static EscopoGlobal global;
 
-	public static final int TAMANHO_INICIAL_PILHA_OPERANDOS = 100;
+	/*public static final int TAMANHO_INICIAL_PILHA_OPERANDOS = 100;
 
-	int ip = 0;
+	int global.ip = 0;
 
-	byte[] codigo;
+	byte[] global.codigo;
 
 	int tamanhoCodigo;
 
-	Object[] memoriaGlobal;
+	Object[] global.memoriaGlobal;
 
-	Object[] pilhaOperandos = new Object[TAMANHO_INICIAL_PILHA_OPERANDOS];
+	Object[] global.pilhaOperandos = new Object[TAMANHO_INICIAL_PILHA_OPERANDOS];
 
-	int sp = -1;
+	int global.sp = -1;*/
+	
+	public static TreeAdaptor bytecodesAdaptor = new CommonTreeAdaptor() {
+		
+        public Object create(Token token) {
+            return new BytecodesAST(token);
+        }
+        
+        public Object dupNode(Object t) {
+            if ( t==null ) {
+                return null;
+            }
+            return create(((BytecodesAST)t).token);
+        }
+        
+        public Object errorNode(TokenStream input, Token start, Token stop,
+                                RecognitionException e)
+        {
+            BytecodesErrorNode t = new BytecodesErrorNode(input, start, stop, e);
+            //System.out.println("returning error node '"+t+"' @index="+input.index());
+            return t;
+        }
+        
+    };
 
 	public static void main(String[] args) throws Exception {
 
@@ -43,22 +89,66 @@ public class Interpretador {
 			throws Exception {
 		
 		try {
-			BytecodesLexer assemblerLexer = new BytecodesLexer(
+			AssemblerLexer assemblerLexer = new AssemblerLexer(
 					new ANTLRInputStream(input));
 			CommonTokenStream tokens = new CommonTokenStream(assemblerLexer);
 			BytecodeAssembler assembler = new BytecodeAssembler(tokens,
 					Definicao.instrucoes);
+			//assembler.setTreeAdaptor(bytecodesAdaptor);
+			//RuleReturnScope r = assembler.programa();
 			assembler.programa();
+			//assembler.programa();
 			if (assembler.getNumberOfSyntaxErrors() > 0)
 				return false;
-			interp.codigo = assembler.obterCodigoMaquina();
-			interp.tamanhoCodigo = assembler.obterTamanhoMemoriaCodigo();
-			interp.memoriaGlobal = new Object[assembler.getTamMemoriaGlobal()];
+			//CommonTree tree = (CommonTree)r.getTree();
+			//CommonTreeNodeStream nos = new CommonTreeNodeStream(bytecodesAdaptor, tree);
+	        //nos.setTokenStream(tokens);
+	        tabelaSimbolos = new TabelaSimbolos(); // init symbol table
+	        //Def def = new Def(nos, tabelaSimbolos);       // create Def phase
+	        //def.downup(tree);                          // Do pass 1
+	        //nos.reset(); // rewind AST node stream to root
+	        global = tabelaSimbolos.global;
+			global.codigo = assembler.obterCodigoMaquina();
+			global.tamanhoCodigo = assembler.obterTamanhoMemoriaCodigo();
+			global.memoriaGlobal = new Object[assembler.getTamMemoriaGlobal()];
 
 		} finally {
 			input.close();
 		}
 		return true;
+		
+	}
+	
+	public static void carregarClasses() throws IOException, RecognitionException {
+		
+		File file = new File(".\\");
+		
+		String[] arquivos = file.list();
+		
+		int i;
+		
+		for (i = 0; i < arquivos.length; i++) {
+			
+			if (arquivos[i].endsWith(".class")) {
+				
+				CharStream input = new ANTLRFileStream(arquivos[i]);
+				
+			    ClasseLexer lexer = new ClasseLexer(input);
+			    CommonTokenStream tokens = new CommonTokenStream(lexer);
+			    ClasseParser parser = new ClasseParser(tokens);
+			    parser.setTreeAdaptor(bytecodesAdaptor);
+			    RuleReturnScope r = parser.definicaoClasse();   // launch parser by calling start rule
+			    CommonTree tree = (CommonTree)r.getTree();    // get tree result
+			   
+                CommonTreeNodeStream nos = new CommonTreeNodeStream(bytecodesAdaptor, tree);
+                nos.setTokenStream(tokens);
+			    Def def = new Def(nos, tabelaSimbolos);       // create Def phase
+			    def.downup(tree);                          // Do pass 1			   
+			    nos.reset(); // rewind AST node stream to root
+				
+			}
+			
+		}  
 		
 	}
 
@@ -70,11 +160,11 @@ public class Interpretador {
 
 		boolean desvio;
 
-		while (ip < tamanhoCodigo) {
+		while (global.ip < global.tamanhoCodigo) {
 
 			desvio = false;
 
-			opcode = codigo[ip];
+			opcode = global.codigo[global.ip];
 
 			if (opcode < 0)
 
@@ -89,33 +179,33 @@ public class Interpretador {
 				break;
 				
 			case Definicao.POP:
-				sp-- ;
+				global.sp-- ;
 				break;
 				
 			case Definicao.POP2:
-				sp -= 2 ;
+				global.sp -= 2 ;
 				break;
 
 			// operações aritméticas
 
 			case Definicao.INEG: {
 
-				op1 = (Integer) pilhaOperandos[sp];
+				op1 = (Integer) global.pilhaOperandos[global.sp];
 
-				pilhaOperandos[sp] = 0 - op1;
+				global.pilhaOperandos[global.sp] = 0 - op1;
 
 			};
 				break;
 
 			case Definicao.IADD: {
 
-				op1 = (Integer) pilhaOperandos[sp - 1];
+				op1 = (Integer) global.pilhaOperandos[global.sp - 1];
 
-				op2 = (Integer) pilhaOperandos[sp];
+				op2 = (Integer) global.pilhaOperandos[global.sp];
 
-				sp--;
+				global.sp--;
 
-				pilhaOperandos[sp] = op1 + op2;
+				global.pilhaOperandos[global.sp] = op1 + op2;
 
 			}
 				;
@@ -123,13 +213,13 @@ public class Interpretador {
 
 			case Definicao.ISUB: {
 
-				op1 = (Integer) pilhaOperandos[sp - 1];
+				op1 = (Integer) global.pilhaOperandos[global.sp - 1];
 
-				op2 = (Integer) pilhaOperandos[sp];
+				op2 = (Integer) global.pilhaOperandos[global.sp];
 
-				sp--;
+				global.sp--;
 
-				pilhaOperandos[sp] = op1 - op2;
+				global.pilhaOperandos[global.sp] = op1 - op2;
 
 			}
 				;
@@ -137,13 +227,13 @@ public class Interpretador {
 
 			case Definicao.IMUL: {
 
-				op1 = (Integer) pilhaOperandos[sp - 1];
+				op1 = (Integer) global.pilhaOperandos[global.sp - 1];
 
-				op2 = (Integer) pilhaOperandos[sp];
+				op2 = (Integer) global.pilhaOperandos[global.sp];
 
-				sp--;
+				global.sp--;
 
-				pilhaOperandos[sp] = op1 * op2;
+				global.pilhaOperandos[global.sp] = op1 * op2;
 
 			}
 				;
@@ -151,13 +241,13 @@ public class Interpretador {
 
 			case Definicao.IDIV: {
 
-				op1 = (Integer) pilhaOperandos[sp - 1];
+				op1 = (Integer) global.pilhaOperandos[global.sp - 1];
 
-				op2 = (Integer) pilhaOperandos[sp];
+				op2 = (Integer) global.pilhaOperandos[global.sp];
 
-				sp--;
+				global.sp--;
 
-				pilhaOperandos[sp] = op1 / op2;
+				global.pilhaOperandos[global.sp] = op1 / op2;
 
 			}
 				;
@@ -165,13 +255,13 @@ public class Interpretador {
 
 			case Definicao.IREM: {
 
-				op1 = (Integer) pilhaOperandos[sp - 1];
+				op1 = (Integer) global.pilhaOperandos[global.sp - 1];
 
-				op2 = (Integer) pilhaOperandos[sp];
+				op2 = (Integer) global.pilhaOperandos[global.sp];
 
-				sp--;
+				global.sp--;
 
-				pilhaOperandos[sp] = op1 % op2;
+				global.pilhaOperandos[global.sp] = op1 % op2;
 
 			}
 				;
@@ -179,9 +269,9 @@ public class Interpretador {
 
 			case Definicao.IINC: {
 
-				op1 = (Integer) pilhaOperandos[sp];
+				op1 = (Integer) global.pilhaOperandos[global.sp];
 
-				pilhaOperandos[sp] = ++op1;
+				global.pilhaOperandos[global.sp] = ++op1;
 
 			}
 				;
@@ -191,9 +281,9 @@ public class Interpretador {
 
 			case Definicao.ICONST0: {
 
-				sp++;
+				global.sp++;
 
-				pilhaOperandos[sp] = 0;
+				global.pilhaOperandos[global.sp] = 0;
 
 			}
 				;
@@ -201,9 +291,9 @@ public class Interpretador {
 
 			case Definicao.ICONST1: {
 
-				sp++;
+				global.sp++;
 
-				pilhaOperandos[sp] = 1;
+				global.pilhaOperandos[global.sp] = 1;
 
 			}
 				;
@@ -211,9 +301,9 @@ public class Interpretador {
 
 			case Definicao.ICONST2: {
 
-				sp++;
+				global.sp++;
 
-				pilhaOperandos[sp] = 2;
+				global.pilhaOperandos[global.sp] = 2;
 
 			}
 				;
@@ -221,9 +311,9 @@ public class Interpretador {
 
 			case Definicao.ICONST3: {
 
-				sp++;
+				global.sp++;
 
-				pilhaOperandos[sp] = 3;
+				global.pilhaOperandos[global.sp] = 3;
 
 			}
 				;
@@ -231,9 +321,9 @@ public class Interpretador {
 
 			case Definicao.ICONST4: {
 
-				sp++;
+				global.sp++;
 
-				pilhaOperandos[sp] = 4;
+				global.pilhaOperandos[global.sp] = 4;
 
 			}
 				;
@@ -241,9 +331,9 @@ public class Interpretador {
 
 			case Definicao.ICONST5: {
 
-				sp++;
+				global.sp++;
 
-				pilhaOperandos[sp] = 5;
+				global.pilhaOperandos[global.sp] = 5;
 
 			}
 				;
@@ -251,9 +341,9 @@ public class Interpretador {
 
 			case Definicao.ICONSTM1: {
 
-				sp++;
+				global.sp++;
 
-				pilhaOperandos[sp] = -1;
+				global.pilhaOperandos[global.sp] = -1;
 
 			}
 				;
@@ -261,11 +351,11 @@ public class Interpretador {
 
 			case Definicao.LDC: {
 
-				sp++;
+				global.sp++;
 
 				op1 = obterOperandoInteiro();
 
-				pilhaOperandos[sp] = op1;
+				global.pilhaOperandos[global.sp] = op1;
 
 			}
 				;
@@ -275,9 +365,9 @@ public class Interpretador {
 
 			case Definicao.ILOAD0: {
 
-				sp++;
+				global.sp++;
 
-				pilhaOperandos[sp] = memoriaGlobal[0];
+				global.pilhaOperandos[global.sp] = global.memoriaGlobal[0];
 
 			}
 				;
@@ -285,9 +375,9 @@ public class Interpretador {
 
 			case Definicao.ILOAD1: {
 
-				sp++;
+				global.sp++;
 
-				pilhaOperandos[sp] = memoriaGlobal[1];
+				global.pilhaOperandos[global.sp] = global.memoriaGlobal[1];
 
 			}
 				;
@@ -295,9 +385,9 @@ public class Interpretador {
 
 			case Definicao.ILOAD2: {
 
-				sp++;
+				global.sp++;
 
-				pilhaOperandos[sp] = memoriaGlobal[2];
+				global.pilhaOperandos[global.sp] = global.memoriaGlobal[2];
 
 			}
 				;
@@ -305,9 +395,9 @@ public class Interpretador {
 
 			case Definicao.ILOAD3: {
 
-				sp++;
+				global.sp++;
 
-				pilhaOperandos[sp] = memoriaGlobal[3];
+				global.pilhaOperandos[global.sp] = global.memoriaGlobal[3];
 
 			}
 				;
@@ -315,11 +405,11 @@ public class Interpretador {
 
 			case Definicao.ILOAD: {
 
-				sp++;
+				global.sp++;
 
 				op1 = obterOperandoInteiro();
 
-				pilhaOperandos[sp] = memoriaGlobal[op1];
+				global.pilhaOperandos[global.sp] = global.memoriaGlobal[op1];
 
 			}
 				;
@@ -329,9 +419,9 @@ public class Interpretador {
 
 			case Definicao.ISTORE0: {
 
-				memoriaGlobal[0] = pilhaOperandos[sp];
+				global.memoriaGlobal[0] = global.pilhaOperandos[global.sp];
 				
-				sp--;
+				global.sp--;
 
 			}
 				;
@@ -339,9 +429,9 @@ public class Interpretador {
 
 			case Definicao.ISTORE1: {
 
-				memoriaGlobal[1] = pilhaOperandos[sp];
+				global.memoriaGlobal[1] = global.pilhaOperandos[global.sp];
 				
-				sp--;
+				global.sp--;
 
 			}
 				;
@@ -349,9 +439,9 @@ public class Interpretador {
 
 			case Definicao.ISTORE2: {
 
-				memoriaGlobal[2] = pilhaOperandos[sp];
+				global.memoriaGlobal[2] = global.pilhaOperandos[global.sp];
 				
-				sp--;
+				global.sp--;
 
 			}
 				;
@@ -359,9 +449,9 @@ public class Interpretador {
 
 			case Definicao.ISTORE3: {
 
-				memoriaGlobal[3] = pilhaOperandos[sp];
+				global.memoriaGlobal[3] = global.pilhaOperandos[global.sp];
 				
-				sp--;
+				global.sp--;
 
 			}
 				;
@@ -371,9 +461,9 @@ public class Interpretador {
 
 				op1 = obterOperandoInteiro();
 
-				memoriaGlobal[op1] = pilhaOperandos[sp];
+				global.memoriaGlobal[op1] = global.pilhaOperandos[global.sp];
 				
-				sp--;
+				global.sp--;
 
 			}
 				;
@@ -383,13 +473,13 @@ public class Interpretador {
 
 			case Definicao.IAND: {
 
-				op1 = (Integer) pilhaOperandos[sp - 1];
+				op1 = (Integer) global.pilhaOperandos[global.sp - 1];
 
-				op2 = (Integer) pilhaOperandos[sp];
+				op2 = (Integer) global.pilhaOperandos[global.sp];
 
 				op1 = op1 & op2;
 
-				sp--;
+				global.sp--;
 
 			}
 				;
@@ -397,13 +487,13 @@ public class Interpretador {
 
 			case Definicao.IOR: {
 
-				op1 = (Integer) pilhaOperandos[sp - 1];
+				op1 = (Integer) global.pilhaOperandos[global.sp - 1];
 
-				op2 = (Integer) pilhaOperandos[sp];
+				op2 = (Integer) global.pilhaOperandos[global.sp];
 
 				op1 = op1 | op2;
 
-				sp--;
+				global.sp--;
 
 			}
 				;
@@ -411,13 +501,13 @@ public class Interpretador {
 
 			case Definicao.IXOR: {
 
-				op1 = (Integer) pilhaOperandos[sp - 1];
+				op1 = (Integer) global.pilhaOperandos[global.sp - 1];
 
-				op2 = (Integer) pilhaOperandos[sp];
+				op2 = (Integer) global.pilhaOperandos[global.sp];
 
 				op1 = op1 ^ op2;
 
-				sp--;
+				global.sp--;
 
 			}
 				;
@@ -427,7 +517,7 @@ public class Interpretador {
 
 			case Definicao.IFEQ: {
 
-				op1 = (Integer) pilhaOperandos[sp];
+				op1 = (Integer) global.pilhaOperandos[global.sp];
 
 				if (op1 == 0) {
 
@@ -437,7 +527,7 @@ public class Interpretador {
 
 				} else
 
-					pilhaOperandos[sp] = 0;
+					global.pilhaOperandos[global.sp] = 0;
 
 			}
 				;
@@ -445,7 +535,7 @@ public class Interpretador {
 
 			case Definicao.IFNE: {
 
-				op1 = (Integer) pilhaOperandos[sp];
+				op1 = (Integer) global.pilhaOperandos[global.sp];
 
 				if (op1 != 0) {
 
@@ -455,7 +545,7 @@ public class Interpretador {
 
 				} else
 
-					pilhaOperandos[sp] = 0;
+					global.pilhaOperandos[global.sp] = 0;
 
 			}
 				;
@@ -463,7 +553,7 @@ public class Interpretador {
 
 			case Definicao.IFLT: {
 
-				op1 = (Integer) pilhaOperandos[sp];
+				op1 = (Integer) global.pilhaOperandos[global.sp];
 
 				if (op1 > 0) {
 
@@ -473,7 +563,7 @@ public class Interpretador {
 
 				} else
 
-					pilhaOperandos[sp] = 0;
+					global.pilhaOperandos[global.sp] = 0;
 
 			}
 				;
@@ -481,7 +571,7 @@ public class Interpretador {
 
 			case Definicao.IFGE: {
 
-				op1 = (Integer) pilhaOperandos[sp];
+				op1 = (Integer) global.pilhaOperandos[global.sp];
 
 				if (op1 >= 0) {
 
@@ -491,7 +581,7 @@ public class Interpretador {
 
 				} else
 
-					pilhaOperandos[sp] = 0;
+					global.pilhaOperandos[global.sp] = 0;
 
 			}
 				;
@@ -499,7 +589,7 @@ public class Interpretador {
 
 			case Definicao.IFGT: {
 
-				op1 = (Integer) pilhaOperandos[sp];
+				op1 = (Integer) global.pilhaOperandos[global.sp];
 
 				if (op1 > 0) {
 
@@ -509,7 +599,7 @@ public class Interpretador {
 
 				} else
 
-					pilhaOperandos[sp] = 0;
+					global.pilhaOperandos[global.sp] = 0;
 
 			}
 				;
@@ -517,7 +607,7 @@ public class Interpretador {
 
 			case Definicao.IFLE: {
 
-				op1 = (Integer) pilhaOperandos[sp];
+				op1 = (Integer) global.pilhaOperandos[global.sp];
 
 				if (op1 <= 0) {
 
@@ -527,7 +617,7 @@ public class Interpretador {
 
 				} else
 
-					pilhaOperandos[sp] = 0;
+					global.pilhaOperandos[global.sp] = 0;
 
 			}
 				;
@@ -535,11 +625,11 @@ public class Interpretador {
 
 			case Definicao.IF_ICMPEQ: {
 
-				op1 = (Integer) pilhaOperandos[sp - 1];
+				op1 = (Integer) global.pilhaOperandos[global.sp - 1];
 
-				op2 = (Integer) pilhaOperandos[sp];
+				op2 = (Integer) global.pilhaOperandos[global.sp];
 
-				sp--;
+				global.sp--;
 
 				if (op1 == op2) {
 
@@ -549,9 +639,9 @@ public class Interpretador {
 
 				} else {
 
-					pilhaOperandos[sp] = 0;
+					global.pilhaOperandos[global.sp] = 0;
 
-					ip += 4;
+					global.ip += 4;
 
 				}
 
@@ -561,11 +651,11 @@ public class Interpretador {
 
 			case Definicao.IF_ICMPNE: {
 
-				op1 = (Integer) pilhaOperandos[sp - 1];
+				op1 = (Integer) global.pilhaOperandos[global.sp - 1];
 
-				op2 = (Integer) pilhaOperandos[sp];
+				op2 = (Integer) global.pilhaOperandos[global.sp];
 
-				sp--;
+				global.sp--;
 
 				if (op1 != op2) {
 
@@ -575,9 +665,9 @@ public class Interpretador {
 
 				} else {
 
-					pilhaOperandos[sp] = 0;
+					global.pilhaOperandos[global.sp] = 0;
 
-					ip += 4;
+					global.ip += 4;
 
 				}
 
@@ -587,11 +677,11 @@ public class Interpretador {
 
 			case Definicao.IF_ICMPLT: {
 
-				op1 = (Integer) pilhaOperandos[sp - 1];
+				op1 = (Integer) global.pilhaOperandos[global.sp - 1];
 
-				op2 = (Integer) pilhaOperandos[sp];
+				op2 = (Integer) global.pilhaOperandos[global.sp];
 
-				sp--;
+				global.sp--;
 
 				if (op1 < op2) {
 
@@ -601,9 +691,9 @@ public class Interpretador {
 
 				} else {
 
-					pilhaOperandos[sp] = 0;
+					global.pilhaOperandos[global.sp] = 0;
 
-					ip += 4;
+					global.ip += 4;
 
 				}
 
@@ -613,11 +703,11 @@ public class Interpretador {
 
 			case Definicao.IF_ICMPGE: {
 
-				op1 = (Integer) pilhaOperandos[sp - 1];
+				op1 = (Integer) global.pilhaOperandos[global.sp - 1];
 
-				op2 = (Integer) pilhaOperandos[sp];
+				op2 = (Integer) global.pilhaOperandos[global.sp];
 
-				sp--;
+				global.sp--;
 
 				if (op1 >= op2) {
 
@@ -627,9 +717,9 @@ public class Interpretador {
 
 				} else {
 
-					pilhaOperandos[sp] = 0;
+					global.pilhaOperandos[global.sp] = 0;
 
-					ip += 4;
+					global.ip += 4;
 
 				}
 
@@ -639,11 +729,11 @@ public class Interpretador {
 
 			case Definicao.IF_ICMPGT: {
 
-				op1 = (Integer) pilhaOperandos[sp - 1];
+				op1 = (Integer) global.pilhaOperandos[global.sp - 1];
 
-				op2 = (Integer) pilhaOperandos[sp];
+				op2 = (Integer) global.pilhaOperandos[global.sp];
 
-				sp--;
+				global.sp--;
 
 				if (op1 > op2) {
 
@@ -653,9 +743,9 @@ public class Interpretador {
 
 				} else {
 
-					pilhaOperandos[sp] = 0;
+					global.pilhaOperandos[global.sp] = 0;
 
-					ip += 4;
+					global.ip += 4;
 
 				}
 
@@ -665,11 +755,11 @@ public class Interpretador {
 
 			case Definicao.IF_ICMPLE: {
 
-				op1 = (Integer) pilhaOperandos[sp - 1];
+				op1 = (Integer) global.pilhaOperandos[global.sp - 1];
 
-				op2 = (Integer) pilhaOperandos[sp];
+				op2 = (Integer) global.pilhaOperandos[global.sp];
 
-				sp--;
+				global.sp--;
 
 				if (op1 <= op2) {
 
@@ -679,9 +769,9 @@ public class Interpretador {
 
 				} else {
 
-					pilhaOperandos[sp] = 0;
+					global.pilhaOperandos[global.sp] = 0;
 
-					ip += 4;
+					global.ip += 4;
 
 				}
 
@@ -694,7 +784,7 @@ public class Interpretador {
 
 				op1 = obterOperandoInteiro();
 
-				ip = op1;
+				global.ip = op1;
 
 				desvio = true;
 
@@ -706,7 +796,7 @@ public class Interpretador {
 
 			if (!desvio)
 
-				ip++;
+				global.ip++;
 
 			// Para testes
 			exibirTela();
@@ -717,19 +807,19 @@ public class Interpretador {
 
 	protected void desviar() {
 
-		pilhaOperandos[sp] = 1;
+		global.pilhaOperandos[global.sp] = 1;
 
 		int op = obterOperandoInteiro();
 
-		ip = op;
+		global.ip = op;
 
 	}
 
 	protected int obterOperandoInteiro() {
 
-		int op = BytecodeAssembler.obterInteiro(codigo, ip + 1);
+		int op = BytecodeAssembler.obterInteiro(global.codigo, global.ip + 1);
 
-		ip += 4;
+		global.ip += 4;
 
 		return op;
 
@@ -746,31 +836,31 @@ public class Interpretador {
 
 		int i;
 
-		System.out.println("IP: " + ip);
+		System.out.println("IP: " + global.ip);
 
-		System.out.println("SP: " + sp);
+		System.out.println("SP: " + global.sp);
 
 		System.out.print("Memória do código: ");
 
-		for (i = 0; i < codigo.length; i++)
+		for (i = 0; i < global.codigo.length; i++)
 
-			System.out.print(codigo[i] + " ");
+			System.out.print(global.codigo[i] + " ");
 
 		System.out.print("\n");
 
 		System.out.print("Memória global das variáveis: ");
 
-		for (i = 0; i < memoriaGlobal.length; i++)
+		for (i = 0; i < global.memoriaGlobal.length; i++)
 
-			System.out.print(memoriaGlobal[i] + " ");
+			System.out.print(global.memoriaGlobal[i] + " ");
 
 		System.out.print("\n");
 
 		System.out.print("Pilha: ");
 
-		for (i = 0; i < pilhaOperandos.length; i++)
+		for (i = 0; i < global.pilhaOperandos.length; i++)
 
-			System.out.print(pilhaOperandos[i] + " ");
+			System.out.print(global.pilhaOperandos[i] + " ");
 
 		System.out.print("\n\n");
 

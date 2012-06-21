@@ -20,9 +20,6 @@ options {
 topdown : entraNaClasse
         | declaracaoVariavel
         ;
-        
-bottomup : saiDaClasse
-         ;
          
 // START: class
 entraNaClasse
@@ -34,8 +31,8 @@ entraNaClasse
         if ( $sup!=null ) 
           $sup.escopo = escopoAtual; 
         SimboloClasse classe = new SimboloClasse($nome.text,escopoAtual,null);
-        classe.def = $nome;           // point from symbol table into AST
-        $nome.simbolo = classe;        // point from AST into symbol table
+        //classe.def = $nome;           // point from symbol table into AST
+        //$nome.simbolo = classe;        // point from AST into symbol table
         escopoAtual.definir(classe);  // def class in current scope
         escopoAtual = classe;        // set current scope to class scope
         }
@@ -47,18 +44,10 @@ declaracaoVariavel // global, parameter, or local variable
     :   ^((FIELD_DECL) var=. ID .?)
         {
         System.out.println("line "+$ID.getLine()+": def "+$ID.text);
-        $var.escopo = escopoAtual;
+        //$var.escopo = escopoAtual;
         SimboloVariavel variavel = new SimboloVariavel($ID.text,null);
-        variavel.def = $ID;            // track AST location of def's ID
-        $ID.simbolo = variavel;         // track in AST
+        //variavel.def = $ID;            // track AST location of def's ID
+        //$ID.simbolo = variavel;         // track in AST
         escopoAtual.definir(variavel);
-        }
-    ;
-
-saiDaClasse
-    :   '.class'
-        {
-        System.out.println("members: "+escopoAtual);
-        escopoAtual = escopoAtual.obterEscopoEnvolvente();    // pop scope
         }
     ;

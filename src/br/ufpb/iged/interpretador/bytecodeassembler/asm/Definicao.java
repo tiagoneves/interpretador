@@ -1,6 +1,6 @@
 package br.ufpb.iged.interpretador.bytecodeassembler.asm;
 
-import br.ufpb.iged.interpretador.bytecodeassembler.parser.BytecodesParser;
+import br.ufpb.iged.interpretador.bytecodeassembler.parser.AssemblerParser;
 
 public class Definicao {
 
@@ -50,11 +50,11 @@ public class Definicao {
     public static final int IF_ICMPLE = 0xA4;
     public static final int GOTO = 0xA7;
     
-    public static final int ID = BytecodesParser.ID;
-    public static final int INT= BytecodesParser.INT;
-    public static final int NOVA_LINHA = BytecodesParser.NOVA_LINHA;
-    public static final int NULL = BytecodesParser.NULL;
-    public static final int WS = BytecodesParser.WS;
+    public static final int ID = AssemblerParser.ID;
+    public static final int INT= AssemblerParser.INT;
+    public static final int NOVA_LINHA = AssemblerParser.NOVA_LINHA;
+    public static final int NULL = AssemblerParser.NULL;
+    public static final int WS = AssemblerParser.WS;
 
 
     public static class Instrucao {

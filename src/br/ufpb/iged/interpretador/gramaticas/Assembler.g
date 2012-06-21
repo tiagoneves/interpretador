@@ -1,15 +1,4 @@
-grammar Bytecodes;
-
-options {
-  output = AST;
-  ASTLabelType = BytecodesAST;
-}
-
-tokens {
-  MEMBRO_CLASSE;
-  FIELD_DECL;
-  EXTENDS;
-}
+grammar Assembler;
 
 @members {
 
@@ -28,28 +17,16 @@ comando : (label instrucao | instrucao);
          
 label : a = ID ':' {definirLabel($a);};
 
-instrucao: (definicaoClasse | manipulacaoObjetos | aritmetica | load | store | desvio | logica 
+instrucao: (manipulacaoObjetos | aritmetica | load | store | desvio | logica 
                   | 'nop'
               | a = 'pop' {escreverOpcode($a);}
               | a = 'pop2'{escreverOpcode($a);}
               )? NOVA_LINHA;
-                            
-definicaoClasse : '.class' ID membroClasse+  -> ^('.class' ID ^(MEMBRO_CLASSE membroClasse+))
-                | '.class' ID NOVA_LINHA superClasse membroClasse+  
-                  -> ^('.class' ID superClasse ^(MEMBRO_CLASSE membroClasse+))
-                | '.method' construtorDefault
-                ;
-    
-superClasse : '.super' ID -> ^(EXTENDS ID) ;
-
-membroClasse : '.field' ID tipo NOVA_LINHA -> ^(FIELD_DECL ID tipo) ;
 
 manipulacaoObjetos : 'getfield' ID '/' ID tipo
                    | 'putfield' ID '/' ID tipo
                    | 'invokespecial' ID '/' INIT '()' VOID 
                    ;
-                   
-construtorDefault : INIT '()' VOID ; 
   
 tipo : INT | VOID | 'L'ID ;
 
