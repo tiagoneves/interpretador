@@ -134,7 +134,7 @@ public class BytecodeAssembler extends AssemblerParser{
 
 		switch(token.getType()) {
 
-		case INT: valor = new Integer(operandoTxt);break;
+		case INTEIRO: valor = new Integer(operandoTxt);break;
 		case ID: valor = obterEndereco(operandoTxt);break;
 		
 		}

@@ -1,13 +1,10 @@
 package br.ufpb.iged.interpretador.principal;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Scanner;
 
 import org.antlr.runtime.ANTLRFileStream;
-import org.antlr.runtime.ANTLRInputStream;
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
@@ -22,12 +19,13 @@ import org.antlr.runtime.tree.CommonTreeAdaptor;
 import br.ufpb.iged.interpretador.bytecodeassembler.asm.BytecodeAssembler;
 import br.ufpb.iged.interpretador.bytecodeassembler.asm.Definicao;
 import br.ufpb.iged.interpretador.bytecodeassembler.parser.AssemblerLexer;
+import br.ufpb.iged.interpretador.excecoes.AcessoIndevidoMemoriaException;
+import br.ufpb.iged.interpretador.excecoes.LabelException;
 import br.ufpb.iged.interpretador.symboltable.classes.BytecodesAST;
 import br.ufpb.iged.interpretador.symboltable.classes.BytecodesErrorNode;
 import br.ufpb.iged.interpretador.symboltable.classes.EscopoGlobal;
+import br.ufpb.iged.interpretador.symboltable.classes.Simbolo;
 import br.ufpb.iged.interpretador.symboltable.classes.TabelaSimbolos;
-import br.ufpb.iged.interpretador.symboltable.parser.ClasseLexer;
-import br.ufpb.iged.interpretador.symboltable.parser.ClasseParser;
 import br.ufpb.iged.interpretador.symboltable.parser.Def;
 
 public class Interpretador {
@@ -77,29 +75,32 @@ public class Interpretador {
 
 	public static void main(String[] args) throws Exception {
 
-		InputStream entrada = new FileInputStream(NOME_ARQUIVO_ENTRADA);
-
-		Interpretador interpretador = new Interpretador();
-		if (carregar(interpretador, entrada))
+		//InputStream entrada = new FileInputStream(NOME_ARQUIVO_ENTRADA);
+		
+		if (carregar()) {
+			
+			Interpretador interpretador = new Interpretador();
+			
 			interpretador.cpu();
+			
+		}
+			
 
 	}
 
-	public static boolean carregar(Interpretador interp, InputStream input)
-			throws Exception {
+	public static boolean carregar() {
 		
-		try {
-			AssemblerLexer assemblerLexer = new AssemblerLexer(
-					new ANTLRInputStream(input));
-			CommonTokenStream tokens = new CommonTokenStream(assemblerLexer);
-			BytecodeAssembler assembler = new BytecodeAssembler(tokens,
-					Definicao.instrucoes);
+			//AssemblerLexer assemblerLexer = new AssemblerLexer(
+				//	new ANTLRInputStream(input));
+			//CommonTokenStream tokens = new CommonTokenStream(assemblerLexer);
+			//BytecodeAssembler assembler = new BytecodeAssembler(tokens,
+				//	Definicao.instrucoes);
 			//assembler.setTreeAdaptor(bytecodesAdaptor);
 			//RuleReturnScope r = assembler.programa();
-			assembler.programa();
 			//assembler.programa();
-			if (assembler.getNumberOfSyntaxErrors() > 0)
-				return false;
+			//assembler.programa();
+			//if (assembler.getNumberOfSyntaxErrors() > 0)
+				//return false;
 			//CommonTree tree = (CommonTree)r.getTree();
 			//CommonTreeNodeStream nos = new CommonTreeNodeStream(bytecodesAdaptor, tree);
 	        //nos.setTokenStream(tokens);
@@ -107,51 +108,77 @@ public class Interpretador {
 	        //Def def = new Def(nos, tabelaSimbolos);       // create Def phase
 	        //def.downup(tree);                          // Do pass 1
 	        //nos.reset(); // rewind AST node stream to root
+	        BytecodeAssembler assembler = carregarClasse("Main.class");
 	        global = tabelaSimbolos.global;
 			global.codigo = assembler.obterCodigoMaquina();
 			global.tamanhoCodigo = assembler.obterTamanhoMemoriaCodigo();
 			global.memoriaGlobal = new Object[assembler.getTamMemoriaGlobal()];
-
-		} finally {
-			input.close();
-		}
+			
+			File file = new File(".\\");
+			
+			String[] arquivos = file.list();
+			
+			int i;
+			
+			for (i = 0; i < arquivos.length; i++){
+				
+				if (arquivos[i].endsWith(".class") && 
+						!(arquivos[i].equals("Main.class")))
+					
+					carregarClasse(arquivos[i]);
+				
+			}
+			
+			Simbolo classe = tabelaSimbolos.global.resolver("Teste");
+			System.out.println("Classe adicionada:" + classe.nome);
+			
 		return true;
 		
 	}
 	
-	public static void carregarClasses() throws IOException, RecognitionException {
+	public static BytecodeAssembler carregarClasse(String nomeArquivo) {
 		
-		File file = new File(".\\");
+		BytecodeAssembler parser = null;
 		
-		String[] arquivos = file.list();
-		
-		int i;
-		
-		for (i = 0; i < arquivos.length; i++) {
+		try {
 			
-			if (arquivos[i].endsWith(".class")) {
-				
-				CharStream input = new ANTLRFileStream(arquivos[i]);
-				
-			    ClasseLexer lexer = new ClasseLexer(input);
-			    CommonTokenStream tokens = new CommonTokenStream(lexer);
-			    ClasseParser parser = new ClasseParser(tokens);
-			    parser.setTreeAdaptor(bytecodesAdaptor);
-			    RuleReturnScope r = parser.definicaoClasse();   // launch parser by calling start rule
-			    CommonTree tree = (CommonTree)r.getTree();    // get tree result
-			   
-                CommonTreeNodeStream nos = new CommonTreeNodeStream(bytecodesAdaptor, tree);
-                nos.setTokenStream(tokens);
-			    Def def = new Def(nos, tabelaSimbolos);       // create Def phase
-			    def.downup(tree);                          // Do pass 1			   
-			    nos.reset(); // rewind AST node stream to root
-				
-			}
+			CharStream input = new ANTLRFileStream(nomeArquivo);
 			
-		}  
+		    AssemblerLexer lexer = new AssemblerLexer(input);
+		    CommonTokenStream tokens = new CommonTokenStream(lexer);
+		    parser = new BytecodeAssembler(tokens, Definicao.instrucoes);
+		    parser.setTreeAdaptor(bytecodesAdaptor);
+		    RuleReturnScope r = parser.programa();   // launch parser by calling start rule
+		    CommonTree tree = (CommonTree)r.getTree();    // get tree result
+		   
+	        CommonTreeNodeStream nos = new CommonTreeNodeStream(bytecodesAdaptor, tree);
+	        nos.setTokenStream(tokens);
+		    Def def = new Def(nos, tabelaSimbolos);       // create Def phase
+		    def.downup(tree);                          // Do pass 1			   
+		    nos.reset(); // rewind AST node stream to root
+			
+		} catch(IOException ioe) {
+			
+			System.out.println(ioe.getMessage());
+			
+		} catch (RecognitionException re){
+			
+			System.out.println(re.getMessage());
+			
+		} catch (LabelException le) {
+			
+			System.out.println(le.getMessage());
+			
+		} catch (AcessoIndevidoMemoriaException aime) {
+			
+			System.out.println(aime.getMessage());
+			
+		}
+			    
+	    return parser;
 		
 	}
-
+	
 	protected void cpu() {
 
 		int op1, op2;

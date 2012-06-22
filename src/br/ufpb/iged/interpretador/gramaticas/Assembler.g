@@ -1,5 +1,16 @@
 grammar Assembler;
 
+options {
+  output = AST;
+  ASTLabelType = BytecodesAST;
+}
+
+tokens {
+  MEMBRO_CLASSE;
+  FIELD_DECL;
+  EXTENDS;
+}
+
 @members {
 
   protected void escreverOpcode(Token opc);
@@ -17,11 +28,23 @@ comando : (label instrucao | instrucao);
          
 label : a = ID ':' {definirLabel($a);};
 
-instrucao: (manipulacaoObjetos | aritmetica | load | store | desvio | logica 
+instrucao: (definicaoClasse | manipulacaoObjetos | aritmetica | load | store | desvio | logica 
                   | 'nop'
               | a = 'pop' {escreverOpcode($a);}
               | a = 'pop2'{escreverOpcode($a);}
               )? NOVA_LINHA;
+              
+definicaoClasse : '.class' ID NOVA_LINHA membroClasse+  -> ^('.class' ID ^(MEMBRO_CLASSE membroClasse+))
+                | '.class' ID NOVA_LINHA superClasse membroClasse+  
+                  -> ^('.class' ID NOVA_LINHA superClasse ^(MEMBRO_CLASSE membroClasse+))
+                | '.method' construtorDefault
+                ;
+                
+superClasse : '.super' ID -> ^(EXTENDS ID) ;
+
+membroClasse : '.field' ID tipo -> ^(FIELD_DECL ID tipo) ;
+
+construtorDefault : INIT '()' VOID ; 
 
 manipulacaoObjetos : 'getfield' ID '/' ID tipo
                    | 'putfield' ID '/' ID tipo
@@ -52,11 +75,11 @@ load : a = 'iconst_m1'{escreverOpcode($a);}
      | a = 'iload_3' {escreverOpcode($a);}
      | a = 'iload' INTEIRO {escreverOpcode($a, $INTEIRO);}
      | a = 'ldc' INTEIRO {escreverOpcode($a, $INTEIRO);}
-     | a = 'aload' INTEIRO
-     | a = 'aload_0'
-     | a = 'aload_1'
-     | a = 'aload_2'
-     | a = 'aload_3'
+     | 'aload' INTEIRO
+     | 'aload_0'
+     | 'aload_1'
+     | 'aload_2'
+     | 'aload_3'
      ;
      
 store : a = 'istore_0' {verificarAumentoMemoriaGlobal($a);}
@@ -100,6 +123,6 @@ ID: ('a'..'z' | 'A'..'Z') ('a'..'z' | 'A'..'Z' | '0'..'9' | '.')* ;
 
 //LETRA: ('a'..'z' | 'A'..'Z');
 
-NOVA_LINHA : ';';
+NOVA_LINHA : '\n';
 
-WS : (' ' | '\t' | '\r' | '\n') {skip();} ;
+WS : (' ' | '\t' | '\r') {skip();} ;
