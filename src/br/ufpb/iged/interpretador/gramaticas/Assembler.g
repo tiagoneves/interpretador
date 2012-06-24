@@ -34,9 +34,8 @@ instrucao: (definicaoClasse | manipulacaoObjetos | aritmetica | load | store | d
               | a = 'pop2'{escreverOpcode($a);}
               )? NOVA_LINHA;
               
-definicaoClasse : '.class' ID NOVA_LINHA membroClasse+  -> ^('.class' ID ^(MEMBRO_CLASSE membroClasse+))
-                | '.class' ID NOVA_LINHA superClasse membroClasse+  
-                  -> ^('.class' ID NOVA_LINHA superClasse ^(MEMBRO_CLASSE membroClasse+))
+definicaoClasse : '.class' ID NOVA_LINHA superClasse? membroClasse+  
+                  -> ^('.class' ID superClasse? ^(MEMBRO_CLASSE membroClasse+))
                 | '.method' construtorDefault
                 ;
                 

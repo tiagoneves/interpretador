@@ -17,9 +17,9 @@ options {
     }
 }
 
-topdown : entraNaClasse
-        | declaracaoVariavel
-        ;
+topdown : entraNaClasse;
+
+bottomup : declaracaoVariavel;
          
 // START: class
 entraNaClasse
@@ -28,8 +28,8 @@ entraNaClasse
         System.out.println("line "+$nome.getLine()+
                            ": def class "+$nome.text);
         // record scope in AST for next pass
-        if ( $sup!=null ) 
-          $sup.escopo = escopoAtual; 
+       // if ( $sup!=null ) 
+         // $sup.escopo = escopoAtual; 
         SimboloClasse classe = new SimboloClasse($nome.text,escopoAtual,null);
         //classe.def = $nome;           // point from symbol table into AST
         //$nome.simbolo = classe;        // point from AST into symbol table
@@ -41,11 +41,12 @@ entraNaClasse
 
 
 declaracaoVariavel // global, parameter, or local variable
-    :   ^((FIELD_DECL) var=. ID .?)
+    :   ^(FIELD_DECL var = ID tipo =.)
         {
         System.out.println("line "+$ID.getLine()+": def "+$ID.text);
         //$var.escopo = escopoAtual;
-        SimboloVariavel variavel = new SimboloVariavel($ID.text,null);
+        SimboloTipoPrimitvo tipoPrimitivo = new SimboloTipoPrimitvo($tipo.getText());       
+        SimboloVariavel variavel = new SimboloVariavel($ID.text,tipoPrimitivo);
         //variavel.def = $ID;            // track AST location of def's ID
         //$ID.simbolo = variavel;         // track in AST
         escopoAtual.definir(variavel);
