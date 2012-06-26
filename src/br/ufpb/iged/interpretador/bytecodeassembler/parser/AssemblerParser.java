@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g 2012-06-24 02:54:41
+// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g 2012-06-26 18:51:15
 
 package br.ufpb.iged.interpretador.bytecodeassembler.parser;
 
@@ -818,7 +818,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: ID, membroClasse, superClasse, 16
+                    // elements: 16, membroClasse, superClasse, ID
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 

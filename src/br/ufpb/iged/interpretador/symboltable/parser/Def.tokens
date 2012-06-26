@@ -1,5 +1,6 @@
-T__7=7
+T__8=8
 EXTENDS=4
 FIELD_DECL=5
 ID=6
-'.class'=7
+MEMBRO_CLASSE=7
+'.class'=8
