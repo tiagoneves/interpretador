@@ -6,6 +6,7 @@ options {
 }
 
 tokens {
+  CLASSE;
   MEMBRO_CLASSE;
   FIELD_DECL;
   EXTENDS;
@@ -35,7 +36,7 @@ instrucao: (definicaoClasse | manipulacaoObjetos | aritmetica | load | store | d
               )? NOVA_LINHA;
               
 definicaoClasse : '.class' ID NOVA_LINHA superClasse? membroClasse+  
-                  -> ^('.class' ID superClasse? ^(MEMBRO_CLASSE membroClasse+))
+                  -> ^(CLASSE ID superClasse? ^(MEMBRO_CLASSE membroClasse+))
                 | '.method' construtorDefault
                 ;
                 

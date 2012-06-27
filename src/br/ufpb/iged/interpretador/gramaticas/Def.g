@@ -25,7 +25,7 @@ bottomup : saiDaClasse;
          
 // START: class
 entraNaClasse
-    :   ^('.class' nome=ID (^(EXTENDS sup=ID))? ^(MEMBRO_CLASSE FIELD_DECL))
+    :   ^(CLASSE nome=ID (^(EXTENDS sup=ID))? .)
         { // def class but leave superclass blank until ref phase
         System.out.println("line "+$nome.getLine()+
                            ": def class "+$nome.text);
@@ -43,7 +43,7 @@ entraNaClasse
 
 
 declaracaoVariavel // global, parameter, or local variable
-    :   ^(FIELD_DECL var = ID tipo =.)
+    :   ^(FIELD_DECL ID tipo =.)
         {
         System.out.println("line "+$ID.getLine()+": def "+$ID.text);
         //$var.escopo = escopoAtual;
@@ -54,5 +54,5 @@ declaracaoVariavel // global, parameter, or local variable
         escopoAtual.definir(variavel);
         }
     ;
-saiDaClasse : '.class'
+saiDaClasse : CLASSE
             ;

@@ -51,9 +51,14 @@ aload_0 2a 42
 aload_1 2b 43
 aload_2 2c 44
 aload_3 2d 45
-invokespecial b7 183
+astore 3a 58
+astore_0 4b 75
+astore_1 4c 76
+astore_2 4d 77
+astore_3 4e 78
 getfield b4 180
 putfield b5 181
+invokespecial b7 183
 
 new java/lang/Integer     ; Create the integer
 dup                       ; Make a copy of the reference to it
