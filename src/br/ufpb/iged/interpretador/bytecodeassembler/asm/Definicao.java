@@ -49,6 +49,19 @@ public class Definicao {
     public static final int IF_ICMPGT = 0xA3;
     public static final int IF_ICMPLE = 0xA4;
     public static final int GOTO = 0xA7;
+    public static final int ALOAD = 0x19;
+    public static final int ALOAD0 = 0x2a;
+    public static final int ALOAD1 = 0x2b;
+    public static final int ALOAD2 = 0x2c;
+    public static final int ALOAD3 = 0x2d;
+    public static final int ASTORE = 0x3a;
+    public static final int ASTORE0 = 0x4b;
+    public static final int ASTORE1 = 0x4c;
+    public static final int ASTORE2 = 0x4d;
+    public static final int ASTORE3 = 0x4e;
+    public static final int GETFIELD = 0xb4;
+    public static final int PUTFIELD = 0xb5;
+    public static final int INVOKESPECIAL = 0xb7;
     
     public static final int ID = AssemblerParser.ID;
     public static final int INT= AssemblerParser.INT;
@@ -61,7 +74,9 @@ public class Definicao {
 
     	String nome;
 
-    	int tipo;
+    	int tipo1;
+    	
+    	int tipo2;
 
     	int opcode;
 
@@ -69,15 +84,23 @@ public class Definicao {
 
     	public Instrucao (String nome, int opcode) {
 
-    		this (nome, 0, opcode);
+    		this (nome, 0, 0, opcode);
 
     	}
 
     	public Instrucao (String nome, int a, int opcode) {
 
+    		this(nome, a, 0, opcode);
+
+    	}
+    	
+    	public Instrucao (String nome, int a, int b, int opcode) {
+
     		this.nome = nome;
 
-    		tipo = a;
+    		tipo1 = a;
+    		
+    		tipo2 = b;
 
     		this.opcode = opcode;
 
@@ -130,7 +153,18 @@ public class Definicao {
 			new Instrucao("if_icmpge", ID, Definicao.IF_ICMPGE),
 			new Instrucao("if_icmpgt", ID, Definicao.IF_ICMPGT),
 			new Instrucao("if_icmple", ID, Definicao.IF_ICMPLE),
-			new Instrucao("goto", ID, Definicao.GOTO)
+			new Instrucao("goto", ID, Definicao.GOTO),
+			new Instrucao("aload", Definicao.ALOAD),
+			new Instrucao("aload_0", Definicao.ALOAD0),
+			new Instrucao("aload_1", Definicao.ALOAD1),
+			new Instrucao("aload_2", Definicao.ALOAD2),
+			new Instrucao("aload_3", Definicao.ALOAD3),
+			new Instrucao("astore", Definicao.ASTORE),
+			new Instrucao("astore_0", Definicao.ASTORE0),
+			new Instrucao("astore_1", Definicao.ASTORE1),
+			new Instrucao("astore_2", Definicao.ASTORE2),
+			new Instrucao("astore_3", Definicao.ASTORE3)
+			
 
 	};
  

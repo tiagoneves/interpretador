@@ -44,14 +44,12 @@ superClasse : '.super' ID -> ^(EXTENDS ID) ;
 
 membroClasse : '.field' ID tipo -> ^(FIELD_DECL ID tipo) ;
 
-construtorDefault : INIT '()' VOID ; 
-
-manipulacaoObjetos : 'getfield' ID '/' ID tipo
-                   | 'putfield' ID '/' ID tipo
-                   | 'invokespecial' ID '/' INIT '()' VOID 
+manipulacaoObjetos : 'getfield' campo tipo
+                   | 'putfield' campo tipo
+                   | 'invokespecial' construtorDefault VOID 
                    ;
   
-tipo : INT | VOID | 'L'ID ;
+tipo : INT | VOID | tipoRef ;
 
 aritmetica : a = 'iadd' {escreverOpcode($a);}
            | a = 'isub' {escreverOpcode($a);}
@@ -108,6 +106,12 @@ desvio : a = 'ifeq' b = ID {escreverOpcode($a, $b);}
        | a = 'if_icmple' b = ID {escreverOpcode($a, $b);}
        | a = 'goto' b = ID {escreverOpcode($a, $b);}
        ;
+
+construtorDefault : (ID '/')* INIT '()';
+
+campo: ID '/' ID;
+
+tipoRef : 'L' (ID '/')* ID;
 
 INIT : '<init>';
 
