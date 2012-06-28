@@ -84,24 +84,17 @@ public class Definicao {
 
     	public Instrucao (String nome, int opcode) {
 
-    		this (nome, 0, 0, opcode);
+    		this (nome, 0, opcode);
 
     	}
 
-    	public Instrucao (String nome, int a, int opcode) {
-
-    		this(nome, a, 0, opcode);
-
-    	}
     	
-    	public Instrucao (String nome, int a, int b, int opcode) {
+    	public Instrucao (String nome, int a, int opcode) {
 
     		this.nome = nome;
 
     		tipo1 = a;
-    		
-    		tipo2 = b;
-
+   
     		this.opcode = opcode;
 
     	}
@@ -163,8 +156,10 @@ public class Definicao {
 			new Instrucao("astore_0", Definicao.ASTORE0),
 			new Instrucao("astore_1", Definicao.ASTORE1),
 			new Instrucao("astore_2", Definicao.ASTORE2),
-			new Instrucao("astore_3", Definicao.ASTORE3)
-			
+			new Instrucao("astore_3", Definicao.ASTORE3),
+			new Instrucao("getfield", Definicao.GETFIELD),
+			new Instrucao("putfield", Definicao.PUTFIELD),
+			new Instrucao("invokespecial", Definicao.INVOKESPECIAL)		
 
 	};
  

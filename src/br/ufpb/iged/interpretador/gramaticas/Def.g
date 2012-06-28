@@ -7,6 +7,10 @@ options {
   filter=true;  
 }
 
+@header{
+    package br.ufpb.iged.interpretador.symboltable.parser;
+}
+
 @members {
     TabelaSimbolos tabelaSimbolos;
     Escopo escopoAtual;
@@ -23,34 +27,25 @@ topdown : entraNaClasse
 
 bottomup : saiDaClasse;
          
-// START: class
 entraNaClasse
     :   ^(CLASSE nome=ID (^(EXTENDS sup=ID))? .)
-        { // def class but leave superclass blank until ref phase
+        { 
         System.out.println("line "+$nome.getLine()+
                            ": def class "+$nome.text);
-        // record scope in AST for next pass
-       // if ( $sup!=null ) 
-         // $sup.escopo = escopoAtual; 
+        if ( $sup!=null ) 
+          $sup.escopo = escopoAtual; 
         SimboloClasse classe = new SimboloClasse($nome.text,escopoAtual,null);
-        //classe.def = $nome;           // point from symbol table into AST
-        //$nome.simbolo = classe;        // point from AST into symbol table
-        escopoAtual.definir(classe);  // def class in current scope
-        escopoAtual = classe;        // set current scope to class scope
+        escopoAtual.definir(classe);  
+        escopoAtual = classe;  
         }
     ;
-// END: class
 
-
-declaracaoVariavel // global, parameter, or local variable
+declaracaoVariavel
     :   ^(FIELD_DECL ID tipo =.)
         {
         System.out.println("line "+$ID.getLine()+": def "+$ID.text);
-        //$var.escopo = escopoAtual;
         SimboloTipoPrimitvo tipoPrimitivo = new SimboloTipoPrimitvo($tipo.getText());       
         SimboloVariavel variavel = new SimboloVariavel($ID.text,tipoPrimitivo);
-        //variavel.def = $ID;            // track AST location of def's ID
-        //$ID.simbolo = variavel;         // track in AST
         escopoAtual.definir(variavel);
         }
     ;

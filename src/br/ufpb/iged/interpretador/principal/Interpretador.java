@@ -29,27 +29,11 @@ import br.ufpb.iged.interpretador.symboltable.classes.TabelaSimbolos;
 import br.ufpb.iged.interpretador.symboltable.parser.Def;
 
 public class Interpretador {
-
-	public static final String NOME_ARQUIVO_ENTRADA = "entrada.txt";
 	
 	static TabelaSimbolos tabelaSimbolos;
 	
 	static EscopoGlobal global;
 
-	/*public static final int TAMANHO_INICIAL_PILHA_OPERANDOS = 100;
-
-	int global.ip = 0;
-
-	byte[] global.codigo;
-
-	int tamanhoCodigo;
-
-	Object[] global.memoriaGlobal;
-
-	Object[] global.pilhaOperandos = new Object[TAMANHO_INICIAL_PILHA_OPERANDOS];
-
-	int global.sp = -1;*/
-	
 	public static TreeAdaptor bytecodesAdaptor = new CommonTreeAdaptor() {
 		
         public Object create(Token token) {
@@ -67,15 +51,12 @@ public class Interpretador {
                                 RecognitionException e)
         {
             BytecodesErrorNode t = new BytecodesErrorNode(input, start, stop, e);
-            //System.out.println("returning error node '"+t+"' @index="+input.index());
             return t;
         }
         
     };
 
 	public static void main(String[] args) throws Exception {
-
-		//InputStream entrada = new FileInputStream(NOME_ARQUIVO_ENTRADA);
 		
 		if (carregar()) {
 			
@@ -90,24 +71,7 @@ public class Interpretador {
 
 	public static boolean carregar() {
 		
-			//AssemblerLexer assemblerLexer = new AssemblerLexer(
-				//	new ANTLRInputStream(input));
-			//CommonTokenStream tokens = new CommonTokenStream(assemblerLexer);
-			//BytecodeAssembler assembler = new BytecodeAssembler(tokens,
-				//	Definicao.instrucoes);
-			//assembler.setTreeAdaptor(bytecodesAdaptor);
-			//RuleReturnScope r = assembler.programa();
-			//assembler.programa();
-			//assembler.programa();
-			//if (assembler.getNumberOfSyntaxErrors() > 0)
-				//return false;
-			//CommonTree tree = (CommonTree)r.getTree();
-			//CommonTreeNodeStream nos = new CommonTreeNodeStream(bytecodesAdaptor, tree);
-	        //nos.setTokenStream(tokens);
-	        tabelaSimbolos = new TabelaSimbolos(); // init symbol table
-	        //Def def = new Def(nos, tabelaSimbolos);       // create Def phase
-	        //def.downup(tree);                          // Do pass 1
-	        //nos.reset(); // rewind AST node stream to root
+	        tabelaSimbolos = new TabelaSimbolos(); 
 	        BytecodeAssembler assembler = carregarClasse("Main.class");
 	        global = tabelaSimbolos.global;
 			global.codigo = assembler.obterCodigoMaquina();
@@ -148,14 +112,14 @@ public class Interpretador {
 		    CommonTokenStream tokens = new CommonTokenStream(lexer);
 		    parser = new BytecodeAssembler(tokens, Definicao.instrucoes);
 		    parser.setTreeAdaptor(bytecodesAdaptor);
-		    RuleReturnScope r = parser.programa();   // launch parser by calling start rule
-		    CommonTree tree = (CommonTree)r.getTree();    // get tree result
+		    RuleReturnScope r = parser.programa();  
+		    CommonTree tree = (CommonTree)r.getTree();    
 		   
 	        CommonTreeNodeStream nos = new CommonTreeNodeStream(bytecodesAdaptor, tree);
 	        nos.setTokenStream(tokens);
-		    Def def = new Def(nos, tabelaSimbolos);       // create Def phase
-		    def.downup(tree);                          // Do pass 1			   
-		    nos.reset(); // rewind AST node stream to root
+		    Def def = new Def(nos, tabelaSimbolos);       
+		    def.downup(tree);                          		   
+		    nos.reset(); 
 			
 		} catch(IOException ioe) {
 			

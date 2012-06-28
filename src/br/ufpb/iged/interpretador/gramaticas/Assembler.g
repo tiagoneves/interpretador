@@ -12,6 +12,10 @@ tokens {
   EXTENDS;
 }
 
+@header{
+  package br.ufpb.iged.interpretador.bytecodeassembler.parser;
+}
+
 @members {
 
   protected void escreverOpcode(Token opc);
@@ -37,16 +41,16 @@ instrucao: (definicaoClasse | manipulacaoObjetos | aritmetica | load | store | d
               
 definicaoClasse : '.class' ID NOVA_LINHA superClasse? membroClasse+  
                   -> ^(CLASSE ID superClasse? ^(MEMBRO_CLASSE membroClasse+))
-                | '.method' construtorDefault
+                | '.method' INIT '()' VOID
                 ;
                 
 superClasse : '.super' ID -> ^(EXTENDS ID) ;
 
 membroClasse : '.field' ID tipo -> ^(FIELD_DECL ID tipo) ;
 
-manipulacaoObjetos : 'getfield' campo tipo
-                   | 'putfield' campo tipo
-                   | 'invokespecial' construtorDefault VOID 
+manipulacaoObjetos : 'getfield' a = campo tipo
+                   | 'putfield' a = campo tipo
+                   | 'invokespecial' b = construtorDefault VOID 
                    ;
   
 tipo : INT | VOID | tipoRef ;
@@ -73,11 +77,11 @@ load : a = 'iconst_m1'{escreverOpcode($a);}
      | a = 'iload_3' {escreverOpcode($a);}
      | a = 'iload' INTEIRO {escreverOpcode($a, $INTEIRO);}
      | a = 'ldc' INTEIRO {escreverOpcode($a, $INTEIRO);}
-     | 'aload' INTEIRO
-     | 'aload_0'
-     | 'aload_1'
-     | 'aload_2'
-     | 'aload_3'
+     | a = 'aload' INTEIRO {escreverOpcode($a, $INTEIRO);}
+     | a = 'aload_0' {escreverOpcode($a);}
+     | a = 'aload_1' {escreverOpcode($a);}
+     | a = 'aload_2'{escreverOpcode($a);}
+     | a = 'aload_3'{escreverOpcode($a);}
      ;
      
 store : a = 'istore_0' {verificarAumentoMemoriaGlobal($a);}
@@ -85,6 +89,11 @@ store : a = 'istore_0' {verificarAumentoMemoriaGlobal($a);}
       | a = 'istore_2' {verificarAumentoMemoriaGlobal($a);}
       | a = 'istore_3' {verificarAumentoMemoriaGlobal($a);}
       | a = 'istore' INTEIRO {verificarAumentoMemoriaGlobal($a, $INTEIRO);}
+      | a = 'astore' INTEIRO {verificarAumentoMemoriaGlobal($a, $INTEIRO);}
+      | a = 'astore_0' {verificarAumentoMemoriaGlobal($a);}
+      | a = 'astore_1' {verificarAumentoMemoriaGlobal($a);}
+      | a = 'astore_2' {verificarAumentoMemoriaGlobal($a);}
+      | a = 'astore_3' {verificarAumentoMemoriaGlobal($a);}
       ;
 
 logica : a = 'iand' {escreverOpcode($a);}
@@ -107,9 +116,20 @@ desvio : a = 'ifeq' b = ID {escreverOpcode($a, $b);}
        | a = 'goto' b = ID {escreverOpcode($a, $b);}
        ;
 
-construtorDefault : (ID '/')* INIT '()';
+construtorDefault returns [List classe]
+     @init {
+        $classe = new ArrayList<String>();
+     }
+     : (cls += ID '/')+ INIT '()' {$classe = $cls;}
+     ;
 
-campo: ID '/' ID;
+campo returns [List classe, String campo]
+     @init {
+        $classe = new ArrayList<String>();
+        $campo="";
+     }
+     : (cls += ID '/')+ cmp = ID {$classe = $cls; $campo = $cmp.text;}
+     ;
 
 tipoRef : 'L' (ID '/')* ID;
 
