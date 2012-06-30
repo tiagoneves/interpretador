@@ -23,6 +23,7 @@ tokens {
   protected void verificarAumentoMemoriaGlobal(Token opc) throws AcessoIndevidoMemoriaException;
   protected void verificarAumentoMemoriaGlobal(Token opc, Token op) throws AcessoIndevidoMemoriaException, LabelException;
   protected void definirLabel(Token id) throws LabelException;
+  protected void inserirNovaClasse(Token nomeClasse);
   
 }
 
@@ -41,6 +42,7 @@ instrucao: (definicaoClasse | manipulacaoObjetos | aritmetica | load | store | d
               
 definicaoClasse : '.class' ID NOVA_LINHA superClasse? membroClasse+  
                   -> ^(CLASSE ID superClasse? ^(MEMBRO_CLASSE membroClasse+))
+                  {inserirNovaClasse($ID);}
                 | '.method' INIT '()' VOID
                 ;
                 

@@ -23,11 +23,16 @@ public class BytecodeAssembler extends AssemblerParser{
 			new HashMap<String, LabelSymbol>();
 	protected Map<String, Integer> enderecosMap =
 			new HashMap<String, Integer>();
+	
+	protected Map<Integer, String> classesMap = 
+			new HashMap<Integer, String>();
+	
 	protected static int ip = 0;
 	public static byte[] codigo = new byte[TAMANHO_INICIAL_MEMORIA_CODIGO];
 	protected int tamMemoriaGlobalEstruturas = 0;
 	protected int tamMemoriaGlobalReferencias = 0;
 	protected int tamMemoriaGlobal = 0;
+	protected int idProximaClasse = 0;
 
 
 	public BytecodeAssembler(TokenStream lexer, Definicao.Instrucao[] instrucoes) {
@@ -168,6 +173,12 @@ public class BytecodeAssembler extends AssemblerParser{
 
 		return label.address;
 
+	}
+	
+	protected void inserirNovaClasse(Token nomeClasse) {
+		
+		classesMap.put(idProximaClasse++, nomeClasse.getText());
+		
 	}
 
 	protected static void verificarAumentoTamanhoMemoria(int indice) {
