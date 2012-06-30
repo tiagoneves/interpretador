@@ -23,8 +23,8 @@ tokens {
   protected void verificarAumentoMemoriaGlobal(Token opc) throws AcessoIndevidoMemoriaException;
   protected void verificarAumentoMemoriaGlobal(Token opc, Token op) throws AcessoIndevidoMemoriaException, LabelException;
   protected void definirLabel(Token id) throws LabelException;
-  protected void acessarCampo(Token opc, List<String> classe, String campo);
-  protected void chamarMetodo(Token opc, List<String> classe);
+  protected void acessarCampo(Token opc, List<Token> classe, String campo);
+  protected void chamarMetodo(Token opc, List<Token> classe);
   
 }
 
@@ -120,14 +120,14 @@ desvio : a = 'ifeq' b = ID {escreverOpcode($a, $b);}
 
 construtorDefault returns [List classe]
      @init {
-        $classe = new ArrayList<String>();
+        $classe = new ArrayList();
      }
      : (cls += ID '/')+ INIT '()' {$classe = $cls;}
      ;
 
 campo returns [List classe, String campo]
      @init {
-        $classe = new ArrayList<String>();
+        $classe = new ArrayList();
         $campo="";
      }
      : (cls += ID '/')+ cmp = ID {$classe = $cls; $campo = $cmp.text;}

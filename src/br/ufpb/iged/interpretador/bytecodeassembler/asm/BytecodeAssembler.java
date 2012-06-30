@@ -179,11 +179,11 @@ public class BytecodeAssembler extends AssemblerParser{
 
 	}
 	
-	protected void acessarCampo(Token opc, List<String> classe, String campo) {
+	protected void acessarCampo(Token opc, List<Token> classe, String campo) {
 		
 		escreverOpcode(opc);
 		
-		String nomeClasse = (classe.get(classe.size() - 1));
+		String nomeClasse = (classe.get(classe.size() - 1)).getText();
 		
 		SimboloClasse simboloClasse = 
 				(SimboloClasse) Interpretador.tabelaSimbolos.global.resolver(nomeClasse);
@@ -208,11 +208,11 @@ public class BytecodeAssembler extends AssemblerParser{
 		
 	}
 	
-	protected void chamarMetodo(Token opc, List<String> classe) {
+	protected void chamarMetodo(Token opc, List<Token> classe) {
 		
 		escreverOpcode(opc);
 		
-		String nomeClasse = (classe.get(classe.size() - 1));
+		String nomeClasse = (classe.get(classe.size() - 1)).getText();
 		
 		SimboloClasse simboloClasse = 
 				(SimboloClasse) Interpretador.tabelaSimbolos.global.resolver(nomeClasse);

@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g 2012-06-30 16:49:21
+// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g 2012-06-30 17:20:12
 
 package br.ufpb.iged.interpretador.bytecodeassembler.parser;
 
@@ -133,8 +133,8 @@ public TreeAdaptor getTreeAdaptor() {
       protected abstract void verificarAumentoMemoriaGlobal(Token opc) throws AcessoIndevidoMemoriaException;
       protected abstract void verificarAumentoMemoriaGlobal(Token opc, Token op) throws AcessoIndevidoMemoriaException, LabelException;
       protected abstract void definirLabel(Token id) throws LabelException;
-      protected abstract void acessarCampo(Token opc, List<String> classe, String campo);
-      protected abstract void chamarMetodo(Token opc, List<String> classe);
+      protected abstract void acessarCampo(Token opc, List<Token> classe, String campo);
+      protected abstract void chamarMetodo(Token opc, List<Token> classe);
       
 
 
@@ -1091,7 +1091,7 @@ public TreeAdaptor getTreeAdaptor() {
             stream_tipo.add(tipo28.getTree());
 
             // AST REWRITE
-            // elements: ID, tipo
+            // elements: tipo, ID
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -3010,7 +3010,7 @@ public TreeAdaptor getTreeAdaptor() {
         BytecodesAST cls_tree=null;
 
 
-                retval.classe = new ArrayList<String>();
+                retval.classe = new ArrayList();
              
         try {
             // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:125:6: ( (cls+= ID '/' )+ INIT '()' )
@@ -3132,7 +3132,7 @@ public TreeAdaptor getTreeAdaptor() {
         BytecodesAST cls_tree=null;
 
 
-                retval.classe = new ArrayList<String>();
+                retval.classe = new ArrayList();
                 retval.campo ="";
              
         try {

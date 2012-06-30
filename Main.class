@@ -49,4 +49,12 @@ L2:	 	ineg
 	 	ldc -23
 	 	iadd
 	 	ifeq L1
+	 	aload_0
+	 	invokespecial Main/<init>() V
+	 	ldc 5
+	 	putfield Main/abc I
+	 	iconst_3
+	    putfield Main/xyz I
+	    getfield Main/abc I
+	 	
 	 	
