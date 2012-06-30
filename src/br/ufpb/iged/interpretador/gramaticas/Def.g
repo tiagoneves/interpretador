@@ -30,7 +30,7 @@ bottomup : saiDaClasse;
 entraNaClasse
     :   ^(CLASSE nome=ID (^(EXTENDS sup=ID))? .)
         { 
-        System.out.println("line "+$nome.getLine()+
+        System.out.println("linha "+$nome.getLine()+
                            ": def class "+$nome.text);
         if ( $sup!=null ) 
           $sup.escopo = escopoAtual; 
@@ -43,7 +43,7 @@ entraNaClasse
 declaracaoVariavel
     :   ^(FIELD_DECL ID tipo =.)
         {
-        System.out.println("line "+$ID.getLine()+": def "+$ID.text);
+        System.out.println("linha "+$ID.getLine()+": def "+$ID.text);
         SimboloTipoPrimitvo tipoPrimitivo = new SimboloTipoPrimitvo($tipo.getText());       
         SimboloVariavel variavel = new SimboloVariavel($ID.text,tipoPrimitivo);
         escopoAtual.definir(variavel);

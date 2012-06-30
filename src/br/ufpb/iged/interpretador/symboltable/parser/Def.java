@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g 2012-06-30 11:58:24
+// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g 2012-06-30 16:49:24
 
 package br.ufpb.iged.interpretador.symboltable.parser;
 
@@ -214,7 +214,7 @@ public class Def extends TreeFilter {
 
 
             if ( state.backtracking==1 ) { 
-                    System.out.println("line "+nome.getLine()+
+                    System.out.println("linha "+nome.getLine()+
                                        ": def class "+(nome!=null?nome.getText():null));
                     if ( sup!=null ) 
                       sup.escopo = escopoAtual; 
@@ -263,7 +263,7 @@ public class Def extends TreeFilter {
 
 
             if ( state.backtracking==1 ) {
-                    System.out.println("line "+ID1.getLine()+": def "+(ID1!=null?ID1.getText():null));
+                    System.out.println("linha "+ID1.getLine()+": def "+(ID1!=null?ID1.getText():null));
                     SimboloTipoPrimitvo tipoPrimitivo = new SimboloTipoPrimitvo(tipo.getText());       
                     SimboloVariavel variavel = new SimboloVariavel((ID1!=null?ID1.getText():null),tipoPrimitivo);
                     escopoAtual.definir(variavel);

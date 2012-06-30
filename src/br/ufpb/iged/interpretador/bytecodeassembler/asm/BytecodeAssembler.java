@@ -207,6 +207,23 @@ public class BytecodeAssembler extends AssemblerParser{
 		
 		
 	}
+	
+	protected void chamarMetodo(Token opc, List<String> classe) {
+		
+		escreverOpcode(opc);
+		
+		String nomeClasse = (classe.get(classe.size() - 1));
+		
+		SimboloClasse simboloClasse = 
+				(SimboloClasse) Interpretador.tabelaSimbolos.global.resolver(nomeClasse);
+		
+		if(!constantPool.contains(simboloClasse))
+			
+			constantPool.add(simboloClasse);
+		
+		escreverInteiro(codigo, ip, constantPool.indexOf(simboloClasse));
+		
+	}
 
 	protected static void verificarAumentoTamanhoMemoria(int indice) {
 

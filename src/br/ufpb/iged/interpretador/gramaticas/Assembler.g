@@ -24,6 +24,7 @@ tokens {
   protected void verificarAumentoMemoriaGlobal(Token opc, Token op) throws AcessoIndevidoMemoriaException, LabelException;
   protected void definirLabel(Token id) throws LabelException;
   protected void acessarCampo(Token opc, List<String> classe, String campo);
+  protected void chamarMetodo(Token opc, List<String> classe);
   
 }
 
@@ -51,7 +52,7 @@ membroClasse : '.field' ID tipo -> ^(FIELD_DECL ID tipo) ;
 
 manipulacaoObjetos : a = 'getfield' b = campo tipo {acessarCampo($a, $b.classe, $b.campo);}
                    | a = 'putfield' b = campo tipo {acessarCampo($a, $b.classe, $b.campo);}
-                   | a = 'invokespecial' c = construtorDefault VOID 
+                   | a = 'invokespecial' c = construtorDefault VOID {chamarMetodo($a, $c.classe);}
                    ;
   
 tipo : INT | VOID | tipoRef ;
