@@ -12,6 +12,7 @@
 	<property name = "destSymtab.dir" value = 
 				"src/br/ufpb/iged/interpretador/symboltable/parser"/>
 	<property name="def.gram" value = "Def.g"/>
+	<property name="ref.gram" value = "Ref.g"/>
     
     <target name="cleanAssembler">
     	<delete>
@@ -68,6 +69,7 @@
 			<arg value="-o"/>
 			<arg path="${destSymtab.dir}"/>
 			<arg path="${src.dir}/${def.gram}"/>
+			<arg path="${src.dir}/${ref.gram}"/>
 		</java>
 	</target>
  

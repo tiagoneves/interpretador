@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g 2012-06-30 17:55:43
+// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g 2012-06-30 18:49:59
 
 package br.ufpb.iged.interpretador.symboltable.parser;
 
@@ -297,6 +297,11 @@ public class Def extends TreeFilter {
             // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:56:15: CLASSE
             {
             match(input,CLASSE,FOLLOW_CLASSE_in_saiDaClasse179); if (state.failed) return ;
+
+            if ( state.backtracking==1 ) {
+                          System.out.println("Saindo da classe.. membros: "+escopoAtual);
+                          escopoAtual = escopoAtual.obterEscopoEnvolvente();    // pop scope
+                        }
 
             }
 

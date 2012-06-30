@@ -38,18 +38,18 @@ entraNaClasse
     ;
     
 declaracaoVariavel // global, parameter, or local variable
-    :   ^(FIELD_DECL ID tipo =.)
+    :   ^(FIELD_DECL ID tipo)
         {
-          $ID.simbolo.tipo = $tipo.tsym; // set return type of variable
+          $ID.simbolo.tipo = $tipo.tsimb; // set return type of variable
           System.out.println("linha "+$ID.getLine()+": set var type "+$ID.simbolo);
         }
     ;
     
-tipo returns [Tipo tsym]
+tipo returns [Tipo tsimb]
 @init {
     // get scope from AST; use to resolve type name and save it in AST
     $start.simbolo = $start.escopo.resolver($start.getText());
-    $tsym = (Tipo)$start.simbolo; // return Type from this rule
+    $tsimb = (Tipo)$start.simbolo; // return Type from this rule
 }
     :   'I'
     |   ID // struct name
