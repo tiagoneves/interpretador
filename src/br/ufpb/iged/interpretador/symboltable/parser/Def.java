@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g 2012-06-30 17:20:15
+// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g 2012-06-30 17:55:43
 
 package br.ufpb.iged.interpretador.symboltable.parser;
 
@@ -9,7 +9,6 @@ import org.antlr.runtime.tree.*;
 import br.ufpb.iged.interpretador.symboltable.classes.BytecodesAST;
 import br.ufpb.iged.interpretador.symboltable.classes.Escopo;
 import br.ufpb.iged.interpretador.symboltable.classes.SimboloClasse;
-import br.ufpb.iged.interpretador.symboltable.classes.SimboloTipoPrimitvo;
 import br.ufpb.iged.interpretador.symboltable.classes.SimboloVariavel;
 import br.ufpb.iged.interpretador.symboltable.classes.TabelaSimbolos;
 
@@ -214,13 +213,15 @@ public class Def extends TreeFilter {
 
 
             if ( state.backtracking==1 ) { 
-                    System.out.println("linha "+nome.getLine()+
-                                       ": def class "+(nome!=null?nome.getText():null));
-                    if ( sup!=null ) 
-                      sup.escopo = escopoAtual; 
-                    SimboloClasse classe = new SimboloClasse((nome!=null?nome.getText():null),escopoAtual,null);
-                    escopoAtual.definir(classe);  
-                    escopoAtual = classe;  
+                       System.out.println("linha "+nome.getLine()+
+                                      ": def class "+(nome!=null?nome.getText():null));
+                       if ( sup!=null ) 
+                         sup.escopo = escopoAtual; 
+                       SimboloClasse classe = new SimboloClasse((nome!=null?nome.getText():null),escopoAtual,null);
+                       classe.def = nome;
+                       nome.simbolo = classe;
+                       escopoAtual.definir(classe);  
+                       escopoAtual = classe;  
                     }
 
             }
@@ -241,14 +242,14 @@ public class Def extends TreeFilter {
 
 
     // $ANTLR start "declaracaoVariavel"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:43:1: declaracaoVariavel : ^( FIELD_DECL ID tipo= . ) ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:45:1: declaracaoVariavel : ^( FIELD_DECL ID tipo= . ) ;
     public final void declaracaoVariavel() throws RecognitionException {
         BytecodesAST ID1=null;
         BytecodesAST tipo=null;
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:44:5: ( ^( FIELD_DECL ID tipo= . ) )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:44:9: ^( FIELD_DECL ID tipo= . )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:46:5: ( ^( FIELD_DECL ID tipo= . ) )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:46:9: ^( FIELD_DECL ID tipo= . )
             {
             match(input,FIELD_DECL,FOLLOW_FIELD_DECL_in_declaracaoVariavel149); if (state.failed) return ;
 
@@ -263,10 +264,12 @@ public class Def extends TreeFilter {
 
 
             if ( state.backtracking==1 ) {
-                    System.out.println("linha "+ID1.getLine()+": def "+(ID1!=null?ID1.getText():null));
-                    SimboloTipoPrimitvo tipoPrimitivo = new SimboloTipoPrimitvo(tipo.getText());       
-                    SimboloVariavel variavel = new SimboloVariavel((ID1!=null?ID1.getText():null),tipoPrimitivo);
-                    escopoAtual.definir(variavel);
+                      System.out.println("linha "+ID1.getLine()+": def "+(ID1!=null?ID1.getText():null));
+                      tipo.escopo = escopoAtual;      
+                      SimboloVariavel variavel = new SimboloVariavel((ID1!=null?ID1.getText():null),null);
+                      variavel.def = ID1;
+                      ID1.simbolo = variavel;
+                      escopoAtual.definir(variavel);
                     }
 
             }
@@ -287,11 +290,11 @@ public class Def extends TreeFilter {
 
 
     // $ANTLR start "saiDaClasse"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:52:1: saiDaClasse : CLASSE ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:56:1: saiDaClasse : CLASSE ;
     public final void saiDaClasse() throws RecognitionException {
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:52:13: ( CLASSE )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:52:15: CLASSE
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:56:13: ( CLASSE )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:56:15: CLASSE
             {
             match(input,CLASSE,FOLLOW_CLASSE_in_saiDaClasse179); if (state.failed) return ;
 

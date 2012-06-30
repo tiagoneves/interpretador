@@ -21,27 +21,27 @@ topdown
     ;
 
 entraNaClasse
-    :   ^('.class' nome=ID (^(EXTENDS sup=ID))? ^(MEMBRO_CLASSE .*))
+    :   ^(CLASSE nome=ID (^(EXTENDS sup=ID))? .)
         {
-        if ( $sup!=null ) {
-            // look up superclass (if any)
-            $sup.simbolo = $sup.escopo.resolver($sup.text);
-            ((SimboloClasse)$nome.simbolo).superClasse =
-                (SimboloClasse)$sup.simbolo;                // set superclass
-            System.out.println("line "+$nome.getLine()+": set "+$nome.text+
-                " super to "+((SimboloClasse)$nome.simbolo).superClasse.nome);
-        }
-        else {
-            System.out.println("line "+$nome.getLine()+": set "+$nome.text);
-        }
+          if ( $sup!=null ) {
+              // look up superclass (if any)
+              $sup.simbolo = $sup.escopo.resolver($sup.text);
+              ((SimboloClasse)$nome.simbolo).superClasse =
+                  (SimboloClasse)$sup.simbolo;
+                  System.out.println("linha "+$nome.getLine()+": set "+$nome.text+
+                  " super to "+((SimboloClasse)$nome.simbolo).superClasse.nome);
+           }
+           else {
+              System.out.println("linha "+$nome.getLine()+": set "+$nome.text);
+           }
         }
     ;
     
 declaracaoVariavel // global, parameter, or local variable
-    :   ^((FIELD_DECL) tipo ID .?)
+    :   ^(FIELD_DECL ID tipo =.)
         {
-        $ID.simbolo.tipo = $tipo.tsym; // set return type of variable
-        System.out.println("line "+$ID.getLine()+": set var type "+$ID.simbolo);
+          $ID.simbolo.tipo = $tipo.tsym; // set return type of variable
+          System.out.println("linha "+$ID.getLine()+": set var type "+$ID.simbolo);
         }
     ;
     
@@ -51,6 +51,6 @@ tipo returns [Tipo tsym]
     $start.simbolo = $start.escopo.resolver($start.getText());
     $tsym = (Tipo)$start.simbolo; // return Type from this rule
 }
-    :   'int'
+    :   'I'
     |   ID // struct name
     ;

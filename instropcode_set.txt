@@ -79,4 +79,12 @@ return                                    ; Return to the caller
 .end method 
 
 getfield
-putfield  
+putfield 
+
+aload_0
+	 	invokespecial Main/<init>() V
+	 	ldc 5
+	 	putfield Main/abc I
+	 	iconst_3
+	    putfield Main/xyz I
+	    getfield Main/abc I 
