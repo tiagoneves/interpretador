@@ -10,6 +10,10 @@ public class SimboloClasse extends SimboloComEscopo implements Escopo, Tipo {
     
     /** List of all fields and methods */
     public Map<String,Simbolo> membros=new LinkedHashMap<String,Simbolo>();
+    
+    protected List<Simbolo> constantPool = new ArrayList<Simbolo> ();
+    
+    protected int proximoElementoConstPool = 0;
 
     public SimboloClasse(String nome, Escopo escopoEnvolvente, SimboloClasse superClasse) {
     	
@@ -56,6 +60,14 @@ public class SimboloClasse extends SimboloComEscopo implements Escopo, Tipo {
 	public String obterNome() {
 		// TODO Auto-generated method stub
 		return nome;
+	}
+
+	public List<Simbolo>  getConstantPool() {
+		return constantPool;
+	}
+
+	public void setConstantPool(List<Simbolo> constantPool) {
+		this.constantPool = constantPool;
 	}
 
 	

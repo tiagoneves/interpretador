@@ -23,7 +23,7 @@ tokens {
   protected void verificarAumentoMemoriaGlobal(Token opc) throws AcessoIndevidoMemoriaException;
   protected void verificarAumentoMemoriaGlobal(Token opc, Token op) throws AcessoIndevidoMemoriaException, LabelException;
   protected void definirLabel(Token id) throws LabelException;
-  protected void inserirNovaClasse(Token nomeClasse);
+  protected void acessarCampo(Token opc, List<String> classe, String campo);
   
 }
 
@@ -42,7 +42,6 @@ instrucao: (definicaoClasse | manipulacaoObjetos | aritmetica | load | store | d
               
 definicaoClasse : '.class' ID NOVA_LINHA superClasse? membroClasse+  
                   -> ^(CLASSE ID superClasse? ^(MEMBRO_CLASSE membroClasse+))
-                  {inserirNovaClasse($ID);}
                 | '.method' INIT '()' VOID
                 ;
                 
@@ -50,9 +49,9 @@ superClasse : '.super' ID -> ^(EXTENDS ID) ;
 
 membroClasse : '.field' ID tipo -> ^(FIELD_DECL ID tipo) ;
 
-manipulacaoObjetos : 'getfield' a = campo tipo
-                   | 'putfield' a = campo tipo
-                   | 'invokespecial' b = construtorDefault VOID 
+manipulacaoObjetos : a = 'getfield' b = campo tipo {acessarCampo($a, $b.classe, $b.campo);}
+                   | a = 'putfield' b = campo tipo {acessarCampo($a, $b.classe, $b.campo);}
+                   | a = 'invokespecial' c = construtorDefault VOID 
                    ;
   
 tipo : INT | VOID | tipoRef ;

@@ -30,7 +30,7 @@ import br.ufpb.iged.interpretador.symboltable.parser.Def;
 
 public class Interpretador {
 	
-	static TabelaSimbolos tabelaSimbolos;
+	public static TabelaSimbolos tabelaSimbolos;
 	
 	static EscopoGlobal global;
 

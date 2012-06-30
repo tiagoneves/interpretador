@@ -1,6 +1,8 @@
 package br.ufpb.iged.interpretador.bytecodeassembler.asm;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.antlr.runtime.TokenStream;
@@ -10,6 +12,9 @@ import org.antlr.runtime.Token;
 import br.ufpb.iged.interpretador.bytecodeassembler.parser.AssemblerParser;
 import br.ufpb.iged.interpretador.excecoes.AcessoIndevidoMemoriaException;
 import br.ufpb.iged.interpretador.excecoes.LabelException;
+import br.ufpb.iged.interpretador.principal.Interpretador;
+import br.ufpb.iged.interpretador.symboltable.classes.SimboloClasse;
+import br.ufpb.iged.interpretador.symboltable.classes.SimboloVariavel;
 
 public class BytecodeAssembler extends AssemblerParser{
 
@@ -24,8 +29,7 @@ public class BytecodeAssembler extends AssemblerParser{
 	protected Map<String, Integer> enderecosMap =
 			new HashMap<String, Integer>();
 	
-	protected Map<Integer, String> classesMap = 
-			new HashMap<Integer, String>();
+	protected List<SimboloClasse> constantPool = new ArrayList<SimboloClasse>();
 	
 	protected static int ip = 0;
 	public static byte[] codigo = new byte[TAMANHO_INICIAL_MEMORIA_CODIGO];
@@ -175,9 +179,32 @@ public class BytecodeAssembler extends AssemblerParser{
 
 	}
 	
-	protected void inserirNovaClasse(Token nomeClasse) {
+	protected void acessarCampo(Token opc, List<String> classe, String campo) {
 		
-		classesMap.put(idProximaClasse++, nomeClasse.getText());
+		escreverOpcode(opc);
+		
+		String nomeClasse = (classe.get(classe.size() - 1));
+		
+		SimboloClasse simboloClasse = 
+				(SimboloClasse) Interpretador.tabelaSimbolos.global.resolver(nomeClasse);
+		
+		if(!constantPool.contains(simboloClasse))
+			
+			constantPool.add(simboloClasse);
+		
+		escreverInteiro(codigo, ip, constantPool.indexOf(simboloClasse));
+		
+		
+		SimboloVariavel simboloVariavel = 
+				(SimboloVariavel) simboloClasse.resolver(campo);
+		
+		if (!simboloClasse.getConstantPool().contains(simboloVariavel))
+			
+			simboloClasse.getConstantPool().add(simboloVariavel);
+				
+		escreverInteiro(
+				codigo, ip, simboloClasse.getConstantPool().indexOf(simboloVariavel));
+		
 		
 	}
 
