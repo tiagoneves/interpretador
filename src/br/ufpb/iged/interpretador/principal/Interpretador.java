@@ -28,6 +28,7 @@ import br.ufpb.iged.interpretador.symboltable.classes.EscopoGlobal;
 import br.ufpb.iged.interpretador.symboltable.classes.Simbolo;
 import br.ufpb.iged.interpretador.symboltable.classes.TabelaSimbolos;
 import br.ufpb.iged.interpretador.symboltable.parser.Def;
+import br.ufpb.iged.interpretador.symboltable.parser.Ref;
 
 public class Interpretador {
 	
@@ -149,7 +150,9 @@ public class Interpretador {
 			Def def = new Def(nos, tabelaSimbolos);       
 			def.downup(tree);                          		   
 		    nos.reset();
-				    
+		    Ref ref = new Ref(nos, tabelaSimbolos);
+			ref.downup(tree);
+			
 		    return parser;
 		
 	}
