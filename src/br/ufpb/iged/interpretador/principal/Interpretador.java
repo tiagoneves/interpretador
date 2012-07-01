@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import org.antlr.runtime.ANTLRFileStream;
+import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
@@ -33,6 +34,8 @@ public class Interpretador {
 	public static TabelaSimbolos tabelaSimbolos;
 	
 	static EscopoGlobal global;
+	
+	private static StringBuffer entrada;
 
 	public static TreeAdaptor bytecodesAdaptor = new CommonTreeAdaptor() {
 		
@@ -56,79 +59,24 @@ public class Interpretador {
         
     };
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		
-		if (carregar()) {
+		try {
+			
+			carregar();
 			
 			Interpretador interpretador = new Interpretador();
 			
 			interpretador.cpu();
 			
-		}
-			
+		} catch (IOException ioe) {
 
-	}
-
-	public static boolean carregar() {
-		
-	        tabelaSimbolos = new TabelaSimbolos(); 
-	        BytecodeAssembler assembler = carregarClasse("Main.class");
-	        global = tabelaSimbolos.global;
-			global.codigo = assembler.obterCodigoMaquina();
-			global.tamanhoCodigo = assembler.obterTamanhoMemoriaCodigo();
-			global.memoriaGlobal = new Object[assembler.getTamMemoriaGlobal()];
-			
-			File file = new File(".\\");
-			
-			String[] arquivos = file.list();
-			
-			int i;
-			
-			for (i = 0; i < arquivos.length; i++){
-				
-				if (arquivos[i].endsWith(".class") && 
-						!(arquivos[i].equals("Main.class")))
-					
-					carregarClasse(arquivos[i]);
-				
-			}
-			
-			Simbolo classe = tabelaSimbolos.global.resolver("Teste");
-			System.out.println("Classe adicionada:" + classe.nome);
-			
-		return true;
-		
-	}
-	
-	public static BytecodeAssembler carregarClasse(String nomeArquivo) {
-		
-		BytecodeAssembler parser = null;
-		
-		try {
-			
-			CharStream input = new ANTLRFileStream(nomeArquivo);
-			
-		    AssemblerLexer lexer = new AssemblerLexer(input);
-		    CommonTokenStream tokens = new CommonTokenStream(lexer);
-		    parser = new BytecodeAssembler(tokens, Definicao.instrucoes);
-		    parser.setTreeAdaptor(bytecodesAdaptor);
-		    RuleReturnScope r = parser.programa();  
-		    CommonTree tree = (CommonTree)r.getTree();    
-		   
-	        CommonTreeNodeStream nos = new CommonTreeNodeStream(bytecodesAdaptor, tree);
-	        nos.setTokenStream(tokens);
-		    Def def = new Def(nos, tabelaSimbolos);       
-		    def.downup(tree);                          		   
-		    nos.reset(); 
-			
-		} catch(IOException ioe) {
-			
 			System.out.println(ioe.getMessage());
-			
-		} catch (RecognitionException re){
+
+		} catch (RecognitionException re) {
 			
 			System.out.println(re.getMessage());
-			
+
 		} catch (LabelException le) {
 			
 			System.out.println(le.getMessage());
@@ -136,10 +84,73 @@ public class Interpretador {
 		} catch (AcessoIndevidoMemoriaException aime) {
 			
 			System.out.println(aime.getMessage());
-			
+		
 		}
-			    
-	    return parser;
+			
+
+	}
+
+	public static void carregar() 
+			throws IOException, RecognitionException, LabelException, 
+				AcessoIndevidoMemoriaException {
+		
+		    entrada = new StringBuffer();
+		
+			File file = new File(".\\");
+		
+			String[] arquivos = file.list();
+			
+		    int i;
+		    
+			for (i = 0; i < arquivos.length; i++){
+			
+				if (arquivos[i].endsWith(".class")) {
+					
+					ANTLRFileStream input = new ANTLRFileStream(arquivos[i]);
+					
+					entrada.append(input.toString());
+					
+				}
+			
+			}
+			
+			
+	        tabelaSimbolos = new TabelaSimbolos(); 
+            
+	        BytecodeAssembler assembler = carregarClasses();
+	        
+	        global = tabelaSimbolos.global;
+			global.codigo = assembler.obterCodigoMaquina();
+			global.tamanhoCodigo = assembler.obterTamanhoMemoriaCodigo();
+			global.memoriaGlobal = new Object[assembler.getTamMemoriaGlobal()];
+			
+			//Para testes
+			Simbolo classe = tabelaSimbolos.global.resolver("Teste");
+			System.out.println("Classe adicionada:" + classe.nome);
+
+		
+	}
+	
+	public static BytecodeAssembler carregarClasses() throws RecognitionException, LabelException, AcessoIndevidoMemoriaException {
+		
+			BytecodeAssembler parser = null;
+				
+			CharStream input = new ANTLRStringStream(entrada.toString());
+			
+			AssemblerLexer lexer = new AssemblerLexer(input);
+			CommonTokenStream tokens = new CommonTokenStream(lexer);
+			parser = new BytecodeAssembler(tokens, Definicao.instrucoes);
+			parser.setTreeAdaptor(bytecodesAdaptor);
+			RuleReturnScope r = parser.programa();  
+			CommonTree tree = (CommonTree)r.getTree();    
+		   
+			CommonTreeNodeStream nos = new CommonTreeNodeStream(bytecodesAdaptor, tree);
+			nos.setTokenStream(tokens);
+			Def def = new Def(nos, tabelaSimbolos);       
+			def.downup(tree);                          		   
+		    nos.reset();
+				    
+		    return parser;
 		
 	}
 	
