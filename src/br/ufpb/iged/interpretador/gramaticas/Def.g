@@ -9,6 +9,12 @@ options {
 
 @header{
     package br.ufpb.iged.interpretador.symboltable.parser;
+    
+    import br.ufpb.iged.interpretador.symboltable.classes.BytecodesAST;
+    import br.ufpb.iged.interpretador.symboltable.classes.Escopo;
+    import br.ufpb.iged.interpretador.symboltable.classes.SimboloClasse;
+    import br.ufpb.iged.interpretador.symboltable.classes.SimboloVariavel;
+    import br.ufpb.iged.interpretador.symboltable.classes.TabelaSimbolos;
 }
 
 @members {

@@ -14,17 +14,25 @@ tokens {
 
 @header{
   package br.ufpb.iged.interpretador.bytecodeassembler.parser;
+  
+  import br.ufpb.iged.interpretador.excecoes.AcessoIndevidoMemoriaException;
+  import br.ufpb.iged.interpretador.excecoes.LabelException;
+  import br.ufpb.iged.interpretador.symboltable.classes.BytecodesAST;
+}
+
+@lexer::header{
+  package br.ufpb.iged.interpretador.bytecodeassembler.parser;
 }
 
 @members {
 
-  protected void escreverOpcode(Token opc);
-  protected void escreverOpcode(Token opc, Token op) throws LabelException;
-  protected void verificarAumentoMemoriaGlobal(Token opc) throws AcessoIndevidoMemoriaException;
-  protected void verificarAumentoMemoriaGlobal(Token opc, Token op) throws AcessoIndevidoMemoriaException, LabelException;
-  protected void definirLabel(Token id) throws LabelException;
-  protected void acessarCampo(Token opc, List<Token> classe, String campo);
-  protected void chamarMetodo(Token opc, List<Token> classe);
+  protected abstract void escreverOpcode(Token opc);
+  protected abstract void escreverOpcode(Token opc, Token op) throws LabelException;
+  protected abstract void verificarAumentoMemoriaGlobal(Token opc) throws AcessoIndevidoMemoriaException;
+  protected abstract void verificarAumentoMemoriaGlobal(Token opc, Token op) throws AcessoIndevidoMemoriaException, LabelException;
+  protected abstract void definirLabel(Token id) throws LabelException;
+  protected abstract void acessarCampo(Token opc, List<Token> classe, String campo);
+  protected abstract void chamarMetodo(Token opc, List<Token> classe);
   
 }
 
@@ -48,7 +56,9 @@ definicaoClasse : '.class' ID NOVA_LINHA superClasse? membroClasse+
                 
 superClasse : '.super' ID -> ^(EXTENDS ID) ;
 
-membroClasse : '.field' ID tipo -> ^(FIELD_DECL ID tipo) ;
+membroClasse : '.field' ID tipo -> ^(FIELD_DECL ID tipo) 
+             ; 
+             
 
 manipulacaoObjetos : a = 'getfield' b = campo tipo {acessarCampo($a, $b.classe, $b.campo);}
                    | a = 'putfield' b = campo tipo {acessarCampo($a, $b.classe, $b.campo);}

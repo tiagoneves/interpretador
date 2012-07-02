@@ -6,7 +6,7 @@ public class TabelaSimbolos {
 	
 	public TabelaSimbolos() {
 		
-		global.definir(new SimboloTipoPrimitvo("int"));
+		global.definir(new SimboloTipoPrimitvo("I"));
 		
 	}
 	
