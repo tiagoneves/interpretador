@@ -10,6 +10,9 @@ tokens {
   MEMBRO_CLASSE;
   FIELD_DECL;
   EXTENDS;
+  GETFIELD;
+  PUTFIELD;
+  INVOKESPECIAL;
 }
 
 @header{
@@ -60,9 +63,9 @@ membroClasse : '.field' ID tipo -> ^(FIELD_DECL ID tipo)
              ; 
              
 
-manipulacaoObjetos : a = 'getfield' b = campo tipo {acessarCampo($a, $b.classe, $b.campo);}
-                   | a = 'putfield' b = campo tipo {acessarCampo($a, $b.classe, $b.campo);}
-                   | a = 'invokespecial' c = construtorDefault VOID {chamarMetodo($a, $c.classe);}
+manipulacaoObjetos : a = 'getfield' b = campo tipo -> ^(GETFIELD $b tipo)
+                   | a = 'putfield' b = campo tipo -> ^(PUTFIELD $b tipo) 
+                   | a = 'invokespecial' c = chamadaMetodo -> ^(INVOKESPECIAL $c)
                    ;
   
 tipo : INT | VOID | tipoRef ;
@@ -128,11 +131,18 @@ desvio : a = 'ifeq' b = ID {escreverOpcode($a, $b);}
        | a = 'goto' b = ID {escreverOpcode($a, $b);}
        ;
 
-construtorDefault returns [List classe]
+chamadaMetodo returns [List classe, String nome, String params, String tipoRetorno]
      @init {
         $classe = new ArrayList();
+        $nome = "";
+        $params = "";
+        $tipoRetorno = "";
      }
-     : (cls += ID '/')+ INIT '()' {$classe = $cls;}
+     : (cls += ID '/')+ n = INIT par = '()' tip = VOID {$classe = $cls;
+             $nome = $n.text;
+             $params = $par.text;
+             $tipoRetorno = $tip.text;
+        }
      ;
 
 campo returns [List classe, String campo]

@@ -31,7 +31,11 @@ topdown : entraNaClasse
         | declaracaoVariavel
         ;
 
-bottomup : saiDaClasse;
+bottomup : saiDaClasse
+         | getfield
+         | putfield
+         | invokespecial
+         ;
          
 entraNaClasse
     :   ^(CLASSE nome=ID (^(EXTENDS sup=ID))? .)
@@ -59,9 +63,34 @@ declaracaoVariavel
           escopoAtual.definir(variavel);
         }
     ;
+    
 saiDaClasse : CLASSE
             {
               System.out.println("Saindo da classe.. membros: "+escopoAtual);
               escopoAtual = escopoAtual.obterEscopoEnvolvente();    // pop scope
             }
             ;
+
+getfield 
+    : GETFIELD
+    {
+      System.out.println("Saindo do getfield..");
+    }
+    ;
+    
+putfield 
+    : PUTFIELD 
+    {
+      System.out.println("Saindo do putfield..");
+    }
+    ;
+    
+invokespecial 
+    : INVOKESPECIAL 
+    {
+      System.out.println("Saindo do invokespecial..");
+    }
+    ;  
+    
+     
+
