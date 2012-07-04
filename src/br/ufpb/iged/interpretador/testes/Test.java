@@ -4,8 +4,8 @@ import org.antlr.runtime.*;
 
 import br.ufpb.iged.interpretador.bytecodeassembler.asm.BytecodeAssembler;
 import br.ufpb.iged.interpretador.bytecodeassembler.asm.Definicao;
-import br.ufpb.iged.interpretador.bytecodeassembler.parser.AssemblerLexer;
-import br.ufpb.iged.interpretador.bytecodeassembler.parser.AssemblerParser;
+import br.ufpb.iged.interpretador.parser.AssemblerLexer;
+import br.ufpb.iged.interpretador.parser.AssemblerParser;
 
 public class Test {
 

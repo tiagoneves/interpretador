@@ -56,9 +56,4 @@ L2:	 	ineg
 	 	iconst_3
 	    putfield Main/xyz I
 	    getfield Main/abc I
-	    putfield Main/ghs I
-	    putfield Main/hju I
-	    getfield Main/asd I
-	    putfield Main/xcv I
-	    
-	 		 	
+	  

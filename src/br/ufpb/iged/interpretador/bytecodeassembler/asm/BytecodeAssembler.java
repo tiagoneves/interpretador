@@ -9,7 +9,7 @@ import org.antlr.runtime.TokenStream;
 
 import org.antlr.runtime.Token;
 
-import br.ufpb.iged.interpretador.bytecodeassembler.parser.AssemblerParser;
+import br.ufpb.iged.interpretador.parser.AssemblerParser;
 import br.ufpb.iged.interpretador.excecoes.AcessoIndevidoMemoriaException;
 import br.ufpb.iged.interpretador.excecoes.LabelException;
 import br.ufpb.iged.interpretador.principal.Interpretador;

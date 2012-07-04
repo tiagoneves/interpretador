@@ -1,6 +1,6 @@
 package br.ufpb.iged.interpretador.bytecodeassembler.asm;
 
-import br.ufpb.iged.interpretador.bytecodeassembler.parser.AssemblerParser;
+import br.ufpb.iged.interpretador.parser.AssemblerParser;
 
 public class Definicao {
 

@@ -2,13 +2,13 @@
 tree grammar Def;
 
 options {
-  //tokenVocab=Bytecodes;
+  tokenVocab=Assembler;
   ASTLabelType=BytecodesAST;
   filter=true;  
 }
 
 @header{
-    package br.ufpb.iged.interpretador.symboltable.parser;
+    package br.ufpb.iged.interpretador.parser;
     
     import br.ufpb.iged.interpretador.symboltable.classes.BytecodesAST;
     import br.ufpb.iged.interpretador.symboltable.classes.Escopo;
@@ -38,7 +38,7 @@ bottomup : saiDaClasse
          ;
          
 entraNaClasse
-    :   ^(CLASSE nome=ID (^(EXTENDS sup=ID))? .)
+    :   ^('.class' nome=ID (^(EXTENDS sup=ID))? .)
         { 
            System.out.println("linha "+$nome.getLine()+
                           ": def class "+$nome.text);
@@ -64,7 +64,7 @@ declaracaoVariavel
         }
     ;
     
-saiDaClasse : CLASSE
+saiDaClasse : '.class'
             {
               System.out.println("Saindo da classe.. membros: "+escopoAtual);
               escopoAtual = escopoAtual.obterEscopoEnvolvente();    // pop scope
@@ -72,21 +72,21 @@ saiDaClasse : CLASSE
             ;
 
 getfield 
-    : GETFIELD
+    : 'getfield'
     {
       System.out.println("Saindo do getfield..");
     }
     ;
     
 putfield 
-    : PUTFIELD 
+    : 'putfield' 
     {
       System.out.println("Saindo do putfield..");
     }
     ;
     
 invokespecial 
-    : INVOKESPECIAL 
+    : 'invokespecial' 
     {
       System.out.println("Saindo do invokespecial..");
     }

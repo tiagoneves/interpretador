@@ -1,13 +1,13 @@
 tree grammar Ref;
 
 options {
-  //tokenVocab = Bytecodes;
+  tokenVocab = Assembler;
   ASTLabelType = BytecodesAST;
   filter = true;
 }
 
 @header{
-    package br.ufpb.iged.interpretador.symboltable.parser;
+    package br.ufpb.iged.interpretador.parser;
     
     import br.ufpb.iged.interpretador.symboltable.classes.Escopo;
     import br.ufpb.iged.interpretador.symboltable.classes.BytecodesAST;
@@ -41,7 +41,7 @@ topdown
     ;
     
 entraNaClasse
-    :   ^(CLASSE nome=ID (^(EXTENDS sup=ID))? .)
+    :   ^('.class' nome=ID (^(EXTENDS sup=ID))? .)
         {
           simboloClasse = ((SimboloClasse)$nome.simbolo);
           if ( $sup!=null ) {
@@ -68,21 +68,21 @@ declaracaoVariavel // global, parameter, or local variable
     ;
     
 getfield 
-    : ^(GETFIELD classe = . . campo = . tipo = .)
+    : ^('getfield' classe = . . campo = . tipo = .)
     {
       System.out.println("Entrando no getfield..");
     }
     ;
     
 putfield 
-    : ^(PUTFIELD classe = . . campo = . tipo = .)
+    : ^('putfield' classe = . . campo = . tipo = .)
     {
       System.out.println("Entrando no putfield..");
     }
     ;
     
 invokespecial 
-    : ^(INVOKESPECIAL classe = . . metodo = . args = . tipo = .)
+    : ^('invokespecial' classe = . . metodo = . args = . tipo = .)
     {
       System.out.println("Entrando no invokespecial..");
     }

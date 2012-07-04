@@ -19,7 +19,7 @@ import org.antlr.runtime.tree.CommonTreeAdaptor;
 
 import br.ufpb.iged.interpretador.bytecodeassembler.asm.BytecodeAssembler;
 import br.ufpb.iged.interpretador.bytecodeassembler.asm.Definicao;
-import br.ufpb.iged.interpretador.bytecodeassembler.parser.AssemblerLexer;
+import br.ufpb.iged.interpretador.parser.AssemblerLexer;
 import br.ufpb.iged.interpretador.excecoes.AcessoIndevidoMemoriaException;
 import br.ufpb.iged.interpretador.excecoes.LabelException;
 import br.ufpb.iged.interpretador.symboltable.classes.BytecodesAST;
@@ -27,8 +27,8 @@ import br.ufpb.iged.interpretador.symboltable.classes.BytecodesErrorNode;
 import br.ufpb.iged.interpretador.symboltable.classes.EscopoGlobal;
 import br.ufpb.iged.interpretador.symboltable.classes.Simbolo;
 import br.ufpb.iged.interpretador.symboltable.classes.TabelaSimbolos;
-import br.ufpb.iged.interpretador.symboltable.parser.Def;
-import br.ufpb.iged.interpretador.symboltable.parser.Ref;
+import br.ufpb.iged.interpretador.parser.Def;
+import br.ufpb.iged.interpretador.parser.Ref;
 
 public class Interpretador {
 	

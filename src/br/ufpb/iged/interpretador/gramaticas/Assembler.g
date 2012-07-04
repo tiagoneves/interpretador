@@ -6,17 +6,13 @@ options {
 }
 
 tokens {
-  CLASSE;
   MEMBRO_CLASSE;
   FIELD_DECL;
   EXTENDS;
-  GETFIELD;
-  PUTFIELD;
-  INVOKESPECIAL;
 }
 
 @header{
-  package br.ufpb.iged.interpretador.bytecodeassembler.parser;
+  package br.ufpb.iged.interpretador.parser;
   
   import br.ufpb.iged.interpretador.excecoes.AcessoIndevidoMemoriaException;
   import br.ufpb.iged.interpretador.excecoes.LabelException;
@@ -24,7 +20,7 @@ tokens {
 }
 
 @lexer::header{
-  package br.ufpb.iged.interpretador.bytecodeassembler.parser;
+  package br.ufpb.iged.interpretador.parser;
 }
 
 @members {
@@ -53,7 +49,7 @@ instrucao: (definicaoClasse | manipulacaoObjetos | aritmetica | load | store | d
               )? NOVA_LINHA;
               
 definicaoClasse : '.class' ID NOVA_LINHA superClasse? membroClasse+  
-                  -> ^(CLASSE ID superClasse? ^(MEMBRO_CLASSE membroClasse+))
+                  -> ^('.class' ID superClasse? ^(MEMBRO_CLASSE membroClasse+))
                 | '.method' INIT '()' VOID
                 ;
                 
@@ -63,9 +59,9 @@ membroClasse : '.field' ID tipo -> ^(FIELD_DECL ID tipo)
              ; 
              
 
-manipulacaoObjetos : a = 'getfield' b = campo tipo -> ^(GETFIELD $b tipo)
-                   | a = 'putfield' b = campo tipo -> ^(PUTFIELD $b tipo) 
-                   | a = 'invokespecial' c = chamadaMetodo -> ^(INVOKESPECIAL $c)
+manipulacaoObjetos : a = 'getfield' b = campo tipo -> ^('getfield' $b tipo)
+                   | a = 'putfield' b = campo tipo -> ^('putfield' $b tipo) 
+                   | a = 'invokespecial' c = chamadaMetodo -> ^('invokespecial' $c)
                    ;
   
 tipo : INT | VOID | tipoRef ;
