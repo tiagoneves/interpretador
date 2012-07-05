@@ -49,7 +49,7 @@ public class BytecodeAssembler extends AssemblerParser{
 
 	}
 
-	protected void verificarAumentoMemoriaGlobal(Token opc) throws AcessoIndevidoMemoriaException {
+	public void verificarAumentoMemoriaGlobal(Token opc) throws AcessoIndevidoMemoriaException {
 
 		String opcodeTxt = opc.getText();
 
@@ -95,7 +95,7 @@ public class BytecodeAssembler extends AssemblerParser{
 
 	}
 
-	protected void verificarAumentoMemoriaGlobal(Token opc, Token op) throws AcessoIndevidoMemoriaException, LabelException {
+	public void verificarAumentoMemoriaGlobal(Token opc, Token op) throws AcessoIndevidoMemoriaException, LabelException {
 
 		Integer endereco = new Integer(op.getText());
 
@@ -148,7 +148,7 @@ public class BytecodeAssembler extends AssemblerParser{
 
 	}
 
-	protected void definirLabel(Token id) throws LabelException {
+	public void definirLabel(Token id) throws LabelException {
 
 		LabelSymbol label = labels.get(id.getText());
 

@@ -9,6 +9,13 @@ tokens {
   MEMBRO_CLASSE;
   FIELD_DECL;
   EXTENDS;
+  ARITMETICA;
+  LOAD;
+  STORE;
+  LOGICA;
+  DESVIO;
+  LABEL;
+  PILHA;
 }
 
 @header{
@@ -25,11 +32,11 @@ tokens {
 
 @members {
 
-  protected abstract void escreverOpcode(String nomeInstrucao);
-  protected abstract void escreverOpcode(Token opc, Token op) throws LabelException;
-  protected abstract void verificarAumentoMemoriaGlobal(Token opc) throws AcessoIndevidoMemoriaException;
-  protected abstract void verificarAumentoMemoriaGlobal(Token opc, Token op) throws AcessoIndevidoMemoriaException, LabelException;
-  protected abstract void definirLabel(Token id) throws LabelException;
+  public abstract void escreverOpcode(String nomeInstrucao);
+  public abstract void escreverOpcode(Token opc, Token op) throws LabelException;
+  public abstract void verificarAumentoMemoriaGlobal(Token opc) throws AcessoIndevidoMemoriaException;
+  public abstract void verificarAumentoMemoriaGlobal(Token opc, Token op) throws AcessoIndevidoMemoriaException, LabelException;
+  public abstract void definirLabel(Token id) throws LabelException;
   
 }
 
@@ -38,13 +45,20 @@ programa : comando*
 
 comando : (label instrucao | instrucao);
          
-label : a = ID ':' {definirLabel($a);};
+label : a = ID ':' -> ^(LABEL $a);
 
-instrucao: (definicaoClasse | manipulacaoObjetos | aritmetica | load | store | desvio | logica 
-                  | 'nop'
-              | a = 'pop' {escreverOpcode($a.text);}
-              | a = 'pop2'{escreverOpcode($a.text);}
-              )? NOVA_LINHA;
+instrucao: (    definicaoClasse 
+              | manipulacaoObjetos 
+              | aritmetica 
+              | load
+              | loadint 
+              | store
+              | storeint 
+              | desvio 
+              | logica
+              | pilha 
+              | 'nop'
+           )? NOVA_LINHA;
               
 definicaoClasse : '.class' ID NOVA_LINHA superClasse? membroClasse+  
                   -> ^('.class' ID superClasse? ^(MEMBRO_CLASSE membroClasse+))
@@ -64,66 +78,90 @@ manipulacaoObjetos : a = 'getfield' b = campo tipo -> ^('getfield' $b tipo)
   
 tipo : INT | VOID | tipoRef ;
 
-aritmetica : a = 'iadd' {escreverOpcode($a.text);}
-           | a = 'isub' {escreverOpcode($a.text);}
-           | a = 'imul' {escreverOpcode($a.text);}
-           | a = 'idiv' {escreverOpcode($a.text);}
-           | a = 'irem' {escreverOpcode($a.text);}
-           | a = 'iinc' {escreverOpcode($a.text);}
-           | a = 'ineg' {escreverOpcode($a.text);}
+aritmetica : (    a = 'iadd'
+                | a = 'isub'
+                | a = 'imul'
+                | a = 'idiv'
+                | a = 'irem'
+                | a = 'iinc'
+                | a = 'ineg' 
+             )
+             -> ^(ARITMETICA $a)
            ;
            
-load : a = 'iconst_m1'{escreverOpcode($a.text);}
-     | a = 'iconst_0' {escreverOpcode($a.text);}
-     | a = 'iconst_1' {escreverOpcode($a.text);}
-     | a = 'iconst_2' {escreverOpcode($a.text);}
-     | a = 'iconst_3'{escreverOpcode($a.text);}
-     | a = 'iconst_4'{escreverOpcode($a.text);}
-     | a = 'iconst_5'{escreverOpcode($a.text);}
-     | a = 'iload_0' {escreverOpcode($a.text);}
-     | a = 'iload_1' {escreverOpcode($a.text);}
-     | a = 'iload_2' {escreverOpcode($a.text);}
-     | a = 'iload_3' {escreverOpcode($a.text);}
-     | a = 'iload' INTEIRO {escreverOpcode($a, $INTEIRO);}
-     | a = 'ldc' INTEIRO {escreverOpcode($a, $INTEIRO);}
-     | a = 'aload' INTEIRO {escreverOpcode($a, $INTEIRO);}
-     | a = 'aload_0' {escreverOpcode($a.text);}
-     | a = 'aload_1' {escreverOpcode($a.text);}
-     | a = 'aload_2'{escreverOpcode($a.text);}
-     | a = 'aload_3'{escreverOpcode($a.text);}
+load : (    a = 'iconst_m1'
+          | a = 'iconst_0'
+          | a = 'iconst_1'
+          | a = 'iconst_2' 
+          | a = 'iconst_3'
+          | a = 'iconst_4'
+          | a = 'iconst_5'
+          | a = 'iload_0' 
+          | a = 'iload_1'
+          | a = 'iload_2'
+          | a = 'iload_3'
+          | a = 'aload_0'
+          | a = 'aload_1' 
+          | a = 'aload_2'
+          | a = 'aload_3' 
+       ) 
+       -> ^(LOAD $a)
      ;
      
-store : a = 'istore_0' {verificarAumentoMemoriaGlobal($a);}
-      | a = 'istore_1' {verificarAumentoMemoriaGlobal($a);}
-      | a = 'istore_2' {verificarAumentoMemoriaGlobal($a);}
-      | a = 'istore_3' {verificarAumentoMemoriaGlobal($a);}
-      | a = 'istore' INTEIRO {verificarAumentoMemoriaGlobal($a, $INTEIRO);}
-      | a = 'astore' INTEIRO {verificarAumentoMemoriaGlobal($a, $INTEIRO);}
-      | a = 'astore_0' {verificarAumentoMemoriaGlobal($a);}
-      | a = 'astore_1' {verificarAumentoMemoriaGlobal($a);}
-      | a = 'astore_2' {verificarAumentoMemoriaGlobal($a);}
-      | a = 'astore_3' {verificarAumentoMemoriaGlobal($a);}
+loadint : (   a = 'iload' b = INTEIRO 
+            | a = 'ldc' b = INTEIRO
+            | a = 'aload' b = INTEIRO 
+          ) 
+          -> ^(LOAD $a $b)
+        ; 
+     
+store : (   a = 'istore_0' 
+          | a = 'istore_1' 
+          | a = 'istore_2' 
+          | a = 'istore_3' 
+          | a = 'astore_0'
+          | a = 'astore_1' 
+          | a = 'astore_2' 
+          | a = 'astore_3' 
+        ) 
+        -> ^(STORE $a)
       ;
+      
+storeint : (   a = 'istore' b = INTEIRO 
+             | a = 'astore' b = INTEIRO 
+           ) 
+           -> ^(STORE $a $b)
+         ;
 
-logica : a = 'iand' {escreverOpcode($a.text);}
-       | a = 'ior' {escreverOpcode($a.text);}
-       | a = 'ixor' {escreverOpcode($a.text);}
+logica : (   a = 'iand'
+           | a = 'ior'
+           | a = 'ixor'
+         )
+         -> ^(LOGICA $a)
        ;
 
-desvio : a = 'ifeq' b = ID {escreverOpcode($a, $b);}
-       | a = 'ifne' b = ID {escreverOpcode($a, $b);}
-       | a = 'iflt' b = ID {escreverOpcode($a, $b);}
-       | a = 'ifge' b = ID {escreverOpcode($a, $b);}
-       | a = 'ifgt' b = ID {escreverOpcode($a, $b);}
-       | a = 'ifle' b = ID {escreverOpcode($a, $b);}
-       | a = 'if_icmpeq' b = ID {escreverOpcode($a, $b);}
-       | a = 'if_icmpne' b = ID {escreverOpcode($a, $b);}
-       | a = 'if_icmplt' b = ID {escreverOpcode($a, $b);}
-       | a = 'if_icmpge' b = ID {escreverOpcode($a, $b);}
-       | a = 'if_icmpgt' b = ID {escreverOpcode($a, $b);}
-       | a = 'if_icmple' b = ID {escreverOpcode($a, $b);}
-       | a = 'goto' b = ID {escreverOpcode($a, $b);}
+desvio : (   a = 'ifeq' b = ID 
+           | a = 'ifne' b = ID 
+           | a = 'iflt' b = ID
+           | a = 'ifge' b = ID
+           | a = 'ifgt' b = ID 
+           | a = 'ifle' b = ID 
+           | a = 'if_icmpeq' b = ID 
+           | a = 'if_icmpne' b = ID
+           | a = 'if_icmplt' b = ID 
+           | a = 'if_icmpge' b = ID 
+           | a = 'if_icmpgt' b = ID
+           | a = 'if_icmple' b = ID 
+           | a = 'goto' b = ID 
+         ) 
+         -> ^(DESVIO $a $b)
        ;
+       
+pilha : (   a = 'pop'
+          | a = 'pop2'
+        )
+        -> ^(PILHA $a)
+      ;
 
 chamadaMetodo returns [List classe, String nome, String params, String tipoRetorno]
      @init {

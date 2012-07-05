@@ -82,11 +82,20 @@ options {
 }
 
 topdown
-    : entraNaClasse
-    | declaracaoVariavel
-    | getfield
-    | putfield
-    | invokespecial
+    :   entraNaClasse
+      | declaracaoVariavel
+      | getfield
+      | putfield
+      | invokespecial
+      | aritmetica 
+      | load
+      | loadint 
+      | store
+      | storeint 
+      | desvio 
+      | logica
+      | pilha
+      | label 
     ;
     
 entraNaClasse
@@ -134,4 +143,67 @@ invokespecial
       chamarConstrutorDefault($classe.getText());
     }
     ;
+    
+aritmetica
+    : ^(ARITMETICA operacao = .)
+    {
+      assembler.escreverOpcode($operacao.getText());
+    }
+    ;
+     
+load
+  : ^(LOAD operacao = .)
+  {
+    assembler.escreverOpcode($operacao.getText());
+  }
+  ;
+  
+loadint
+    : ^(LOAD operacao = . operando = .) 
+    {
+      assembler.escreverOpcode($operacao.token, $operando.token);
+    }
+    ;
+      
+store
+   : ^(STORE operacao = .)
+   {
+      assembler.verificarAumentoMemoriaGlobal($operacao.token);
+   }
+   ;
+
+storeint
+    : ^(STORE operacao = . operando = .)
+    {
+      assembler.verificarAumentoMemoriaGlobal($operacao.token, $operando.token);
+    }
+    ;
+    
+desvio
+    : ^(DESVIO operacao = . operando = .)
+    {
+      assembler.escreverOpcode($operacao.token, $operando.token);
+    }
+    ;
+    
+logica
+    : ^(LOGICA operacao = .)
+    {
+      assembler.escreverOpcode($operacao.getText());
+    }
+    ;
+    
+pilha
+   : ^(PILHA operacao = .)
+   {
+      assembler.escreverOpcode($operacao.getText());
+   }
+   ;
+
+label
+   : ^(LABEL operacao = .)
+   {
+      assembler.definirLabel($operacao.token);
+   }
+   ;
    
