@@ -61,6 +61,7 @@ declaracaoVariavel
           variavel.def = $ID;
           $ID.simbolo = variavel;
           escopoAtual.definir(variavel);
+          ((SimboloClasse)escopoAtual).getConstantPool().add(variavel);
         }
     ;
     

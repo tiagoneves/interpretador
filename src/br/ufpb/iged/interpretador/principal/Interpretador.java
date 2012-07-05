@@ -150,7 +150,7 @@ public class Interpretador {
 			Def def = new Def(nos, tabelaSimbolos);       
 			def.downup(tree);                          		   
 		    nos.reset();
-		    Ref ref = new Ref(nos, tabelaSimbolos);
+		    Ref ref = new Ref(nos, tabelaSimbolos, parser);
 			ref.downup(tree);
 			
 		    return parser;

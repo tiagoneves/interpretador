@@ -50,10 +50,10 @@ L2:	 	ineg
 	 	iadd
 	 	ifeq L1
 	 	aload_0
-	 	invokespecial Main/<init>() V
+	 	invokespecial Teste/<init>() V
 	 	ldc 5
-	 	putfield Main/abc I
+	 	putfield Teste/abc I
 	 	iconst_3
-	    putfield Main/xyz I
-	    getfield Main/abc I
+	    putfield Teste/xyz I
+	    getfield Teste/abc I
 	  

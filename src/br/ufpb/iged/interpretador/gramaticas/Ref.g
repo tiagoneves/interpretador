@@ -14,21 +14,70 @@ options {
     import br.ufpb.iged.interpretador.symboltable.classes.SimboloClasse;
     import br.ufpb.iged.interpretador.symboltable.classes.TabelaSimbolos;
     import br.ufpb.iged.interpretador.symboltable.classes.Tipo;
+    import br.ufpb.iged.interpretador.bytecodeassembler.asm.BytecodeAssembler;
+    import br.ufpb.iged.interpretador.symboltable.classes.SimboloVariavel;
 }
 
 @members {
     TabelaSimbolos tabelaSimbolos;
     SimboloClasse simboloClasse;
-    public Ref(TreeNodeStream input, TabelaSimbolos tabelaSimbolos) {
+    BytecodeAssembler assembler;
+    public Ref(TreeNodeStream input, TabelaSimbolos tabelaSimbolos, 
+      BytecodeAssembler assembler) {
         this(input);
         this.tabelaSimbolos = tabelaSimbolos;
+        this.assembler = assembler;
     }
     
-    public Tipo resolverTipo(String nomeTipo) {
+    private Tipo resolverTipo(String nomeTipo) {
     
       return (Tipo)simboloClasse.resolver(nomeTipo);
     
     }
+    
+    private void acessarCampo(String operacao, String nomeClasse, String nomeCampo) {
+    
+        assembler.escreverOpcode(operacao);
+      
+        SimboloClasse simboloClasse = 
+          (SimboloClasse)tabelaSimbolos.global.resolver(nomeClasse);
+      
+        if(!assembler.getConstantPool().contains(simboloClasse))
+      
+          assembler.getConstantPool().add(simboloClasse);
+    
+        BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo, 
+          BytecodeAssembler.ip, assembler.getConstantPool().indexOf(simboloClasse));
+    
+    
+        SimboloVariavel simboloVariavel = 
+          (SimboloVariavel) simboloClasse.resolver(nomeCampo);
+    
+        if (!simboloClasse.getConstantPool().contains(simboloVariavel))
+      
+          simboloClasse.getConstantPool().add(simboloVariavel);
+        
+        BytecodeAssembler.escreverInteiro(
+          BytecodeAssembler.codigo, BytecodeAssembler.ip, 
+          simboloClasse.getConstantPool().indexOf(simboloVariavel));
+    
+    }
+    
+    private void chamarConstrutorDefault(String nomeClasse) {
+    
+      assembler.escreverOpcode("invokespecial");
+       
+      SimboloClasse simboloClasse = 
+          (SimboloClasse)tabelaSimbolos.global.resolver(nomeClasse);
+    
+      if(!assembler.getConstantPool().contains(simboloClasse))
+      
+          assembler.getConstantPool().add(simboloClasse);
+    
+       BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo, 
+          BytecodeAssembler.ip, assembler.getConstantPool().indexOf(simboloClasse));
+    
+  }
     
 }
 
@@ -45,7 +94,6 @@ entraNaClasse
         {
           simboloClasse = ((SimboloClasse)$nome.simbolo);
           if ( $sup!=null ) {
-              // look up superclass (if any)
               $sup.simbolo = $sup.escopo.resolver($sup.text);
               simboloClasse.superClasse =
                   (SimboloClasse)$sup.simbolo;
@@ -58,33 +106,32 @@ entraNaClasse
         }
     ;
     
-declaracaoVariavel // global, parameter, or local variable
+declaracaoVariavel
     :   ^(FIELD_DECL ID tip =.)
         {
            $ID.simbolo.tipo = resolverTipo($tip.getText());
-          //$ID.simbolo.tipo = $tip.tsimb; // set return type of variable
-          System.out.println("linha "+$ID.getLine()+": set var type "+$ID.simbolo);
+           System.out.println("linha "+$ID.getLine()+": set var type "+$ID.simbolo);
         }
     ;
     
 getfield 
     : ^('getfield' classe = . . campo = . tipo = .)
-    {
-      System.out.println("Entrando no getfield..");
+    {      
+      acessarCampo("getfield", $classe.getText(), $campo.getText());     
     }
     ;
     
 putfield 
     : ^('putfield' classe = . . campo = . tipo = .)
     {
-      System.out.println("Entrando no putfield..");
+      acessarCampo("putfield", $classe.getText(), $campo.getText()); 
     }
     ;
     
 invokespecial 
     : ^('invokespecial' classe = . . metodo = . args = . tipo = .)
     {
-      System.out.println("Entrando no invokespecial..");
+      chamarConstrutorDefault($classe.getText());
     }
     ;
    

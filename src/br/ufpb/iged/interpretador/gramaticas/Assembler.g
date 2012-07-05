@@ -25,13 +25,11 @@ tokens {
 
 @members {
 
-  protected abstract void escreverOpcode(Token opc);
+  protected abstract void escreverOpcode(String nomeInstrucao);
   protected abstract void escreverOpcode(Token opc, Token op) throws LabelException;
   protected abstract void verificarAumentoMemoriaGlobal(Token opc) throws AcessoIndevidoMemoriaException;
   protected abstract void verificarAumentoMemoriaGlobal(Token opc, Token op) throws AcessoIndevidoMemoriaException, LabelException;
   protected abstract void definirLabel(Token id) throws LabelException;
-  protected abstract void acessarCampo(Token opc, List<Token> classe, String campo);
-  protected abstract void chamarMetodo(Token opc, List<Token> classe);
   
 }
 
@@ -44,8 +42,8 @@ label : a = ID ':' {definirLabel($a);};
 
 instrucao: (definicaoClasse | manipulacaoObjetos | aritmetica | load | store | desvio | logica 
                   | 'nop'
-              | a = 'pop' {escreverOpcode($a);}
-              | a = 'pop2'{escreverOpcode($a);}
+              | a = 'pop' {escreverOpcode($a.text);}
+              | a = 'pop2'{escreverOpcode($a.text);}
               )? NOVA_LINHA;
               
 definicaoClasse : '.class' ID NOVA_LINHA superClasse? membroClasse+  
@@ -66,33 +64,33 @@ manipulacaoObjetos : a = 'getfield' b = campo tipo -> ^('getfield' $b tipo)
   
 tipo : INT | VOID | tipoRef ;
 
-aritmetica : a = 'iadd' {escreverOpcode($a);}
-           | a = 'isub' {escreverOpcode($a);}
-           | a = 'imul' {escreverOpcode($a);}
-           | a = 'idiv' {escreverOpcode($a);}
-           | a = 'irem' {escreverOpcode($a);}
-           | a = 'iinc' {escreverOpcode($a);}
-           | a = 'ineg' {escreverOpcode($a);}
+aritmetica : a = 'iadd' {escreverOpcode($a.text);}
+           | a = 'isub' {escreverOpcode($a.text);}
+           | a = 'imul' {escreverOpcode($a.text);}
+           | a = 'idiv' {escreverOpcode($a.text);}
+           | a = 'irem' {escreverOpcode($a.text);}
+           | a = 'iinc' {escreverOpcode($a.text);}
+           | a = 'ineg' {escreverOpcode($a.text);}
            ;
            
-load : a = 'iconst_m1'{escreverOpcode($a);}
-     | a = 'iconst_0' {escreverOpcode($a);}
-     | a = 'iconst_1' {escreverOpcode($a);}
-     | a = 'iconst_2' {escreverOpcode($a);}
-     | a = 'iconst_3'{escreverOpcode($a);}
-     | a = 'iconst_4'{escreverOpcode($a);}
-     | a = 'iconst_5'{escreverOpcode($a);}
-     | a = 'iload_0' {escreverOpcode($a);}
-     | a = 'iload_1' {escreverOpcode($a);}
-     | a = 'iload_2' {escreverOpcode($a);}
-     | a = 'iload_3' {escreverOpcode($a);}
+load : a = 'iconst_m1'{escreverOpcode($a.text);}
+     | a = 'iconst_0' {escreverOpcode($a.text);}
+     | a = 'iconst_1' {escreverOpcode($a.text);}
+     | a = 'iconst_2' {escreverOpcode($a.text);}
+     | a = 'iconst_3'{escreverOpcode($a.text);}
+     | a = 'iconst_4'{escreverOpcode($a.text);}
+     | a = 'iconst_5'{escreverOpcode($a.text);}
+     | a = 'iload_0' {escreverOpcode($a.text);}
+     | a = 'iload_1' {escreverOpcode($a.text);}
+     | a = 'iload_2' {escreverOpcode($a.text);}
+     | a = 'iload_3' {escreverOpcode($a.text);}
      | a = 'iload' INTEIRO {escreverOpcode($a, $INTEIRO);}
      | a = 'ldc' INTEIRO {escreverOpcode($a, $INTEIRO);}
      | a = 'aload' INTEIRO {escreverOpcode($a, $INTEIRO);}
-     | a = 'aload_0' {escreverOpcode($a);}
-     | a = 'aload_1' {escreverOpcode($a);}
-     | a = 'aload_2'{escreverOpcode($a);}
-     | a = 'aload_3'{escreverOpcode($a);}
+     | a = 'aload_0' {escreverOpcode($a.text);}
+     | a = 'aload_1' {escreverOpcode($a.text);}
+     | a = 'aload_2'{escreverOpcode($a.text);}
+     | a = 'aload_3'{escreverOpcode($a.text);}
      ;
      
 store : a = 'istore_0' {verificarAumentoMemoriaGlobal($a);}
@@ -107,9 +105,9 @@ store : a = 'istore_0' {verificarAumentoMemoriaGlobal($a);}
       | a = 'astore_3' {verificarAumentoMemoriaGlobal($a);}
       ;
 
-logica : a = 'iand' {escreverOpcode($a);}
-       | a = 'ior' {escreverOpcode($a);}
-       | a = 'ixor' {escreverOpcode($a);}
+logica : a = 'iand' {escreverOpcode($a.text);}
+       | a = 'ior' {escreverOpcode($a.text);}
+       | a = 'ixor' {escreverOpcode($a.text);}
        ;
 
 desvio : a = 'ifeq' b = ID {escreverOpcode($a, $b);}

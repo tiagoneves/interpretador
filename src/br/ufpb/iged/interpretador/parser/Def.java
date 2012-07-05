@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g 2012-07-03 23:57:13
+// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g 2012-07-04 22:53:50
 
     package br.ufpb.iged.interpretador.parser;
     
@@ -409,6 +409,7 @@ public class Def extends TreeFilter {
                       variavel.def = ID1;
                       ID1.simbolo = variavel;
                       escopoAtual.definir(variavel);
+                      ((SimboloClasse)escopoAtual).getConstantPool().add(variavel);
                     }
 
             }
@@ -429,11 +430,11 @@ public class Def extends TreeFilter {
 
 
     // $ANTLR start "saiDaClasse"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:67:1: saiDaClasse : '.class' ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:68:1: saiDaClasse : '.class' ;
     public final void saiDaClasse() throws RecognitionException {
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:67:13: ( '.class' )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:67:15: '.class'
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:68:13: ( '.class' )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:68:15: '.class'
             {
             match(input,16,FOLLOW_16_in_saiDaClasse237); if (state.failed) return ;
 
@@ -460,11 +461,11 @@ public class Def extends TreeFilter {
 
 
     // $ANTLR start "getfield"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:74:1: getfield : 'getfield' ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:75:1: getfield : 'getfield' ;
     public final void getfield() throws RecognitionException {
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:75:5: ( 'getfield' )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:75:7: 'getfield'
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:76:5: ( 'getfield' )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:76:7: 'getfield'
             {
             match(input,33,FOLLOW_33_in_getfield277); if (state.failed) return ;
 
@@ -490,11 +491,11 @@ public class Def extends TreeFilter {
 
 
     // $ANTLR start "putfield"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:81:1: putfield : 'putfield' ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:82:1: putfield : 'putfield' ;
     public final void putfield() throws RecognitionException {
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:82:5: ( 'putfield' )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:82:7: 'putfield'
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:83:5: ( 'putfield' )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:83:7: 'putfield'
             {
             match(input,79,FOLLOW_79_in_putfield305); if (state.failed) return ;
 
@@ -520,11 +521,11 @@ public class Def extends TreeFilter {
 
 
     // $ANTLR start "invokespecial"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:88:1: invokespecial : 'invokespecial' ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:89:1: invokespecial : 'invokespecial' ;
     public final void invokespecial() throws RecognitionException {
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:89:5: ( 'invokespecial' )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:89:7: 'invokespecial'
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:90:5: ( 'invokespecial' )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:90:7: 'invokespecial'
             {
             match(input,65,FOLLOW_65_in_invokespecial334); if (state.failed) return ;
 

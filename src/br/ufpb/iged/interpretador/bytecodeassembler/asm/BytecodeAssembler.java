@@ -12,9 +12,7 @@ import org.antlr.runtime.Token;
 import br.ufpb.iged.interpretador.parser.AssemblerParser;
 import br.ufpb.iged.interpretador.excecoes.AcessoIndevidoMemoriaException;
 import br.ufpb.iged.interpretador.excecoes.LabelException;
-import br.ufpb.iged.interpretador.principal.Interpretador;
 import br.ufpb.iged.interpretador.symboltable.classes.SimboloClasse;
-import br.ufpb.iged.interpretador.symboltable.classes.SimboloVariavel;
 
 public class BytecodeAssembler extends AssemblerParser{
 
@@ -31,7 +29,7 @@ public class BytecodeAssembler extends AssemblerParser{
 	
 	protected List<SimboloClasse> constantPool = new ArrayList<SimboloClasse>();
 	
-	protected static int ip = 0;
+	public static int ip = 0;
 	public static byte[] codigo = new byte[TAMANHO_INICIAL_MEMORIA_CODIGO];
 	protected int tamMemoriaGlobalEstruturas = 0;
 	protected int tamMemoriaGlobalReferencias = 0;
@@ -93,7 +91,7 @@ public class BytecodeAssembler extends AssemblerParser{
 
 		}
 
-		escreverOpcode(opc);
+		escreverOpcode(opc.getText());
 
 	}
 
@@ -113,9 +111,7 @@ public class BytecodeAssembler extends AssemblerParser{
 
 	}
 
-	protected void escreverOpcode(Token opc) {
-
-		String nomeInstrucao = opc.getText();
+	public void escreverOpcode(String nomeInstrucao) {
 
 		Integer opcode = opcodesInstrucoes.get(nomeInstrucao);
 
@@ -127,15 +123,15 @@ public class BytecodeAssembler extends AssemblerParser{
 	}
 
 
-	protected void escreverOpcode(Token opc, Token op) throws LabelException {
+	public void escreverOpcode(Token opc, Token op) throws LabelException {
 
-		escreverOpcode(opc);
+		escreverOpcode(opc.getText());
 
 		escreverOperando(op);
 
 	}
 
-	protected void escreverOperando(Token token) throws LabelException {
+	public void escreverOperando(Token token) throws LabelException {
 
 		int valor = 0;
 
@@ -177,52 +173,6 @@ public class BytecodeAssembler extends AssemblerParser{
 
 		return label.address;
 
-	}
-	
-	protected void acessarCampo(Token opc, List<Token> classe, String campo) {
-		
-		escreverOpcode(opc);
-		
-		String nomeClasse = (classe.get(classe.size() - 1)).getText();
-		
-		SimboloClasse simboloClasse = 
-				(SimboloClasse) Interpretador.tabelaSimbolos.global.resolver(nomeClasse);
-		
-		if(!constantPool.contains(simboloClasse))
-			
-			constantPool.add(simboloClasse);
-		
-		escreverInteiro(codigo, ip, constantPool.indexOf(simboloClasse));
-		
-		
-		SimboloVariavel simboloVariavel = 
-				(SimboloVariavel) simboloClasse.resolver(campo);
-		
-		if (!simboloClasse.getConstantPool().contains(simboloVariavel))
-			
-			simboloClasse.getConstantPool().add(simboloVariavel);
-				
-		escreverInteiro(
-				codigo, ip, simboloClasse.getConstantPool().indexOf(simboloVariavel));
-		
-		
-	}
-	
-	protected void chamarMetodo(Token opc, List<Token> classe) {
-		
-		escreverOpcode(opc);
-		
-		String nomeClasse = (classe.get(classe.size() - 1)).getText();
-		
-		SimboloClasse simboloClasse = 
-				(SimboloClasse) Interpretador.tabelaSimbolos.global.resolver(nomeClasse);
-		
-		if(!constantPool.contains(simboloClasse))
-			
-			constantPool.add(simboloClasse);
-		
-		escreverInteiro(codigo, ip, constantPool.indexOf(simboloClasse));
-		
 	}
 
 	protected static void verificarAumentoTamanhoMemoria(int indice) {
@@ -299,6 +249,14 @@ public class BytecodeAssembler extends AssemblerParser{
 
 	public void setTamMemoriaGlobalEstruturas(int tamMemoriaGlobalEstruturas) {
 		this.tamMemoriaGlobalEstruturas = tamMemoriaGlobalEstruturas;
+	}
+
+	public List<SimboloClasse> getConstantPool() {
+		return constantPool;
+	}
+
+	public void setConstantPool(List<SimboloClasse> constantPool) {
+		this.constantPool = constantPool;
 	}
 
 }
