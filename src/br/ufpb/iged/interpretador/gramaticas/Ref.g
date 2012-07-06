@@ -40,7 +40,7 @@ options {
         assembler.escreverOpcode(operacao);
       
         SimboloClasse simboloClasse = 
-          (SimboloClasse)tabelaSimbolos.global.resolver(nomeClasse);
+          (SimboloClasse)tabelaSimbolos.global.resolver("L" + nomeClasse);
       
         if(!assembler.getConstantPool().contains(simboloClasse))
       
@@ -68,7 +68,7 @@ options {
       assembler.escreverOpcode("invokespecial");
        
       SimboloClasse simboloClasse = 
-          (SimboloClasse)tabelaSimbolos.global.resolver(nomeClasse);
+          (SimboloClasse)tabelaSimbolos.global.resolver("L" + nomeClasse);
     
       if(!assembler.getConstantPool().contains(simboloClasse))
       

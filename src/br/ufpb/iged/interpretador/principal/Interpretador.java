@@ -126,7 +126,7 @@ public class Interpretador {
 			global.memoriaGlobal = new Object[assembler.getTamMemoriaGlobal()];
 			
 			//Para testes
-			Simbolo classe = tabelaSimbolos.global.resolver("Teste");
+			Simbolo classe = tabelaSimbolos.global.resolver("LTeste");
 			System.out.println("Classe adicionada:" + classe.nome);
 
 		
@@ -796,7 +796,7 @@ public class Interpretador {
 			}
 				;
 				break;
-
+				
 			}
 
 			if (!desvio)

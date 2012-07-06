@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g 2012-07-05 12:07:16
+// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g 2012-07-06 18:34:40
 
     package br.ufpb.iged.interpretador.parser;
     
@@ -363,7 +363,7 @@ public class Def extends TreeFilter {
                                       ": def class "+(nome!=null?nome.getText():null));
                        if ( sup!=null ) 
                          sup.escopo = escopoAtual; 
-                       SimboloClasse classe = new SimboloClasse((nome!=null?nome.getText():null),escopoAtual,null);
+                       SimboloClasse classe = new SimboloClasse("L" + (nome!=null?nome.getText():null),escopoAtual,null);
                        classe.def = nome;
                        nome.simbolo = classe;
                        escopoAtual.definir(classe);  

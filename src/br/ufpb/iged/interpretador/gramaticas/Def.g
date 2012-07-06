@@ -44,7 +44,7 @@ entraNaClasse
                           ": def class "+$nome.text);
            if ( $sup!=null ) 
              $sup.escopo = escopoAtual; 
-           SimboloClasse classe = new SimboloClasse($nome.text,escopoAtual,null);
+           SimboloClasse classe = new SimboloClasse("L" + $nome.text,escopoAtual,null);
            classe.def = $nome;
            $nome.simbolo = classe;
            escopoAtual.definir(classe);  

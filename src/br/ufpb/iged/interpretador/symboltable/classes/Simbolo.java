@@ -34,4 +34,12 @@ public class Simbolo {
         return s.substring(1,s.length()-1);
     }
 
+	public Tipo getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
+	}
+
 }

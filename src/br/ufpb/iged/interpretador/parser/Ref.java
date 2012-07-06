@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g 2012-07-05 12:07:16
+// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g 2012-07-06 18:34:40
 
     package br.ufpb.iged.interpretador.parser;
     
@@ -152,7 +152,7 @@ public class Ref extends TreeFilter {
             assembler.escreverOpcode(operacao);
           
             SimboloClasse simboloClasse = 
-              (SimboloClasse)tabelaSimbolos.global.resolver(nomeClasse);
+              (SimboloClasse)tabelaSimbolos.global.resolver("L" + nomeClasse);
           
             if(!assembler.getConstantPool().contains(simboloClasse))
           
@@ -180,7 +180,7 @@ public class Ref extends TreeFilter {
           assembler.escreverOpcode("invokespecial");
            
           SimboloClasse simboloClasse = 
-              (SimboloClasse)tabelaSimbolos.global.resolver(nomeClasse);
+              (SimboloClasse)tabelaSimbolos.global.resolver("L" + nomeClasse);
         
           if(!assembler.getConstantPool().contains(simboloClasse))
           
@@ -362,9 +362,9 @@ public class Ref extends TreeFilter {
         catch (RecognitionException re) {
             reportError(re);
             recover(input,re);
-        } catch (LabelException e) {
+        } catch (AcessoIndevidoMemoriaException e) {
 			System.out.println(e.getMessage());
-		} catch (AcessoIndevidoMemoriaException e) {
+		} catch (LabelException e) {
 			System.out.println(e.getMessage());
 		}
 
