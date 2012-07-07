@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g 2012-07-06 18:34:40
+// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g 2012-07-07 12:05:52
 
     package br.ufpb.iged.interpretador.parser;
     
@@ -158,10 +158,9 @@ public class Ref extends TreeFilter {
           
               assembler.getConstantPool().add(simboloClasse);
         
-            BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo, 
-              BytecodeAssembler.ip, assembler.getConstantPool().indexOf(simboloClasse));
-        
-        
+            /*BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo, 
+              BytecodeAssembler.ip, assembler.getConstantPool().indexOf(simboloClasse));*/
+          
             SimboloVariavel simboloVariavel = 
               (SimboloVariavel) simboloClasse.resolver(nomeCampo);
         
@@ -195,15 +194,15 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "topdown"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:84:1: topdown : ( entraNaClasse | declaracaoVariavel | getfield | putfield | invokespecial | aritmetica | load | loadint | store | storeint | desvio | logica | pilha | label );
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:83:1: topdown : ( entraNaClasse | declaracaoVariavel | getfield | putfield | invokespecial | aritmetica | load | loadint | store | storeint | desvio | logica | pilha | label );
     public final void topdown() throws RecognitionException {
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:85:5: ( entraNaClasse | declaracaoVariavel | getfield | putfield | invokespecial | aritmetica | load | loadint | store | storeint | desvio | logica | pilha | label )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:84:5: ( entraNaClasse | declaracaoVariavel | getfield | putfield | invokespecial | aritmetica | load | loadint | store | storeint | desvio | logica | pilha | label )
             int alt1=14;
             alt1 = dfa1.predict(input);
             switch (alt1) {
                 case 1 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:85:9: entraNaClasse
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:84:9: entraNaClasse
                     {
                     pushFollow(FOLLOW_entraNaClasse_in_topdown61);
                     entraNaClasse();
@@ -214,7 +213,7 @@ public class Ref extends TreeFilter {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:86:9: declaracaoVariavel
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:85:9: declaracaoVariavel
                     {
                     pushFollow(FOLLOW_declaracaoVariavel_in_topdown71);
                     declaracaoVariavel();
@@ -225,7 +224,7 @@ public class Ref extends TreeFilter {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:87:9: getfield
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:86:9: getfield
                     {
                     pushFollow(FOLLOW_getfield_in_topdown81);
                     getfield();
@@ -236,7 +235,7 @@ public class Ref extends TreeFilter {
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:88:9: putfield
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:87:9: putfield
                     {
                     pushFollow(FOLLOW_putfield_in_topdown91);
                     putfield();
@@ -247,7 +246,7 @@ public class Ref extends TreeFilter {
                     }
                     break;
                 case 5 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:89:9: invokespecial
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:88:9: invokespecial
                     {
                     pushFollow(FOLLOW_invokespecial_in_topdown101);
                     invokespecial();
@@ -258,7 +257,7 @@ public class Ref extends TreeFilter {
                     }
                     break;
                 case 6 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:90:9: aritmetica
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:89:9: aritmetica
                     {
                     pushFollow(FOLLOW_aritmetica_in_topdown111);
                     aritmetica();
@@ -269,7 +268,7 @@ public class Ref extends TreeFilter {
                     }
                     break;
                 case 7 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:91:9: load
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:90:9: load
                     {
                     pushFollow(FOLLOW_load_in_topdown122);
                     load();
@@ -280,7 +279,7 @@ public class Ref extends TreeFilter {
                     }
                     break;
                 case 8 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:92:9: loadint
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:91:9: loadint
                     {
                     pushFollow(FOLLOW_loadint_in_topdown132);
                     loadint();
@@ -291,7 +290,7 @@ public class Ref extends TreeFilter {
                     }
                     break;
                 case 9 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:93:9: store
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:92:9: store
                     {
                     pushFollow(FOLLOW_store_in_topdown143);
                     store();
@@ -302,7 +301,7 @@ public class Ref extends TreeFilter {
                     }
                     break;
                 case 10 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:94:9: storeint
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:93:9: storeint
                     {
                     pushFollow(FOLLOW_storeint_in_topdown153);
                     storeint();
@@ -313,7 +312,7 @@ public class Ref extends TreeFilter {
                     }
                     break;
                 case 11 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:95:9: desvio
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:94:9: desvio
                     {
                     pushFollow(FOLLOW_desvio_in_topdown164);
                     desvio();
@@ -324,7 +323,7 @@ public class Ref extends TreeFilter {
                     }
                     break;
                 case 12 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:96:9: logica
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:95:9: logica
                     {
                     pushFollow(FOLLOW_logica_in_topdown175);
                     logica();
@@ -335,7 +334,7 @@ public class Ref extends TreeFilter {
                     }
                     break;
                 case 13 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:97:9: pilha
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:96:9: pilha
                     {
                     pushFollow(FOLLOW_pilha_in_topdown185);
                     pilha();
@@ -346,7 +345,7 @@ public class Ref extends TreeFilter {
                     }
                     break;
                 case 14 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:98:9: label
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:97:9: label
                     {
                     pushFollow(FOLLOW_label_in_topdown195);
                     label();
@@ -362,9 +361,9 @@ public class Ref extends TreeFilter {
         catch (RecognitionException re) {
             reportError(re);
             recover(input,re);
-        } catch (AcessoIndevidoMemoriaException e) {
+        } catch (LabelException e) {
 			System.out.println(e.getMessage());
-		} catch (LabelException e) {
+		} catch (AcessoIndevidoMemoriaException e) {
 			System.out.println(e.getMessage());
 		}
 
@@ -378,21 +377,21 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "entraNaClasse"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:101:1: entraNaClasse : ^( '.class' nome= ID ( ^( EXTENDS sup= ID ) )? . ) ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:100:1: entraNaClasse : ^( '.class' nome= ID ( ^( EXTENDS sup= ID ) )? . ) ;
     public final void entraNaClasse() throws RecognitionException {
         BytecodesAST nome=null;
         BytecodesAST sup=null;
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:102:5: ( ^( '.class' nome= ID ( ^( EXTENDS sup= ID ) )? . ) )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:102:9: ^( '.class' nome= ID ( ^( EXTENDS sup= ID ) )? . )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:101:5: ( ^( '.class' nome= ID ( ^( EXTENDS sup= ID ) )? . ) )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:101:9: ^( '.class' nome= ID ( ^( EXTENDS sup= ID ) )? . )
             {
             match(input,23,FOLLOW_23_in_entraNaClasse220); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             nome=(BytecodesAST)match(input,ID,FOLLOW_ID_in_entraNaClasse224); if (state.failed) return ;
 
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:102:28: ( ^( EXTENDS sup= ID ) )?
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:101:28: ( ^( EXTENDS sup= ID ) )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -417,7 +416,7 @@ public class Ref extends TreeFilter {
             }
             switch (alt2) {
                 case 1 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:102:29: ^( EXTENDS sup= ID )
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:101:29: ^( EXTENDS sup= ID )
                     {
                     match(input,EXTENDS,FOLLOW_EXTENDS_in_entraNaClasse228); if (state.failed) return ;
 
@@ -470,14 +469,14 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "declaracaoVariavel"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:118:1: declaracaoVariavel : ^( FIELD_DECL ID tip= . ) ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:117:1: declaracaoVariavel : ^( FIELD_DECL ID tip= . ) ;
     public final void declaracaoVariavel() throws RecognitionException {
         BytecodesAST ID1=null;
         BytecodesAST tip=null;
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:119:5: ( ^( FIELD_DECL ID tip= . ) )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:119:9: ^( FIELD_DECL ID tip= . )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:118:5: ( ^( FIELD_DECL ID tip= . ) )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:118:9: ^( FIELD_DECL ID tip= . )
             {
             match(input,FIELD_DECL,FOLLOW_FIELD_DECL_in_declaracaoVariavel272); if (state.failed) return ;
 
@@ -514,15 +513,15 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "getfield"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:126:1: getfield : ^( 'getfield' classe= . . campo= . tipo= . ) ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:125:1: getfield : ^( 'getfield' classe= . . campo= . tipo= . ) ;
     public final void getfield() throws RecognitionException {
         BytecodesAST classe=null;
         BytecodesAST campo=null;
         BytecodesAST tipo=null;
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:127:5: ( ^( 'getfield' classe= . . campo= . tipo= . ) )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:127:7: ^( 'getfield' classe= . . campo= . tipo= . )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:126:5: ( ^( 'getfield' classe= . . campo= . tipo= . ) )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:126:7: ^( 'getfield' classe= . . campo= . tipo= . )
             {
             match(input,40,FOLLOW_40_in_getfield313); if (state.failed) return ;
 
@@ -566,15 +565,15 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "putfield"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:133:1: putfield : ^( 'putfield' classe= . . campo= . tipo= . ) ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:132:1: putfield : ^( 'putfield' classe= . . campo= . tipo= . ) ;
     public final void putfield() throws RecognitionException {
         BytecodesAST classe=null;
         BytecodesAST campo=null;
         BytecodesAST tipo=null;
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:134:5: ( ^( 'putfield' classe= . . campo= . tipo= . ) )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:134:7: ^( 'putfield' classe= . . campo= . tipo= . )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:133:5: ( ^( 'putfield' classe= . . campo= . tipo= . ) )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:133:7: ^( 'putfield' classe= . . campo= . tipo= . )
             {
             match(input,86,FOLLOW_86_in_putfield363); if (state.failed) return ;
 
@@ -618,7 +617,7 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "invokespecial"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:140:1: invokespecial : ^( 'invokespecial' classe= . . metodo= . args= . tipo= . ) ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:139:1: invokespecial : ^( 'invokespecial' classe= . . metodo= . args= . tipo= . ) ;
     public final void invokespecial() throws RecognitionException {
         BytecodesAST classe=null;
         BytecodesAST metodo=null;
@@ -626,8 +625,8 @@ public class Ref extends TreeFilter {
         BytecodesAST tipo=null;
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:141:5: ( ^( 'invokespecial' classe= . . metodo= . args= . tipo= . ) )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:141:7: ^( 'invokespecial' classe= . . metodo= . args= . tipo= . )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:140:5: ( ^( 'invokespecial' classe= . . metodo= . args= . tipo= . ) )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:140:7: ^( 'invokespecial' classe= . . metodo= . args= . tipo= . )
             {
             match(input,72,FOLLOW_72_in_invokespecial413); if (state.failed) return ;
 
@@ -675,13 +674,13 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "aritmetica"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:147:1: aritmetica : ^( ARITMETICA operacao= . ) ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:146:1: aritmetica : ^( ARITMETICA operacao= . ) ;
     public final void aritmetica() throws RecognitionException {
         BytecodesAST operacao=null;
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:148:5: ( ^( ARITMETICA operacao= . ) )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:148:7: ^( ARITMETICA operacao= . )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:147:5: ( ^( ARITMETICA operacao= . ) )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:147:7: ^( ARITMETICA operacao= . )
             {
             match(input,ARITMETICA,FOLLOW_ARITMETICA_in_aritmetica468); if (state.failed) return ;
 
@@ -715,13 +714,13 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "load"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:154:1: load : ^( LOAD operacao= . ) ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:153:1: load : ^( LOAD operacao= . ) ;
     public final void load() throws RecognitionException {
         BytecodesAST operacao=null;
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:155:3: ( ^( LOAD operacao= . ) )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:155:5: ^( LOAD operacao= . )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:154:3: ( ^( LOAD operacao= . ) )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:154:5: ^( LOAD operacao= . )
             {
             match(input,LOAD,FOLLOW_LOAD_in_load502); if (state.failed) return ;
 
@@ -755,14 +754,14 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "loadint"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:161:1: loadint : ^( LOAD operacao= . operando= . ) ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:160:1: loadint : ^( LOAD operacao= . operando= . ) ;
     public final void loadint() throws RecognitionException, LabelException {
         BytecodesAST operacao=null;
         BytecodesAST operando=null;
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:162:5: ( ^( LOAD operacao= . operando= . ) )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:162:7: ^( LOAD operacao= . operando= . )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:161:5: ( ^( LOAD operacao= . operando= . ) )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:161:7: ^( LOAD operacao= . operando= . )
             {
             match(input,LOAD,FOLLOW_LOAD_in_loadint531); if (state.failed) return ;
 
@@ -800,13 +799,13 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "store"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:168:1: store : ^( STORE operacao= . ) ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:167:1: store : ^( STORE operacao= . ) ;
     public final void store() throws RecognitionException, AcessoIndevidoMemoriaException {
         BytecodesAST operacao=null;
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:169:4: ( ^( STORE operacao= . ) )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:169:6: ^( STORE operacao= . )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:168:4: ( ^( STORE operacao= . ) )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:168:6: ^( STORE operacao= . )
             {
             match(input,STORE,FOLLOW_STORE_in_store574); if (state.failed) return ;
 
@@ -840,14 +839,14 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "storeint"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:175:1: storeint : ^( STORE operacao= . operando= . ) ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:174:1: storeint : ^( STORE operacao= . operando= . ) ;
     public final void storeint() throws RecognitionException, AcessoIndevidoMemoriaException, LabelException {
         BytecodesAST operacao=null;
         BytecodesAST operando=null;
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:176:5: ( ^( STORE operacao= . operando= . ) )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:176:7: ^( STORE operacao= . operando= . )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:175:5: ( ^( STORE operacao= . operando= . ) )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:175:7: ^( STORE operacao= . operando= . )
             {
             match(input,STORE,FOLLOW_STORE_in_storeint603); if (state.failed) return ;
 
@@ -885,14 +884,14 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "desvio"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:182:1: desvio : ^( DESVIO operacao= . operando= . ) ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:181:1: desvio : ^( DESVIO operacao= . operando= . ) ;
     public final void desvio() throws RecognitionException, LabelException {
         BytecodesAST operacao=null;
         BytecodesAST operando=null;
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:183:5: ( ^( DESVIO operacao= . operando= . ) )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:183:7: ^( DESVIO operacao= . operando= . )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:182:5: ( ^( DESVIO operacao= . operando= . ) )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:182:7: ^( DESVIO operacao= . operando= . )
             {
             match(input,DESVIO,FOLLOW_DESVIO_in_desvio644); if (state.failed) return ;
 
@@ -930,13 +929,13 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "logica"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:189:1: logica : ^( LOGICA operacao= . ) ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:188:1: logica : ^( LOGICA operacao= . ) ;
     public final void logica() throws RecognitionException {
         BytecodesAST operacao=null;
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:190:5: ( ^( LOGICA operacao= . ) )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:190:7: ^( LOGICA operacao= . )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:189:5: ( ^( LOGICA operacao= . ) )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:189:7: ^( LOGICA operacao= . )
             {
             match(input,LOGICA,FOLLOW_LOGICA_in_logica685); if (state.failed) return ;
 
@@ -970,13 +969,13 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "pilha"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:196:1: pilha : ^( PILHA operacao= . ) ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:195:1: pilha : ^( PILHA operacao= . ) ;
     public final void pilha() throws RecognitionException {
         BytecodesAST operacao=null;
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:197:4: ( ^( PILHA operacao= . ) )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:197:6: ^( PILHA operacao= . )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:196:4: ( ^( PILHA operacao= . ) )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:196:6: ^( PILHA operacao= . )
             {
             match(input,PILHA,FOLLOW_PILHA_in_pilha719); if (state.failed) return ;
 
@@ -1010,13 +1009,13 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "label"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:203:1: label : ^( LABEL operacao= . ) ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:202:1: label : ^( LABEL operacao= . ) ;
     public final void label() throws RecognitionException, LabelException {
         BytecodesAST operacao=null;
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:204:4: ( ^( LABEL operacao= . ) )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:204:6: ^( LABEL operacao= . )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:203:4: ( ^( LABEL operacao= . ) )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:203:6: ^( LABEL operacao= . )
             {
             match(input,LABEL,FOLLOW_LABEL_in_label747); if (state.failed) return ;
 
@@ -1125,7 +1124,7 @@ public class Ref extends TreeFilter {
             this.transition = DFA1_transition;
         }
         public String getDescription() {
-            return "84:1: topdown : ( entraNaClasse | declaracaoVariavel | getfield | putfield | invokespecial | aritmetica | load | loadint | store | storeint | desvio | logica | pilha | label );";
+            return "83:1: topdown : ( entraNaClasse | declaracaoVariavel | getfield | putfield | invokespecial | aritmetica | load | loadint | store | storeint | desvio | logica | pilha | label );";
         }
     }
  

@@ -46,10 +46,9 @@ options {
       
           assembler.getConstantPool().add(simboloClasse);
     
-        BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo, 
-          BytecodeAssembler.ip, assembler.getConstantPool().indexOf(simboloClasse));
-    
-    
+        /*BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo, 
+          BytecodeAssembler.ip, assembler.getConstantPool().indexOf(simboloClasse));*/
+      
         SimboloVariavel simboloVariavel = 
           (SimboloVariavel) simboloClasse.resolver(nomeCampo);
     

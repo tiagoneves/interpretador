@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g 2012-07-06 18:34:38
+// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g 2012-07-07 12:05:50
 
   package br.ufpb.iged.interpretador.parser;
   
@@ -878,7 +878,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: ID, membroClasse, superClasse, 23
+                    // elements: 23, membroClasse, superClasse, ID
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -1133,7 +1133,7 @@ public TreeAdaptor getTreeAdaptor() {
             stream_tipo.add(tipo31.getTree());
 
             // AST REWRITE
-            // elements: tipo, ID
+            // elements: ID, tipo
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1272,7 +1272,7 @@ public TreeAdaptor getTreeAdaptor() {
                     stream_tipo.add(tipo32.getTree());
 
                     // AST REWRITE
-                    // elements: tipo, 40, b
+                    // elements: b, tipo, 40
                     // token labels: 
                     // rule labels: retval, b
                     // token list labels: 
@@ -1328,7 +1328,7 @@ public TreeAdaptor getTreeAdaptor() {
                     stream_tipo.add(tipo33.getTree());
 
                     // AST REWRITE
-                    // elements: 86, b, tipo
+                    // elements: tipo, 86, b
                     // token labels: 
                     // rule labels: retval, b
                     // token list labels: 
@@ -1377,7 +1377,7 @@ public TreeAdaptor getTreeAdaptor() {
                     stream_chamadaMetodo.add(c.getTree());
 
                     // AST REWRITE
-                    // elements: 72, c
+                    // elements: c, 72
                     // token labels: 
                     // rule labels: retval, c
                     // token list labels: 
@@ -2171,7 +2171,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: b, a
+            // elements: a, b
             // token labels: b, a
             // rule labels: retval
             // token list labels: 
@@ -2519,7 +2519,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: a, b
+            // elements: b, a
             // token labels: b, a
             // rule labels: retval
             // token list labels: 
