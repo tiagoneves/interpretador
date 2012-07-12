@@ -73,7 +73,9 @@ membroClasse : '.field' ID tipo -> ^(FIELD_DECL ID tipo)
 
 manipulacaoObjetos : a = 'getfield' b = campo tipo -> ^('getfield' $b tipo)
                    | a = 'putfield' b = campo tipo -> ^('putfield' $b tipo) 
-                   | a = 'invokespecial' c = chamadaMetodo -> ^('invokespecial' $c)
+                   | a = 'invokespecial' c = classe '/' d = chamadaMetodo 
+                      -> ^('invokespecial' $c $d)
+                   | a = 'new'c = classe -> ^('new' $c)
                    ;
   
 tipo : INT | VOID | tipoRef ;
@@ -96,6 +98,7 @@ load : (    a = 'iconst_m1'
           | a = 'iconst_3'
           | a = 'iconst_4'
           | a = 'iconst_5'
+          | a = 'aconst_null' 
           | a = 'iload_0' 
           | a = 'iload_1'
           | a = 'iload_2'
@@ -122,7 +125,7 @@ store : (   a = 'istore_0'
           | a = 'astore_0'
           | a = 'astore_1' 
           | a = 'astore_2' 
-          | a = 'astore_3' 
+          | a = 'astore_3'
         ) 
         -> ^(STORE $a)
       ;
@@ -159,18 +162,25 @@ desvio : (   a = 'ifeq' b = ID
        
 pilha : (   a = 'pop'
           | a = 'pop2'
+          | a = 'dup'
         )
         -> ^(PILHA $a)
       ;
 
-chamadaMetodo returns [List classe, String nome, String params, String tipoRetorno]
+classe returns [List classe]
      @init {
         $classe = new ArrayList();
+     }
+     : (cls += ID '/')* (cls += ID) {$classe = $cls;}
+     ;
+
+chamadaMetodo returns [String nome, String params, String tipoRetorno]
+     @init {
         $nome = "";
         $params = "";
         $tipoRetorno = "";
      }
-     : (cls += ID '/')+ n = INIT par = '()' tip = VOID {$classe = $cls;
+     : n = INIT par = '()' tip = VOID {
              $nome = $n.text;
              $params = $par.text;
              $tipoRetorno = $tip.text;

@@ -77,6 +77,22 @@ options {
           BytecodeAssembler.ip, assembler.getConstantPool().indexOf(simboloClasse));
     
   }
+  
+  private void newClass(String nomeClasse) {
+  
+     assembler.escreverOpcode("new");
+       
+      SimboloClasse simboloClasse = 
+          (SimboloClasse)tabelaSimbolos.global.resolver("L" + nomeClasse);
+    
+      if(!assembler.getConstantPool().contains(simboloClasse))
+      
+          assembler.getConstantPool().add(simboloClasse);
+    
+       BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo, 
+          BytecodeAssembler.ip, assembler.getConstantPool().indexOf(simboloClasse));
+  
+  }
     
 }
 
@@ -86,6 +102,7 @@ topdown
       | getfield
       | putfield
       | invokespecial
+      | novaClasse
       | aritmetica 
       | load
       | loadint 
@@ -137,11 +154,18 @@ putfield
     ;
     
 invokespecial 
-    : ^('invokespecial' classe = . . metodo = . args = . tipo = .)
+    : ^('invokespecial' classe = . metodo = . args = . tipo = .)
     {
       chamarConstrutorDefault($classe.getText());
     }
     ;
+    
+novaClasse
+  : ^('new' classe = .)
+  {
+    newClass($classe.getText());
+  }
+  ;
     
 aritmetica
     : ^(ARITMETICA operacao = .)

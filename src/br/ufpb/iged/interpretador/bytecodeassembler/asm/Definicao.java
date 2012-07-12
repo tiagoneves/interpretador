@@ -5,7 +5,7 @@ import br.ufpb.iged.interpretador.parser.AssemblerParser;
 public class Definicao {
 
 	public static final int NOP = 0x0;
-
+    public static final int ACONSTNULL = 0x1;
 	public static final int ICONSTM1 = 0x2;
 	public static final int ICONST0 = 0x3;
 	public static final int ICONST1 = 0x4;
@@ -26,6 +26,7 @@ public class Definicao {
     public static final int ISTORE3 = 0x3E;
     public static final int POP = 0x57;
     public static final int POP2 = 0x58;
+    public static final int DUP = 0x59;
     public static final int IADD = 0x60;
     public static final int ISUB = 0x64;
     public static final int IMUL = 0x68;
@@ -62,6 +63,7 @@ public class Definicao {
     public static final int GETFIELD = 0xb4;
     public static final int PUTFIELD = 0xb5;
     public static final int INVOKESPECIAL = 0xb7;
+    public static final int NEW = 0xbb;
     
     public static final int ID = AssemblerParser.ID;
     public static final int INT= AssemblerParser.INT;
@@ -104,6 +106,7 @@ public class Definicao {
 
 	public static Instrucao[] instrucoes = new Instrucao[] { null,
 			new Instrucao("nop", Definicao.NOP),
+			new Instrucao("aconst_null", Definicao.ACONSTNULL),
 			new Instrucao("iconst_m1", Definicao.ICONSTM1),
 			new Instrucao("iconst_0", Definicao.ICONST0),
 			new Instrucao("iconst_1", Definicao.ICONST1),
@@ -124,6 +127,7 @@ public class Definicao {
 			new Instrucao("istore_3", Definicao.ISTORE3),
 			new Instrucao("pop", Definicao.POP),
 			new Instrucao("pop2", Definicao.POP2),
+			new Instrucao("dup", Definicao.DUP),
 			new Instrucao("iadd", Definicao.IADD),
 			new Instrucao("isub", Definicao.ISUB),
 			new Instrucao("imul", Definicao.IMUL),
@@ -159,7 +163,8 @@ public class Definicao {
 			new Instrucao("astore_3", Definicao.ASTORE3),
 			new Instrucao("getfield", Definicao.GETFIELD),
 			new Instrucao("putfield", Definicao.PUTFIELD),
-			new Instrucao("invokespecial", Definicao.INVOKESPECIAL)		
+			new Instrucao("invokespecial", Definicao.INVOKESPECIAL),
+			new Instrucao("new", Definicao.NEW)
 
 	};
  

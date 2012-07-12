@@ -182,7 +182,7 @@ public class Interpretador {
 
 		boolean desvio;
 		
-		Objeto objeto;
+		Referencia referencia;
 
 		while (ip < tamanhoCodigo) {
 
@@ -196,7 +196,7 @@ public class Interpretador {
 
 			switch (opcode) {
 
-			// nenhuma operação
+			// operações de pilha
 
 			case Definicao.NOP:
 				;
@@ -208,6 +208,18 @@ public class Interpretador {
 				
 			case Definicao.POP2:
 				sp -= 2 ;
+				break;
+				
+			case Definicao.DUP: {
+
+				Referencia ref = (Referencia)pilha[sp];
+				
+				sp++;
+
+				pilha[sp] = ref;
+
+			}
+				;
 				break;
 
 			// operações aritméticas
@@ -368,6 +380,16 @@ public class Interpretador {
 				sp++;
 
 				pilha[sp] = -1;
+
+			}
+				;
+				break;
+				
+			case Definicao.ACONSTNULL: {
+
+				sp++;
+
+				pilha[sp] = new Referencia(null);
 
 			}
 				;
@@ -923,17 +945,26 @@ public class Interpretador {
 				
 			//manipulação de objetos
 				
-			case Definicao.INVOKESPECIAL: {
+			case Definicao.NEW: {
 				
 				op1 = obterOperandoInteiro();
 				
 				SimboloClasse simboloClasse = assembler.getConstantPool().get(op1);
 				
-                objeto = new Objeto(simboloClasse);
+				Objeto objeto = new Objeto(simboloClasse);
 				
 				heap.add(objeto);
 				
-				pilha[sp] = heap.indexOf(objeto);
+				pilha[sp] = new Referencia(heap.indexOf(objeto));
+				
+			}
+			
+				;
+				break;	
+				
+			case Definicao.INVOKESPECIAL: {
+				
+				sp--;
 				
 			}
 			
@@ -942,7 +973,9 @@ public class Interpretador {
 				
 			case Definicao.GETFIELD: {
 				
-				objeto = heap.get((int) pilha[sp]);
+				referencia = (Referencia)pilha[sp];
+				
+				Objeto objeto = heap.get(referencia.getEndereco());
 				
 				op1 = obterOperandoInteiro();
 				
@@ -957,7 +990,9 @@ public class Interpretador {
 				
 			case Definicao.PUTFIELD: {
 				
-				objeto = heap.get((int) pilha[sp - 1]);
+				referencia = (Referencia)pilha[sp];
+				
+				Objeto objeto = heap.get(referencia.getEndereco());
 				
 				op1 = obterOperandoInteiro();
 				

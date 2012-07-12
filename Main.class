@@ -18,18 +18,23 @@
 	    iconst_2
 	    irem
 	    istore 4
-L1:	 	iload_1
+	    iconst_m1
+	    istore 5
+L1:	 	iload 5
+		iinc
+		istore 5
+		iload_1
 	 	iload_2
 	 	iadd
-	 	istore 5
+	 	istore 6
 	 	iload 4
-	 	iload 5
+	 	iload 6
 	 	pop
 	 	iinc
-	 	istore 6
+	 	istore 7
 	 	ldc 14
 	 	ineg
-	 	istore 7
+	 	istore 8
 	 	ldc 25
 	 	ldc 34
 	 	if_icmpgt L1
@@ -47,13 +52,18 @@ L2:	 	ineg
 	 	if_icmplt L2
 	 	ldc 23
 	 	ldc -23
+	 	iload 5
+	 	iadd
 	 	iadd
 	 	ifeq L1
-	 	aload_0
+	 	new Teste
+	 	dup
 	 	invokespecial Teste/<init>() V
 	 	ldc 5
 	 	putfield Teste/abc I
 	 	iconst_3
 	    putfield Teste/xyz I
 	    getfield Teste/abc I
+	    astore 9
+	    aconst_null
 	  

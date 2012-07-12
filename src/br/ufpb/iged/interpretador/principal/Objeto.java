@@ -37,7 +37,7 @@ public class Objeto {
 		}
 		
 	}
-
+	
 	public String getNome() {
 		return nome;
 	}
