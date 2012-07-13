@@ -192,7 +192,7 @@ public class Interpretador {
 
 			if (opcode < 0)
 
-				opcode = recuperarValorOpcode(opcode);
+				opcode = valorEmByte(opcode);
 
 			switch (opcode) {
 
@@ -676,9 +676,13 @@ public class Interpretador {
 
 					desvio = true;
 
-				} else
+				} else {
 
 					pilha[sp] = 0;
+					
+					ip += 4;
+					
+				}
 
 			}
 				;
@@ -694,9 +698,13 @@ public class Interpretador {
 
 					desvio = true;
 
-				} else
+				} else {
 
 					pilha[sp] = 0;
+					
+					ip += 4;
+					
+				}
 
 			}
 				;
@@ -712,9 +720,13 @@ public class Interpretador {
 
 					desvio = true;
 
-				} else
+				} else {
 
 					pilha[sp] = 0;
+					
+					ip += 4;
+					
+				}
 
 			}
 				;
@@ -730,9 +742,13 @@ public class Interpretador {
 
 					desvio = true;
 
-				} else
+				} else {
 
 					pilha[sp] = 0;
+					
+					ip += 4;
+					
+				}
 
 			}
 				;
@@ -748,9 +764,13 @@ public class Interpretador {
 
 					desvio = true;
 
-				} else
+				} else {
 
 					pilha[sp] = 0;
+					
+					ip += 4;
+					
+				}
 
 			}
 				;
@@ -766,9 +786,13 @@ public class Interpretador {
 
 					desvio = true;
 
-				} else
+				} else {
 
 					pilha[sp] = 0;
+					
+					ip += 4;
+					
+				}
 
 			}
 				;
@@ -955,7 +979,7 @@ public class Interpretador {
 				
 				heap.add(objeto);
 				
-				pilha[sp] = new Referencia(heap.indexOf(objeto));
+				pilha[++sp] = new Referencia(heap.indexOf(objeto));
 				
 			}
 			
@@ -965,6 +989,8 @@ public class Interpretador {
 			case Definicao.INVOKESPECIAL: {
 				
 				sp--;
+				
+				ip += 4;
 				
 			}
 			
@@ -979,9 +1005,7 @@ public class Interpretador {
 				
 				op1 = obterOperandoInteiro();
 				
-				sp++;
-				
-				pilha[sp] = objeto.getMemoriaLocal()[op1];
+				pilha[++sp] = objeto.getMemoriaLocal()[op1];
 				
 			}
 			
@@ -990,13 +1014,13 @@ public class Interpretador {
 				
 			case Definicao.PUTFIELD: {
 				
-				referencia = (Referencia)pilha[sp];
+				referencia = (Referencia)pilha[sp - 1];
 				
 				Objeto objeto = heap.get(referencia.getEndereco());
 				
 				op1 = obterOperandoInteiro();
 				
-				objeto.getMemoriaLocal()[op1] = pilha[sp];
+				objeto.getMemoriaLocal()[op1] = pilha[sp--];
 				
 			}
 			
@@ -1036,7 +1060,7 @@ public class Interpretador {
 
 	}
 
-	protected short recuperarValorOpcode(short a) {
+	protected short valorEmByte(short a) {
 
 		return (short) (128 + (128 + a));
 

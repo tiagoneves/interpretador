@@ -2,5 +2,4 @@
 .field abc I
 .field xyz I
 .method <init>()V
-aload_0
-invokespecial Teste/<init>()V
+.end class

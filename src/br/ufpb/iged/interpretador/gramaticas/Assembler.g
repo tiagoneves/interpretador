@@ -40,15 +40,18 @@ tokens {
   
 }
 
-programa : comando*
+programa : instrucao*
          ;
+         
+instrucao : operacao 
+          | definicaoClasse ('.end class')?
+          ;
 
-comando : (label instrucao | instrucao);
+operacao : (label comando | comando);
          
 label : a = ID ':' -> ^(LABEL $a);
 
-instrucao: (    definicaoClasse 
-              | manipulacaoObjetos 
+comando: (      manipulacaoObjetos 
               | aritmetica 
               | load
               | loadint 
@@ -58,19 +61,20 @@ instrucao: (    definicaoClasse
               | logica
               | pilha 
               | 'nop'
-           )? NOVA_LINHA;
+           )? NEWLINE;
               
-definicaoClasse : '.class' ID NOVA_LINHA superClasse? membroClasse+  
+definicaoClasse
+    : '.class' ID NEWLINE (superClasse NEWLINE)? (membroClasse NEWLINE) + 
                   -> ^('.class' ID superClasse? ^(MEMBRO_CLASSE membroClasse+))
-                | '.method' INIT '()' VOID
+                | '.method' INIT '()' VOID NEWLINE
                 ;
                 
 superClasse : '.super' ID -> ^(EXTENDS ID) ;
 
-membroClasse : '.field' ID tipo -> ^(FIELD_DECL ID tipo) 
-             ; 
+membroClasse 
+    : '.field' ID tipo -> ^(FIELD_DECL ID tipo) 
+    ; 
              
-
 manipulacaoObjetos : a = 'getfield' b = campo tipo -> ^('getfield' $b tipo)
                    | a = 'putfield' b = campo tipo -> ^('putfield' $b tipo) 
                    | a = 'invokespecial' c = classe '/' d = chamadaMetodo 
@@ -211,6 +215,6 @@ ID: ('a'..'z' | 'A'..'Z') ('a'..'z' | 'A'..'Z' | '0'..'9' | '.')* ;
 
 //LETRA: ('a'..'z' | 'A'..'Z');
 
-NOVA_LINHA : '\n';
+NEWLINE : '\n';
 
 WS : (' ' | '\t' | '\r') {skip();} ;

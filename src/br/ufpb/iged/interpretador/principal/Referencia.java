@@ -17,5 +17,11 @@ public class Referencia {
 	public void setEndereco(Integer endereco) {
 		this.endereco = endereco;
 	}
+	
+	public String toString() {
+		
+		return (endereco != null)? endereco.toString() : "null";
+		
+	}
 
 }

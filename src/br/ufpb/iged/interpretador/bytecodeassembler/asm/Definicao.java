@@ -67,7 +67,7 @@ public class Definicao {
     
     public static final int ID = AssemblerParser.ID;
     public static final int INT= AssemblerParser.INT;
-    public static final int NOVA_LINHA = AssemblerParser.NOVA_LINHA;
+    public static final int NOVA_LINHA = AssemblerParser.NEWLINE;
     public static final int NULL = AssemblerParser.NULL;
     public static final int WS = AssemblerParser.WS;
 
