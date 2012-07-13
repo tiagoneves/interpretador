@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g 2012-07-12 21:30:11
+// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g 2012-07-13 13:13:19
 
     package br.ufpb.iged.interpretador.parser;
     
@@ -24,11 +24,10 @@ import java.util.HashMap;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class Ref extends TreeFilter {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ARITMETICA", "DESVIO", "EXTENDS", "FIELD_DECL", "ID", "INIT", "INT", "INTEIRO", "LABEL", "LOAD", "LOGICA", "MEMBRO_CLASSE", "NEWLINE", "NULL", "PILHA", "STORE", "VOID", "WS", "'()'", "'.class'", "'.end class'", "'.field'", "'.method'", "'.super'", "'/'", "':'", "'L'", "'aconst_null'", "'aload'", "'aload_0'", "'aload_1'", "'aload_2'", "'aload_3'", "'astore'", "'astore_0'", "'astore_1'", "'astore_2'", "'astore_3'", "'dup'", "'getfield'", "'goto'", "'iadd'", "'iand'", "'iconst_0'", "'iconst_1'", "'iconst_2'", "'iconst_3'", "'iconst_4'", "'iconst_5'", "'iconst_m1'", "'idiv'", "'if_icmpeq'", "'if_icmpge'", "'if_icmpgt'", "'if_icmple'", "'if_icmplt'", "'if_icmpne'", "'ifeq'", "'ifge'", "'ifgt'", "'ifle'", "'iflt'", "'ifne'", "'iinc'", "'iload'", "'iload_0'", "'iload_1'", "'iload_2'", "'iload_3'", "'imul'", "'ineg'", "'invokespecial'", "'ior'", "'irem'", "'istore'", "'istore_0'", "'istore_1'", "'istore_2'", "'istore_3'", "'isub'", "'ixor'", "'ldc'", "'new'", "'nop'", "'pop'", "'pop2'", "'putfield'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ARITMETICA", "DESVIO", "EXTENDS", "FIELD_DECL", "ID", "INIT", "INT", "INTEIRO", "LABEL", "LOAD", "LOGICA", "MEMBRO_CLASSE", "NEWLINE", "NULL", "PILHA", "STORE", "TIPO_REF", "VOID", "WS", "'()'", "'.class'", "'.end class'", "'.field'", "'.method'", "'.super'", "'/'", "':'", "'aconst_null'", "'aload'", "'aload_0'", "'aload_1'", "'aload_2'", "'aload_3'", "'astore'", "'astore_0'", "'astore_1'", "'astore_2'", "'astore_3'", "'dup'", "'getfield'", "'goto'", "'iadd'", "'iand'", "'iconst_0'", "'iconst_1'", "'iconst_2'", "'iconst_3'", "'iconst_4'", "'iconst_5'", "'iconst_m1'", "'idiv'", "'if_icmpeq'", "'if_icmpge'", "'if_icmpgt'", "'if_icmple'", "'if_icmplt'", "'if_icmpne'", "'ifeq'", "'ifge'", "'ifgt'", "'ifle'", "'iflt'", "'ifne'", "'iinc'", "'iload'", "'iload_0'", "'iload_1'", "'iload_2'", "'iload_3'", "'imul'", "'ineg'", "'invokespecial'", "'ior'", "'irem'", "'istore'", "'istore_0'", "'istore_1'", "'istore_2'", "'istore_3'", "'isub'", "'ixor'", "'ldc'", "'new'", "'nop'", "'pop'", "'pop2'", "'putfield'"
     };
 
     public static final int EOF=-1;
-    public static final int T__22=22;
     public static final int T__23=23;
     public static final int T__24=24;
     public static final int T__25=25;
@@ -113,8 +112,9 @@ public class Ref extends TreeFilter {
     public static final int NULL=17;
     public static final int PILHA=18;
     public static final int STORE=19;
-    public static final int VOID=20;
-    public static final int WS=21;
+    public static final int TIPO_REF=20;
+    public static final int VOID=21;
+    public static final int WS=22;
 
     // delegates
     public TreeFilter[] getDelegates() {
@@ -392,12 +392,10 @@ public class Ref extends TreeFilter {
         catch (RecognitionException re) {
             reportError(re);
             recover(input,re);
-        } catch (LabelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (AcessoIndevidoMemoriaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+        } catch (AcessoIndevidoMemoriaException e) {
+			System.out.println(e.getMessage());
+		} catch (LabelException e) {
+			System.out.println(e.getMessage());
 		}
 
         finally {
@@ -419,7 +417,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:118:5: ( ^( '.class' nome= ID ( ^( EXTENDS sup= ID ) )? . ) )
             // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:118:9: ^( '.class' nome= ID ( ^( EXTENDS sup= ID ) )? . )
             {
-            match(input,23,FOLLOW_23_in_entraNaClasse230); if (state.failed) return ;
+            match(input,24,FOLLOW_24_in_entraNaClasse230); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             nome=(BytecodesAST)match(input,ID,FOLLOW_ID_in_entraNaClasse234); if (state.failed) return ;
@@ -1136,7 +1134,7 @@ public class Ref extends TreeFilter {
         "\34\uffff}>";
     static final String[] DFA1_transitionS = {
             "\1\7\1\12\1\uffff\1\2\4\uffff\1\15\1\10\1\13\3\uffff\1\14\1"+
-            "\11\3\uffff\1\1\23\uffff\1\3\37\uffff\1\5\12\uffff\1\6\3\uffff"+
+            "\11\4\uffff\1\1\22\uffff\1\3\37\uffff\1\5\12\uffff\1\6\3\uffff"+
             "\1\4",
             "",
             "",
@@ -1217,7 +1215,7 @@ public class Ref extends TreeFilter {
     public static final BitSet FOLLOW_logica_in_topdown185 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_pilha_in_topdown195 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_label_in_topdown205 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_entraNaClasse230 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_24_in_entraNaClasse230 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_ID_in_entraNaClasse234 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000000007FFFFFFL});
     public static final BitSet FOLLOW_EXTENDS_in_entraNaClasse238 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_ID_in_entraNaClasse242 = new BitSet(new long[]{0x0000000000000008L});

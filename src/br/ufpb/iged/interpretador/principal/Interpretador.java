@@ -37,6 +37,8 @@ public class Interpretador {
 	
 	public static final int TAMANHO_INICIAL_PILHA = 100;
 	
+	private static final String DIRETORIO_FONTE = "./classes";
+	
 	public int sp = -1;
 	
 	public int ip = 0;
@@ -114,7 +116,7 @@ public class Interpretador {
 		
 		    entrada = new StringBuffer();
 		
-			File file = new File(".\\");
+			File file = new File(DIRETORIO_FONTE);
 		
 			String[] arquivos = file.list();
 			
@@ -124,7 +126,8 @@ public class Interpretador {
 			
 				if (arquivos[i].endsWith(".class")) {
 					
-					ANTLRFileStream input = new ANTLRFileStream(arquivos[i]);
+					ANTLRFileStream input = 
+							new ANTLRFileStream(DIRETORIO_FONTE+"/"+arquivos[i]);
 					
 					entrada.append(input.toString());
 					

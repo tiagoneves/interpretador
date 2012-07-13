@@ -64,6 +64,27 @@ L2:	 	ineg
 	 	iconst_3
 	    putfield Teste/xyz I
 	    getfield Teste/abc I
-	    astore 9
+	    istore 9
+	    astore 10
 	    aconst_null
-	  
+	    astore 11
+	    new Classe
+	    dup
+	    invokespecial Classe/<init>() V
+	    iconst_3
+	    putfield Classe/asdf I
+	    iconst_5 
+	    putfield Classe/zavcui I
+	    ldc 24
+	    putfield Classe/fachdf I
+	    getfield Classe/zavcui I
+	    putfield Classe/lohdg I
+	    getfield Classe/lohdg I
+	    iconst_4
+	    imul
+	    istore 12
+	    getfield Classe/fachdf I
+	    ldc 8
+	    idiv
+	    istore 13
+  

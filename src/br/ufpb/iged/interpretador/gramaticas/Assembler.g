@@ -82,7 +82,7 @@ manipulacaoObjetos : a = 'getfield' b = campo tipo -> ^('getfield' $b tipo)
                    | a = 'new'c = classe -> ^('new' $c)
                    ;
   
-tipo : INT | VOID | tipoRef ;
+tipo : INT | VOID | TIPO_REF;
 
 aritmetica : (    a = 'iadd'
                 | a = 'isub'
@@ -199,8 +199,6 @@ campo returns [List classe, String campo]
      : (cls += ID '/')+ cmp = ID {$classe = $cls; $campo = $cmp.text;}
      ;
 
-tipoRef : 'L' (ID '/')* ID;
-
 INIT : '<init>';
 
 INT : 'I';
@@ -211,10 +209,12 @@ NULL : ('null' | 'NULL');
 
 INTEIRO : '-'? '0'..'9'+ ;
 
+TIPO_REF: 'L' ID ('/' ID)*;
+
 ID: ('a'..'z' | 'A'..'Z') ('a'..'z' | 'A'..'Z' | '0'..'9' | '.')* ;
 
 //LETRA: ('a'..'z' | 'A'..'Z');
 
 NEWLINE : '\n';
 
-WS : (' ' | '\t' | '\r') {skip();} ;
+WS : (' ' | '\t' | '\r') {$channel=HIDDEN;} ;

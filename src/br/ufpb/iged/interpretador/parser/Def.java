@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g 2012-07-12 21:30:11
+// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g 2012-07-13 13:13:19
 
     package br.ufpb.iged.interpretador.parser;
     
@@ -20,11 +20,10 @@ import java.util.HashMap;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class Def extends TreeFilter {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ARITMETICA", "DESVIO", "EXTENDS", "FIELD_DECL", "ID", "INIT", "INT", "INTEIRO", "LABEL", "LOAD", "LOGICA", "MEMBRO_CLASSE", "NEWLINE", "NULL", "PILHA", "STORE", "VOID", "WS", "'()'", "'.class'", "'.end class'", "'.field'", "'.method'", "'.super'", "'/'", "':'", "'L'", "'aconst_null'", "'aload'", "'aload_0'", "'aload_1'", "'aload_2'", "'aload_3'", "'astore'", "'astore_0'", "'astore_1'", "'astore_2'", "'astore_3'", "'dup'", "'getfield'", "'goto'", "'iadd'", "'iand'", "'iconst_0'", "'iconst_1'", "'iconst_2'", "'iconst_3'", "'iconst_4'", "'iconst_5'", "'iconst_m1'", "'idiv'", "'if_icmpeq'", "'if_icmpge'", "'if_icmpgt'", "'if_icmple'", "'if_icmplt'", "'if_icmpne'", "'ifeq'", "'ifge'", "'ifgt'", "'ifle'", "'iflt'", "'ifne'", "'iinc'", "'iload'", "'iload_0'", "'iload_1'", "'iload_2'", "'iload_3'", "'imul'", "'ineg'", "'invokespecial'", "'ior'", "'irem'", "'istore'", "'istore_0'", "'istore_1'", "'istore_2'", "'istore_3'", "'isub'", "'ixor'", "'ldc'", "'new'", "'nop'", "'pop'", "'pop2'", "'putfield'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ARITMETICA", "DESVIO", "EXTENDS", "FIELD_DECL", "ID", "INIT", "INT", "INTEIRO", "LABEL", "LOAD", "LOGICA", "MEMBRO_CLASSE", "NEWLINE", "NULL", "PILHA", "STORE", "TIPO_REF", "VOID", "WS", "'()'", "'.class'", "'.end class'", "'.field'", "'.method'", "'.super'", "'/'", "':'", "'aconst_null'", "'aload'", "'aload_0'", "'aload_1'", "'aload_2'", "'aload_3'", "'astore'", "'astore_0'", "'astore_1'", "'astore_2'", "'astore_3'", "'dup'", "'getfield'", "'goto'", "'iadd'", "'iand'", "'iconst_0'", "'iconst_1'", "'iconst_2'", "'iconst_3'", "'iconst_4'", "'iconst_5'", "'iconst_m1'", "'idiv'", "'if_icmpeq'", "'if_icmpge'", "'if_icmpgt'", "'if_icmple'", "'if_icmplt'", "'if_icmpne'", "'ifeq'", "'ifge'", "'ifgt'", "'ifle'", "'iflt'", "'ifne'", "'iinc'", "'iload'", "'iload_0'", "'iload_1'", "'iload_2'", "'iload_3'", "'imul'", "'ineg'", "'invokespecial'", "'ior'", "'irem'", "'istore'", "'istore_0'", "'istore_1'", "'istore_2'", "'istore_3'", "'isub'", "'ixor'", "'ldc'", "'new'", "'nop'", "'pop'", "'pop2'", "'putfield'"
     };
 
     public static final int EOF=-1;
-    public static final int T__22=22;
     public static final int T__23=23;
     public static final int T__24=24;
     public static final int T__25=25;
@@ -109,8 +108,9 @@ public class Def extends TreeFilter {
     public static final int NULL=17;
     public static final int PILHA=18;
     public static final int STORE=19;
-    public static final int VOID=20;
-    public static final int WS=21;
+    public static final int TIPO_REF=20;
+    public static final int VOID=21;
+    public static final int WS=22;
 
     // delegates
     public TreeFilter[] getDelegates() {
@@ -149,7 +149,7 @@ public class Def extends TreeFilter {
             int alt1=2;
             int LA1_0 = input.LA(1);
 
-            if ( (LA1_0==23) ) {
+            if ( (LA1_0==24) ) {
                 alt1=1;
             }
             else if ( (LA1_0==FIELD_DECL) ) {
@@ -210,7 +210,7 @@ public class Def extends TreeFilter {
             // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:34:10: ( saiDaClasse | getfield | putfield | invokespecial )
             int alt2=4;
             switch ( input.LA(1) ) {
-            case 23:
+            case 24:
                 {
                 alt2=1;
                 }
@@ -311,7 +311,7 @@ public class Def extends TreeFilter {
             // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:41:5: ( ^( '.class' nome= ID ( ^( EXTENDS sup= ID ) )? . ) )
             // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:41:9: ^( '.class' nome= ID ( ^( EXTENDS sup= ID ) )? . )
             {
-            match(input,23,FOLLOW_23_in_entraNaClasse154); if (state.failed) return ;
+            match(input,24,FOLLOW_24_in_entraNaClasse154); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             nome=(BytecodesAST)match(input,ID,FOLLOW_ID_in_entraNaClasse158); if (state.failed) return ;
@@ -447,7 +447,7 @@ public class Def extends TreeFilter {
             // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:68:13: ( '.class' )
             // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:68:15: '.class'
             {
-            match(input,23,FOLLOW_23_in_saiDaClasse237); if (state.failed) return ;
+            match(input,24,FOLLOW_24_in_saiDaClasse237); if (state.failed) return ;
 
             if ( state.backtracking==1 ) {
                           System.out.println("Saindo da classe.. membros: "+escopoAtual);
@@ -570,13 +570,13 @@ public class Def extends TreeFilter {
     public static final BitSet FOLLOW_getfield_in_bottomup94 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_putfield_in_bottomup107 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_invokespecial_in_bottomup120 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_entraNaClasse154 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_24_in_entraNaClasse154 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_ID_in_entraNaClasse158 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000000007FFFFFFL});
     public static final BitSet FOLLOW_EXTENDS_in_entraNaClasse162 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_ID_in_entraNaClasse166 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_FIELD_DECL_in_declaracaoVariavel202 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_ID_in_declaracaoVariavel204 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000000007FFFFFFL});
-    public static final BitSet FOLLOW_23_in_saiDaClasse237 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_saiDaClasse237 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_43_in_getfield277 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_90_in_putfield305 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_75_in_invokespecial334 = new BitSet(new long[]{0x0000000000000002L});

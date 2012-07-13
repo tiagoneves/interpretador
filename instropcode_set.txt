@@ -10,7 +10,7 @@ iconst_1 04 4
 iconst_2 05 5 
 iconst_3 06 6 
 iconst_4 07 7 
-iconst_5 
+iconst_5 08 8
 ldc 12 18  
 iload 15 21 
 iload_0 1a 26 
