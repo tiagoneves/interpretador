@@ -69,7 +69,7 @@ definicaoClasse
                 | '.method' INIT '()' VOID NEWLINE
                 ;
                 
-superClasse : '.super' ID -> ^(EXTENDS ID) ;
+superClasse : '.super' TIPO_REF -> ^(EXTENDS TIPO_REF) ;
 
 membroClasse 
     : '.field' ID tipo -> ^(FIELD_DECL ID tipo) 

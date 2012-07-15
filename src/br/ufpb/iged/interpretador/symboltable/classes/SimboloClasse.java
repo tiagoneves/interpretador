@@ -70,6 +70,14 @@ public class SimboloClasse extends SimboloComEscopo implements Escopo, Tipo {
 		this.constantPool = constantPool;
 	}
 
+	public SimboloClasse getSuperClasse() {
+		return superClasse;
+	}
+
+	public void setSuperClasse(SimboloClasse superClasse) {
+		this.superClasse = superClasse;
+	}
+
 	
     
 }

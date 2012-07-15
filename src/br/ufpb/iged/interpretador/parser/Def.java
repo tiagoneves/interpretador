@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g 2012-07-13 13:13:19
+// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g 2012-07-15 00:36:59
 
     package br.ufpb.iged.interpretador.parser;
     
@@ -302,21 +302,21 @@ public class Def extends TreeFilter {
 
 
     // $ANTLR start "entraNaClasse"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:40:1: entraNaClasse : ^( '.class' nome= ID ( ^( EXTENDS sup= ID ) )? . ) ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:40:1: entraNaClasse : ^( '.class' nome= ID ( ^( EXTENDS sup= TIPO_REF ) )? . ) ;
     public final void entraNaClasse() throws RecognitionException {
         BytecodesAST nome=null;
         BytecodesAST sup=null;
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:41:5: ( ^( '.class' nome= ID ( ^( EXTENDS sup= ID ) )? . ) )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:41:9: ^( '.class' nome= ID ( ^( EXTENDS sup= ID ) )? . )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:41:5: ( ^( '.class' nome= ID ( ^( EXTENDS sup= TIPO_REF ) )? . ) )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:41:9: ^( '.class' nome= ID ( ^( EXTENDS sup= TIPO_REF ) )? . )
             {
             match(input,24,FOLLOW_24_in_entraNaClasse154); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             nome=(BytecodesAST)match(input,ID,FOLLOW_ID_in_entraNaClasse158); if (state.failed) return ;
 
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:41:28: ( ^( EXTENDS sup= ID ) )?
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:41:28: ( ^( EXTENDS sup= TIPO_REF ) )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -326,7 +326,7 @@ public class Def extends TreeFilter {
                 if ( (LA3_1==DOWN) ) {
                     int LA3_3 = input.LA(3);
 
-                    if ( (LA3_3==ID) ) {
+                    if ( (LA3_3==TIPO_REF) ) {
                         int LA3_4 = input.LA(4);
 
                         if ( (LA3_4==UP) ) {
@@ -341,12 +341,12 @@ public class Def extends TreeFilter {
             }
             switch (alt3) {
                 case 1 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:41:29: ^( EXTENDS sup= ID )
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:41:29: ^( EXTENDS sup= TIPO_REF )
                     {
                     match(input,EXTENDS,FOLLOW_EXTENDS_in_entraNaClasse162); if (state.failed) return ;
 
                     match(input, Token.DOWN, null); if (state.failed) return ;
-                    sup=(BytecodesAST)match(input,ID,FOLLOW_ID_in_entraNaClasse166); if (state.failed) return ;
+                    sup=(BytecodesAST)match(input,TIPO_REF,FOLLOW_TIPO_REF_in_entraNaClasse166); if (state.failed) return ;
 
                     match(input, Token.UP, null); if (state.failed) return ;
 
@@ -573,7 +573,7 @@ public class Def extends TreeFilter {
     public static final BitSet FOLLOW_24_in_entraNaClasse154 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_ID_in_entraNaClasse158 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000000007FFFFFFL});
     public static final BitSet FOLLOW_EXTENDS_in_entraNaClasse162 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_entraNaClasse166 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_TIPO_REF_in_entraNaClasse166 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_FIELD_DECL_in_declaracaoVariavel202 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_ID_in_declaracaoVariavel204 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000000007FFFFFFL});
     public static final BitSet FOLLOW_24_in_saiDaClasse237 = new BitSet(new long[]{0x0000000000000002L});

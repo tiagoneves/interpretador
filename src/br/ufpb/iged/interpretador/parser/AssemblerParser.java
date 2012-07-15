@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g 2012-07-13 13:13:18
+// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g 2012-07-15 00:36:58
 
   package br.ufpb.iged.interpretador.parser;
   
@@ -1132,7 +1132,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "superClasse"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:72:1: superClasse : '.super' ID -> ^( EXTENDS ID ) ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:72:1: superClasse : '.super' TIPO_REF -> ^( EXTENDS TIPO_REF ) ;
     public final AssemblerParser.superClasse_return superClasse() throws RecognitionException {
         AssemblerParser.superClasse_return retval = new AssemblerParser.superClasse_return();
         retval.start = input.LT(1);
@@ -1141,27 +1141,27 @@ public TreeAdaptor getTreeAdaptor() {
         BytecodesAST root_0 = null;
 
         Token string_literal32=null;
-        Token ID33=null;
+        Token TIPO_REF33=null;
 
         BytecodesAST string_literal32_tree=null;
-        BytecodesAST ID33_tree=null;
-        RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
+        BytecodesAST TIPO_REF33_tree=null;
+        RewriteRuleTokenStream stream_TIPO_REF=new RewriteRuleTokenStream(adaptor,"token TIPO_REF");
         RewriteRuleTokenStream stream_28=new RewriteRuleTokenStream(adaptor,"token 28");
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:72:13: ( '.super' ID -> ^( EXTENDS ID ) )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:72:15: '.super' ID
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:72:13: ( '.super' TIPO_REF -> ^( EXTENDS TIPO_REF ) )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:72:15: '.super' TIPO_REF
             {
             string_literal32=(Token)match(input,28,FOLLOW_28_in_superClasse563);  
             stream_28.add(string_literal32);
 
 
-            ID33=(Token)match(input,ID,FOLLOW_ID_in_superClasse565);  
-            stream_ID.add(ID33);
+            TIPO_REF33=(Token)match(input,TIPO_REF,FOLLOW_TIPO_REF_in_superClasse565);  
+            stream_TIPO_REF.add(TIPO_REF33);
 
 
             // AST REWRITE
-            // elements: ID
+            // elements: TIPO_REF
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1171,9 +1171,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (BytecodesAST)adaptor.nil();
-            // 72:27: -> ^( EXTENDS ID )
+            // 72:33: -> ^( EXTENDS TIPO_REF )
             {
-                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:72:30: ^( EXTENDS ID )
+                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:72:36: ^( EXTENDS TIPO_REF )
                 {
                 BytecodesAST root_1 = (BytecodesAST)adaptor.nil();
                 root_1 = (BytecodesAST)adaptor.becomeRoot(
@@ -1181,7 +1181,7 @@ public TreeAdaptor getTreeAdaptor() {
                 , root_1);
 
                 adaptor.addChild(root_1, 
-                stream_ID.nextNode()
+                stream_TIPO_REF.nextNode()
                 );
 
                 adaptor.addChild(root_0, root_1);
@@ -3737,8 +3737,8 @@ public TreeAdaptor getTreeAdaptor() {
     public static final BitSet FOLLOW_23_in_definicaoClasse518 = new BitSet(new long[]{0x0000000000200000L});
     public static final BitSet FOLLOW_VOID_in_definicaoClasse520 = new BitSet(new long[]{0x0000000000010000L});
     public static final BitSet FOLLOW_NEWLINE_in_definicaoClasse522 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_superClasse563 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_ID_in_superClasse565 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_superClasse563 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_TIPO_REF_in_superClasse565 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_26_in_membroClasse587 = new BitSet(new long[]{0x0000000000000100L});
     public static final BitSet FOLLOW_ID_in_membroClasse589 = new BitSet(new long[]{0x0000000000300400L});
     public static final BitSet FOLLOW_tipo_in_membroClasse591 = new BitSet(new long[]{0x0000000000000002L});

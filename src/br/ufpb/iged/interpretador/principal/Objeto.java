@@ -31,8 +31,35 @@ public class Objeto {
 			
 			else if (nomeTipo.startsWith("L"))
 				
-				memoriaLocal[i] = new Integer(0);
+				memoriaLocal[i] = new Referencia(new Integer(0));
 				
+			
+		}
+		
+		SimboloClasse parent = simboloClasse.getSuperClasse();
+		
+		while(parent != null) {
+			
+			List<Simbolo> constantPoolParent = parent.getConstantPool();
+			
+			int j;
+			
+			for (j = 0; j < constantPoolParent.size(); j++, i++) {
+				
+				String nomeTipo = constantPoolParent.get(i).getTipo().obterNome();
+				
+				if(nomeTipo.equals("I"))
+					
+					memoriaLocal[i] = new Integer(0);
+				
+				else if (nomeTipo.startsWith("L"))
+					
+					memoriaLocal[i] = new Referencia(new Integer(0));
+					
+				
+			}
+			
+			parent = parent.getSuperClasse();
 			
 		}
 		

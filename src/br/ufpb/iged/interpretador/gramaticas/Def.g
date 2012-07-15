@@ -38,7 +38,7 @@ bottomup : saiDaClasse
          ;
          
 entraNaClasse
-    :   ^('.class' nome=ID (^(EXTENDS sup=ID))? .)
+    :   ^('.class' nome=ID (^(EXTENDS sup=TIPO_REF))? .)
         { 
            System.out.println("linha "+$nome.getLine()+
                           ": def class "+$nome.text);

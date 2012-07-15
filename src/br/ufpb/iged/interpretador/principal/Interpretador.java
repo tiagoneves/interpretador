@@ -1008,7 +1008,9 @@ public class Interpretador {
 				
 				op1 = obterOperandoInteiro();
 				
-				pilha[++sp] = objeto.getMemoriaLocal()[op1];
+				pilha[sp] = null;
+				
+				pilha[sp] = objeto.getMemoriaLocal()[op1];
 				
 			}
 			

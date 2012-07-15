@@ -115,7 +115,7 @@ topdown
     ;
     
 entraNaClasse
-    :   ^('.class' nome=ID (^(EXTENDS sup=ID))? .)
+    :   ^('.class' nome=ID (^(EXTENDS sup=TIPO_REF))? .)
         {
           simboloClasse = ((SimboloClasse)$nome.simbolo);
           if ( $sup!=null ) {

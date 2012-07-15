@@ -63,6 +63,7 @@ L2:	 	ineg
 	 	putfield Teste/abc I
 	 	iconst_3
 	    putfield Teste/xyz I
+	    dup
 	    getfield Teste/abc I
 	    istore 9
 	    astore 10
@@ -77,14 +78,73 @@ L2:	 	ineg
 	    putfield Classe/zavcui I
 	    ldc 24
 	    putfield Classe/fachdf I
+	    dup
 	    getfield Classe/zavcui I
 	    putfield Classe/lohdg I
+	    dup
 	    getfield Classe/lohdg I
 	    iconst_4
 	    imul
 	    istore 12
+	    dup
 	    getfield Classe/fachdf I
 	    ldc 8
 	    idiv
 	    istore 13
-  
+	    new Composicao
+	    dup
+	    invokespecial Composicao/<init>() V
+	    new Teste
+	    dup
+	    invokespecial Teste/<init>() V
+	    ldc 12
+	    putfield Teste/abc I
+	    ldc 24
+	    putfield Teste/xyz I
+	    putfield Composicao/teste LTeste
+	    iconst_2
+	    putfield Composicao/basxty I
+	    iconst_3
+	    putfield Composicao/jahss I
+	    astore 14
+	    ldc 8
+	    istore 15
+	    aload 14
+	    dup
+	    getfield Composicao/teste LTeste
+	    dup
+	    getfield Teste/xyz I
+	    iload 15
+	    idiv
+	    istore 16
+	    pop2
+        new Heranca
+        dup
+        invokespecial Heranca/<init>() V
+        iconst_3
+        putfield Heranca/abfgs I
+        ldc 45
+        putfield Heranca/lovxfd I
+        ldc 32
+        putfield Heranca/abc I
+        ldc 9
+        putfield Heranca/xyz I
+        astore 17
+        iconst_4
+        istore 18
+        aload 17
+        dup
+        getfield Heranca/abfgs I
+        aload 17
+        getfield Heranca/abc I
+        imul
+        istore 19
+        dup
+        getfield Heranca/lovxfd I
+        aload 17
+        getfield Heranca/xyz I
+        idiv
+        iload 18
+        isub
+        istore 20
+        
