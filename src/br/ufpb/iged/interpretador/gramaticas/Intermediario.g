@@ -1,5 +1,17 @@
 grammar Intermediario;
 
+@header{
+
+  package br.ufpb.iged.interpretador.tradutor.intermediario.parser;
+  
+  import java.io.IOException;
+    
+}
+
+@lexer::header{
+  package br.ufpb.iged.interpretador.tradutor.intermediario.parser;
+}
+
 @members {
 
   protected void adicionarVariavel(Token op);
@@ -14,7 +26,7 @@ programa : instrucao*;
 instrucao : (create | load | store | aritmetica);
 
 create : 'CREATE_INT' a = ID {adicionarVariavel($a);}
-       | 'DELETE_INT' a = ID
+       | 'DELETE_INT' ID
        ;
 
 load : a = 'READ_INT' b = ID {traduzirLoad($a, $b);}

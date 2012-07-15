@@ -1,5 +1,5 @@
 
-<project name="Interpretador" default="gerar" basedir=".">
+<project name="Interpretador" default="gerarIntermediario" basedir=".">
 	
 	<property name = "src.dir" value = 
 		"src/br/ufpb/iged/interpretador/gramaticas"/>

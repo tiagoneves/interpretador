@@ -1,6 +1,7 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g 2012-06-04 23:46:57
+// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g 2012-07-15 17:30:16
 
-package br.ufpb.iged.interpretador.tradutor.intermediario.parser;
+  package br.ufpb.iged.interpretador.tradutor.intermediario.parser;
+
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -36,15 +37,15 @@ public class IntermediarioLexer extends Lexer {
     public IntermediarioLexer(CharStream input, RecognizerSharedState state) {
         super(input,state);
     }
-    public String getGrammarFileName() { return "C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g"; }
+    public String getGrammarFileName() { return "C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g"; }
 
     // $ANTLR start "T__7"
     public final void mT__7() throws RecognitionException {
         try {
             int _type = T__7;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:2:6: ( 'ADD' )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:2:8: 'ADD'
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:6:6: ( 'ADD' )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:6:8: 'ADD'
             {
             match("ADD"); 
 
@@ -66,8 +67,8 @@ public class IntermediarioLexer extends Lexer {
         try {
             int _type = T__8;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:3:6: ( 'CREATE_INT' )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:3:8: 'CREATE_INT'
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:7:6: ( 'CREATE_INT' )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:7:8: 'CREATE_INT'
             {
             match("CREATE_INT"); 
 
@@ -89,8 +90,8 @@ public class IntermediarioLexer extends Lexer {
         try {
             int _type = T__9;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:4:6: ( 'DELETE_INT' )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:4:8: 'DELETE_INT'
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:8:6: ( 'DELETE_INT' )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:8:8: 'DELETE_INT'
             {
             match("DELETE_INT"); 
 
@@ -112,8 +113,8 @@ public class IntermediarioLexer extends Lexer {
         try {
             int _type = T__10;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:5:7: ( 'DIV' )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:5:9: 'DIV'
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:9:7: ( 'DIV' )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:9:9: 'DIV'
             {
             match("DIV"); 
 
@@ -135,8 +136,8 @@ public class IntermediarioLexer extends Lexer {
         try {
             int _type = T__11;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:6:7: ( 'MULT' )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:6:9: 'MULT'
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:10:7: ( 'MULT' )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:10:9: 'MULT'
             {
             match("MULT"); 
 
@@ -158,8 +159,8 @@ public class IntermediarioLexer extends Lexer {
         try {
             int _type = T__12;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:7:7: ( 'READ_INT' )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:7:9: 'READ_INT'
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:11:7: ( 'READ_INT' )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:11:9: 'READ_INT'
             {
             match("READ_INT"); 
 
@@ -181,8 +182,8 @@ public class IntermediarioLexer extends Lexer {
         try {
             int _type = T__13;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:8:7: ( 'READ_INTC' )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:8:9: 'READ_INTC'
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:12:7: ( 'READ_INTC' )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:12:9: 'READ_INTC'
             {
             match("READ_INTC"); 
 
@@ -204,8 +205,8 @@ public class IntermediarioLexer extends Lexer {
         try {
             int _type = T__14;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:9:7: ( 'SUB' )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:9:9: 'SUB'
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:13:7: ( 'SUB' )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:13:9: 'SUB'
             {
             match("SUB"); 
 
@@ -227,8 +228,8 @@ public class IntermediarioLexer extends Lexer {
         try {
             int _type = T__15;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:10:7: ( 'WRITE_INT' )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:10:9: 'WRITE_INT'
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:14:7: ( 'WRITE_INT' )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:14:9: 'WRITE_INT'
             {
             match("WRITE_INT"); 
 
@@ -250,10 +251,10 @@ public class IntermediarioLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:32:5: ( ( '-' )? ( '0' .. '9' )+ )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:32:7: ( '-' )? ( '0' .. '9' )+
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:44:5: ( ( '-' )? ( '0' .. '9' )+ )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:44:7: ( '-' )? ( '0' .. '9' )+
             {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:32:7: ( '-' )?
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:44:7: ( '-' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -262,7 +263,7 @@ public class IntermediarioLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:32:7: '-'
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:44:7: '-'
                     {
                     match('-'); 
 
@@ -272,7 +273,7 @@ public class IntermediarioLexer extends Lexer {
             }
 
 
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:32:12: ( '0' .. '9' )+
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:44:12: ( '0' .. '9' )+
             int cnt2=0;
             loop2:
             do {
@@ -286,7 +287,7 @@ public class IntermediarioLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:
+            	    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:
             	    {
             	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
             	        input.consume();
@@ -327,8 +328,8 @@ public class IntermediarioLexer extends Lexer {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:34:3: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '.' )* )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:34:5: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '.' )*
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:46:3: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '.' )* )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:46:5: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '.' )*
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                 input.consume();
@@ -340,7 +341,7 @@ public class IntermediarioLexer extends Lexer {
             }
 
 
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:34:27: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '.' )*
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:46:27: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '.' )*
             loop3:
             do {
                 int alt3=2;
@@ -353,7 +354,7 @@ public class IntermediarioLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:
+            	    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:
             	    {
             	    if ( input.LA(1)=='.'||(input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
             	        input.consume();
@@ -390,8 +391,8 @@ public class IntermediarioLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:36:4: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:36:6: ( ' ' | '\\t' | '\\r' | '\\n' )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:48:4: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:48:6: ( ' ' | '\\t' | '\\r' | '\\n' )
             {
             if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -417,7 +418,7 @@ public class IntermediarioLexer extends Lexer {
     // $ANTLR end "WS"
 
     public void mTokens() throws RecognitionException {
-        // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:1:8: ( T__7 | T__8 | T__9 | T__10 | T__11 | T__12 | T__13 | T__14 | T__15 | INT | ID | WS )
+        // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:1:8: ( T__7 | T__8 | T__9 | T__10 | T__11 | T__12 | T__13 | T__14 | T__15 | INT | ID | WS )
         int alt4=12;
         switch ( input.LA(1) ) {
         case 'A':
@@ -815,7 +816,7 @@ public class IntermediarioLexer extends Lexer {
 
         switch (alt4) {
             case 1 :
-                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:1:10: T__7
+                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:1:10: T__7
                 {
                 mT__7(); 
 
@@ -823,7 +824,7 @@ public class IntermediarioLexer extends Lexer {
                 }
                 break;
             case 2 :
-                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:1:15: T__8
+                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:1:15: T__8
                 {
                 mT__8(); 
 
@@ -831,7 +832,7 @@ public class IntermediarioLexer extends Lexer {
                 }
                 break;
             case 3 :
-                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:1:20: T__9
+                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:1:20: T__9
                 {
                 mT__9(); 
 
@@ -839,7 +840,7 @@ public class IntermediarioLexer extends Lexer {
                 }
                 break;
             case 4 :
-                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:1:25: T__10
+                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:1:25: T__10
                 {
                 mT__10(); 
 
@@ -847,7 +848,7 @@ public class IntermediarioLexer extends Lexer {
                 }
                 break;
             case 5 :
-                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:1:31: T__11
+                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:1:31: T__11
                 {
                 mT__11(); 
 
@@ -855,7 +856,7 @@ public class IntermediarioLexer extends Lexer {
                 }
                 break;
             case 6 :
-                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:1:37: T__12
+                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:1:37: T__12
                 {
                 mT__12(); 
 
@@ -863,7 +864,7 @@ public class IntermediarioLexer extends Lexer {
                 }
                 break;
             case 7 :
-                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:1:43: T__13
+                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:1:43: T__13
                 {
                 mT__13(); 
 
@@ -871,7 +872,7 @@ public class IntermediarioLexer extends Lexer {
                 }
                 break;
             case 8 :
-                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:1:49: T__14
+                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:1:49: T__14
                 {
                 mT__14(); 
 
@@ -879,7 +880,7 @@ public class IntermediarioLexer extends Lexer {
                 }
                 break;
             case 9 :
-                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:1:55: T__15
+                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:1:55: T__15
                 {
                 mT__15(); 
 
@@ -887,7 +888,7 @@ public class IntermediarioLexer extends Lexer {
                 }
                 break;
             case 10 :
-                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:1:61: INT
+                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:1:61: INT
                 {
                 mINT(); 
 
@@ -895,7 +896,7 @@ public class IntermediarioLexer extends Lexer {
                 }
                 break;
             case 11 :
-                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:1:65: ID
+                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:1:65: ID
                 {
                 mID(); 
 
@@ -903,7 +904,7 @@ public class IntermediarioLexer extends Lexer {
                 }
                 break;
             case 12 :
-                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:1:68: WS
+                // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:1:68: WS
                 {
                 mWS(); 
 

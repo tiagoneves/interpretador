@@ -1,10 +1,13 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g 2012-06-04 23:46:57
+// $ANTLR 3.4 C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g 2012-07-15 17:30:15
 
-package br.ufpb.iged.interpretador.tradutor.intermediario.parser;
+
+  package br.ufpb.iged.interpretador.tradutor.intermediario.parser;
+  
+  import java.io.IOException;
+    
+
 
 import org.antlr.runtime.*;
-
-import java.io.IOException;
 import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
@@ -45,26 +48,26 @@ public abstract class IntermediarioParser extends Parser {
     }
 
     public String[] getTokenNames() { return IntermediarioParser.tokenNames; }
-    public String getGrammarFileName() { return "C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g"; }
+    public String getGrammarFileName() { return "C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g"; }
 
 
 
-    protected abstract void adicionarVariavel(Token op);
-    protected abstract void traduzirLoad(Token opc, Token op) throws IOException;
-    protected abstract void traduzirStore(Token opc, Token op) throws IOException;
-    protected abstract void traduzirArimetica(Token opc) throws IOException;
+      protected abstract void adicionarVariavel(Token op);
+      protected abstract void traduzirLoad(Token opc, Token op) throws IOException;
+      protected abstract void traduzirStore(Token opc, Token op) throws IOException;
+      protected abstract void traduzirArimetica(Token opc) throws IOException;
 
 
 
 
     // $ANTLR start "programa"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:12:1: programa : ( instrucao )* ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:24:1: programa : ( instrucao )* ;
     public final void programa() throws RecognitionException, IOException {
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:12:10: ( ( instrucao )* )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:12:12: ( instrucao )*
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:24:10: ( ( instrucao )* )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:24:12: ( instrucao )*
             {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:12:12: ( instrucao )*
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:24:12: ( instrucao )*
             loop1:
             do {
                 int alt1=2;
@@ -77,9 +80,9 @@ public abstract class IntermediarioParser extends Parser {
 
                 switch (alt1) {
             	case 1 :
-            	    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:12:12: instrucao
+            	    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:24:12: instrucao
             	    {
-            	    pushFollow(FOLLOW_instrucao_in_programa16);
+            	    pushFollow(FOLLOW_instrucao_in_programa29);
             	    instrucao();
 
             	    state._fsp--;
@@ -112,13 +115,13 @@ public abstract class IntermediarioParser extends Parser {
 
 
     // $ANTLR start "instrucao"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:14:1: instrucao : ( create | load | store | aritmetica ) ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:26:1: instrucao : ( create | load | store | aritmetica ) ;
     public final void instrucao() throws RecognitionException, IOException {
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:14:11: ( ( create | load | store | aritmetica ) )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:14:13: ( create | load | store | aritmetica )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:26:11: ( ( create | load | store | aritmetica ) )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:26:13: ( create | load | store | aritmetica )
             {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:14:13: ( create | load | store | aritmetica )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:26:13: ( create | load | store | aritmetica )
             int alt2=4;
             switch ( input.LA(1) ) {
             case 8:
@@ -156,9 +159,9 @@ public abstract class IntermediarioParser extends Parser {
 
             switch (alt2) {
                 case 1 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:14:14: create
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:26:14: create
                     {
-                    pushFollow(FOLLOW_create_in_instrucao26);
+                    pushFollow(FOLLOW_create_in_instrucao39);
                     create();
 
                     state._fsp--;
@@ -167,9 +170,9 @@ public abstract class IntermediarioParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:14:23: load
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:26:23: load
                     {
-                    pushFollow(FOLLOW_load_in_instrucao30);
+                    pushFollow(FOLLOW_load_in_instrucao43);
                     load();
 
                     state._fsp--;
@@ -178,9 +181,9 @@ public abstract class IntermediarioParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:14:30: store
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:26:30: store
                     {
-                    pushFollow(FOLLOW_store_in_instrucao34);
+                    pushFollow(FOLLOW_store_in_instrucao47);
                     store();
 
                     state._fsp--;
@@ -189,9 +192,9 @@ public abstract class IntermediarioParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:14:38: aritmetica
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:26:38: aritmetica
                     {
-                    pushFollow(FOLLOW_aritmetica_in_instrucao38);
+                    pushFollow(FOLLOW_aritmetica_in_instrucao51);
                     aritmetica();
 
                     state._fsp--;
@@ -221,12 +224,12 @@ public abstract class IntermediarioParser extends Parser {
 
 
     // $ANTLR start "create"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:16:1: create : ( 'CREATE_INT' a= ID | 'DELETE_INT' a= ID );
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:28:1: create : ( 'CREATE_INT' a= ID | 'DELETE_INT' ID );
     public final void create() throws RecognitionException {
         Token a=null;
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:16:8: ( 'CREATE_INT' a= ID | 'DELETE_INT' a= ID )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:28:8: ( 'CREATE_INT' a= ID | 'DELETE_INT' ID )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -245,22 +248,22 @@ public abstract class IntermediarioParser extends Parser {
             }
             switch (alt3) {
                 case 1 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:16:10: 'CREATE_INT' a= ID
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:28:10: 'CREATE_INT' a= ID
                     {
-                    match(input,8,FOLLOW_8_in_create47); 
+                    match(input,8,FOLLOW_8_in_create60); 
 
-                    a=(Token)match(input,ID,FOLLOW_ID_in_create53); 
+                    a=(Token)match(input,ID,FOLLOW_ID_in_create66); 
 
                     adicionarVariavel(a);
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:17:10: 'DELETE_INT' a= ID
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:29:10: 'DELETE_INT' ID
                     {
-                    match(input,9,FOLLOW_9_in_create66); 
+                    match(input,9,FOLLOW_9_in_create79); 
 
-                    a=(Token)match(input,ID,FOLLOW_ID_in_create72); 
+                    match(input,ID,FOLLOW_ID_in_create81); 
 
                     }
                     break;
@@ -282,14 +285,14 @@ public abstract class IntermediarioParser extends Parser {
 
 
     // $ANTLR start "load"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:20:1: load : (a= 'READ_INT' b= ID |a= 'READ_INTC' INT );
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:32:1: load : (a= 'READ_INT' b= ID |a= 'READ_INTC' INT );
     public final void load() throws RecognitionException, IOException {
         Token a=null;
         Token b=null;
         Token INT1=null;
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:20:6: (a= 'READ_INT' b= ID |a= 'READ_INTC' INT )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:32:6: (a= 'READ_INT' b= ID |a= 'READ_INTC' INT )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -308,22 +311,22 @@ public abstract class IntermediarioParser extends Parser {
             }
             switch (alt4) {
                 case 1 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:20:8: a= 'READ_INT' b= ID
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:32:8: a= 'READ_INT' b= ID
                     {
-                    a=(Token)match(input,12,FOLLOW_12_in_load92); 
+                    a=(Token)match(input,12,FOLLOW_12_in_load101); 
 
-                    b=(Token)match(input,ID,FOLLOW_ID_in_load98); 
+                    b=(Token)match(input,ID,FOLLOW_ID_in_load107); 
 
                     traduzirLoad(a, b);
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:21:8: a= 'READ_INTC' INT
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:33:8: a= 'READ_INTC' INT
                     {
-                    a=(Token)match(input,13,FOLLOW_13_in_load113); 
+                    a=(Token)match(input,13,FOLLOW_13_in_load122); 
 
-                    INT1=(Token)match(input,INT,FOLLOW_INT_in_load115); 
+                    INT1=(Token)match(input,INT,FOLLOW_INT_in_load124); 
 
                     traduzirLoad(a, INT1);
 
@@ -347,18 +350,18 @@ public abstract class IntermediarioParser extends Parser {
 
 
     // $ANTLR start "store"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:24:1: store : a= 'WRITE_INT' b= ID ;
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:36:1: store : a= 'WRITE_INT' b= ID ;
     public final void store() throws RecognitionException, IOException {
         Token a=null;
         Token b=null;
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:24:7: (a= 'WRITE_INT' b= ID )
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:24:9: a= 'WRITE_INT' b= ID
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:36:7: (a= 'WRITE_INT' b= ID )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:36:9: a= 'WRITE_INT' b= ID
             {
-            a=(Token)match(input,15,FOLLOW_15_in_store140); 
+            a=(Token)match(input,15,FOLLOW_15_in_store149); 
 
-            b=(Token)match(input,ID,FOLLOW_ID_in_store146); 
+            b=(Token)match(input,ID,FOLLOW_ID_in_store155); 
 
             traduzirStore(a, b);
 
@@ -380,12 +383,12 @@ public abstract class IntermediarioParser extends Parser {
 
 
     // $ANTLR start "aritmetica"
-    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:26:1: aritmetica : (a= 'ADD' |a= 'SUB' |a= 'MULT' |a= 'DIV' );
+    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:38:1: aritmetica : (a= 'ADD' |a= 'SUB' |a= 'MULT' |a= 'DIV' );
     public final void aritmetica() throws RecognitionException, IOException {
         Token a=null;
 
         try {
-            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:26:12: (a= 'ADD' |a= 'SUB' |a= 'MULT' |a= 'DIV' )
+            // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:38:12: (a= 'ADD' |a= 'SUB' |a= 'MULT' |a= 'DIV' )
             int alt5=4;
             switch ( input.LA(1) ) {
             case 7:
@@ -418,36 +421,36 @@ public abstract class IntermediarioParser extends Parser {
 
             switch (alt5) {
                 case 1 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:26:14: a= 'ADD'
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:38:14: a= 'ADD'
                     {
-                    a=(Token)match(input,7,FOLLOW_7_in_aritmetica160); 
+                    a=(Token)match(input,7,FOLLOW_7_in_aritmetica169); 
 
                     traduzirArimetica(a);
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:27:14: a= 'SUB'
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:39:14: a= 'SUB'
                     {
-                    a=(Token)match(input,14,FOLLOW_14_in_aritmetica181); 
+                    a=(Token)match(input,14,FOLLOW_14_in_aritmetica190); 
 
                     traduzirArimetica(a);
 
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:28:14: a= 'MULT'
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:40:14: a= 'MULT'
                     {
-                    a=(Token)match(input,11,FOLLOW_11_in_aritmetica202); 
+                    a=(Token)match(input,11,FOLLOW_11_in_aritmetica211); 
 
                     traduzirArimetica(a);
 
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\tradutor\\intermediario\\gramatica\\Intermediario.g:29:14: a= 'DIV'
+                    // C:\\Users\\Tiago\\git\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Intermediario.g:41:14: a= 'DIV'
                     {
-                    a=(Token)match(input,10,FOLLOW_10_in_aritmetica223); 
+                    a=(Token)match(input,10,FOLLOW_10_in_aritmetica232); 
 
                     traduzirArimetica(a);
 
@@ -473,24 +476,24 @@ public abstract class IntermediarioParser extends Parser {
 
  
 
-    public static final BitSet FOLLOW_instrucao_in_programa16 = new BitSet(new long[]{0x000000000000FF82L});
-    public static final BitSet FOLLOW_create_in_instrucao26 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_load_in_instrucao30 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_store_in_instrucao34 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_aritmetica_in_instrucao38 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_8_in_create47 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ID_in_create53 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_9_in_create66 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ID_in_create72 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_load92 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ID_in_load98 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_load113 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_INT_in_load115 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_store140 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ID_in_store146 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_7_in_aritmetica160 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_aritmetica181 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_11_in_aritmetica202 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_10_in_aritmetica223 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_instrucao_in_programa29 = new BitSet(new long[]{0x000000000000FF82L});
+    public static final BitSet FOLLOW_create_in_instrucao39 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_load_in_instrucao43 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_store_in_instrucao47 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_aritmetica_in_instrucao51 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_8_in_create60 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ID_in_create66 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_9_in_create79 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ID_in_create81 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_12_in_load101 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ID_in_load107 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_load122 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_INT_in_load124 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_store149 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ID_in_store155 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_7_in_aritmetica169 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_aritmetica190 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_11_in_aritmetica211 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_10_in_aritmetica232 = new BitSet(new long[]{0x0000000000000002L});
 
 }
