@@ -1,5 +1,6 @@
 package br.ufpb.iged.interpretador.principal;
 
+import java.util.Arrays;
 import java.util.List;
 
 import br.ufpb.iged.interpretador.symboltable.classes.Simbolo;
@@ -42,11 +43,15 @@ public class Objeto {
 			
 			List<Simbolo> constantPoolParent = parent.getConstantPool();
 			
+			memoriaLocal = 
+					Arrays.copyOf(
+							memoriaLocal, memoriaLocal.length + constantPoolParent.size());
+			
 			int j;
 			
 			for (j = 0; j < constantPoolParent.size(); j++, i++) {
 				
-				String nomeTipo = constantPoolParent.get(i).getTipo().obterNome();
+				String nomeTipo = constantPoolParent.get(j).getTipo().obterNome();
 				
 				if(nomeTipo.equals("I"))
 					
