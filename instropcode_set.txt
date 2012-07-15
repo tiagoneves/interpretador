@@ -62,32 +62,3 @@ getfield b4 180
 putfield b5 181
 invokespecial b7 183
 new bb 187
-
-new java/lang/Integer     ; Create the integer
-dup                       ; Make a copy of the reference to it
-bipush 27                 ; Push an argument
-                          ; Call the constructor
-invokespecial java/lang/Integer/<init> (I)V
-
-
-.class MyClass
-.super MySuperClass
-; A constructor taking no arguments
-.method <init>()V
-aload_0                                   ; Push this
-invokespecial MySuperClass/<init>()V      ; Call a superclass
-                                          ; constructor on this
-
-return                                    ; Return to the caller
-.end method 
-
-getfield
-putfield 
-
-aload_0
-	 	invokespecial Main/<init>() V
-	 	ldc 5
-	 	putfield Main/abc I
-	 	iconst_3
-	    putfield Main/xyz I
-	    getfield Main/abc I 
