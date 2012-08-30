@@ -1110,6 +1110,8 @@ public class Interpretador {
 		Scanner in = new Scanner(System.in);
 
 		in.next();
+		
+		//testetesteteste
 
 	}
 
