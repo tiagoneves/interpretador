@@ -56,6 +56,8 @@ public class Interpretador {
 	public List<Objeto> heap = new ArrayList<Objeto>();
 	
 	private static BytecodeAssembler assembler;
+	
+	//private StackFrame[] pilha;
 
 	public static TreeAdaptor bytecodesAdaptor = new CommonTreeAdaptor() {
 		
@@ -146,8 +148,8 @@ public class Interpretador {
 			global.memoriaGlobal = new Object[assembler.getTamMemoriaGlobal()];
 			
 			//Para testes
-			Simbolo classe = tabelaSimbolos.global.resolver("LTeste");
-			System.out.println("Classe adicionada:" + classe.nome);
+			//Simbolo classe = tabelaSimbolos.global.resolver("LTeste");
+			//System.out.println("Classe adicionada:" + classe.nome);
 
 		
 	}
