@@ -16,6 +16,7 @@ tokens {
   DESVIO;
   LABEL;
   PILHA;
+  BODY;
 }
 
 @header{
@@ -65,15 +66,23 @@ comando: (      manipulacaoObjetos
               
 definicaoClasse
     : '.class' ID NEWLINE (superClasse NEWLINE)? (membroClasse NEWLINE) + 
-                  -> ^('.class' ID superClasse? ^(MEMBRO_CLASSE membroClasse+))
-                | '.method' INIT '()' VOID NEWLINE
-                ;
+           -> ^('.class' ID superClasse? ^(MEMBRO_CLASSE membroClasse+))              
+    ;
                 
 superClasse : '.super' TIPO_REF -> ^(EXTENDS TIPO_REF) ;
 
 membroClasse 
     : '.field' ID tipo -> ^(FIELD_DECL ID tipo) 
+    | '.method' INIT '()' VOID NEWLINE operacao* 'return' NEWLINE '.end method'
+	-> ^('.method' INIT ^(BODY operacao*))
+    | '.method' MAIN '()' VOID NEWLINE operacao* ret = retorno NEWLINE '.end method'
+        -> ^('.method' MAIN ^(BODY operacao*) $ret)
+    | '.method' ID '(' (tipos += tipo)* ')' tipo NEWLINE operacao* ret = retorno NEWLINE '.end method'
+        -> ^('.method' ID $tipos ^(BODY operacao*) $ret)        
     ; 
+    
+
+retorno :  'areturn' | 'ireturn' | 'return';
              
 manipulacaoObjetos : a = 'getfield' b = campo tipo -> ^('getfield' $b tipo)
                    | a = 'putfield' b = campo tipo -> ^('putfield' $b tipo) 
@@ -200,6 +209,8 @@ campo returns [List classe, String campo]
      ;
 
 INIT : '<init>';
+
+MAIN 	:  'main';
 
 INT : 'I';
 
