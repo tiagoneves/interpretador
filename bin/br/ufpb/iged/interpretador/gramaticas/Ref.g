@@ -22,7 +22,7 @@ options {
     TabelaSimbolos tabelaSimbolos;
     SimboloClasse simboloClasse;
     BytecodeAssembler assembler;
-    public Ref(TreeNodeStream input, TabelaSimbolos tabelaSimbolos, 
+    public Ref(TreeNodeStream input, TabelaSimbolos tabelaSimbolos,
       BytecodeAssembler assembler) {
         this(input);
         this.tabelaSimbolos = tabelaSimbolos;
@@ -39,17 +39,17 @@ options {
     
         assembler.escreverOpcode(operacao);
       
-        SimboloClasse simboloClasse = 
+        SimboloClasse simboloClasse =
           (SimboloClasse)tabelaSimbolos.global.resolver("L" + nomeClasse);
       
         if(!assembler.getConstantPool().contains(simboloClasse))
       
           assembler.getConstantPool().add(simboloClasse);
     
-        /*BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo, 
+        /*BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo,
           BytecodeAssembler.ip, assembler.getConstantPool().indexOf(simboloClasse));*/
       
-        SimboloVariavel simboloVariavel = 
+        SimboloVariavel simboloVariavel =
           (SimboloVariavel) simboloClasse.resolver(nomeCampo);
     
         if (!simboloClasse.getConstantPool().contains(simboloVariavel))
@@ -57,7 +57,7 @@ options {
           simboloClasse.getConstantPool().add(simboloVariavel);
         
         BytecodeAssembler.escreverInteiro(
-          BytecodeAssembler.codigo, BytecodeAssembler.ip, 
+          BytecodeAssembler.codigo, BytecodeAssembler.ip,
           simboloClasse.getConstantPool().indexOf(simboloVariavel));
     
     }
@@ -66,14 +66,14 @@ options {
     
       assembler.escreverOpcode("invokespecial");
        
-      SimboloClasse simboloClasse = 
+      SimboloClasse simboloClasse =
           (SimboloClasse)tabelaSimbolos.global.resolver("L" + nomeClasse);
     
       if(!assembler.getConstantPool().contains(simboloClasse))
       
           assembler.getConstantPool().add(simboloClasse);
     
-       BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo, 
+       BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo,
           BytecodeAssembler.ip, assembler.getConstantPool().indexOf(simboloClasse));
     
   }
@@ -82,14 +82,14 @@ options {
   
      assembler.escreverOpcode("new");
        
-      SimboloClasse simboloClasse = 
+      SimboloClasse simboloClasse =
           (SimboloClasse)tabelaSimbolos.global.resolver("L" + nomeClasse);
     
       if(!assembler.getConstantPool().contains(simboloClasse))
       
           assembler.getConstantPool().add(simboloClasse);
     
-       BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo, 
+       BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo,
           BytecodeAssembler.ip, assembler.getConstantPool().indexOf(simboloClasse));
   
   }
@@ -97,25 +97,25 @@ options {
 }
 
 topdown
-    :   entraNaClasse
+    : entraNaClasse
       | declaracaoVariavel
       | getfield
       | putfield
       | invokespecial
       | novaClasse
-      | aritmetica 
+      | aritmetica
       | load
-      | loadint 
+      | loadint
       | store
-      | storeint 
-      | desvio 
+      | storeint
+      | desvio
       | logica
       | pilha
-      | label 
+      | label
     ;
     
 entraNaClasse
-    :   ^('.class' nome=ID (^(EXTENDS sup=TIPO_REF))? .)
+    : ^('.class' nome=ID (^(EXTENDS sup=TIPO_REF))? .)
         {
           simboloClasse = ((SimboloClasse)$nome.simbolo);
           if ( $sup!=null ) {
@@ -132,28 +132,28 @@ entraNaClasse
     ;
     
 declaracaoVariavel
-    :   ^(FIELD_DECL ID tip =.)
+    : ^(FIELD_DECL ID tip =.)
         {
            $ID.simbolo.tipo = resolverTipo($tip.getText());
            System.out.println("linha "+$ID.getLine()+": set var type "+$ID.simbolo);
         }
     ;
     
-getfield 
+getfield
     : ^('getfield' classe = . . campo = . tipo = .)
-    {      
-      acessarCampo("getfield", $classe.getText(), $campo.getText());     
+    {
+      acessarCampo("getfield", $classe.getText(), $campo.getText());
     }
     ;
     
-putfield 
+putfield
     : ^('putfield' classe = . . campo = . tipo = .)
     {
-      acessarCampo("putfield", $classe.getText(), $campo.getText()); 
+      acessarCampo("putfield", $classe.getText(), $campo.getText());
     }
     ;
     
-invokespecial 
+invokespecial
     : ^('invokespecial' classe = . metodo = . args = . tipo = .)
     {
       chamarConstrutorDefault($classe.getText());
@@ -182,7 +182,7 @@ load
   ;
   
 loadint
-    : ^(LOAD operacao = . operando = .) 
+    : ^(LOAD operacao = . operando = .)
     {
       assembler.escreverOpcode($operacao.token, $operando.token);
     }
@@ -229,4 +229,3 @@ label
       assembler.definirLabel($operacao.token);
    }
    ;
-   

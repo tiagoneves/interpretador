@@ -3,7 +3,7 @@
 .field fachdf I
 .field zavcui I
 .field lohdg I
-.method main() V
+.method kioeot(II) I
     ldc 3
 	ldc 6
 	iadd
@@ -22,6 +22,6 @@
 	istore_3
 	ldc 7
 	iconst_2
-	return
+	ireturn
 .end method
 .end class

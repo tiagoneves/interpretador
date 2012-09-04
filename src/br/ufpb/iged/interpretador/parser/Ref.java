@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g 2012-09-03 16:44:57
+// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g 2012-09-03 22:34:39
 
     package br.ufpb.iged.interpretador.parser;
     
@@ -24,11 +24,10 @@ import java.util.HashMap;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class Ref extends TreeFilter {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ARITMETICA", "BODY", "DESVIO", "EXTENDS", "FIELD_DECL", "ID", "INIT", "INT", "INTEIRO", "LABEL", "LOAD", "LOGICA", "MAIN", "MEMBRO_CLASSE", "NEWLINE", "NULL", "PILHA", "STORE", "TIPO_REF", "VOID", "WS", "'('", "'()'", "')'", "'.class'", "'.end class'", "'.end method'", "'.field'", "'.method'", "'.super'", "'/'", "':'", "'aconst_null'", "'aload'", "'aload_0'", "'aload_1'", "'aload_2'", "'aload_3'", "'areturn'", "'astore'", "'astore_0'", "'astore_1'", "'astore_2'", "'astore_3'", "'dup'", "'getfield'", "'goto'", "'iadd'", "'iand'", "'iconst_0'", "'iconst_1'", "'iconst_2'", "'iconst_3'", "'iconst_4'", "'iconst_5'", "'iconst_m1'", "'idiv'", "'if_icmpeq'", "'if_icmpge'", "'if_icmpgt'", "'if_icmple'", "'if_icmplt'", "'if_icmpne'", "'ifeq'", "'ifge'", "'ifgt'", "'ifle'", "'iflt'", "'ifne'", "'iinc'", "'iload'", "'iload_0'", "'iload_1'", "'iload_2'", "'iload_3'", "'imul'", "'ineg'", "'invokespecial'", "'ior'", "'irem'", "'ireturn'", "'istore'", "'istore_0'", "'istore_1'", "'istore_2'", "'istore_3'", "'isub'", "'ixor'", "'ldc'", "'new'", "'nop'", "'pop'", "'pop2'", "'putfield'", "'return'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ARITMETICA", "BODY", "DESVIO", "EXTENDS", "FIELD_DECL", "ID", "INIT", "INT", "INTEIRO", "LABEL", "LOAD", "LOGICA", "MAIN", "MEMBRO_CLASSE", "METHOD_DECL", "NEWLINE", "NULL", "PILHA", "STORE", "TIPO_REF", "VOID", "WS", "'('", "'()'", "')'", "'.class'", "'.end class'", "'.end method'", "'.field'", "'.method'", "'.super'", "'/'", "':'", "'aconst_null'", "'aload'", "'aload_0'", "'aload_1'", "'aload_2'", "'aload_3'", "'areturn'", "'astore'", "'astore_0'", "'astore_1'", "'astore_2'", "'astore_3'", "'dup'", "'getfield'", "'goto'", "'iadd'", "'iand'", "'iconst_0'", "'iconst_1'", "'iconst_2'", "'iconst_3'", "'iconst_4'", "'iconst_5'", "'iconst_m1'", "'idiv'", "'if_icmpeq'", "'if_icmpge'", "'if_icmpgt'", "'if_icmple'", "'if_icmplt'", "'if_icmpne'", "'ifeq'", "'ifge'", "'ifgt'", "'ifle'", "'iflt'", "'ifne'", "'iinc'", "'iload'", "'iload_0'", "'iload_1'", "'iload_2'", "'iload_3'", "'imul'", "'ineg'", "'invokespecial'", "'ior'", "'irem'", "'ireturn'", "'istore'", "'istore_0'", "'istore_1'", "'istore_2'", "'istore_3'", "'isub'", "'ixor'", "'ldc'", "'new'", "'nop'", "'pop'", "'pop2'", "'putfield'", "'return'"
     };
 
     public static final int EOF=-1;
-    public static final int T__25=25;
     public static final int T__26=26;
     public static final int T__27=27;
     public static final int T__28=28;
@@ -102,6 +101,7 @@ public class Ref extends TreeFilter {
     public static final int T__96=96;
     public static final int T__97=97;
     public static final int T__98=98;
+    public static final int T__99=99;
     public static final int ARITMETICA=4;
     public static final int BODY=5;
     public static final int DESVIO=6;
@@ -116,13 +116,14 @@ public class Ref extends TreeFilter {
     public static final int LOGICA=15;
     public static final int MAIN=16;
     public static final int MEMBRO_CLASSE=17;
-    public static final int NEWLINE=18;
-    public static final int NULL=19;
-    public static final int PILHA=20;
-    public static final int STORE=21;
-    public static final int TIPO_REF=22;
-    public static final int VOID=23;
-    public static final int WS=24;
+    public static final int METHOD_DECL=18;
+    public static final int NEWLINE=19;
+    public static final int NULL=20;
+    public static final int PILHA=21;
+    public static final int STORE=22;
+    public static final int TIPO_REF=23;
+    public static final int VOID=24;
+    public static final int WS=25;
 
     // delegates
     public TreeFilter[] getDelegates() {
@@ -146,7 +147,7 @@ public class Ref extends TreeFilter {
         TabelaSimbolos tabelaSimbolos;
         SimboloClasse simboloClasse;
         BytecodeAssembler assembler;
-        public Ref(TreeNodeStream input, TabelaSimbolos tabelaSimbolos, 
+        public Ref(TreeNodeStream input, TabelaSimbolos tabelaSimbolos,
           BytecodeAssembler assembler) {
             this(input);
             this.tabelaSimbolos = tabelaSimbolos;
@@ -163,17 +164,17 @@ public class Ref extends TreeFilter {
         
             assembler.escreverOpcode(operacao);
           
-            SimboloClasse simboloClasse = 
+            SimboloClasse simboloClasse =
               (SimboloClasse)tabelaSimbolos.global.resolver("L" + nomeClasse);
           
             if(!assembler.getConstantPool().contains(simboloClasse))
           
               assembler.getConstantPool().add(simboloClasse);
         
-            /*BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo, 
+            /*BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo,
               BytecodeAssembler.ip, assembler.getConstantPool().indexOf(simboloClasse));*/
           
-            SimboloVariavel simboloVariavel = 
+            SimboloVariavel simboloVariavel =
               (SimboloVariavel) simboloClasse.resolver(nomeCampo);
         
             if (!simboloClasse.getConstantPool().contains(simboloVariavel))
@@ -181,7 +182,7 @@ public class Ref extends TreeFilter {
               simboloClasse.getConstantPool().add(simboloVariavel);
             
             BytecodeAssembler.escreverInteiro(
-              BytecodeAssembler.codigo, BytecodeAssembler.ip, 
+              BytecodeAssembler.codigo, BytecodeAssembler.ip,
               simboloClasse.getConstantPool().indexOf(simboloVariavel));
         
         }
@@ -190,14 +191,14 @@ public class Ref extends TreeFilter {
         
           assembler.escreverOpcode("invokespecial");
            
-          SimboloClasse simboloClasse = 
+          SimboloClasse simboloClasse =
               (SimboloClasse)tabelaSimbolos.global.resolver("L" + nomeClasse);
         
           if(!assembler.getConstantPool().contains(simboloClasse))
           
               assembler.getConstantPool().add(simboloClasse);
         
-           BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo, 
+           BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo,
               BytecodeAssembler.ip, assembler.getConstantPool().indexOf(simboloClasse));
         
       }
@@ -206,14 +207,14 @@ public class Ref extends TreeFilter {
       
          assembler.escreverOpcode("new");
            
-          SimboloClasse simboloClasse = 
+          SimboloClasse simboloClasse =
               (SimboloClasse)tabelaSimbolos.global.resolver("L" + nomeClasse);
         
           if(!assembler.getConstantPool().contains(simboloClasse))
           
               assembler.getConstantPool().add(simboloClasse);
         
-           BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo, 
+           BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo,
               BytecodeAssembler.ip, assembler.getConstantPool().indexOf(simboloClasse));
       
       }
@@ -230,9 +231,9 @@ public class Ref extends TreeFilter {
             alt1 = dfa1.predict(input);
             switch (alt1) {
                 case 1 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:100:9: entraNaClasse
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:100:7: entraNaClasse
                     {
-                    pushFollow(FOLLOW_entraNaClasse_in_topdown61);
+                    pushFollow(FOLLOW_entraNaClasse_in_topdown59);
                     entraNaClasse();
 
                     state._fsp--;
@@ -243,7 +244,7 @@ public class Ref extends TreeFilter {
                 case 2 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:101:9: declaracaoVariavel
                     {
-                    pushFollow(FOLLOW_declaracaoVariavel_in_topdown71);
+                    pushFollow(FOLLOW_declaracaoVariavel_in_topdown69);
                     declaracaoVariavel();
 
                     state._fsp--;
@@ -254,7 +255,7 @@ public class Ref extends TreeFilter {
                 case 3 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:102:9: getfield
                     {
-                    pushFollow(FOLLOW_getfield_in_topdown81);
+                    pushFollow(FOLLOW_getfield_in_topdown79);
                     getfield();
 
                     state._fsp--;
@@ -265,7 +266,7 @@ public class Ref extends TreeFilter {
                 case 4 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:103:9: putfield
                     {
-                    pushFollow(FOLLOW_putfield_in_topdown91);
+                    pushFollow(FOLLOW_putfield_in_topdown89);
                     putfield();
 
                     state._fsp--;
@@ -276,7 +277,7 @@ public class Ref extends TreeFilter {
                 case 5 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:104:9: invokespecial
                     {
-                    pushFollow(FOLLOW_invokespecial_in_topdown101);
+                    pushFollow(FOLLOW_invokespecial_in_topdown99);
                     invokespecial();
 
                     state._fsp--;
@@ -287,7 +288,7 @@ public class Ref extends TreeFilter {
                 case 6 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:105:9: novaClasse
                     {
-                    pushFollow(FOLLOW_novaClasse_in_topdown111);
+                    pushFollow(FOLLOW_novaClasse_in_topdown109);
                     novaClasse();
 
                     state._fsp--;
@@ -298,7 +299,7 @@ public class Ref extends TreeFilter {
                 case 7 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:106:9: aritmetica
                     {
-                    pushFollow(FOLLOW_aritmetica_in_topdown121);
+                    pushFollow(FOLLOW_aritmetica_in_topdown119);
                     aritmetica();
 
                     state._fsp--;
@@ -309,7 +310,7 @@ public class Ref extends TreeFilter {
                 case 8 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:107:9: load
                     {
-                    pushFollow(FOLLOW_load_in_topdown132);
+                    pushFollow(FOLLOW_load_in_topdown129);
                     load();
 
                     state._fsp--;
@@ -320,7 +321,7 @@ public class Ref extends TreeFilter {
                 case 9 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:108:9: loadint
                     {
-                    pushFollow(FOLLOW_loadint_in_topdown142);
+                    pushFollow(FOLLOW_loadint_in_topdown139);
                     loadint();
 
                     state._fsp--;
@@ -331,7 +332,7 @@ public class Ref extends TreeFilter {
                 case 10 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:109:9: store
                     {
-                    pushFollow(FOLLOW_store_in_topdown153);
+                    pushFollow(FOLLOW_store_in_topdown149);
                     store();
 
                     state._fsp--;
@@ -342,7 +343,7 @@ public class Ref extends TreeFilter {
                 case 11 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:110:9: storeint
                     {
-                    pushFollow(FOLLOW_storeint_in_topdown163);
+                    pushFollow(FOLLOW_storeint_in_topdown159);
                     storeint();
 
                     state._fsp--;
@@ -353,7 +354,7 @@ public class Ref extends TreeFilter {
                 case 12 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:111:9: desvio
                     {
-                    pushFollow(FOLLOW_desvio_in_topdown174);
+                    pushFollow(FOLLOW_desvio_in_topdown169);
                     desvio();
 
                     state._fsp--;
@@ -364,7 +365,7 @@ public class Ref extends TreeFilter {
                 case 13 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:112:9: logica
                     {
-                    pushFollow(FOLLOW_logica_in_topdown185);
+                    pushFollow(FOLLOW_logica_in_topdown179);
                     logica();
 
                     state._fsp--;
@@ -375,7 +376,7 @@ public class Ref extends TreeFilter {
                 case 14 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:113:9: pilha
                     {
-                    pushFollow(FOLLOW_pilha_in_topdown195);
+                    pushFollow(FOLLOW_pilha_in_topdown189);
                     pilha();
 
                     state._fsp--;
@@ -386,7 +387,7 @@ public class Ref extends TreeFilter {
                 case 15 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:114:9: label
                     {
-                    pushFollow(FOLLOW_label_in_topdown205);
+                    pushFollow(FOLLOW_label_in_topdown199);
                     label();
 
                     state._fsp--;
@@ -400,10 +401,10 @@ public class Ref extends TreeFilter {
         catch (RecognitionException re) {
             reportError(re);
             recover(input,re);
-        } catch (LabelException e) {
+        } catch (AcessoIndevidoMemoriaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (AcessoIndevidoMemoriaException e) {
+		} catch (LabelException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -425,14 +426,14 @@ public class Ref extends TreeFilter {
 
         try {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:118:5: ( ^( '.class' nome= ID ( ^( EXTENDS sup= TIPO_REF ) )? . ) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:118:9: ^( '.class' nome= ID ( ^( EXTENDS sup= TIPO_REF ) )? . )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:118:7: ^( '.class' nome= ID ( ^( EXTENDS sup= TIPO_REF ) )? . )
             {
-            match(input,28,FOLLOW_28_in_entraNaClasse230); if (state.failed) return ;
+            match(input,29,FOLLOW_29_in_entraNaClasse221); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
-            nome=(BytecodesAST)match(input,ID,FOLLOW_ID_in_entraNaClasse234); if (state.failed) return ;
+            nome=(BytecodesAST)match(input,ID,FOLLOW_ID_in_entraNaClasse225); if (state.failed) return ;
 
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:118:28: ( ^( EXTENDS sup= TIPO_REF ) )?
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:118:26: ( ^( EXTENDS sup= TIPO_REF ) )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -448,7 +449,7 @@ public class Ref extends TreeFilter {
                         if ( (LA2_4==UP) ) {
                             int LA2_5 = input.LA(5);
 
-                            if ( ((LA2_5 >= ARITMETICA && LA2_5 <= 98)) ) {
+                            if ( ((LA2_5 >= ARITMETICA && LA2_5 <= 99)) ) {
                                 alt2=1;
                             }
                         }
@@ -457,12 +458,12 @@ public class Ref extends TreeFilter {
             }
             switch (alt2) {
                 case 1 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:118:29: ^( EXTENDS sup= TIPO_REF )
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:118:27: ^( EXTENDS sup= TIPO_REF )
                     {
-                    match(input,EXTENDS,FOLLOW_EXTENDS_in_entraNaClasse238); if (state.failed) return ;
+                    match(input,EXTENDS,FOLLOW_EXTENDS_in_entraNaClasse229); if (state.failed) return ;
 
                     match(input, Token.DOWN, null); if (state.failed) return ;
-                    sup=(BytecodesAST)match(input,TIPO_REF,FOLLOW_TIPO_REF_in_entraNaClasse242); if (state.failed) return ;
+                    sup=(BytecodesAST)match(input,TIPO_REF,FOLLOW_TIPO_REF_in_entraNaClasse233); if (state.failed) return ;
 
                     match(input, Token.UP, null); if (state.failed) return ;
 
@@ -517,12 +518,12 @@ public class Ref extends TreeFilter {
 
         try {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:135:5: ( ^( FIELD_DECL ID tip= . ) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:135:9: ^( FIELD_DECL ID tip= . )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:135:7: ^( FIELD_DECL ID tip= . )
             {
-            match(input,FIELD_DECL,FOLLOW_FIELD_DECL_in_declaracaoVariavel282); if (state.failed) return ;
+            match(input,FIELD_DECL,FOLLOW_FIELD_DECL_in_declaracaoVariavel271); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
-            ID1=(BytecodesAST)match(input,ID,FOLLOW_ID_in_declaracaoVariavel284); if (state.failed) return ;
+            ID1=(BytecodesAST)match(input,ID,FOLLOW_ID_in_declaracaoVariavel273); if (state.failed) return ;
 
             tip=(BytecodesAST)input.LT(1);
 
@@ -564,7 +565,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:143:5: ( ^( 'getfield' classe= . . campo= . tipo= . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:143:7: ^( 'getfield' classe= . . campo= . tipo= . )
             {
-            match(input,49,FOLLOW_49_in_getfield323); if (state.failed) return ;
+            match(input,50,FOLLOW_50_in_getfield311); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             classe=(BytecodesAST)input.LT(1);
@@ -584,8 +585,8 @@ public class Ref extends TreeFilter {
             match(input, Token.UP, null); if (state.failed) return ;
 
 
-            if ( state.backtracking==1 ) {      
-                  acessarCampo("getfield", classe.getText(), campo.getText());     
+            if ( state.backtracking==1 ) {
+                  acessarCampo("getfield", classe.getText(), campo.getText());
                 }
 
             }
@@ -616,7 +617,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:150:5: ( ^( 'putfield' classe= . . campo= . tipo= . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:150:7: ^( 'putfield' classe= . . campo= . tipo= . )
             {
-            match(input,97,FOLLOW_97_in_putfield373); if (state.failed) return ;
+            match(input,98,FOLLOW_98_in_putfield360); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             classe=(BytecodesAST)input.LT(1);
@@ -637,7 +638,7 @@ public class Ref extends TreeFilter {
 
 
             if ( state.backtracking==1 ) {
-                  acessarCampo("putfield", classe.getText(), campo.getText()); 
+                  acessarCampo("putfield", classe.getText(), campo.getText());
                 }
 
             }
@@ -669,7 +670,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:157:5: ( ^( 'invokespecial' classe= . metodo= . args= . tipo= . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:157:7: ^( 'invokespecial' classe= . metodo= . args= . tipo= . )
             {
-            match(input,81,FOLLOW_81_in_invokespecial423); if (state.failed) return ;
+            match(input,82,FOLLOW_82_in_invokespecial409); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             classe=(BytecodesAST)input.LT(1);
@@ -721,7 +722,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:164:3: ( ^( 'new' classe= . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:164:5: ^( 'new' classe= . )
             {
-            match(input,93,FOLLOW_93_in_novaClasse474); if (state.failed) return ;
+            match(input,94,FOLLOW_94_in_novaClasse460); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             classe=(BytecodesAST)input.LT(1);
@@ -761,7 +762,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:171:5: ( ^( ARITMETICA operacao= . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:171:7: ^( ARITMETICA operacao= . )
             {
-            match(input,ARITMETICA,FOLLOW_ARITMETICA_in_aritmetica505); if (state.failed) return ;
+            match(input,ARITMETICA,FOLLOW_ARITMETICA_in_aritmetica491); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             operacao=(BytecodesAST)input.LT(1);
@@ -801,7 +802,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:178:3: ( ^( LOAD operacao= . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:178:5: ^( LOAD operacao= . )
             {
-            match(input,LOAD,FOLLOW_LOAD_in_load539); if (state.failed) return ;
+            match(input,LOAD,FOLLOW_LOAD_in_load525); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             operacao=(BytecodesAST)input.LT(1);
@@ -842,7 +843,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:185:5: ( ^( LOAD operacao= . operando= . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:185:7: ^( LOAD operacao= . operando= . )
             {
-            match(input,LOAD,FOLLOW_LOAD_in_loadint568); if (state.failed) return ;
+            match(input,LOAD,FOLLOW_LOAD_in_loadint554); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             operacao=(BytecodesAST)input.LT(1);
@@ -886,7 +887,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:192:4: ( ^( STORE operacao= . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:192:6: ^( STORE operacao= . )
             {
-            match(input,STORE,FOLLOW_STORE_in_store611); if (state.failed) return ;
+            match(input,STORE,FOLLOW_STORE_in_store596); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             operacao=(BytecodesAST)input.LT(1);
@@ -927,7 +928,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:199:5: ( ^( STORE operacao= . operando= . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:199:7: ^( STORE operacao= . operando= . )
             {
-            match(input,STORE,FOLLOW_STORE_in_storeint640); if (state.failed) return ;
+            match(input,STORE,FOLLOW_STORE_in_storeint625); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             operacao=(BytecodesAST)input.LT(1);
@@ -972,7 +973,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:206:5: ( ^( DESVIO operacao= . operando= . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:206:7: ^( DESVIO operacao= . operando= . )
             {
-            match(input,DESVIO,FOLLOW_DESVIO_in_desvio681); if (state.failed) return ;
+            match(input,DESVIO,FOLLOW_DESVIO_in_desvio666); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             operacao=(BytecodesAST)input.LT(1);
@@ -1016,7 +1017,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:213:5: ( ^( LOGICA operacao= . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:213:7: ^( LOGICA operacao= . )
             {
-            match(input,LOGICA,FOLLOW_LOGICA_in_logica722); if (state.failed) return ;
+            match(input,LOGICA,FOLLOW_LOGICA_in_logica707); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             operacao=(BytecodesAST)input.LT(1);
@@ -1056,7 +1057,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:220:4: ( ^( PILHA operacao= . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:220:6: ^( PILHA operacao= . )
             {
-            match(input,PILHA,FOLLOW_PILHA_in_pilha756); if (state.failed) return ;
+            match(input,PILHA,FOLLOW_PILHA_in_pilha741); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             operacao=(BytecodesAST)input.LT(1);
@@ -1096,7 +1097,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:227:4: ( ^( LABEL operacao= . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:227:6: ^( LABEL operacao= . )
             {
-            match(input,LABEL,FOLLOW_LABEL_in_label784); if (state.failed) return ;
+            match(input,LABEL,FOLLOW_LABEL_in_label769); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             operacao=(BytecodesAST)input.LT(1);
@@ -1136,14 +1137,14 @@ public class Ref extends TreeFilter {
     static final String DFA1_minS =
         "\1\4\7\uffff\2\2\4\uffff\2\4\2\2\1\4\2\uffff\1\4\2\uffff\4\3";
     static final String DFA1_maxS =
-        "\1\141\7\uffff\2\2\4\uffff\5\142\2\uffff\1\142\2\uffff\4\142";
+        "\1\142\7\uffff\2\2\4\uffff\5\143\2\uffff\1\143\2\uffff\4\143";
     static final String DFA1_acceptS =
         "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\2\uffff\1\14\1\15\1\16\1\17"+
         "\5\uffff\1\10\1\11\1\uffff\1\12\1\13\4\uffff";
     static final String DFA1_specialS =
         "\34\uffff}>";
     static final String[] DFA1_transitionS = {
-            "\1\7\1\uffff\1\12\1\uffff\1\2\4\uffff\1\15\1\10\1\13\4\uffff"+
+            "\1\7\1\uffff\1\12\1\uffff\1\2\4\uffff\1\15\1\10\1\13\5\uffff"+
             "\1\14\1\11\6\uffff\1\1\24\uffff\1\3\37\uffff\1\5\13\uffff\1"+
             "\6\3\uffff\1\4",
             "",
@@ -1159,20 +1160,20 @@ public class Ref extends TreeFilter {
             "",
             "",
             "",
-            "\137\20",
-            "\137\21",
-            "\1\22\1\23\137\24",
-            "\1\25\1\26\137\27",
-            "\137\30",
+            "\140\20",
+            "\140\21",
+            "\1\22\1\23\140\24",
+            "\1\25\1\26\140\27",
+            "\140\30",
             "",
             "",
-            "\137\31",
+            "\140\31",
             "",
             "",
-            "\1\32\137\30",
-            "\1\33\137\31",
-            "\1\23\137\24",
-            "\1\26\137\27"
+            "\1\32\140\30",
+            "\1\33\140\31",
+            "\1\23\140\24",
+            "\1\26\140\27"
     };
 
     static final short[] DFA1_eot = DFA.unpackEncodedString(DFA1_eotS);
@@ -1210,39 +1211,39 @@ public class Ref extends TreeFilter {
     }
  
 
-    public static final BitSet FOLLOW_entraNaClasse_in_topdown61 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declaracaoVariavel_in_topdown71 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_getfield_in_topdown81 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_putfield_in_topdown91 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_invokespecial_in_topdown101 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_novaClasse_in_topdown111 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_aritmetica_in_topdown121 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_load_in_topdown132 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_loadint_in_topdown142 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_store_in_topdown153 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_storeint_in_topdown163 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_desvio_in_topdown174 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_logica_in_topdown185 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pilha_in_topdown195 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_label_in_topdown205 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_entraNaClasse230 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_entraNaClasse234 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x00000007FFFFFFFFL});
-    public static final BitSet FOLLOW_EXTENDS_in_entraNaClasse238 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_TIPO_REF_in_entraNaClasse242 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_FIELD_DECL_in_declaracaoVariavel282 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_declaracaoVariavel284 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x00000007FFFFFFFFL});
-    public static final BitSet FOLLOW_49_in_getfield323 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_97_in_putfield373 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_81_in_invokespecial423 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_93_in_novaClasse474 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ARITMETICA_in_aritmetica505 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_LOAD_in_load539 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_LOAD_in_loadint568 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_STORE_in_store611 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_STORE_in_storeint640 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_DESVIO_in_desvio681 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_LOGICA_in_logica722 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_PILHA_in_pilha756 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_LABEL_in_label784 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_entraNaClasse_in_topdown59 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declaracaoVariavel_in_topdown69 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_getfield_in_topdown79 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_putfield_in_topdown89 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_invokespecial_in_topdown99 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_novaClasse_in_topdown109 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_aritmetica_in_topdown119 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_load_in_topdown129 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_loadint_in_topdown139 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_store_in_topdown149 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_storeint_in_topdown159 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_desvio_in_topdown169 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_logica_in_topdown179 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pilha_in_topdown189 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_label_in_topdown199 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_entraNaClasse221 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_entraNaClasse225 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000000FFFFFFFFFL});
+    public static final BitSet FOLLOW_EXTENDS_in_entraNaClasse229 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_TIPO_REF_in_entraNaClasse233 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_FIELD_DECL_in_declaracaoVariavel271 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_declaracaoVariavel273 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000000FFFFFFFFFL});
+    public static final BitSet FOLLOW_50_in_getfield311 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_98_in_putfield360 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_82_in_invokespecial409 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_94_in_novaClasse460 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ARITMETICA_in_aritmetica491 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_LOAD_in_load525 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_LOAD_in_loadint554 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_STORE_in_store596 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_STORE_in_storeint625 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_DESVIO_in_desvio666 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_LOGICA_in_logica707 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_PILHA_in_pilha741 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_LABEL_in_label769 = new BitSet(new long[]{0x0000000000000004L});
 
 }

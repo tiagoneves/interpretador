@@ -2,7 +2,7 @@ package br.ufpb.iged.interpretador.symboltable.classes;
 
 import java.util.*;
 
-public class SimboloClasse extends SimboloComEscopo implements Escopo, Tipo {
+public class SimboloClasse extends SimboloComEscopo implements Tipo {
     /** This is the superclass not escopoEnvolvente field. We still record
      *  the enclosing Escopo so we can push in and pop out of class defs.
      */

@@ -1,10 +1,9 @@
-
 tree grammar Def;
 
 options {
   tokenVocab=Assembler;
   ASTLabelType=BytecodesAST;
-  filter=true;  
+  filter=true;
 }
 
 @header{
@@ -38,25 +37,25 @@ bottomup : saiDaClasse
          ;
          
 entraNaClasse
-    :   ^('.class' nome=ID (^(EXTENDS sup=TIPO_REF))? .)
-        { 
+    : ^('.class' nome=ID (^(EXTENDS sup=TIPO_REF))? .)
+        {
            System.out.println("linha "+$nome.getLine()+
                           ": def class "+$nome.text);
-           if ( $sup!=null ) 
-             $sup.escopo = escopoAtual; 
+           if ( $sup!=null )
+             $sup.escopo = escopoAtual;
            SimboloClasse classe = new SimboloClasse("L" + $nome.text,escopoAtual,null);
            classe.def = $nome;
            $nome.simbolo = classe;
-           escopoAtual.definir(classe);  
-           escopoAtual = classe;  
+           escopoAtual.definir(classe);
+           escopoAtual = classe;
         }
     ;
 
 declaracaoVariavel
-    :   ^(FIELD_DECL ID tipo =.)
+    : ^(FIELD_DECL ID tipo =.)
         {
           System.out.println("linha "+$ID.getLine()+": def "+$ID.text);
-          $tipo.escopo = escopoAtual;      
+          $tipo.escopo = escopoAtual;
           SimboloVariavel variavel = new SimboloVariavel($ID.text,null);
           variavel.def = $ID;
           $ID.simbolo = variavel;
@@ -68,30 +67,30 @@ declaracaoVariavel
 saiDaClasse : '.class'
             {
               System.out.println("Saindo da classe.. membros: "+escopoAtual);
-              escopoAtual = escopoAtual.obterEscopoEnvolvente();    // pop scope
+              escopoAtual = escopoAtual.obterEscopoEnvolvente(); // pop scope
             }
             ;
 
-getfield 
+getfield
     : 'getfield'
     {
       System.out.println("Saindo do getfield..");
     }
     ;
     
-putfield 
-    : 'putfield' 
+putfield
+    : 'putfield'
     {
       System.out.println("Saindo do putfield..");
     }
     ;
     
-invokespecial 
-    : 'invokespecial' 
+invokespecial
+    : 'invokespecial'
     {
       System.out.println("Saindo do invokespecial..");
     }
-    ;  
+    ;
     
      
 

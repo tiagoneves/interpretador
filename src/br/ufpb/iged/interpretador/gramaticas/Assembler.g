@@ -17,6 +17,7 @@ tokens {
   LABEL;
   PILHA;
   BODY;
+  METHOD_DECL;
 }
 
 @header{
@@ -44,7 +45,7 @@ tokens {
 programa : instrucao*
          ;
          
-instrucao : operacao 
+instrucao : operacao
           | definicaoClasse ('.end class')?
           ;
 
@@ -52,128 +53,132 @@ operacao : (label comando | comando);
          
 label : a = ID ':' -> ^(LABEL $a);
 
-comando: (      manipulacaoObjetos 
-              | aritmetica 
+comando: ( manipulacaoObjetos
+              | aritmetica
               | load
-              | loadint 
+              | loadint
               | store
-              | storeint 
-              | desvio 
+              | storeint
+              | desvio
               | logica
-              | pilha 
+              | pilha
               | 'nop'
            )? NEWLINE;
               
 definicaoClasse
-    : '.class' ID NEWLINE (superClasse NEWLINE)? (membroClasse NEWLINE) + 
-           -> ^('.class' ID superClasse? ^(MEMBRO_CLASSE membroClasse+))              
+    : '.class' ID NEWLINE (superClasse NEWLINE)? (membroClasse NEWLINE) +
+           -> ^('.class' ID superClasse? ^(MEMBRO_CLASSE membroClasse+))
     ;
                 
 superClasse : '.super' TIPO_REF -> ^(EXTENDS TIPO_REF) ;
 
-membroClasse 
-    : '.field' ID tipo -> ^(FIELD_DECL ID tipo) 
+membroClasse
+    : '.field' ID tipo -> ^(FIELD_DECL ID tipo)
     | '.method' INIT '()' VOID NEWLINE operacao* 'return' NEWLINE '.end method'
-	-> ^('.method' INIT ^(BODY operacao*))
+	-> ^(METHOD_DECL INIT ^(BODY operacao*))
     | '.method' MAIN '()' VOID NEWLINE operacao* ret = retorno NEWLINE '.end method'
-        -> ^('.method' MAIN ^(BODY operacao*) $ret)
-    | '.method' ID '(' (tipos += tipo)* ')' tipo NEWLINE operacao* ret = retorno NEWLINE '.end method'
-        -> ^('.method' ID $tipos ^(BODY operacao*) $ret)        
-    ; 
+        -> ^(METHOD_DECL MAIN ^(BODY operacao*) $ret)
+    | '.method' ID '()' tipo NEWLINE operacao* ret = retorno NEWLINE '.end method'
+        -> ^(METHOD_DECL ID ^(BODY operacao*) $ret)
+    | '.method' ID '(' params ')' tipo NEWLINE operacao* ret = retorno NEWLINE '.end method'
+        -> ^(METHOD_DECL ID ^(BODY operacao*) $ret)
+    ;
     
+params 	: (ID | TIPO_REF)+;
 
-retorno :  'areturn' | 'ireturn' | 'return';
+retorno : 'areturn' | 'ireturn' | 'return';
              
 manipulacaoObjetos : a = 'getfield' b = campo tipo -> ^('getfield' $b tipo)
-                   | a = 'putfield' b = campo tipo -> ^('putfield' $b tipo) 
-                   | a = 'invokespecial' c = classe '/' d = chamadaMetodo 
+                   | a = 'putfield' b = campo tipo -> ^('putfield' $b tipo)
+                   | a = 'invokespecial' c = classe '/' d = chamadaMetodo
                       -> ^('invokespecial' $c $d)
                    | a = 'new'c = classe -> ^('new' $c)
                    ;
+                
   
 tipo : INT | VOID | TIPO_REF;
 
-aritmetica : (    a = 'iadd'
+aritmetica : ( a = 'iadd'
                 | a = 'isub'
                 | a = 'imul'
                 | a = 'idiv'
                 | a = 'irem'
                 | a = 'iinc'
-                | a = 'ineg' 
+                | a = 'ineg'
              )
              -> ^(ARITMETICA $a)
            ;
            
-load : (    a = 'iconst_m1'
+load : ( a = 'iconst_m1'
           | a = 'iconst_0'
           | a = 'iconst_1'
-          | a = 'iconst_2' 
+          | a = 'iconst_2'
           | a = 'iconst_3'
           | a = 'iconst_4'
           | a = 'iconst_5'
-          | a = 'aconst_null' 
-          | a = 'iload_0' 
+          | a = 'aconst_null'
+          | a = 'iload_0'
           | a = 'iload_1'
           | a = 'iload_2'
           | a = 'iload_3'
           | a = 'aload_0'
-          | a = 'aload_1' 
+          | a = 'aload_1'
           | a = 'aload_2'
-          | a = 'aload_3' 
-       ) 
+          | a = 'aload_3'
+       )
        -> ^(LOAD $a)
      ;
      
-loadint : (   a = 'iload' b = INTEIRO 
+loadint : ( a = 'iload' b = INTEIRO
             | a = 'ldc' b = INTEIRO
-            | a = 'aload' b = INTEIRO 
-          ) 
+            | a = 'aload' b = INTEIRO
+          )
           -> ^(LOAD $a $b)
-        ; 
+        ;
      
-store : (   a = 'istore_0' 
-          | a = 'istore_1' 
-          | a = 'istore_2' 
-          | a = 'istore_3' 
+store : ( a = 'istore_0'
+          | a = 'istore_1'
+          | a = 'istore_2'
+          | a = 'istore_3'
           | a = 'astore_0'
-          | a = 'astore_1' 
-          | a = 'astore_2' 
+          | a = 'astore_1'
+          | a = 'astore_2'
           | a = 'astore_3'
-        ) 
+        )
         -> ^(STORE $a)
       ;
       
-storeint : (   a = 'istore' b = INTEIRO 
-             | a = 'astore' b = INTEIRO 
-           ) 
+storeint : ( a = 'istore' b = INTEIRO
+             | a = 'astore' b = INTEIRO
+           )
            -> ^(STORE $a $b)
          ;
 
-logica : (   a = 'iand'
+logica : ( a = 'iand'
            | a = 'ior'
            | a = 'ixor'
          )
          -> ^(LOGICA $a)
        ;
 
-desvio : (   a = 'ifeq' b = ID 
-           | a = 'ifne' b = ID 
+desvio : ( a = 'ifeq' b = ID
+           | a = 'ifne' b = ID
            | a = 'iflt' b = ID
            | a = 'ifge' b = ID
-           | a = 'ifgt' b = ID 
-           | a = 'ifle' b = ID 
-           | a = 'if_icmpeq' b = ID 
+           | a = 'ifgt' b = ID
+           | a = 'ifle' b = ID
+           | a = 'if_icmpeq' b = ID
            | a = 'if_icmpne' b = ID
-           | a = 'if_icmplt' b = ID 
-           | a = 'if_icmpge' b = ID 
+           | a = 'if_icmplt' b = ID
+           | a = 'if_icmpge' b = ID
            | a = 'if_icmpgt' b = ID
-           | a = 'if_icmple' b = ID 
-           | a = 'goto' b = ID 
-         ) 
+           | a = 'if_icmple' b = ID
+           | a = 'goto' b = ID
+         )
          -> ^(DESVIO $a $b)
        ;
        
-pilha : (   a = 'pop'
+pilha : ( a = 'pop'
           | a = 'pop2'
           | a = 'dup'
         )
@@ -210,7 +215,7 @@ campo returns [List classe, String campo]
 
 INIT : '<init>';
 
-MAIN 	:  'main';
+MAIN : 'main';
 
 INT : 'I';
 
