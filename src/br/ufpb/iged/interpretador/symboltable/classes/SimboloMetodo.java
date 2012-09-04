@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class SimboloMetodo extends SimboloComEscopo{
 
-	Map<String, Simbolo> argumentos = new LinkedHashMap<String, Simbolo>();
+	Map<String, Simbolo> parametros = new LinkedHashMap<String, Simbolo>();
 	
 	public static final int TAMANHO_INICIAL_MEMORIA_CODIGO = 1024;
 	
@@ -18,11 +18,11 @@ public class SimboloMetodo extends SimboloComEscopo{
     }
 
     public Map<String, Simbolo> obterMembros() { 
-    	return argumentos; 
+    	return parametros; 
     }
 
     public String obterNome() {
-        return nome+"("+stripBrackets(argumentos.keySet().toString())+")";
+        return nome+"("+stripBrackets(parametros.keySet().toString())+")";
     }
 	
 }

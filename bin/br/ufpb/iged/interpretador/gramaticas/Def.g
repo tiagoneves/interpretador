@@ -15,6 +15,7 @@ options {
     import br.ufpb.iged.interpretador.symboltable.classes.SimboloVariavel;
     import br.ufpb.iged.interpretador.symboltable.classes.SimboloMetodo;
     import br.ufpb.iged.interpretador.symboltable.classes.TabelaSimbolos;
+    import br.ufpb.iged.interpretador.symboltable.classes.EscopoLocal;
 }
 
 @members {
@@ -27,18 +28,17 @@ options {
     }
 }
 
-topdown : entraNaClasse
-        | declaracaoVariavel
+topdown : entraNoCorpoMetodo
         | entraNoMetodoInit
-        | entraNoMetodoSemParams
-        | entraNoMetodoComParams
+        | entraNoMetodo
+        | entraNaClasse
+        | parametros
+        | declaracaoVariavel
         ;
 
-bottomup : saiDaClasse
-	 | saiDoMetodo
-         | getfield
-         | putfield
-         | invokespecial
+bottomup : saiDoCorpoMetodo
+         | saiDoMetodo
+         | saiDaClasse
          ;
          
 entraNaClasse
@@ -70,7 +70,7 @@ declaracaoVariavel
     ;
     
 entraNoMetodoInit
-	: ^(METHOD_DECL INIT BODY)
+	: ^(METHOD_DECL INIT)
 	{
 	   System.out.println("linha "+$INIT.getLine()+
                           ": def method init ");
@@ -81,34 +81,45 @@ entraNoMetodoInit
            escopoAtual = metodo;
         }
 	;
-
-entraNoMetodoSemParams
-	: ^(METHOD_DECL ID BODY tipoRet =.)
+	
+entraNoMetodo
+	: ^(METHOD_DECL ID tipoRet =. .+)
 	{
 	   System.out.println("linha "+$ID.getLine()+
                           ": def method "+$ID.text);
-           SimboloMetodo metodo = new SimboloMetodo($ID.text+"()"+$tipoRet.getText(), null, escopoAtual);
+           SimboloMetodo metodo = new SimboloMetodo($ID.text+""+$tipoRet.getText(), null, escopoAtual);
            metodo.def = $ID;
            $ID.simbolo = metodo;
            escopoAtual.definir(metodo);
            escopoAtual = metodo;
         }
 	;
-
-entraNoMetodoComParams
-	: ^(METHOD_DECL ID params =. BODY tipoRet =.)
+	
+parametros
+	: ^(PARAMS pars = .)
 	{
-	   System.out.println("linha "+$ID.getLine()+
-                          ": def method "+$ID.text);
-           SimboloMetodo metodo = new SimboloMetodo($ID.text+"("+params+")"+$tipoRet.getText(), null, escopoAtual);
-           metodo.def = $ID;
-           $ID.simbolo = metodo;
-           escopoAtual.definir(metodo);
-           escopoAtual = metodo;
-        }
+	  System.out.println("linha "+$pars.getLine()+": def "+$pars.getText());
+          $pars.escopo = escopoAtual;
+          SimboloVariavel par = new SimboloVariavel($pars.getText(),null);
+          par.def = $pars;            // track AST location of def's ID
+          $pars.simbolo = par;         // track in AST
+          escopoAtual.definir(par);
+	}
 	;
+		
+entraNoCorpoMetodo
+    :   BODY {escopoAtual = new EscopoLocal(escopoAtual);} // push scope
+    ;
     
-saiDaClasse : '.end class'
+saiDoCorpoMetodo
+    :   BODY
+        {
+        System.out.println("locals: "+escopoAtual);
+        escopoAtual = escopoAtual.obterEscopoEnvolvente();    // pop scope
+        }
+    ;
+    
+saiDaClasse : '.class'
             {
               System.out.println("Saindo da classe.. membros: "+escopoAtual);
               escopoAtual = escopoAtual.obterEscopoEnvolvente(); // pop scope
@@ -116,33 +127,9 @@ saiDaClasse : '.end class'
             ;
             
 saiDoMetodo 
-	:  '.end method'
+	:  METHOD_DECL
 	{
 	   System.out.println("Saindo do metodo: "+escopoAtual);
            escopoAtual = escopoAtual.obterEscopoEnvolvente(); // pop scope
 	}
 	;
-
-getfield
-    : 'getfield'
-    {
-      System.out.println("Saindo do getfield..");
-    }
-    ;
-    
-putfield
-    : 'putfield'
-    {
-      System.out.println("Saindo do putfield..");
-    }
-    ;
-    
-invokespecial
-    : 'invokespecial'
-    {
-      System.out.println("Saindo do invokespecial..");
-    }
-    ;
-    
-     
-

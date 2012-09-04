@@ -18,6 +18,7 @@ tokens {
   PILHA;
   BODY;
   METHOD_DECL;
+  PARAMS;
 }
 
 @header{
@@ -77,15 +78,26 @@ membroClasse
     : '.field' ID tipo -> ^(FIELD_DECL ID tipo)
     | '.method' INIT '()' VOID NEWLINE operacao* '.end method'
 	-> ^(METHOD_DECL INIT ^(BODY operacao*))
-    | '.method' MAIN '()' VOID NEWLINE operacao*  '.end method'
-        -> ^(METHOD_DECL MAIN ^(BODY operacao*) VOID)
-    | '.method' ID '()' ret = tipo NEWLINE operacao* '.end method'
-        -> ^(METHOD_DECL ID ^(BODY operacao*) $ret)
-    | '.method' ID '(' params = parametros ')' ret = tipo NEWLINE operacao* '.end method'
-        -> ^(METHOD_DECL ID $params ^(BODY operacao*) $ret)
+    | '.method' ID (parametros | '(' parametros ')') ret = tipo NEWLINE operacao* '.end method'
+        -> ^(METHOD_DECL ID  $ret parametros ^(BODY operacao*))
     ;
-    
-parametros : (ID | TIPO_REF)+;
+   
+parametros
+	: a = '()' -> ^(PARAMS $a)
+	| (
+	       a = ID 
+	     | a = TIPO_REF
+	  )+
+	  -> ^(PARAMS $a)+
+	;
+ 
+/*parametros 
+	: 
+	(   a = ID 
+	  | a = TIPO_REF
+	)+
+	-> ^(PARAMS $a)+
+	;*/
 
 retorno : 'areturn' | 'ireturn' | 'return';
              
@@ -215,8 +227,6 @@ campo returns [List classe, String campo]
      ;
 
 INIT : '<init>';
-
-MAIN : 'main';
 
 INT : 'I';
 

@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g 2012-09-03 23:45:23
+// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g 2012-09-04 18:58:36
 
     package br.ufpb.iged.interpretador.parser;
     
@@ -8,6 +8,7 @@
     import br.ufpb.iged.interpretador.symboltable.classes.SimboloVariavel;
     import br.ufpb.iged.interpretador.symboltable.classes.SimboloMetodo;
     import br.ufpb.iged.interpretador.symboltable.classes.TabelaSimbolos;
+    import br.ufpb.iged.interpretador.symboltable.classes.EscopoLocal;
 
 
 import org.antlr.runtime.*;
@@ -21,7 +22,7 @@ import java.util.HashMap;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class Def extends TreeFilter {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ARITMETICA", "BODY", "DESVIO", "EXTENDS", "FIELD_DECL", "ID", "INIT", "INT", "INTEIRO", "LABEL", "LOAD", "LOGICA", "MAIN", "MEMBRO_CLASSE", "METHOD_DECL", "NEWLINE", "NULL", "PILHA", "STORE", "TIPO_REF", "VOID", "WS", "'('", "'()'", "')'", "'.class'", "'.end class'", "'.end method'", "'.field'", "'.method'", "'.super'", "'/'", "':'", "'aconst_null'", "'aload'", "'aload_0'", "'aload_1'", "'aload_2'", "'aload_3'", "'areturn'", "'astore'", "'astore_0'", "'astore_1'", "'astore_2'", "'astore_3'", "'dup'", "'getfield'", "'goto'", "'iadd'", "'iand'", "'iconst_0'", "'iconst_1'", "'iconst_2'", "'iconst_3'", "'iconst_4'", "'iconst_5'", "'iconst_m1'", "'idiv'", "'if_icmpeq'", "'if_icmpge'", "'if_icmpgt'", "'if_icmple'", "'if_icmplt'", "'if_icmpne'", "'ifeq'", "'ifge'", "'ifgt'", "'ifle'", "'iflt'", "'ifne'", "'iinc'", "'iload'", "'iload_0'", "'iload_1'", "'iload_2'", "'iload_3'", "'imul'", "'ineg'", "'invokespecial'", "'ior'", "'irem'", "'ireturn'", "'istore'", "'istore_0'", "'istore_1'", "'istore_2'", "'istore_3'", "'isub'", "'ixor'", "'ldc'", "'new'", "'nop'", "'pop'", "'pop2'", "'putfield'", "'return'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ARITMETICA", "BODY", "DESVIO", "EXTENDS", "FIELD_DECL", "ID", "INIT", "INT", "INTEIRO", "LABEL", "LOAD", "LOGICA", "MEMBRO_CLASSE", "METHOD_DECL", "NEWLINE", "NULL", "PARAMS", "PILHA", "STORE", "TIPO_REF", "VOID", "WS", "'('", "'()'", "')'", "'.class'", "'.end class'", "'.end method'", "'.field'", "'.method'", "'.super'", "'/'", "':'", "'aconst_null'", "'aload'", "'aload_0'", "'aload_1'", "'aload_2'", "'aload_3'", "'areturn'", "'astore'", "'astore_0'", "'astore_1'", "'astore_2'", "'astore_3'", "'dup'", "'getfield'", "'goto'", "'iadd'", "'iand'", "'iconst_0'", "'iconst_1'", "'iconst_2'", "'iconst_3'", "'iconst_4'", "'iconst_5'", "'iconst_m1'", "'idiv'", "'if_icmpeq'", "'if_icmpge'", "'if_icmpgt'", "'if_icmple'", "'if_icmplt'", "'if_icmpne'", "'ifeq'", "'ifge'", "'ifgt'", "'ifle'", "'iflt'", "'ifne'", "'iinc'", "'iload'", "'iload_0'", "'iload_1'", "'iload_2'", "'iload_3'", "'imul'", "'ineg'", "'invokespecial'", "'ior'", "'irem'", "'ireturn'", "'istore'", "'istore_0'", "'istore_1'", "'istore_2'", "'istore_3'", "'isub'", "'ixor'", "'ldc'", "'new'", "'nop'", "'pop'", "'pop2'", "'putfield'", "'return'"
     };
 
     public static final int EOF=-1;
@@ -111,11 +112,11 @@ public class Def extends TreeFilter {
     public static final int LABEL=13;
     public static final int LOAD=14;
     public static final int LOGICA=15;
-    public static final int MAIN=16;
-    public static final int MEMBRO_CLASSE=17;
-    public static final int METHOD_DECL=18;
-    public static final int NEWLINE=19;
-    public static final int NULL=20;
+    public static final int MEMBRO_CLASSE=16;
+    public static final int METHOD_DECL=17;
+    public static final int NEWLINE=18;
+    public static final int NULL=19;
+    public static final int PARAMS=20;
     public static final int PILHA=21;
     public static final int STORE=22;
     public static final int TIPO_REF=23;
@@ -152,187 +153,34 @@ public class Def extends TreeFilter {
 
 
     // $ANTLR start "topdown"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:30:1: topdown : ( entraNaClasse | declaracaoVariavel | entraNoMetodoInit | entraNoMetodoSemParams | entraNoMetodoComParams );
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:31:1: topdown : ( entraNoCorpoMetodo | entraNoMetodoInit | entraNoMetodo | entraNaClasse | parametros | declaracaoVariavel );
     public final void topdown() throws RecognitionException {
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:30:9: ( entraNaClasse | declaracaoVariavel | entraNoMetodoInit | entraNoMetodoSemParams | entraNoMetodoComParams )
-            int alt1=5;
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:31:9: ( entraNoCorpoMetodo | entraNoMetodoInit | entraNoMetodo | entraNaClasse | parametros | declaracaoVariavel )
+            int alt1=6;
             switch ( input.LA(1) ) {
-            case 29:
+            case BODY:
                 {
                 alt1=1;
                 }
                 break;
-            case FIELD_DECL:
-                {
-                alt1=2;
-                }
-                break;
             case METHOD_DECL:
                 {
-                int LA1_3 = input.LA(2);
+                int LA1_2 = input.LA(2);
 
-                if ( (LA1_3==DOWN) ) {
-                    int LA1_4 = input.LA(3);
+                if ( (LA1_2==DOWN) ) {
+                    int LA1_6 = input.LA(3);
 
-                    if ( (LA1_4==INIT) ) {
-                        alt1=3;
+                    if ( (LA1_6==INIT) ) {
+                        alt1=2;
                     }
-                    else if ( (LA1_4==ID) ) {
-                        int LA1_6 = input.LA(4);
-
-                        if ( (LA1_6==BODY) ) {
-                            switch ( input.LA(5) ) {
-                            case BODY:
-                                {
-                                int LA1_9 = input.LA(6);
-
-                                if ( ((LA1_9 >= DOWN && LA1_9 <= UP)) ) {
-                                    alt1=4;
-                                }
-                                else if ( ((LA1_9 >= ARITMETICA && LA1_9 <= 99)) ) {
-                                    alt1=5;
-                                }
-                                else {
-                                    if (state.backtracking>0) {state.failed=true; return ;}
-                                    NoViableAltException nvae =
-                                        new NoViableAltException("", 1, 9, input);
-
-                                    throw nvae;
-
-                                }
-                                }
-                                break;
-                            case DOWN:
-                                {
-                                alt1=5;
-                                }
-                                break;
-                            case ARITMETICA:
-                            case DESVIO:
-                            case EXTENDS:
-                            case FIELD_DECL:
-                            case ID:
-                            case INIT:
-                            case INT:
-                            case INTEIRO:
-                            case LABEL:
-                            case LOAD:
-                            case LOGICA:
-                            case MAIN:
-                            case MEMBRO_CLASSE:
-                            case METHOD_DECL:
-                            case NEWLINE:
-                            case NULL:
-                            case PILHA:
-                            case STORE:
-                            case TIPO_REF:
-                            case VOID:
-                            case WS:
-                            case 26:
-                            case 27:
-                            case 28:
-                            case 29:
-                            case 30:
-                            case 31:
-                            case 32:
-                            case 33:
-                            case 34:
-                            case 35:
-                            case 36:
-                            case 37:
-                            case 38:
-                            case 39:
-                            case 40:
-                            case 41:
-                            case 42:
-                            case 43:
-                            case 44:
-                            case 45:
-                            case 46:
-                            case 47:
-                            case 48:
-                            case 49:
-                            case 50:
-                            case 51:
-                            case 52:
-                            case 53:
-                            case 54:
-                            case 55:
-                            case 56:
-                            case 57:
-                            case 58:
-                            case 59:
-                            case 60:
-                            case 61:
-                            case 62:
-                            case 63:
-                            case 64:
-                            case 65:
-                            case 66:
-                            case 67:
-                            case 68:
-                            case 69:
-                            case 70:
-                            case 71:
-                            case 72:
-                            case 73:
-                            case 74:
-                            case 75:
-                            case 76:
-                            case 77:
-                            case 78:
-                            case 79:
-                            case 80:
-                            case 81:
-                            case 82:
-                            case 83:
-                            case 84:
-                            case 85:
-                            case 86:
-                            case 87:
-                            case 88:
-                            case 89:
-                            case 90:
-                            case 91:
-                            case 92:
-                            case 93:
-                            case 94:
-                            case 95:
-                            case 96:
-                            case 97:
-                            case 98:
-                            case 99:
-                                {
-                                alt1=4;
-                                }
-                                break;
-                            default:
-                                if (state.backtracking>0) {state.failed=true; return ;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("", 1, 7, input);
-
-                                throw nvae;
-
-                            }
-
-                        }
-                        else if ( (LA1_6==ARITMETICA||(LA1_6 >= DESVIO && LA1_6 <= 99)) ) {
-                            alt1=5;
-                        }
-                        else {
-                            if (state.backtracking>0) {state.failed=true; return ;}
-                            NoViableAltException nvae =
-                                new NoViableAltException("", 1, 6, input);
-
-                            throw nvae;
-
-                        }
+                    else if ( (LA1_6==ID) ) {
+                        alt1=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return ;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 1, 4, input);
+                            new NoViableAltException("", 1, 6, input);
 
                         throw nvae;
 
@@ -341,11 +189,26 @@ public class Def extends TreeFilter {
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 1, 3, input);
+                        new NoViableAltException("", 1, 2, input);
 
                     throw nvae;
 
                 }
+                }
+                break;
+            case 29:
+                {
+                alt1=4;
+                }
+                break;
+            case PARAMS:
+                {
+                alt1=5;
+                }
+                break;
+            case FIELD_DECL:
+                {
+                alt1=6;
                 }
                 break;
             default:
@@ -359,10 +222,10 @@ public class Def extends TreeFilter {
 
             switch (alt1) {
                 case 1 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:30:11: entraNaClasse
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:31:11: entraNoCorpoMetodo
                     {
-                    pushFollow(FOLLOW_entraNaClasse_in_topdown49);
-                    entraNaClasse();
+                    pushFollow(FOLLOW_entraNoCorpoMetodo_in_topdown49);
+                    entraNoCorpoMetodo();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -370,20 +233,9 @@ public class Def extends TreeFilter {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:31:11: declaracaoVariavel
-                    {
-                    pushFollow(FOLLOW_declaracaoVariavel_in_topdown61);
-                    declaracaoVariavel();
-
-                    state._fsp--;
-                    if (state.failed) return ;
-
-                    }
-                    break;
-                case 3 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:32:11: entraNoMetodoInit
                     {
-                    pushFollow(FOLLOW_entraNoMetodoInit_in_topdown73);
+                    pushFollow(FOLLOW_entraNoMetodoInit_in_topdown61);
                     entraNoMetodoInit();
 
                     state._fsp--;
@@ -391,11 +243,22 @@ public class Def extends TreeFilter {
 
                     }
                     break;
-                case 4 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:33:11: entraNoMetodoSemParams
+                case 3 :
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:33:11: entraNoMetodo
                     {
-                    pushFollow(FOLLOW_entraNoMetodoSemParams_in_topdown85);
-                    entraNoMetodoSemParams();
+                    pushFollow(FOLLOW_entraNoMetodo_in_topdown73);
+                    entraNoMetodo();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+
+                    }
+                    break;
+                case 4 :
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:34:11: entraNaClasse
+                    {
+                    pushFollow(FOLLOW_entraNaClasse_in_topdown85);
+                    entraNaClasse();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -403,10 +266,21 @@ public class Def extends TreeFilter {
                     }
                     break;
                 case 5 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:34:11: entraNoMetodoComParams
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:35:11: parametros
                     {
-                    pushFollow(FOLLOW_entraNoMetodoComParams_in_topdown97);
-                    entraNoMetodoComParams();
+                    pushFollow(FOLLOW_parametros_in_topdown97);
+                    parametros();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+
+                    }
+                    break;
+                case 6 :
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:36:11: declaracaoVariavel
+                    {
+                    pushFollow(FOLLOW_declaracaoVariavel_in_topdown109);
+                    declaracaoVariavel();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -431,35 +305,25 @@ public class Def extends TreeFilter {
 
 
     // $ANTLR start "bottomup"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:37:1: bottomup : ( saiDaClasse | saiDoMetodo | getfield | putfield | invokespecial );
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:39:1: bottomup : ( saiDoCorpoMetodo | saiDoMetodo | saiDaClasse );
     public final void bottomup() throws RecognitionException {
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:37:10: ( saiDaClasse | saiDoMetodo | getfield | putfield | invokespecial )
-            int alt2=5;
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:39:10: ( saiDoCorpoMetodo | saiDoMetodo | saiDaClasse )
+            int alt2=3;
             switch ( input.LA(1) ) {
-            case 30:
+            case BODY:
                 {
                 alt2=1;
                 }
                 break;
-            case 31:
+            case METHOD_DECL:
                 {
                 alt2=2;
                 }
                 break;
-            case 50:
+            case 29:
                 {
                 alt2=3;
-                }
-                break;
-            case 98:
-                {
-                alt2=4;
-                }
-                break;
-            case 82:
-                {
-                alt2=5;
                 }
                 break;
             default:
@@ -473,10 +337,10 @@ public class Def extends TreeFilter {
 
             switch (alt2) {
                 case 1 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:37:12: saiDaClasse
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:39:12: saiDoCorpoMetodo
                     {
-                    pushFollow(FOLLOW_saiDaClasse_in_bottomup114);
-                    saiDaClasse();
+                    pushFollow(FOLLOW_saiDoCorpoMetodo_in_bottomup126);
+                    saiDoCorpoMetodo();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -484,9 +348,9 @@ public class Def extends TreeFilter {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:38:5: saiDoMetodo
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:40:12: saiDoMetodo
                     {
-                    pushFollow(FOLLOW_saiDoMetodo_in_bottomup120);
+                    pushFollow(FOLLOW_saiDoMetodo_in_bottomup139);
                     saiDoMetodo();
 
                     state._fsp--;
@@ -495,32 +359,10 @@ public class Def extends TreeFilter {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:39:12: getfield
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:41:12: saiDaClasse
                     {
-                    pushFollow(FOLLOW_getfield_in_bottomup133);
-                    getfield();
-
-                    state._fsp--;
-                    if (state.failed) return ;
-
-                    }
-                    break;
-                case 4 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:40:12: putfield
-                    {
-                    pushFollow(FOLLOW_putfield_in_bottomup146);
-                    putfield();
-
-                    state._fsp--;
-                    if (state.failed) return ;
-
-                    }
-                    break;
-                case 5 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:41:12: invokespecial
-                    {
-                    pushFollow(FOLLOW_invokespecial_in_bottomup159);
-                    invokespecial();
+                    pushFollow(FOLLOW_saiDaClasse_in_bottomup152);
+                    saiDaClasse();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -554,10 +396,10 @@ public class Def extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:45:5: ( ^( '.class' nome= ID ( ^( EXTENDS sup= TIPO_REF ) )? . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:45:7: ^( '.class' nome= ID ( ^( EXTENDS sup= TIPO_REF ) )? . )
             {
-            match(input,29,FOLLOW_29_in_entraNaClasse191); if (state.failed) return ;
+            match(input,29,FOLLOW_29_in_entraNaClasse184); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
-            nome=(BytecodesAST)match(input,ID,FOLLOW_ID_in_entraNaClasse195); if (state.failed) return ;
+            nome=(BytecodesAST)match(input,ID,FOLLOW_ID_in_entraNaClasse188); if (state.failed) return ;
 
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:45:26: ( ^( EXTENDS sup= TIPO_REF ) )?
             int alt3=2;
@@ -586,10 +428,10 @@ public class Def extends TreeFilter {
                 case 1 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:45:27: ^( EXTENDS sup= TIPO_REF )
                     {
-                    match(input,EXTENDS,FOLLOW_EXTENDS_in_entraNaClasse199); if (state.failed) return ;
+                    match(input,EXTENDS,FOLLOW_EXTENDS_in_entraNaClasse192); if (state.failed) return ;
 
                     match(input, Token.DOWN, null); if (state.failed) return ;
-                    sup=(BytecodesAST)match(input,TIPO_REF,FOLLOW_TIPO_REF_in_entraNaClasse203); if (state.failed) return ;
+                    sup=(BytecodesAST)match(input,TIPO_REF,FOLLOW_TIPO_REF_in_entraNaClasse196); if (state.failed) return ;
 
                     match(input, Token.UP, null); if (state.failed) return ;
 
@@ -644,10 +486,10 @@ public class Def extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:60:5: ( ^( FIELD_DECL ID tipo= . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:60:7: ^( FIELD_DECL ID tipo= . )
             {
-            match(input,FIELD_DECL,FOLLOW_FIELD_DECL_in_declaracaoVariavel237); if (state.failed) return ;
+            match(input,FIELD_DECL,FOLLOW_FIELD_DECL_in_declaracaoVariavel230); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
-            ID1=(BytecodesAST)match(input,ID,FOLLOW_ID_in_declaracaoVariavel239); if (state.failed) return ;
+            ID1=(BytecodesAST)match(input,ID,FOLLOW_ID_in_declaracaoVariavel232); if (state.failed) return ;
 
             tipo=(BytecodesAST)input.LT(1);
 
@@ -684,20 +526,18 @@ public class Def extends TreeFilter {
 
 
     // $ANTLR start "entraNoMetodoInit"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:72:1: entraNoMetodoInit : ^( METHOD_DECL INIT BODY ) ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:72:1: entraNoMetodoInit : ^( METHOD_DECL INIT ) ;
     public final void entraNoMetodoInit() throws RecognitionException {
         BytecodesAST INIT2=null;
 
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:73:2: ( ^( METHOD_DECL INIT BODY ) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:73:4: ^( METHOD_DECL INIT BODY )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:73:2: ( ^( METHOD_DECL INIT ) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:73:4: ^( METHOD_DECL INIT )
             {
-            match(input,METHOD_DECL,FOLLOW_METHOD_DECL_in_entraNoMetodoInit274); if (state.failed) return ;
+            match(input,METHOD_DECL,FOLLOW_METHOD_DECL_in_entraNoMetodoInit267); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
-            INIT2=(BytecodesAST)match(input,INIT,FOLLOW_INIT_in_entraNoMetodoInit276); if (state.failed) return ;
-
-            match(input,BODY,FOLLOW_BODY_in_entraNoMetodoInit278); if (state.failed) return ;
+            INIT2=(BytecodesAST)match(input,INIT,FOLLOW_INIT_in_entraNoMetodoInit269); if (state.failed) return ;
 
             match(input, Token.UP, null); if (state.failed) return ;
 
@@ -729,26 +569,59 @@ public class Def extends TreeFilter {
 
 
 
-    // $ANTLR start "entraNoMetodoSemParams"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:85:1: entraNoMetodoSemParams : ^( METHOD_DECL ID BODY tipoRet= . ) ;
-    public final void entraNoMetodoSemParams() throws RecognitionException {
+    // $ANTLR start "entraNoMetodo"
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:85:1: entraNoMetodo : ^( METHOD_DECL ID tipoRet= . ( . )+ ) ;
+    public final void entraNoMetodo() throws RecognitionException {
         BytecodesAST ID3=null;
         BytecodesAST tipoRet=null;
 
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:86:2: ( ^( METHOD_DECL ID BODY tipoRet= . ) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:86:4: ^( METHOD_DECL ID BODY tipoRet= . )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:86:2: ( ^( METHOD_DECL ID tipoRet= . ( . )+ ) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:86:4: ^( METHOD_DECL ID tipoRet= . ( . )+ )
             {
-            match(input,METHOD_DECL,FOLLOW_METHOD_DECL_in_entraNoMetodoSemParams294); if (state.failed) return ;
+            match(input,METHOD_DECL,FOLLOW_METHOD_DECL_in_entraNoMetodo286); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
-            ID3=(BytecodesAST)match(input,ID,FOLLOW_ID_in_entraNoMetodoSemParams296); if (state.failed) return ;
-
-            match(input,BODY,FOLLOW_BODY_in_entraNoMetodoSemParams298); if (state.failed) return ;
+            ID3=(BytecodesAST)match(input,ID,FOLLOW_ID_in_entraNoMetodo288); if (state.failed) return ;
 
             tipoRet=(BytecodesAST)input.LT(1);
 
             matchAny(input); if (state.failed) return ;
+
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:86:32: ( . )+
+            int cnt4=0;
+            loop4:
+            do {
+                int alt4=2;
+                int LA4_0 = input.LA(1);
+
+                if ( ((LA4_0 >= ARITMETICA && LA4_0 <= 99)) ) {
+                    alt4=1;
+                }
+                else if ( (LA4_0==UP) ) {
+                    alt4=2;
+                }
+
+
+                switch (alt4) {
+            	case 1 :
+            	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:86:32: .
+            	    {
+            	    matchAny(input); if (state.failed) return ;
+
+            	    }
+            	    break;
+
+            	default :
+            	    if ( cnt4 >= 1 ) break loop4;
+            	    if (state.backtracking>0) {state.failed=true; return ;}
+                        EarlyExitException eee =
+                            new EarlyExitException(4, input);
+                        throw eee;
+                }
+                cnt4++;
+            } while (true);
+
 
             match(input, Token.UP, null); if (state.failed) return ;
 
@@ -756,7 +629,7 @@ public class Def extends TreeFilter {
             if ( state.backtracking==1 ) {
             	   System.out.println("linha "+ID3.getLine()+
                                       ": def method "+(ID3!=null?ID3.getText():null));
-                       SimboloMetodo metodo = new SimboloMetodo((ID3!=null?ID3.getText():null)+"()"+tipoRet.getText(), null, escopoAtual);
+                       SimboloMetodo metodo = new SimboloMetodo((ID3!=null?ID3.getText():null)+""+tipoRet.getText(), null, escopoAtual);
                        metodo.def = ID3;
                        ID3.simbolo = metodo;
                        escopoAtual.definir(metodo);
@@ -776,33 +649,23 @@ public class Def extends TreeFilter {
         }
         return ;
     }
-    // $ANTLR end "entraNoMetodoSemParams"
+    // $ANTLR end "entraNoMetodo"
 
 
 
-    // $ANTLR start "entraNoMetodoComParams"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:98:1: entraNoMetodoComParams : ^( METHOD_DECL ID params= . BODY tipoRet= . ) ;
-    public final void entraNoMetodoComParams() throws RecognitionException {
-        BytecodesAST ID4=null;
-        BytecodesAST params=null;
-        BytecodesAST tipoRet=null;
+    // $ANTLR start "parametros"
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:98:1: parametros : ^( PARAMS pars= . ) ;
+    public final void parametros() throws RecognitionException {
+        BytecodesAST pars=null;
 
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:99:2: ( ^( METHOD_DECL ID params= . BODY tipoRet= . ) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:99:4: ^( METHOD_DECL ID params= . BODY tipoRet= . )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:99:2: ( ^( PARAMS pars= . ) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:99:4: ^( PARAMS pars= . )
             {
-            match(input,METHOD_DECL,FOLLOW_METHOD_DECL_in_entraNoMetodoComParams319); if (state.failed) return ;
+            match(input,PARAMS,FOLLOW_PARAMS_in_parametros313); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
-            ID4=(BytecodesAST)match(input,ID,FOLLOW_ID_in_entraNoMetodoComParams321); if (state.failed) return ;
-
-            params=(BytecodesAST)input.LT(1);
-
-            matchAny(input); if (state.failed) return ;
-
-            match(input,BODY,FOLLOW_BODY_in_entraNoMetodoComParams328); if (state.failed) return ;
-
-            tipoRet=(BytecodesAST)input.LT(1);
+            pars=(BytecodesAST)input.LT(1);
 
             matchAny(input); if (state.failed) return ;
 
@@ -810,13 +673,71 @@ public class Def extends TreeFilter {
 
 
             if ( state.backtracking==1 ) {
-            	   System.out.println("linha "+ID4.getLine()+
-                                      ": def method "+(ID4!=null?ID4.getText():null));
-                       SimboloMetodo metodo = new SimboloMetodo((ID4!=null?ID4.getText():null)+"("+params+")"+tipoRet.getText(), null, escopoAtual);
-                       metodo.def = ID4;
-                       ID4.simbolo = metodo;
-                       escopoAtual.definir(metodo);
-                       escopoAtual = metodo;
+            	  System.out.println("linha "+pars.getLine()+": def "+pars.getText());
+                      pars.escopo = escopoAtual;
+                      SimboloVariavel par = new SimboloVariavel(pars.getText(),null);
+                      par.def = pars;            // track AST location of def's ID
+                      pars.simbolo = par;         // track in AST
+                      escopoAtual.definir(par);
+            	}
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+
+        finally {
+        	// do for sure before leaving
+        }
+        return ;
+    }
+    // $ANTLR end "parametros"
+
+
+
+    // $ANTLR start "entraNoCorpoMetodo"
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:110:1: entraNoCorpoMetodo : BODY ;
+    public final void entraNoCorpoMetodo() throws RecognitionException {
+        try {
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:111:5: ( BODY )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:111:9: BODY
+            {
+            match(input,BODY,FOLLOW_BODY_in_entraNoCorpoMetodo341); if (state.failed) return ;
+
+            if ( state.backtracking==1 ) {escopoAtual = new EscopoLocal(escopoAtual);}
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+
+        finally {
+        	// do for sure before leaving
+        }
+        return ;
+    }
+    // $ANTLR end "entraNoCorpoMetodo"
+
+
+
+    // $ANTLR start "saiDoCorpoMetodo"
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:114:1: saiDoCorpoMetodo : BODY ;
+    public final void saiDoCorpoMetodo() throws RecognitionException {
+        try {
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:115:5: ( BODY )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:115:9: BODY
+            {
+            match(input,BODY,FOLLOW_BODY_in_saiDoCorpoMetodo367); if (state.failed) return ;
+
+            if ( state.backtracking==1 ) {
+                    System.out.println("locals: "+escopoAtual);
+                    escopoAtual = escopoAtual.obterEscopoEnvolvente();    // pop scope
                     }
 
             }
@@ -832,18 +753,18 @@ public class Def extends TreeFilter {
         }
         return ;
     }
-    // $ANTLR end "entraNoMetodoComParams"
+    // $ANTLR end "saiDoCorpoMetodo"
 
 
 
     // $ANTLR start "saiDaClasse"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:111:1: saiDaClasse : '.end class' ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:122:1: saiDaClasse : '.class' ;
     public final void saiDaClasse() throws RecognitionException {
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:111:13: ( '.end class' )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:111:15: '.end class'
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:122:13: ( '.class' )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:122:15: '.class'
             {
-            match(input,30,FOLLOW_30_in_saiDaClasse351); if (state.failed) return ;
+            match(input,29,FOLLOW_29_in_saiDaClasse394); if (state.failed) return ;
 
             if ( state.backtracking==1 ) {
                           System.out.println("Saindo da classe.. membros: "+escopoAtual);
@@ -868,13 +789,13 @@ public class Def extends TreeFilter {
 
 
     // $ANTLR start "saiDoMetodo"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:118:1: saiDoMetodo : '.end method' ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:129:1: saiDoMetodo : METHOD_DECL ;
     public final void saiDoMetodo() throws RecognitionException {
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:119:2: ( '.end method' )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:119:5: '.end method'
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:130:2: ( METHOD_DECL )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:130:5: METHOD_DECL
             {
-            match(input,31,FOLLOW_31_in_saiDoMetodo401); if (state.failed) return ;
+            match(input,METHOD_DECL,FOLLOW_METHOD_DECL_in_saiDoMetodo444); if (state.failed) return ;
 
             if ( state.backtracking==1 ) {
             	   System.out.println("Saindo do metodo: "+escopoAtual);
@@ -896,130 +817,34 @@ public class Def extends TreeFilter {
     }
     // $ANTLR end "saiDoMetodo"
 
-
-
-    // $ANTLR start "getfield"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:126:1: getfield : 'getfield' ;
-    public final void getfield() throws RecognitionException {
-        try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:127:5: ( 'getfield' )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:127:7: 'getfield'
-            {
-            match(input,50,FOLLOW_50_in_getfield418); if (state.failed) return ;
-
-            if ( state.backtracking==1 ) {
-                  System.out.println("Saindo do getfield..");
-                }
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-
-        finally {
-        	// do for sure before leaving
-        }
-        return ;
-    }
-    // $ANTLR end "getfield"
-
-
-
-    // $ANTLR start "putfield"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:133:1: putfield : 'putfield' ;
-    public final void putfield() throws RecognitionException {
-        try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:134:5: ( 'putfield' )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:134:7: 'putfield'
-            {
-            match(input,98,FOLLOW_98_in_putfield445); if (state.failed) return ;
-
-            if ( state.backtracking==1 ) {
-                  System.out.println("Saindo do putfield..");
-                }
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-
-        finally {
-        	// do for sure before leaving
-        }
-        return ;
-    }
-    // $ANTLR end "putfield"
-
-
-
-    // $ANTLR start "invokespecial"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:140:1: invokespecial : 'invokespecial' ;
-    public final void invokespecial() throws RecognitionException {
-        try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:141:5: ( 'invokespecial' )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:141:7: 'invokespecial'
-            {
-            match(input,82,FOLLOW_82_in_invokespecial472); if (state.failed) return ;
-
-            if ( state.backtracking==1 ) {
-                  System.out.println("Saindo do invokespecial..");
-                }
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-
-        finally {
-        	// do for sure before leaving
-        }
-        return ;
-    }
-    // $ANTLR end "invokespecial"
-
     // Delegated rules
 
 
  
 
-    public static final BitSet FOLLOW_entraNaClasse_in_topdown49 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declaracaoVariavel_in_topdown61 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_entraNoMetodoInit_in_topdown73 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_entraNoMetodoSemParams_in_topdown85 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_entraNoMetodoComParams_in_topdown97 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_saiDaClasse_in_bottomup114 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_saiDoMetodo_in_bottomup120 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_getfield_in_bottomup133 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_putfield_in_bottomup146 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_invokespecial_in_bottomup159 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_entraNaClasse191 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_entraNaClasse195 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000000FFFFFFFFFL});
-    public static final BitSet FOLLOW_EXTENDS_in_entraNaClasse199 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_TIPO_REF_in_entraNaClasse203 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_FIELD_DECL_in_declaracaoVariavel237 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_declaracaoVariavel239 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000000FFFFFFFFFL});
-    public static final BitSet FOLLOW_METHOD_DECL_in_entraNoMetodoInit274 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_INIT_in_entraNoMetodoInit276 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_BODY_in_entraNoMetodoInit278 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_METHOD_DECL_in_entraNoMetodoSemParams294 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_entraNoMetodoSemParams296 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_BODY_in_entraNoMetodoSemParams298 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000000FFFFFFFFFL});
-    public static final BitSet FOLLOW_METHOD_DECL_in_entraNoMetodoComParams319 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_entraNoMetodoComParams321 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000000FFFFFFFFFL});
-    public static final BitSet FOLLOW_BODY_in_entraNoMetodoComParams328 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000000FFFFFFFFFL});
-    public static final BitSet FOLLOW_30_in_saiDaClasse351 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_saiDoMetodo401 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_getfield418 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_98_in_putfield445 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_82_in_invokespecial472 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_entraNoCorpoMetodo_in_topdown49 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_entraNoMetodoInit_in_topdown61 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_entraNoMetodo_in_topdown73 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_entraNaClasse_in_topdown85 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_parametros_in_topdown97 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declaracaoVariavel_in_topdown109 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_saiDoCorpoMetodo_in_bottomup126 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_saiDoMetodo_in_bottomup139 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_saiDaClasse_in_bottomup152 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_entraNaClasse184 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_entraNaClasse188 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000000FFFFFFFFFL});
+    public static final BitSet FOLLOW_EXTENDS_in_entraNaClasse192 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_TIPO_REF_in_entraNaClasse196 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_FIELD_DECL_in_declaracaoVariavel230 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_declaracaoVariavel232 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000000FFFFFFFFFL});
+    public static final BitSet FOLLOW_METHOD_DECL_in_entraNoMetodoInit267 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_INIT_in_entraNoMetodoInit269 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_METHOD_DECL_in_entraNoMetodo286 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_entraNoMetodo288 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000000FFFFFFFFFL});
+    public static final BitSet FOLLOW_PARAMS_in_parametros313 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_BODY_in_entraNoCorpoMetodo341 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BODY_in_saiDoCorpoMetodo367 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_saiDaClasse394 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_METHOD_DECL_in_saiDoMetodo444 = new BitSet(new long[]{0x0000000000000002L});
 
 }

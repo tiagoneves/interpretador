@@ -150,6 +150,5 @@ L2:	 	ineg
         isub
         istore 20
         return
- .end method
- .end class
-        
+.end method
+.end class
