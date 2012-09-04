@@ -13,6 +13,7 @@ options {
     import br.ufpb.iged.interpretador.symboltable.classes.Escopo;
     import br.ufpb.iged.interpretador.symboltable.classes.SimboloClasse;
     import br.ufpb.iged.interpretador.symboltable.classes.SimboloVariavel;
+    import br.ufpb.iged.interpretador.symboltable.classes.SimboloMetodo;
     import br.ufpb.iged.interpretador.symboltable.classes.TabelaSimbolos;
 }
 
@@ -28,9 +29,13 @@ options {
 
 topdown : entraNaClasse
         | declaracaoVariavel
+        | entraNoMetodoInit
+        | entraNoMetodoSemParams
+        | entraNoMetodoComParams
         ;
 
 bottomup : saiDaClasse
+	 | saiDoMetodo
          | getfield
          | putfield
          | invokespecial
@@ -64,19 +69,59 @@ declaracaoVariavel
         }
     ;
     
-entraNoMetodo
-	:
-	
-	
-	
+entraNoMetodoInit
+	: ^(METHOD_DECL INIT BODY)
+	{
+	   System.out.println("linha "+$INIT.getLine()+
+                          ": def method init ");
+           SimboloMetodo metodo = new SimboloMetodo("init", null, escopoAtual);
+           metodo.def = $INIT;
+           $INIT.simbolo = metodo;
+           escopoAtual.definir(metodo);
+           escopoAtual = metodo;
+        }
+	;
+
+entraNoMetodoSemParams
+	: ^(METHOD_DECL ID BODY tipoRet =.)
+	{
+	   System.out.println("linha "+$ID.getLine()+
+                          ": def method "+$ID.text);
+           SimboloMetodo metodo = new SimboloMetodo($ID.text+"()"+$tipoRet.getText(), null, escopoAtual);
+           metodo.def = $ID;
+           $ID.simbolo = metodo;
+           escopoAtual.definir(metodo);
+           escopoAtual = metodo;
+        }
+	;
+
+entraNoMetodoComParams
+	: ^(METHOD_DECL ID params =. BODY tipoRet =.)
+	{
+	   System.out.println("linha "+$ID.getLine()+
+                          ": def method "+$ID.text);
+           SimboloMetodo metodo = new SimboloMetodo($ID.text+"("+params+")"+$tipoRet.getText(), null, escopoAtual);
+           metodo.def = $ID;
+           $ID.simbolo = metodo;
+           escopoAtual.definir(metodo);
+           escopoAtual = metodo;
+        }
 	;
     
-saiDaClasse : '.class'
+saiDaClasse : '.end class'
             {
               System.out.println("Saindo da classe.. membros: "+escopoAtual);
               escopoAtual = escopoAtual.obterEscopoEnvolvente(); // pop scope
             }
             ;
+            
+saiDoMetodo 
+	:  '.end method'
+	{
+	   System.out.println("Saindo do metodo: "+escopoAtual);
+           escopoAtual = escopoAtual.obterEscopoEnvolvente(); // pop scope
+	}
+	;
 
 getfield
     : 'getfield'
