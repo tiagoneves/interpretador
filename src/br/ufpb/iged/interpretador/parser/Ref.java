@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g 2012-09-03 22:34:39
+// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g 2012-09-03 22:52:05
 
     package br.ufpb.iged.interpretador.parser;
     
@@ -401,10 +401,10 @@ public class Ref extends TreeFilter {
         catch (RecognitionException re) {
             reportError(re);
             recover(input,re);
-        } catch (AcessoIndevidoMemoriaException e) {
+        } catch (LabelException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (LabelException e) {
+		} catch (AcessoIndevidoMemoriaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

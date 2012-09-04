@@ -80,11 +80,11 @@ membroClasse
         -> ^(METHOD_DECL MAIN ^(BODY operacao*) $ret)
     | '.method' ID '()' tipo NEWLINE operacao* ret = retorno NEWLINE '.end method'
         -> ^(METHOD_DECL ID ^(BODY operacao*) $ret)
-    | '.method' ID '(' params ')' tipo NEWLINE operacao* ret = retorno NEWLINE '.end method'
-        -> ^(METHOD_DECL ID ^(BODY operacao*) $ret)
+    | '.method' ID '(' params = parametros ')' tipo NEWLINE operacao* ret = retorno NEWLINE '.end method'
+        -> ^(METHOD_DECL ID $params ^(BODY operacao*) $ret)
     ;
     
-params 	: (ID | TIPO_REF)+;
+parametros : (ID | TIPO_REF)+;
 
 retorno : 'areturn' | 'ireturn' | 'return';
              
