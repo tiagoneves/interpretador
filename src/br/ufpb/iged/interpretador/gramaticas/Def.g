@@ -64,6 +64,13 @@ declaracaoVariavel
         }
     ;
     
+entraNoMetodo
+	:
+	
+	
+	
+	;
+    
 saiDaClasse : '.class'
             {
               System.out.println("Saindo da classe.. membros: "+escopoAtual);

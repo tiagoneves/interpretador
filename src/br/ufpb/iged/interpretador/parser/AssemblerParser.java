@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g 2012-09-03 22:52:03
+// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g 2012-09-03 23:03:15
 
   package br.ufpb.iged.interpretador.parser;
   
@@ -187,7 +187,7 @@ public TreeAdaptor getTreeAdaptor() {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==ID||LA1_0==NEWLINE||LA1_0==29||(LA1_0 >= 37 && LA1_0 <= 42)||(LA1_0 >= 44 && LA1_0 <= 84)||(LA1_0 >= 86 && LA1_0 <= 98)) ) {
+                if ( (LA1_0==ID||LA1_0==NEWLINE||LA1_0==29||(LA1_0 >= 37 && LA1_0 <= 99)) ) {
                     alt1=1;
                 }
 
@@ -264,7 +264,7 @@ public TreeAdaptor getTreeAdaptor() {
             int alt3=2;
             int LA3_0 = input.LA(1);
 
-            if ( (LA3_0==ID||LA3_0==NEWLINE||(LA3_0 >= 37 && LA3_0 <= 42)||(LA3_0 >= 44 && LA3_0 <= 84)||(LA3_0 >= 86 && LA3_0 <= 98)) ) {
+            if ( (LA3_0==ID||LA3_0==NEWLINE||(LA3_0 >= 37 && LA3_0 <= 99)) ) {
                 alt3=1;
             }
             else if ( (LA3_0==29) ) {
@@ -393,7 +393,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( (LA4_0==ID) ) {
                 alt4=1;
             }
-            else if ( (LA4_0==NEWLINE||(LA4_0 >= 37 && LA4_0 <= 42)||(LA4_0 >= 44 && LA4_0 <= 84)||(LA4_0 >= 86 && LA4_0 <= 98)) ) {
+            else if ( (LA4_0==NEWLINE||(LA4_0 >= 37 && LA4_0 <= 99)) ) {
                 alt4=2;
             }
             else {
@@ -560,7 +560,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "comando"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:56:1: comando : ( manipulacaoObjetos | aritmetica | load | loadint | store | storeint | desvio | logica | pilha | 'nop' )? NEWLINE ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:56:1: comando : ( manipulacaoObjetos | aritmetica | load | loadint | store | storeint | desvio | logica | pilha | retorno | 'nop' )? NEWLINE ;
     public final AssemblerParser.comando_return comando() throws RecognitionException {
         AssemblerParser.comando_return retval = new AssemblerParser.comando_return();
         retval.start = input.LT(1);
@@ -568,8 +568,8 @@ public TreeAdaptor getTreeAdaptor() {
 
         BytecodesAST root_0 = null;
 
-        Token string_literal18=null;
-        Token NEWLINE19=null;
+        Token string_literal19=null;
+        Token NEWLINE20=null;
         AssemblerParser.manipulacaoObjetos_return manipulacaoObjetos9 =null;
 
         AssemblerParser.aritmetica_return aritmetica10 =null;
@@ -588,19 +588,21 @@ public TreeAdaptor getTreeAdaptor() {
 
         AssemblerParser.pilha_return pilha17 =null;
 
+        AssemblerParser.retorno_return retorno18 =null;
 
-        BytecodesAST string_literal18_tree=null;
-        BytecodesAST NEWLINE19_tree=null;
+
+        BytecodesAST string_literal19_tree=null;
+        BytecodesAST NEWLINE20_tree=null;
 
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:56:8: ( ( manipulacaoObjetos | aritmetica | load | loadint | store | storeint | desvio | logica | pilha | 'nop' )? NEWLINE )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:56:10: ( manipulacaoObjetos | aritmetica | load | loadint | store | storeint | desvio | logica | pilha | 'nop' )? NEWLINE
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:56:8: ( ( manipulacaoObjetos | aritmetica | load | loadint | store | storeint | desvio | logica | pilha | retorno | 'nop' )? NEWLINE )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:56:10: ( manipulacaoObjetos | aritmetica | load | loadint | store | storeint | desvio | logica | pilha | retorno | 'nop' )? NEWLINE
             {
             root_0 = (BytecodesAST)adaptor.nil();
 
 
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:56:10: ( manipulacaoObjetos | aritmetica | load | loadint | store | storeint | desvio | logica | pilha | 'nop' )?
-            int alt5=11;
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:56:10: ( manipulacaoObjetos | aritmetica | load | loadint | store | storeint | desvio | logica | pilha | retorno | 'nop' )?
+            int alt5=12;
             switch ( input.LA(1) ) {
                 case 50:
                 case 82:
@@ -697,9 +699,16 @@ public TreeAdaptor getTreeAdaptor() {
                     alt5=9;
                     }
                     break;
-                case 95:
+                case 43:
+                case 85:
+                case 99:
                     {
                     alt5=10;
+                    }
+                    break;
+                case 95:
+                    {
+                    alt5=11;
                     }
                     break;
             }
@@ -814,13 +823,25 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 10 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:65:17: 'nop'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:65:17: retorno
                     {
-                    string_literal18=(Token)match(input,95,FOLLOW_95_in_comando394); 
-                    string_literal18_tree = 
-                    (BytecodesAST)adaptor.create(string_literal18)
+                    pushFollow(FOLLOW_retorno_in_comando394);
+                    retorno18=retorno();
+
+                    state._fsp--;
+
+                    adaptor.addChild(root_0, retorno18.getTree());
+
+                    }
+                    break;
+                case 11 :
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:66:17: 'nop'
+                    {
+                    string_literal19=(Token)match(input,95,FOLLOW_95_in_comando412); 
+                    string_literal19_tree = 
+                    (BytecodesAST)adaptor.create(string_literal19)
                     ;
-                    adaptor.addChild(root_0, string_literal18_tree);
+                    adaptor.addChild(root_0, string_literal19_tree);
 
 
                     }
@@ -829,11 +850,11 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            NEWLINE19=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_comando410); 
-            NEWLINE19_tree = 
-            (BytecodesAST)adaptor.create(NEWLINE19)
+            NEWLINE20=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_comando428); 
+            NEWLINE20_tree = 
+            (BytecodesAST)adaptor.create(NEWLINE20)
             ;
-            adaptor.addChild(root_0, NEWLINE19_tree);
+            adaptor.addChild(root_0, NEWLINE20_tree);
 
 
             }
@@ -867,7 +888,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "definicaoClasse"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:68:1: definicaoClasse : '.class' ID NEWLINE ( superClasse NEWLINE )? ( membroClasse NEWLINE )+ -> ^( '.class' ID ( superClasse )? ^( MEMBRO_CLASSE ( membroClasse )+ ) ) ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:69:1: definicaoClasse : '.class' ID NEWLINE ( superClasse NEWLINE )? ( membroClasse NEWLINE )+ -> ^( '.class' ID ( superClasse )? ^( MEMBRO_CLASSE ( membroClasse )+ ) ) ;
     public final AssemblerParser.definicaoClasse_return definicaoClasse() throws RecognitionException {
         AssemblerParser.definicaoClasse_return retval = new AssemblerParser.definicaoClasse_return();
         retval.start = input.LT(1);
@@ -875,43 +896,43 @@ public TreeAdaptor getTreeAdaptor() {
 
         BytecodesAST root_0 = null;
 
-        Token string_literal20=null;
-        Token ID21=null;
-        Token NEWLINE22=null;
-        Token NEWLINE24=null;
-        Token NEWLINE26=null;
-        AssemblerParser.superClasse_return superClasse23 =null;
+        Token string_literal21=null;
+        Token ID22=null;
+        Token NEWLINE23=null;
+        Token NEWLINE25=null;
+        Token NEWLINE27=null;
+        AssemblerParser.superClasse_return superClasse24 =null;
 
-        AssemblerParser.membroClasse_return membroClasse25 =null;
+        AssemblerParser.membroClasse_return membroClasse26 =null;
 
 
-        BytecodesAST string_literal20_tree=null;
-        BytecodesAST ID21_tree=null;
-        BytecodesAST NEWLINE22_tree=null;
-        BytecodesAST NEWLINE24_tree=null;
-        BytecodesAST NEWLINE26_tree=null;
+        BytecodesAST string_literal21_tree=null;
+        BytecodesAST ID22_tree=null;
+        BytecodesAST NEWLINE23_tree=null;
+        BytecodesAST NEWLINE25_tree=null;
+        BytecodesAST NEWLINE27_tree=null;
         RewriteRuleTokenStream stream_NEWLINE=new RewriteRuleTokenStream(adaptor,"token NEWLINE");
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleTokenStream stream_29=new RewriteRuleTokenStream(adaptor,"token 29");
         RewriteRuleSubtreeStream stream_membroClasse=new RewriteRuleSubtreeStream(adaptor,"rule membroClasse");
         RewriteRuleSubtreeStream stream_superClasse=new RewriteRuleSubtreeStream(adaptor,"rule superClasse");
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:69:5: ( '.class' ID NEWLINE ( superClasse NEWLINE )? ( membroClasse NEWLINE )+ -> ^( '.class' ID ( superClasse )? ^( MEMBRO_CLASSE ( membroClasse )+ ) ) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:69:7: '.class' ID NEWLINE ( superClasse NEWLINE )? ( membroClasse NEWLINE )+
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:70:5: ( '.class' ID NEWLINE ( superClasse NEWLINE )? ( membroClasse NEWLINE )+ -> ^( '.class' ID ( superClasse )? ^( MEMBRO_CLASSE ( membroClasse )+ ) ) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:70:7: '.class' ID NEWLINE ( superClasse NEWLINE )? ( membroClasse NEWLINE )+
             {
-            string_literal20=(Token)match(input,29,FOLLOW_29_in_definicaoClasse436);  
-            stream_29.add(string_literal20);
+            string_literal21=(Token)match(input,29,FOLLOW_29_in_definicaoClasse454);  
+            stream_29.add(string_literal21);
 
 
-            ID21=(Token)match(input,ID,FOLLOW_ID_in_definicaoClasse438);  
-            stream_ID.add(ID21);
+            ID22=(Token)match(input,ID,FOLLOW_ID_in_definicaoClasse456);  
+            stream_ID.add(ID22);
 
 
-            NEWLINE22=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_definicaoClasse440);  
-            stream_NEWLINE.add(NEWLINE22);
+            NEWLINE23=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_definicaoClasse458);  
+            stream_NEWLINE.add(NEWLINE23);
 
 
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:69:27: ( superClasse NEWLINE )?
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:70:27: ( superClasse NEWLINE )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -920,17 +941,17 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt6) {
                 case 1 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:69:28: superClasse NEWLINE
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:70:28: superClasse NEWLINE
                     {
-                    pushFollow(FOLLOW_superClasse_in_definicaoClasse443);
-                    superClasse23=superClasse();
+                    pushFollow(FOLLOW_superClasse_in_definicaoClasse461);
+                    superClasse24=superClasse();
 
                     state._fsp--;
 
-                    stream_superClasse.add(superClasse23.getTree());
+                    stream_superClasse.add(superClasse24.getTree());
 
-                    NEWLINE24=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_definicaoClasse445);  
-                    stream_NEWLINE.add(NEWLINE24);
+                    NEWLINE25=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_definicaoClasse463);  
+                    stream_NEWLINE.add(NEWLINE25);
 
 
                     }
@@ -939,7 +960,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:69:50: ( membroClasse NEWLINE )+
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:70:50: ( membroClasse NEWLINE )+
             int cnt7=0;
             loop7:
             do {
@@ -953,17 +974,17 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt7) {
             	case 1 :
-            	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:69:51: membroClasse NEWLINE
+            	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:70:51: membroClasse NEWLINE
             	    {
-            	    pushFollow(FOLLOW_membroClasse_in_definicaoClasse450);
-            	    membroClasse25=membroClasse();
+            	    pushFollow(FOLLOW_membroClasse_in_definicaoClasse468);
+            	    membroClasse26=membroClasse();
 
             	    state._fsp--;
 
-            	    stream_membroClasse.add(membroClasse25.getTree());
+            	    stream_membroClasse.add(membroClasse26.getTree());
 
-            	    NEWLINE26=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_definicaoClasse452);  
-            	    stream_NEWLINE.add(NEWLINE26);
+            	    NEWLINE27=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_definicaoClasse470);  
+            	    stream_NEWLINE.add(NEWLINE27);
 
 
             	    }
@@ -980,7 +1001,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: 29, membroClasse, superClasse, ID
+            // elements: membroClasse, superClasse, ID, 29
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -990,9 +1011,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (BytecodesAST)adaptor.nil();
-            // 70:12: -> ^( '.class' ID ( superClasse )? ^( MEMBRO_CLASSE ( membroClasse )+ ) )
+            // 71:12: -> ^( '.class' ID ( superClasse )? ^( MEMBRO_CLASSE ( membroClasse )+ ) )
             {
-                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:70:15: ^( '.class' ID ( superClasse )? ^( MEMBRO_CLASSE ( membroClasse )+ ) )
+                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:71:15: ^( '.class' ID ( superClasse )? ^( MEMBRO_CLASSE ( membroClasse )+ ) )
                 {
                 BytecodesAST root_1 = (BytecodesAST)adaptor.nil();
                 root_1 = (BytecodesAST)adaptor.becomeRoot(
@@ -1003,14 +1024,14 @@ public TreeAdaptor getTreeAdaptor() {
                 stream_ID.nextNode()
                 );
 
-                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:70:29: ( superClasse )?
+                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:71:29: ( superClasse )?
                 if ( stream_superClasse.hasNext() ) {
                     adaptor.addChild(root_1, stream_superClasse.nextTree());
 
                 }
                 stream_superClasse.reset();
 
-                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:70:42: ^( MEMBRO_CLASSE ( membroClasse )+ )
+                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:71:42: ^( MEMBRO_CLASSE ( membroClasse )+ )
                 {
                 BytecodesAST root_2 = (BytecodesAST)adaptor.nil();
                 root_2 = (BytecodesAST)adaptor.becomeRoot(
@@ -1068,7 +1089,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "superClasse"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:73:1: superClasse : '.super' TIPO_REF -> ^( EXTENDS TIPO_REF ) ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:74:1: superClasse : '.super' TIPO_REF -> ^( EXTENDS TIPO_REF ) ;
     public final AssemblerParser.superClasse_return superClasse() throws RecognitionException {
         AssemblerParser.superClasse_return retval = new AssemblerParser.superClasse_return();
         retval.start = input.LT(1);
@@ -1076,24 +1097,24 @@ public TreeAdaptor getTreeAdaptor() {
 
         BytecodesAST root_0 = null;
 
-        Token string_literal27=null;
-        Token TIPO_REF28=null;
+        Token string_literal28=null;
+        Token TIPO_REF29=null;
 
-        BytecodesAST string_literal27_tree=null;
-        BytecodesAST TIPO_REF28_tree=null;
+        BytecodesAST string_literal28_tree=null;
+        BytecodesAST TIPO_REF29_tree=null;
         RewriteRuleTokenStream stream_TIPO_REF=new RewriteRuleTokenStream(adaptor,"token TIPO_REF");
         RewriteRuleTokenStream stream_34=new RewriteRuleTokenStream(adaptor,"token 34");
 
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:73:13: ( '.super' TIPO_REF -> ^( EXTENDS TIPO_REF ) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:73:15: '.super' TIPO_REF
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:74:13: ( '.super' TIPO_REF -> ^( EXTENDS TIPO_REF ) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:74:15: '.super' TIPO_REF
             {
-            string_literal27=(Token)match(input,34,FOLLOW_34_in_superClasse513);  
-            stream_34.add(string_literal27);
+            string_literal28=(Token)match(input,34,FOLLOW_34_in_superClasse531);  
+            stream_34.add(string_literal28);
 
 
-            TIPO_REF28=(Token)match(input,TIPO_REF,FOLLOW_TIPO_REF_in_superClasse515);  
-            stream_TIPO_REF.add(TIPO_REF28);
+            TIPO_REF29=(Token)match(input,TIPO_REF,FOLLOW_TIPO_REF_in_superClasse533);  
+            stream_TIPO_REF.add(TIPO_REF29);
 
 
             // AST REWRITE
@@ -1107,9 +1128,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (BytecodesAST)adaptor.nil();
-            // 73:33: -> ^( EXTENDS TIPO_REF )
+            // 74:33: -> ^( EXTENDS TIPO_REF )
             {
-                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:73:36: ^( EXTENDS TIPO_REF )
+                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:74:36: ^( EXTENDS TIPO_REF )
                 {
                 BytecodesAST root_1 = (BytecodesAST)adaptor.nil();
                 root_1 = (BytecodesAST)adaptor.becomeRoot(
@@ -1159,7 +1180,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "membroClasse"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:75:1: membroClasse : ( '.field' ID tipo -> ^( FIELD_DECL ID tipo ) | '.method' INIT '()' VOID NEWLINE ( operacao )* 'return' NEWLINE '.end method' -> ^( METHOD_DECL INIT ^( BODY ( operacao )* ) ) | '.method' MAIN '()' VOID NEWLINE ( operacao )* ret= retorno NEWLINE '.end method' -> ^( METHOD_DECL MAIN ^( BODY ( operacao )* ) $ret) | '.method' ID '()' tipo NEWLINE ( operacao )* ret= retorno NEWLINE '.end method' -> ^( METHOD_DECL ID ^( BODY ( operacao )* ) $ret) | '.method' ID '(' params= parametros ')' tipo NEWLINE ( operacao )* ret= retorno NEWLINE '.end method' -> ^( METHOD_DECL ID $params ^( BODY ( operacao )* ) $ret) );
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:76:1: membroClasse : ( '.field' ID tipo -> ^( FIELD_DECL ID tipo ) | '.method' INIT '()' VOID NEWLINE ( operacao )* '.end method' -> ^( METHOD_DECL INIT ^( BODY ( operacao )* ) ) | '.method' MAIN '()' VOID NEWLINE ( operacao )* '.end method' -> ^( METHOD_DECL MAIN ^( BODY ( operacao )* ) VOID ) | '.method' ID '()' ret= tipo NEWLINE ( operacao )* '.end method' -> ^( METHOD_DECL ID ^( BODY ( operacao )* ) $ret) | '.method' ID '(' params= parametros ')' ret= tipo NEWLINE ( operacao )* '.end method' -> ^( METHOD_DECL ID $params ^( BODY ( operacao )* ) $ret) );
     public final AssemblerParser.membroClasse_return membroClasse() throws RecognitionException {
         AssemblerParser.membroClasse_return retval = new AssemblerParser.membroClasse_return();
         retval.start = input.LT(1);
@@ -1167,85 +1188,71 @@ public TreeAdaptor getTreeAdaptor() {
 
         BytecodesAST root_0 = null;
 
-        Token string_literal29=null;
-        Token ID30=null;
-        Token string_literal32=null;
-        Token INIT33=null;
-        Token string_literal34=null;
-        Token VOID35=null;
-        Token NEWLINE36=null;
-        Token string_literal38=null;
-        Token NEWLINE39=null;
+        Token string_literal30=null;
+        Token ID31=null;
+        Token string_literal33=null;
+        Token INIT34=null;
+        Token string_literal35=null;
+        Token VOID36=null;
+        Token NEWLINE37=null;
+        Token string_literal39=null;
         Token string_literal40=null;
-        Token string_literal41=null;
-        Token MAIN42=null;
-        Token string_literal43=null;
-        Token VOID44=null;
-        Token NEWLINE45=null;
-        Token NEWLINE47=null;
-        Token string_literal48=null;
+        Token MAIN41=null;
+        Token string_literal42=null;
+        Token VOID43=null;
+        Token NEWLINE44=null;
+        Token string_literal46=null;
+        Token string_literal47=null;
+        Token ID48=null;
         Token string_literal49=null;
-        Token ID50=null;
-        Token string_literal51=null;
-        Token NEWLINE53=null;
-        Token NEWLINE55=null;
-        Token string_literal56=null;
-        Token string_literal57=null;
-        Token ID58=null;
-        Token char_literal59=null;
-        Token char_literal60=null;
-        Token NEWLINE62=null;
-        Token NEWLINE64=null;
-        Token string_literal65=null;
-        AssemblerParser.retorno_return ret =null;
+        Token NEWLINE50=null;
+        Token string_literal52=null;
+        Token string_literal53=null;
+        Token ID54=null;
+        Token char_literal55=null;
+        Token char_literal56=null;
+        Token NEWLINE57=null;
+        Token string_literal59=null;
+        AssemblerParser.tipo_return ret =null;
 
         AssemblerParser.parametros_return params =null;
 
-        AssemblerParser.tipo_return tipo31 =null;
+        AssemblerParser.tipo_return tipo32 =null;
 
-        AssemblerParser.operacao_return operacao37 =null;
+        AssemblerParser.operacao_return operacao38 =null;
 
-        AssemblerParser.operacao_return operacao46 =null;
+        AssemblerParser.operacao_return operacao45 =null;
 
-        AssemblerParser.tipo_return tipo52 =null;
+        AssemblerParser.operacao_return operacao51 =null;
 
-        AssemblerParser.operacao_return operacao54 =null;
-
-        AssemblerParser.tipo_return tipo61 =null;
-
-        AssemblerParser.operacao_return operacao63 =null;
+        AssemblerParser.operacao_return operacao58 =null;
 
 
-        BytecodesAST string_literal29_tree=null;
-        BytecodesAST ID30_tree=null;
-        BytecodesAST string_literal32_tree=null;
-        BytecodesAST INIT33_tree=null;
-        BytecodesAST string_literal34_tree=null;
-        BytecodesAST VOID35_tree=null;
-        BytecodesAST NEWLINE36_tree=null;
-        BytecodesAST string_literal38_tree=null;
-        BytecodesAST NEWLINE39_tree=null;
+        BytecodesAST string_literal30_tree=null;
+        BytecodesAST ID31_tree=null;
+        BytecodesAST string_literal33_tree=null;
+        BytecodesAST INIT34_tree=null;
+        BytecodesAST string_literal35_tree=null;
+        BytecodesAST VOID36_tree=null;
+        BytecodesAST NEWLINE37_tree=null;
+        BytecodesAST string_literal39_tree=null;
         BytecodesAST string_literal40_tree=null;
-        BytecodesAST string_literal41_tree=null;
-        BytecodesAST MAIN42_tree=null;
-        BytecodesAST string_literal43_tree=null;
-        BytecodesAST VOID44_tree=null;
-        BytecodesAST NEWLINE45_tree=null;
-        BytecodesAST NEWLINE47_tree=null;
-        BytecodesAST string_literal48_tree=null;
+        BytecodesAST MAIN41_tree=null;
+        BytecodesAST string_literal42_tree=null;
+        BytecodesAST VOID43_tree=null;
+        BytecodesAST NEWLINE44_tree=null;
+        BytecodesAST string_literal46_tree=null;
+        BytecodesAST string_literal47_tree=null;
+        BytecodesAST ID48_tree=null;
         BytecodesAST string_literal49_tree=null;
-        BytecodesAST ID50_tree=null;
-        BytecodesAST string_literal51_tree=null;
-        BytecodesAST NEWLINE53_tree=null;
-        BytecodesAST NEWLINE55_tree=null;
-        BytecodesAST string_literal56_tree=null;
-        BytecodesAST string_literal57_tree=null;
-        BytecodesAST ID58_tree=null;
-        BytecodesAST char_literal59_tree=null;
-        BytecodesAST char_literal60_tree=null;
-        BytecodesAST NEWLINE62_tree=null;
-        BytecodesAST NEWLINE64_tree=null;
-        BytecodesAST string_literal65_tree=null;
+        BytecodesAST NEWLINE50_tree=null;
+        BytecodesAST string_literal52_tree=null;
+        BytecodesAST string_literal53_tree=null;
+        BytecodesAST ID54_tree=null;
+        BytecodesAST char_literal55_tree=null;
+        BytecodesAST char_literal56_tree=null;
+        BytecodesAST NEWLINE57_tree=null;
+        BytecodesAST string_literal59_tree=null;
         RewriteRuleTokenStream stream_MAIN=new RewriteRuleTokenStream(adaptor,"token MAIN");
         RewriteRuleTokenStream stream_VOID=new RewriteRuleTokenStream(adaptor,"token VOID");
         RewriteRuleTokenStream stream_NEWLINE=new RewriteRuleTokenStream(adaptor,"token NEWLINE");
@@ -1255,15 +1262,13 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_33=new RewriteRuleTokenStream(adaptor,"token 33");
         RewriteRuleTokenStream stream_INIT=new RewriteRuleTokenStream(adaptor,"token INIT");
         RewriteRuleTokenStream stream_26=new RewriteRuleTokenStream(adaptor,"token 26");
-        RewriteRuleTokenStream stream_99=new RewriteRuleTokenStream(adaptor,"token 99");
         RewriteRuleTokenStream stream_27=new RewriteRuleTokenStream(adaptor,"token 27");
         RewriteRuleTokenStream stream_28=new RewriteRuleTokenStream(adaptor,"token 28");
         RewriteRuleSubtreeStream stream_parametros=new RewriteRuleSubtreeStream(adaptor,"rule parametros");
-        RewriteRuleSubtreeStream stream_retorno=new RewriteRuleSubtreeStream(adaptor,"rule retorno");
         RewriteRuleSubtreeStream stream_tipo=new RewriteRuleSubtreeStream(adaptor,"rule tipo");
         RewriteRuleSubtreeStream stream_operacao=new RewriteRuleSubtreeStream(adaptor,"rule operacao");
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:76:5: ( '.field' ID tipo -> ^( FIELD_DECL ID tipo ) | '.method' INIT '()' VOID NEWLINE ( operacao )* 'return' NEWLINE '.end method' -> ^( METHOD_DECL INIT ^( BODY ( operacao )* ) ) | '.method' MAIN '()' VOID NEWLINE ( operacao )* ret= retorno NEWLINE '.end method' -> ^( METHOD_DECL MAIN ^( BODY ( operacao )* ) $ret) | '.method' ID '()' tipo NEWLINE ( operacao )* ret= retorno NEWLINE '.end method' -> ^( METHOD_DECL ID ^( BODY ( operacao )* ) $ret) | '.method' ID '(' params= parametros ')' tipo NEWLINE ( operacao )* ret= retorno NEWLINE '.end method' -> ^( METHOD_DECL ID $params ^( BODY ( operacao )* ) $ret) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:77:5: ( '.field' ID tipo -> ^( FIELD_DECL ID tipo ) | '.method' INIT '()' VOID NEWLINE ( operacao )* '.end method' -> ^( METHOD_DECL INIT ^( BODY ( operacao )* ) ) | '.method' MAIN '()' VOID NEWLINE ( operacao )* '.end method' -> ^( METHOD_DECL MAIN ^( BODY ( operacao )* ) VOID ) | '.method' ID '()' ret= tipo NEWLINE ( operacao )* '.end method' -> ^( METHOD_DECL ID ^( BODY ( operacao )* ) $ret) | '.method' ID '(' params= parametros ')' ret= tipo NEWLINE ( operacao )* '.end method' -> ^( METHOD_DECL ID $params ^( BODY ( operacao )* ) $ret) )
             int alt12=5;
             int LA12_0 = input.LA(1);
 
@@ -1319,25 +1324,25 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt12) {
                 case 1 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:76:7: '.field' ID tipo
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:77:7: '.field' ID tipo
                     {
-                    string_literal29=(Token)match(input,32,FOLLOW_32_in_membroClasse536);  
-                    stream_32.add(string_literal29);
+                    string_literal30=(Token)match(input,32,FOLLOW_32_in_membroClasse554);  
+                    stream_32.add(string_literal30);
 
 
-                    ID30=(Token)match(input,ID,FOLLOW_ID_in_membroClasse538);  
-                    stream_ID.add(ID30);
+                    ID31=(Token)match(input,ID,FOLLOW_ID_in_membroClasse556);  
+                    stream_ID.add(ID31);
 
 
-                    pushFollow(FOLLOW_tipo_in_membroClasse540);
-                    tipo31=tipo();
+                    pushFollow(FOLLOW_tipo_in_membroClasse558);
+                    tipo32=tipo();
 
                     state._fsp--;
 
-                    stream_tipo.add(tipo31.getTree());
+                    stream_tipo.add(tipo32.getTree());
 
                     // AST REWRITE
-                    // elements: ID, tipo
+                    // elements: tipo, ID
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -1347,9 +1352,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (BytecodesAST)adaptor.nil();
-                    // 76:24: -> ^( FIELD_DECL ID tipo )
+                    // 77:24: -> ^( FIELD_DECL ID tipo )
                     {
-                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:76:27: ^( FIELD_DECL ID tipo )
+                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:77:27: ^( FIELD_DECL ID tipo )
                         {
                         BytecodesAST root_1 = (BytecodesAST)adaptor.nil();
                         root_1 = (BytecodesAST)adaptor.becomeRoot(
@@ -1373,49 +1378,49 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:77:7: '.method' INIT '()' VOID NEWLINE ( operacao )* 'return' NEWLINE '.end method'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:78:7: '.method' INIT '()' VOID NEWLINE ( operacao )* '.end method'
                     {
-                    string_literal32=(Token)match(input,33,FOLLOW_33_in_membroClasse558);  
-                    stream_33.add(string_literal32);
+                    string_literal33=(Token)match(input,33,FOLLOW_33_in_membroClasse576);  
+                    stream_33.add(string_literal33);
 
 
-                    INIT33=(Token)match(input,INIT,FOLLOW_INIT_in_membroClasse560);  
-                    stream_INIT.add(INIT33);
+                    INIT34=(Token)match(input,INIT,FOLLOW_INIT_in_membroClasse578);  
+                    stream_INIT.add(INIT34);
 
 
-                    string_literal34=(Token)match(input,27,FOLLOW_27_in_membroClasse562);  
-                    stream_27.add(string_literal34);
+                    string_literal35=(Token)match(input,27,FOLLOW_27_in_membroClasse580);  
+                    stream_27.add(string_literal35);
 
 
-                    VOID35=(Token)match(input,VOID,FOLLOW_VOID_in_membroClasse564);  
-                    stream_VOID.add(VOID35);
+                    VOID36=(Token)match(input,VOID,FOLLOW_VOID_in_membroClasse582);  
+                    stream_VOID.add(VOID36);
 
 
-                    NEWLINE36=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_membroClasse566);  
-                    stream_NEWLINE.add(NEWLINE36);
+                    NEWLINE37=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_membroClasse584);  
+                    stream_NEWLINE.add(NEWLINE37);
 
 
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:77:40: ( operacao )*
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:78:40: ( operacao )*
                     loop8:
                     do {
                         int alt8=2;
                         int LA8_0 = input.LA(1);
 
-                        if ( (LA8_0==ID||LA8_0==NEWLINE||(LA8_0 >= 37 && LA8_0 <= 42)||(LA8_0 >= 44 && LA8_0 <= 84)||(LA8_0 >= 86 && LA8_0 <= 98)) ) {
+                        if ( (LA8_0==ID||LA8_0==NEWLINE||(LA8_0 >= 37 && LA8_0 <= 99)) ) {
                             alt8=1;
                         }
 
 
                         switch (alt8) {
                     	case 1 :
-                    	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:77:40: operacao
+                    	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:78:40: operacao
                     	    {
-                    	    pushFollow(FOLLOW_operacao_in_membroClasse568);
-                    	    operacao37=operacao();
+                    	    pushFollow(FOLLOW_operacao_in_membroClasse586);
+                    	    operacao38=operacao();
 
                     	    state._fsp--;
 
-                    	    stream_operacao.add(operacao37.getTree());
+                    	    stream_operacao.add(operacao38.getTree());
 
                     	    }
                     	    break;
@@ -1426,16 +1431,8 @@ public TreeAdaptor getTreeAdaptor() {
                     } while (true);
 
 
-                    string_literal38=(Token)match(input,99,FOLLOW_99_in_membroClasse571);  
-                    stream_99.add(string_literal38);
-
-
-                    NEWLINE39=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_membroClasse573);  
-                    stream_NEWLINE.add(NEWLINE39);
-
-
-                    string_literal40=(Token)match(input,31,FOLLOW_31_in_membroClasse575);  
-                    stream_31.add(string_literal40);
+                    string_literal39=(Token)match(input,31,FOLLOW_31_in_membroClasse589);  
+                    stream_31.add(string_literal39);
 
 
                     // AST REWRITE
@@ -1449,9 +1446,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (BytecodesAST)adaptor.nil();
-                    // 78:2: -> ^( METHOD_DECL INIT ^( BODY ( operacao )* ) )
+                    // 79:2: -> ^( METHOD_DECL INIT ^( BODY ( operacao )* ) )
                     {
-                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:78:5: ^( METHOD_DECL INIT ^( BODY ( operacao )* ) )
+                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:79:5: ^( METHOD_DECL INIT ^( BODY ( operacao )* ) )
                         {
                         BytecodesAST root_1 = (BytecodesAST)adaptor.nil();
                         root_1 = (BytecodesAST)adaptor.becomeRoot(
@@ -1462,14 +1459,14 @@ public TreeAdaptor getTreeAdaptor() {
                         stream_INIT.nextNode()
                         );
 
-                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:78:24: ^( BODY ( operacao )* )
+                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:79:24: ^( BODY ( operacao )* )
                         {
                         BytecodesAST root_2 = (BytecodesAST)adaptor.nil();
                         root_2 = (BytecodesAST)adaptor.becomeRoot(
                         (BytecodesAST)adaptor.create(BODY, "BODY")
                         , root_2);
 
-                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:78:31: ( operacao )*
+                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:79:31: ( operacao )*
                         while ( stream_operacao.hasNext() ) {
                             adaptor.addChild(root_2, stream_operacao.nextTree());
 
@@ -1490,49 +1487,49 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:79:7: '.method' MAIN '()' VOID NEWLINE ( operacao )* ret= retorno NEWLINE '.end method'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:80:7: '.method' MAIN '()' VOID NEWLINE ( operacao )* '.end method'
                     {
-                    string_literal41=(Token)match(input,33,FOLLOW_33_in_membroClasse599);  
-                    stream_33.add(string_literal41);
+                    string_literal40=(Token)match(input,33,FOLLOW_33_in_membroClasse613);  
+                    stream_33.add(string_literal40);
 
 
-                    MAIN42=(Token)match(input,MAIN,FOLLOW_MAIN_in_membroClasse601);  
-                    stream_MAIN.add(MAIN42);
+                    MAIN41=(Token)match(input,MAIN,FOLLOW_MAIN_in_membroClasse615);  
+                    stream_MAIN.add(MAIN41);
 
 
-                    string_literal43=(Token)match(input,27,FOLLOW_27_in_membroClasse603);  
-                    stream_27.add(string_literal43);
+                    string_literal42=(Token)match(input,27,FOLLOW_27_in_membroClasse617);  
+                    stream_27.add(string_literal42);
 
 
-                    VOID44=(Token)match(input,VOID,FOLLOW_VOID_in_membroClasse605);  
-                    stream_VOID.add(VOID44);
+                    VOID43=(Token)match(input,VOID,FOLLOW_VOID_in_membroClasse619);  
+                    stream_VOID.add(VOID43);
 
 
-                    NEWLINE45=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_membroClasse607);  
-                    stream_NEWLINE.add(NEWLINE45);
+                    NEWLINE44=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_membroClasse621);  
+                    stream_NEWLINE.add(NEWLINE44);
 
 
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:79:40: ( operacao )*
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:80:40: ( operacao )*
                     loop9:
                     do {
                         int alt9=2;
                         int LA9_0 = input.LA(1);
 
-                        if ( (LA9_0==ID||LA9_0==NEWLINE||(LA9_0 >= 37 && LA9_0 <= 42)||(LA9_0 >= 44 && LA9_0 <= 84)||(LA9_0 >= 86 && LA9_0 <= 98)) ) {
+                        if ( (LA9_0==ID||LA9_0==NEWLINE||(LA9_0 >= 37 && LA9_0 <= 99)) ) {
                             alt9=1;
                         }
 
 
                         switch (alt9) {
                     	case 1 :
-                    	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:79:40: operacao
+                    	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:80:40: operacao
                     	    {
-                    	    pushFollow(FOLLOW_operacao_in_membroClasse609);
-                    	    operacao46=operacao();
+                    	    pushFollow(FOLLOW_operacao_in_membroClasse623);
+                    	    operacao45=operacao();
 
                     	    state._fsp--;
 
-                    	    stream_operacao.add(operacao46.getTree());
+                    	    stream_operacao.add(operacao45.getTree());
 
                     	    }
                     	    break;
@@ -1543,36 +1540,24 @@ public TreeAdaptor getTreeAdaptor() {
                     } while (true);
 
 
-                    pushFollow(FOLLOW_retorno_in_membroClasse616);
-                    ret=retorno();
-
-                    state._fsp--;
-
-                    stream_retorno.add(ret.getTree());
-
-                    NEWLINE47=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_membroClasse618);  
-                    stream_NEWLINE.add(NEWLINE47);
-
-
-                    string_literal48=(Token)match(input,31,FOLLOW_31_in_membroClasse620);  
-                    stream_31.add(string_literal48);
+                    string_literal46=(Token)match(input,31,FOLLOW_31_in_membroClasse627);  
+                    stream_31.add(string_literal46);
 
 
                     // AST REWRITE
-                    // elements: MAIN, operacao, ret
+                    // elements: VOID, operacao, MAIN
                     // token labels: 
-                    // rule labels: ret, retval
+                    // rule labels: retval
                     // token list labels: 
                     // rule list labels: 
                     // wildcard labels: 
                     retval.tree = root_0;
-                    RewriteRuleSubtreeStream stream_ret=new RewriteRuleSubtreeStream(adaptor,"rule ret",ret!=null?ret.tree:null);
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (BytecodesAST)adaptor.nil();
-                    // 80:9: -> ^( METHOD_DECL MAIN ^( BODY ( operacao )* ) $ret)
+                    // 81:9: -> ^( METHOD_DECL MAIN ^( BODY ( operacao )* ) VOID )
                     {
-                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:80:12: ^( METHOD_DECL MAIN ^( BODY ( operacao )* ) $ret)
+                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:81:12: ^( METHOD_DECL MAIN ^( BODY ( operacao )* ) VOID )
                         {
                         BytecodesAST root_1 = (BytecodesAST)adaptor.nil();
                         root_1 = (BytecodesAST)adaptor.becomeRoot(
@@ -1583,14 +1568,14 @@ public TreeAdaptor getTreeAdaptor() {
                         stream_MAIN.nextNode()
                         );
 
-                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:80:31: ^( BODY ( operacao )* )
+                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:81:31: ^( BODY ( operacao )* )
                         {
                         BytecodesAST root_2 = (BytecodesAST)adaptor.nil();
                         root_2 = (BytecodesAST)adaptor.becomeRoot(
                         (BytecodesAST)adaptor.create(BODY, "BODY")
                         , root_2);
 
-                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:80:38: ( operacao )*
+                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:81:38: ( operacao )*
                         while ( stream_operacao.hasNext() ) {
                             adaptor.addChild(root_2, stream_operacao.nextTree());
 
@@ -1600,7 +1585,9 @@ public TreeAdaptor getTreeAdaptor() {
                         adaptor.addChild(root_1, root_2);
                         }
 
-                        adaptor.addChild(root_1, stream_ret.nextTree());
+                        adaptor.addChild(root_1, 
+                        stream_VOID.nextNode()
+                        );
 
                         adaptor.addChild(root_0, root_1);
                         }
@@ -1613,52 +1600,52 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:81:7: '.method' ID '()' tipo NEWLINE ( operacao )* ret= retorno NEWLINE '.end method'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:82:7: '.method' ID '()' ret= tipo NEWLINE ( operacao )* '.end method'
                     {
-                    string_literal49=(Token)match(input,33,FOLLOW_33_in_membroClasse654);  
-                    stream_33.add(string_literal49);
+                    string_literal47=(Token)match(input,33,FOLLOW_33_in_membroClasse660);  
+                    stream_33.add(string_literal47);
 
 
-                    ID50=(Token)match(input,ID,FOLLOW_ID_in_membroClasse656);  
-                    stream_ID.add(ID50);
+                    ID48=(Token)match(input,ID,FOLLOW_ID_in_membroClasse662);  
+                    stream_ID.add(ID48);
 
 
-                    string_literal51=(Token)match(input,27,FOLLOW_27_in_membroClasse658);  
-                    stream_27.add(string_literal51);
+                    string_literal49=(Token)match(input,27,FOLLOW_27_in_membroClasse664);  
+                    stream_27.add(string_literal49);
 
 
-                    pushFollow(FOLLOW_tipo_in_membroClasse660);
-                    tipo52=tipo();
+                    pushFollow(FOLLOW_tipo_in_membroClasse670);
+                    ret=tipo();
 
                     state._fsp--;
 
-                    stream_tipo.add(tipo52.getTree());
+                    stream_tipo.add(ret.getTree());
 
-                    NEWLINE53=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_membroClasse662);  
-                    stream_NEWLINE.add(NEWLINE53);
+                    NEWLINE50=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_membroClasse672);  
+                    stream_NEWLINE.add(NEWLINE50);
 
 
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:81:38: ( operacao )*
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:82:44: ( operacao )*
                     loop10:
                     do {
                         int alt10=2;
                         int LA10_0 = input.LA(1);
 
-                        if ( (LA10_0==ID||LA10_0==NEWLINE||(LA10_0 >= 37 && LA10_0 <= 42)||(LA10_0 >= 44 && LA10_0 <= 84)||(LA10_0 >= 86 && LA10_0 <= 98)) ) {
+                        if ( (LA10_0==ID||LA10_0==NEWLINE||(LA10_0 >= 37 && LA10_0 <= 99)) ) {
                             alt10=1;
                         }
 
 
                         switch (alt10) {
                     	case 1 :
-                    	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:81:38: operacao
+                    	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:82:44: operacao
                     	    {
-                    	    pushFollow(FOLLOW_operacao_in_membroClasse664);
-                    	    operacao54=operacao();
+                    	    pushFollow(FOLLOW_operacao_in_membroClasse674);
+                    	    operacao51=operacao();
 
                     	    state._fsp--;
 
-                    	    stream_operacao.add(operacao54.getTree());
+                    	    stream_operacao.add(operacao51.getTree());
 
                     	    }
                     	    break;
@@ -1669,19 +1656,8 @@ public TreeAdaptor getTreeAdaptor() {
                     } while (true);
 
 
-                    pushFollow(FOLLOW_retorno_in_membroClasse671);
-                    ret=retorno();
-
-                    state._fsp--;
-
-                    stream_retorno.add(ret.getTree());
-
-                    NEWLINE55=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_membroClasse673);  
-                    stream_NEWLINE.add(NEWLINE55);
-
-
-                    string_literal56=(Token)match(input,31,FOLLOW_31_in_membroClasse675);  
-                    stream_31.add(string_literal56);
+                    string_literal52=(Token)match(input,31,FOLLOW_31_in_membroClasse677);  
+                    stream_31.add(string_literal52);
 
 
                     // AST REWRITE
@@ -1696,9 +1672,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (BytecodesAST)adaptor.nil();
-                    // 82:9: -> ^( METHOD_DECL ID ^( BODY ( operacao )* ) $ret)
+                    // 83:9: -> ^( METHOD_DECL ID ^( BODY ( operacao )* ) $ret)
                     {
-                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:82:12: ^( METHOD_DECL ID ^( BODY ( operacao )* ) $ret)
+                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:83:12: ^( METHOD_DECL ID ^( BODY ( operacao )* ) $ret)
                         {
                         BytecodesAST root_1 = (BytecodesAST)adaptor.nil();
                         root_1 = (BytecodesAST)adaptor.becomeRoot(
@@ -1709,14 +1685,14 @@ public TreeAdaptor getTreeAdaptor() {
                         stream_ID.nextNode()
                         );
 
-                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:82:29: ^( BODY ( operacao )* )
+                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:83:29: ^( BODY ( operacao )* )
                         {
                         BytecodesAST root_2 = (BytecodesAST)adaptor.nil();
                         root_2 = (BytecodesAST)adaptor.becomeRoot(
                         (BytecodesAST)adaptor.create(BODY, "BODY")
                         , root_2);
 
-                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:82:36: ( operacao )*
+                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:83:36: ( operacao )*
                         while ( stream_operacao.hasNext() ) {
                             adaptor.addChild(root_2, stream_operacao.nextTree());
 
@@ -1739,63 +1715,63 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 5 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:83:7: '.method' ID '(' params= parametros ')' tipo NEWLINE ( operacao )* ret= retorno NEWLINE '.end method'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:84:7: '.method' ID '(' params= parametros ')' ret= tipo NEWLINE ( operacao )* '.end method'
                     {
-                    string_literal57=(Token)match(input,33,FOLLOW_33_in_membroClasse709);  
-                    stream_33.add(string_literal57);
+                    string_literal53=(Token)match(input,33,FOLLOW_33_in_membroClasse711);  
+                    stream_33.add(string_literal53);
 
 
-                    ID58=(Token)match(input,ID,FOLLOW_ID_in_membroClasse711);  
-                    stream_ID.add(ID58);
+                    ID54=(Token)match(input,ID,FOLLOW_ID_in_membroClasse713);  
+                    stream_ID.add(ID54);
 
 
-                    char_literal59=(Token)match(input,26,FOLLOW_26_in_membroClasse713);  
-                    stream_26.add(char_literal59);
+                    char_literal55=(Token)match(input,26,FOLLOW_26_in_membroClasse715);  
+                    stream_26.add(char_literal55);
 
 
-                    pushFollow(FOLLOW_parametros_in_membroClasse719);
+                    pushFollow(FOLLOW_parametros_in_membroClasse721);
                     params=parametros();
 
                     state._fsp--;
 
                     stream_parametros.add(params.getTree());
 
-                    char_literal60=(Token)match(input,28,FOLLOW_28_in_membroClasse721);  
-                    stream_28.add(char_literal60);
+                    char_literal56=(Token)match(input,28,FOLLOW_28_in_membroClasse723);  
+                    stream_28.add(char_literal56);
 
 
-                    pushFollow(FOLLOW_tipo_in_membroClasse723);
-                    tipo61=tipo();
+                    pushFollow(FOLLOW_tipo_in_membroClasse729);
+                    ret=tipo();
 
                     state._fsp--;
 
-                    stream_tipo.add(tipo61.getTree());
+                    stream_tipo.add(ret.getTree());
 
-                    NEWLINE62=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_membroClasse725);  
-                    stream_NEWLINE.add(NEWLINE62);
+                    NEWLINE57=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_membroClasse731);  
+                    stream_NEWLINE.add(NEWLINE57);
 
 
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:83:61: ( operacao )*
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:84:67: ( operacao )*
                     loop11:
                     do {
                         int alt11=2;
                         int LA11_0 = input.LA(1);
 
-                        if ( (LA11_0==ID||LA11_0==NEWLINE||(LA11_0 >= 37 && LA11_0 <= 42)||(LA11_0 >= 44 && LA11_0 <= 84)||(LA11_0 >= 86 && LA11_0 <= 98)) ) {
+                        if ( (LA11_0==ID||LA11_0==NEWLINE||(LA11_0 >= 37 && LA11_0 <= 99)) ) {
                             alt11=1;
                         }
 
 
                         switch (alt11) {
                     	case 1 :
-                    	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:83:61: operacao
+                    	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:84:67: operacao
                     	    {
-                    	    pushFollow(FOLLOW_operacao_in_membroClasse727);
-                    	    operacao63=operacao();
+                    	    pushFollow(FOLLOW_operacao_in_membroClasse733);
+                    	    operacao58=operacao();
 
                     	    state._fsp--;
 
-                    	    stream_operacao.add(operacao63.getTree());
+                    	    stream_operacao.add(operacao58.getTree());
 
                     	    }
                     	    break;
@@ -1806,23 +1782,12 @@ public TreeAdaptor getTreeAdaptor() {
                     } while (true);
 
 
-                    pushFollow(FOLLOW_retorno_in_membroClasse734);
-                    ret=retorno();
-
-                    state._fsp--;
-
-                    stream_retorno.add(ret.getTree());
-
-                    NEWLINE64=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_membroClasse736);  
-                    stream_NEWLINE.add(NEWLINE64);
-
-
-                    string_literal65=(Token)match(input,31,FOLLOW_31_in_membroClasse738);  
-                    stream_31.add(string_literal65);
+                    string_literal59=(Token)match(input,31,FOLLOW_31_in_membroClasse736);  
+                    stream_31.add(string_literal59);
 
 
                     // AST REWRITE
-                    // elements: params, ID, operacao, ret
+                    // elements: operacao, params, ID, ret
                     // token labels: 
                     // rule labels: ret, retval, params
                     // token list labels: 
@@ -1834,9 +1799,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_params=new RewriteRuleSubtreeStream(adaptor,"rule params",params!=null?params.tree:null);
 
                     root_0 = (BytecodesAST)adaptor.nil();
-                    // 84:9: -> ^( METHOD_DECL ID $params ^( BODY ( operacao )* ) $ret)
+                    // 85:9: -> ^( METHOD_DECL ID $params ^( BODY ( operacao )* ) $ret)
                     {
-                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:84:12: ^( METHOD_DECL ID $params ^( BODY ( operacao )* ) $ret)
+                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:85:12: ^( METHOD_DECL ID $params ^( BODY ( operacao )* ) $ret)
                         {
                         BytecodesAST root_1 = (BytecodesAST)adaptor.nil();
                         root_1 = (BytecodesAST)adaptor.becomeRoot(
@@ -1849,14 +1814,14 @@ public TreeAdaptor getTreeAdaptor() {
 
                         adaptor.addChild(root_1, stream_params.nextTree());
 
-                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:84:37: ^( BODY ( operacao )* )
+                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:85:37: ^( BODY ( operacao )* )
                         {
                         BytecodesAST root_2 = (BytecodesAST)adaptor.nil();
                         root_2 = (BytecodesAST)adaptor.becomeRoot(
                         (BytecodesAST)adaptor.create(BODY, "BODY")
                         , root_2);
 
-                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:84:44: ( operacao )*
+                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:85:44: ( operacao )*
                         while ( stream_operacao.hasNext() ) {
                             adaptor.addChild(root_2, stream_operacao.nextTree());
 
@@ -1909,7 +1874,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "parametros"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:87:1: parametros : ( ID | TIPO_REF )+ ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:88:1: parametros : ( ID | TIPO_REF )+ ;
     public final AssemblerParser.parametros_return parametros() throws RecognitionException {
         AssemblerParser.parametros_return retval = new AssemblerParser.parametros_return();
         retval.start = input.LT(1);
@@ -1917,18 +1882,18 @@ public TreeAdaptor getTreeAdaptor() {
 
         BytecodesAST root_0 = null;
 
-        Token set66=null;
+        Token set60=null;
 
-        BytecodesAST set66_tree=null;
+        BytecodesAST set60_tree=null;
 
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:87:12: ( ( ID | TIPO_REF )+ )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:87:14: ( ID | TIPO_REF )+
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:88:12: ( ( ID | TIPO_REF )+ )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:88:14: ( ID | TIPO_REF )+
             {
             root_0 = (BytecodesAST)adaptor.nil();
 
 
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:87:14: ( ID | TIPO_REF )+
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:88:14: ( ID | TIPO_REF )+
             int cnt13=0;
             loop13:
             do {
@@ -1944,12 +1909,12 @@ public TreeAdaptor getTreeAdaptor() {
             	case 1 :
             	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:
             	    {
-            	    set66=(Token)input.LT(1);
+            	    set60=(Token)input.LT(1);
 
             	    if ( input.LA(1)==ID||input.LA(1)==TIPO_REF ) {
             	        input.consume();
             	        adaptor.addChild(root_0, 
-            	        (BytecodesAST)adaptor.create(set66)
+            	        (BytecodesAST)adaptor.create(set60)
             	        );
             	        state.errorRecovery=false;
             	    }
@@ -2003,7 +1968,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "retorno"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:89:1: retorno : ( 'areturn' | 'ireturn' | 'return' );
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:90:1: retorno : ( 'areturn' | 'ireturn' | 'return' );
     public final AssemblerParser.retorno_return retorno() throws RecognitionException {
         AssemblerParser.retorno_return retval = new AssemblerParser.retorno_return();
         retval.start = input.LT(1);
@@ -2011,23 +1976,23 @@ public TreeAdaptor getTreeAdaptor() {
 
         BytecodesAST root_0 = null;
 
-        Token set67=null;
+        Token set61=null;
 
-        BytecodesAST set67_tree=null;
+        BytecodesAST set61_tree=null;
 
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:89:9: ( 'areturn' | 'ireturn' | 'return' )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:90:9: ( 'areturn' | 'ireturn' | 'return' )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:
             {
             root_0 = (BytecodesAST)adaptor.nil();
 
 
-            set67=(Token)input.LT(1);
+            set61=(Token)input.LT(1);
 
             if ( input.LA(1)==43||input.LA(1)==85||input.LA(1)==99 ) {
                 input.consume();
                 adaptor.addChild(root_0, 
-                (BytecodesAST)adaptor.create(set67)
+                (BytecodesAST)adaptor.create(set61)
                 );
                 state.errorRecovery=false;
             }
@@ -2068,7 +2033,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "manipulacaoObjetos"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:91:1: manipulacaoObjetos : (a= 'getfield' b= campo tipo -> ^( 'getfield' $b tipo ) |a= 'putfield' b= campo tipo -> ^( 'putfield' $b tipo ) |a= 'invokespecial' c= classe '/' d= chamadaMetodo -> ^( 'invokespecial' $c $d) |a= 'new' c= classe -> ^( 'new' $c) );
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:92:1: manipulacaoObjetos : (a= 'getfield' b= campo tipo -> ^( 'getfield' $b tipo ) |a= 'putfield' b= campo tipo -> ^( 'putfield' $b tipo ) |a= 'invokespecial' c= classe '/' d= chamadaMetodo -> ^( 'invokespecial' $c $d) |a= 'new' c= classe -> ^( 'new' $c) );
     public final AssemblerParser.manipulacaoObjetos_return manipulacaoObjetos() throws RecognitionException {
         AssemblerParser.manipulacaoObjetos_return retval = new AssemblerParser.manipulacaoObjetos_return();
         retval.start = input.LT(1);
@@ -2077,20 +2042,20 @@ public TreeAdaptor getTreeAdaptor() {
         BytecodesAST root_0 = null;
 
         Token a=null;
-        Token char_literal70=null;
+        Token char_literal64=null;
         AssemblerParser.campo_return b =null;
 
         AssemblerParser.classe_return c =null;
 
         AssemblerParser.chamadaMetodo_return d =null;
 
-        AssemblerParser.tipo_return tipo68 =null;
+        AssemblerParser.tipo_return tipo62 =null;
 
-        AssemblerParser.tipo_return tipo69 =null;
+        AssemblerParser.tipo_return tipo63 =null;
 
 
         BytecodesAST a_tree=null;
-        BytecodesAST char_literal70_tree=null;
+        BytecodesAST char_literal64_tree=null;
         RewriteRuleTokenStream stream_98=new RewriteRuleTokenStream(adaptor,"token 98");
         RewriteRuleTokenStream stream_94=new RewriteRuleTokenStream(adaptor,"token 94");
         RewriteRuleTokenStream stream_82=new RewriteRuleTokenStream(adaptor,"token 82");
@@ -2101,7 +2066,7 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_chamadaMetodo=new RewriteRuleSubtreeStream(adaptor,"rule chamadaMetodo");
         RewriteRuleSubtreeStream stream_tipo=new RewriteRuleSubtreeStream(adaptor,"rule tipo");
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:91:20: (a= 'getfield' b= campo tipo -> ^( 'getfield' $b tipo ) |a= 'putfield' b= campo tipo -> ^( 'putfield' $b tipo ) |a= 'invokespecial' c= classe '/' d= chamadaMetodo -> ^( 'invokespecial' $c $d) |a= 'new' c= classe -> ^( 'new' $c) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:92:20: (a= 'getfield' b= campo tipo -> ^( 'getfield' $b tipo ) |a= 'putfield' b= campo tipo -> ^( 'putfield' $b tipo ) |a= 'invokespecial' c= classe '/' d= chamadaMetodo -> ^( 'invokespecial' $c $d) |a= 'new' c= classe -> ^( 'new' $c) )
             int alt14=4;
             switch ( input.LA(1) ) {
             case 50:
@@ -2134,28 +2099,28 @@ public TreeAdaptor getTreeAdaptor() {
 
             switch (alt14) {
                 case 1 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:91:22: a= 'getfield' b= campo tipo
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:92:22: a= 'getfield' b= campo tipo
                     {
-                    a=(Token)match(input,50,FOLLOW_50_in_manipulacaoObjetos832);  
+                    a=(Token)match(input,50,FOLLOW_50_in_manipulacaoObjetos830);  
                     stream_50.add(a);
 
 
-                    pushFollow(FOLLOW_campo_in_manipulacaoObjetos838);
+                    pushFollow(FOLLOW_campo_in_manipulacaoObjetos836);
                     b=campo();
 
                     state._fsp--;
 
                     stream_campo.add(b.getTree());
 
-                    pushFollow(FOLLOW_tipo_in_manipulacaoObjetos840);
-                    tipo68=tipo();
+                    pushFollow(FOLLOW_tipo_in_manipulacaoObjetos838);
+                    tipo62=tipo();
 
                     state._fsp--;
 
-                    stream_tipo.add(tipo68.getTree());
+                    stream_tipo.add(tipo62.getTree());
 
                     // AST REWRITE
-                    // elements: 50, b, tipo
+                    // elements: tipo, 50, b
                     // token labels: 
                     // rule labels: retval, b
                     // token list labels: 
@@ -2166,9 +2131,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_b=new RewriteRuleSubtreeStream(adaptor,"rule b",b!=null?b.tree:null);
 
                     root_0 = (BytecodesAST)adaptor.nil();
-                    // 91:52: -> ^( 'getfield' $b tipo )
+                    // 92:52: -> ^( 'getfield' $b tipo )
                     {
-                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:91:55: ^( 'getfield' $b tipo )
+                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:92:55: ^( 'getfield' $b tipo )
                         {
                         BytecodesAST root_1 = (BytecodesAST)adaptor.nil();
                         root_1 = (BytecodesAST)adaptor.becomeRoot(
@@ -2190,28 +2155,28 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:92:22: a= 'putfield' b= campo tipo
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:93:22: a= 'putfield' b= campo tipo
                     {
-                    a=(Token)match(input,98,FOLLOW_98_in_manipulacaoObjetos878);  
+                    a=(Token)match(input,98,FOLLOW_98_in_manipulacaoObjetos876);  
                     stream_98.add(a);
 
 
-                    pushFollow(FOLLOW_campo_in_manipulacaoObjetos884);
+                    pushFollow(FOLLOW_campo_in_manipulacaoObjetos882);
                     b=campo();
 
                     state._fsp--;
 
                     stream_campo.add(b.getTree());
 
-                    pushFollow(FOLLOW_tipo_in_manipulacaoObjetos886);
-                    tipo69=tipo();
+                    pushFollow(FOLLOW_tipo_in_manipulacaoObjetos884);
+                    tipo63=tipo();
 
                     state._fsp--;
 
-                    stream_tipo.add(tipo69.getTree());
+                    stream_tipo.add(tipo63.getTree());
 
                     // AST REWRITE
-                    // elements: tipo, 98, b
+                    // elements: b, 98, tipo
                     // token labels: 
                     // rule labels: retval, b
                     // token list labels: 
@@ -2222,9 +2187,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_b=new RewriteRuleSubtreeStream(adaptor,"rule b",b!=null?b.tree:null);
 
                     root_0 = (BytecodesAST)adaptor.nil();
-                    // 92:52: -> ^( 'putfield' $b tipo )
+                    // 93:52: -> ^( 'putfield' $b tipo )
                     {
-                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:92:55: ^( 'putfield' $b tipo )
+                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:93:55: ^( 'putfield' $b tipo )
                         {
                         BytecodesAST root_1 = (BytecodesAST)adaptor.nil();
                         root_1 = (BytecodesAST)adaptor.becomeRoot(
@@ -2246,24 +2211,24 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:93:22: a= 'invokespecial' c= classe '/' d= chamadaMetodo
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:94:22: a= 'invokespecial' c= classe '/' d= chamadaMetodo
                     {
-                    a=(Token)match(input,82,FOLLOW_82_in_manipulacaoObjetos924);  
+                    a=(Token)match(input,82,FOLLOW_82_in_manipulacaoObjetos922);  
                     stream_82.add(a);
 
 
-                    pushFollow(FOLLOW_classe_in_manipulacaoObjetos930);
+                    pushFollow(FOLLOW_classe_in_manipulacaoObjetos928);
                     c=classe();
 
                     state._fsp--;
 
                     stream_classe.add(c.getTree());
 
-                    char_literal70=(Token)match(input,35,FOLLOW_35_in_manipulacaoObjetos932);  
-                    stream_35.add(char_literal70);
+                    char_literal64=(Token)match(input,35,FOLLOW_35_in_manipulacaoObjetos930);  
+                    stream_35.add(char_literal64);
 
 
-                    pushFollow(FOLLOW_chamadaMetodo_in_manipulacaoObjetos938);
+                    pushFollow(FOLLOW_chamadaMetodo_in_manipulacaoObjetos936);
                     d=chamadaMetodo();
 
                     state._fsp--;
@@ -2271,7 +2236,7 @@ public TreeAdaptor getTreeAdaptor() {
                     stream_chamadaMetodo.add(d.getTree());
 
                     // AST REWRITE
-                    // elements: c, 82, d
+                    // elements: c, d, 82
                     // token labels: 
                     // rule labels: retval, d, c
                     // token list labels: 
@@ -2283,9 +2248,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"rule c",c!=null?c.tree:null);
 
                     root_0 = (BytecodesAST)adaptor.nil();
-                    // 94:23: -> ^( 'invokespecial' $c $d)
+                    // 95:23: -> ^( 'invokespecial' $c $d)
                     {
-                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:94:26: ^( 'invokespecial' $c $d)
+                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:95:26: ^( 'invokespecial' $c $d)
                         {
                         BytecodesAST root_1 = (BytecodesAST)adaptor.nil();
                         root_1 = (BytecodesAST)adaptor.becomeRoot(
@@ -2307,13 +2272,13 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:95:22: a= 'new' c= classe
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:96:22: a= 'new' c= classe
                     {
-                    a=(Token)match(input,94,FOLLOW_94_in_manipulacaoObjetos999);  
+                    a=(Token)match(input,94,FOLLOW_94_in_manipulacaoObjetos997);  
                     stream_94.add(a);
 
 
-                    pushFollow(FOLLOW_classe_in_manipulacaoObjetos1004);
+                    pushFollow(FOLLOW_classe_in_manipulacaoObjetos1002);
                     c=classe();
 
                     state._fsp--;
@@ -2321,7 +2286,7 @@ public TreeAdaptor getTreeAdaptor() {
                     stream_classe.add(c.getTree());
 
                     // AST REWRITE
-                    // elements: 94, c
+                    // elements: c, 94
                     // token labels: 
                     // rule labels: retval, c
                     // token list labels: 
@@ -2332,9 +2297,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_c=new RewriteRuleSubtreeStream(adaptor,"rule c",c!=null?c.tree:null);
 
                     root_0 = (BytecodesAST)adaptor.nil();
-                    // 95:42: -> ^( 'new' $c)
+                    // 96:42: -> ^( 'new' $c)
                     {
-                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:95:45: ^( 'new' $c)
+                        // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:96:45: ^( 'new' $c)
                         {
                         BytecodesAST root_1 = (BytecodesAST)adaptor.nil();
                         root_1 = (BytecodesAST)adaptor.becomeRoot(
@@ -2384,7 +2349,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "tipo"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:99:1: tipo : ( INT | VOID | TIPO_REF );
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:100:1: tipo : ( INT | VOID | TIPO_REF );
     public final AssemblerParser.tipo_return tipo() throws RecognitionException {
         AssemblerParser.tipo_return retval = new AssemblerParser.tipo_return();
         retval.start = input.LT(1);
@@ -2392,23 +2357,23 @@ public TreeAdaptor getTreeAdaptor() {
 
         BytecodesAST root_0 = null;
 
-        Token set71=null;
+        Token set65=null;
 
-        BytecodesAST set71_tree=null;
+        BytecodesAST set65_tree=null;
 
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:99:6: ( INT | VOID | TIPO_REF )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:100:6: ( INT | VOID | TIPO_REF )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:
             {
             root_0 = (BytecodesAST)adaptor.nil();
 
 
-            set71=(Token)input.LT(1);
+            set65=(Token)input.LT(1);
 
             if ( input.LA(1)==INT||(input.LA(1) >= TIPO_REF && input.LA(1) <= VOID) ) {
                 input.consume();
                 adaptor.addChild(root_0, 
-                (BytecodesAST)adaptor.create(set71)
+                (BytecodesAST)adaptor.create(set65)
                 );
                 state.errorRecovery=false;
             }
@@ -2449,7 +2414,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "aritmetica"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:101:1: aritmetica : (a= 'iadd' |a= 'isub' |a= 'imul' |a= 'idiv' |a= 'irem' |a= 'iinc' |a= 'ineg' ) -> ^( ARITMETICA $a) ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:102:1: aritmetica : (a= 'iadd' |a= 'isub' |a= 'imul' |a= 'idiv' |a= 'irem' |a= 'iinc' |a= 'ineg' ) -> ^( ARITMETICA $a) ;
     public final AssemblerParser.aritmetica_return aritmetica() throws RecognitionException {
         AssemblerParser.aritmetica_return retval = new AssemblerParser.aritmetica_return();
         retval.start = input.LT(1);
@@ -2469,10 +2434,10 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_84=new RewriteRuleTokenStream(adaptor,"token 84");
 
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:101:12: ( (a= 'iadd' |a= 'isub' |a= 'imul' |a= 'idiv' |a= 'irem' |a= 'iinc' |a= 'ineg' ) -> ^( ARITMETICA $a) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:101:14: (a= 'iadd' |a= 'isub' |a= 'imul' |a= 'idiv' |a= 'irem' |a= 'iinc' |a= 'ineg' )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:102:12: ( (a= 'iadd' |a= 'isub' |a= 'imul' |a= 'idiv' |a= 'irem' |a= 'iinc' |a= 'ineg' ) -> ^( ARITMETICA $a) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:102:14: (a= 'iadd' |a= 'isub' |a= 'imul' |a= 'idiv' |a= 'irem' |a= 'iinc' |a= 'ineg' )
             {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:101:14: (a= 'iadd' |a= 'isub' |a= 'imul' |a= 'idiv' |a= 'irem' |a= 'iinc' |a= 'ineg' )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:102:14: (a= 'iadd' |a= 'isub' |a= 'imul' |a= 'idiv' |a= 'irem' |a= 'iinc' |a= 'ineg' )
             int alt15=7;
             switch ( input.LA(1) ) {
             case 52:
@@ -2520,63 +2485,63 @@ public TreeAdaptor getTreeAdaptor() {
 
             switch (alt15) {
                 case 1 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:101:16: a= 'iadd'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:102:16: a= 'iadd'
                     {
-                    a=(Token)match(input,52,FOLLOW_52_in_aritmetica1082);  
+                    a=(Token)match(input,52,FOLLOW_52_in_aritmetica1080);  
                     stream_52.add(a);
 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:102:19: a= 'isub'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:103:19: a= 'isub'
                     {
-                    a=(Token)match(input,91,FOLLOW_91_in_aritmetica1106);  
+                    a=(Token)match(input,91,FOLLOW_91_in_aritmetica1104);  
                     stream_91.add(a);
 
 
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:103:19: a= 'imul'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:104:19: a= 'imul'
                     {
-                    a=(Token)match(input,80,FOLLOW_80_in_aritmetica1130);  
+                    a=(Token)match(input,80,FOLLOW_80_in_aritmetica1128);  
                     stream_80.add(a);
 
 
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:104:19: a= 'idiv'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:105:19: a= 'idiv'
                     {
-                    a=(Token)match(input,61,FOLLOW_61_in_aritmetica1154);  
+                    a=(Token)match(input,61,FOLLOW_61_in_aritmetica1152);  
                     stream_61.add(a);
 
 
                     }
                     break;
                 case 5 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:105:19: a= 'irem'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:106:19: a= 'irem'
                     {
-                    a=(Token)match(input,84,FOLLOW_84_in_aritmetica1178);  
+                    a=(Token)match(input,84,FOLLOW_84_in_aritmetica1176);  
                     stream_84.add(a);
 
 
                     }
                     break;
                 case 6 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:106:19: a= 'iinc'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:107:19: a= 'iinc'
                     {
-                    a=(Token)match(input,74,FOLLOW_74_in_aritmetica1202);  
+                    a=(Token)match(input,74,FOLLOW_74_in_aritmetica1200);  
                     stream_74.add(a);
 
 
                     }
                     break;
                 case 7 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:107:19: a= 'ineg'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:108:19: a= 'ineg'
                     {
-                    a=(Token)match(input,81,FOLLOW_81_in_aritmetica1226);  
+                    a=(Token)match(input,81,FOLLOW_81_in_aritmetica1224);  
                     stream_81.add(a);
 
 
@@ -2598,9 +2563,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (BytecodesAST)adaptor.nil();
-            // 109:14: -> ^( ARITMETICA $a)
+            // 110:14: -> ^( ARITMETICA $a)
             {
-                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:109:17: ^( ARITMETICA $a)
+                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:110:17: ^( ARITMETICA $a)
                 {
                 BytecodesAST root_1 = (BytecodesAST)adaptor.nil();
                 root_1 = (BytecodesAST)adaptor.becomeRoot(
@@ -2648,7 +2613,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "load"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:112:1: load : (a= 'iconst_m1' |a= 'iconst_0' |a= 'iconst_1' |a= 'iconst_2' |a= 'iconst_3' |a= 'iconst_4' |a= 'iconst_5' |a= 'aconst_null' |a= 'iload_0' |a= 'iload_1' |a= 'iload_2' |a= 'iload_3' |a= 'aload_0' |a= 'aload_1' |a= 'aload_2' |a= 'aload_3' ) -> ^( LOAD $a) ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:113:1: load : (a= 'iconst_m1' |a= 'iconst_0' |a= 'iconst_1' |a= 'iconst_2' |a= 'iconst_3' |a= 'iconst_4' |a= 'iconst_5' |a= 'aconst_null' |a= 'iload_0' |a= 'iload_1' |a= 'iload_2' |a= 'iload_3' |a= 'aload_0' |a= 'aload_1' |a= 'aload_2' |a= 'aload_3' ) -> ^( LOAD $a) ;
     public final AssemblerParser.load_return load() throws RecognitionException {
         AssemblerParser.load_return retval = new AssemblerParser.load_return();
         retval.start = input.LT(1);
@@ -2677,10 +2642,10 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_76=new RewriteRuleTokenStream(adaptor,"token 76");
 
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:112:6: ( (a= 'iconst_m1' |a= 'iconst_0' |a= 'iconst_1' |a= 'iconst_2' |a= 'iconst_3' |a= 'iconst_4' |a= 'iconst_5' |a= 'aconst_null' |a= 'iload_0' |a= 'iload_1' |a= 'iload_2' |a= 'iload_3' |a= 'aload_0' |a= 'aload_1' |a= 'aload_2' |a= 'aload_3' ) -> ^( LOAD $a) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:112:8: (a= 'iconst_m1' |a= 'iconst_0' |a= 'iconst_1' |a= 'iconst_2' |a= 'iconst_3' |a= 'iconst_4' |a= 'iconst_5' |a= 'aconst_null' |a= 'iload_0' |a= 'iload_1' |a= 'iload_2' |a= 'iload_3' |a= 'aload_0' |a= 'aload_1' |a= 'aload_2' |a= 'aload_3' )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:113:6: ( (a= 'iconst_m1' |a= 'iconst_0' |a= 'iconst_1' |a= 'iconst_2' |a= 'iconst_3' |a= 'iconst_4' |a= 'iconst_5' |a= 'aconst_null' |a= 'iload_0' |a= 'iload_1' |a= 'iload_2' |a= 'iload_3' |a= 'aload_0' |a= 'aload_1' |a= 'aload_2' |a= 'aload_3' ) -> ^( LOAD $a) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:113:8: (a= 'iconst_m1' |a= 'iconst_0' |a= 'iconst_1' |a= 'iconst_2' |a= 'iconst_3' |a= 'iconst_4' |a= 'iconst_5' |a= 'aconst_null' |a= 'iload_0' |a= 'iload_1' |a= 'iload_2' |a= 'iload_3' |a= 'aload_0' |a= 'aload_1' |a= 'aload_2' |a= 'aload_3' )
             {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:112:8: (a= 'iconst_m1' |a= 'iconst_0' |a= 'iconst_1' |a= 'iconst_2' |a= 'iconst_3' |a= 'iconst_4' |a= 'iconst_5' |a= 'aconst_null' |a= 'iload_0' |a= 'iload_1' |a= 'iload_2' |a= 'iload_3' |a= 'aload_0' |a= 'aload_1' |a= 'aload_2' |a= 'aload_3' )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:113:8: (a= 'iconst_m1' |a= 'iconst_0' |a= 'iconst_1' |a= 'iconst_2' |a= 'iconst_3' |a= 'iconst_4' |a= 'iconst_5' |a= 'aconst_null' |a= 'iload_0' |a= 'iload_1' |a= 'iload_2' |a= 'iload_3' |a= 'aload_0' |a= 'aload_1' |a= 'aload_2' |a= 'aload_3' )
             int alt16=16;
             switch ( input.LA(1) ) {
             case 60:
@@ -2773,144 +2738,144 @@ public TreeAdaptor getTreeAdaptor() {
 
             switch (alt16) {
                 case 1 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:112:10: a= 'iconst_m1'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:113:10: a= 'iconst_m1'
                     {
-                    a=(Token)match(input,60,FOLLOW_60_in_load1300);  
+                    a=(Token)match(input,60,FOLLOW_60_in_load1298);  
                     stream_60.add(a);
 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:113:13: a= 'iconst_0'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:114:13: a= 'iconst_0'
                     {
-                    a=(Token)match(input,54,FOLLOW_54_in_load1318);  
+                    a=(Token)match(input,54,FOLLOW_54_in_load1316);  
                     stream_54.add(a);
 
 
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:114:13: a= 'iconst_1'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:115:13: a= 'iconst_1'
                     {
-                    a=(Token)match(input,55,FOLLOW_55_in_load1336);  
+                    a=(Token)match(input,55,FOLLOW_55_in_load1334);  
                     stream_55.add(a);
 
 
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:115:13: a= 'iconst_2'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:116:13: a= 'iconst_2'
                     {
-                    a=(Token)match(input,56,FOLLOW_56_in_load1354);  
+                    a=(Token)match(input,56,FOLLOW_56_in_load1352);  
                     stream_56.add(a);
 
 
                     }
                     break;
                 case 5 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:116:13: a= 'iconst_3'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:117:13: a= 'iconst_3'
                     {
-                    a=(Token)match(input,57,FOLLOW_57_in_load1372);  
+                    a=(Token)match(input,57,FOLLOW_57_in_load1370);  
                     stream_57.add(a);
 
 
                     }
                     break;
                 case 6 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:117:13: a= 'iconst_4'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:118:13: a= 'iconst_4'
                     {
-                    a=(Token)match(input,58,FOLLOW_58_in_load1390);  
+                    a=(Token)match(input,58,FOLLOW_58_in_load1388);  
                     stream_58.add(a);
 
 
                     }
                     break;
                 case 7 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:118:13: a= 'iconst_5'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:119:13: a= 'iconst_5'
                     {
-                    a=(Token)match(input,59,FOLLOW_59_in_load1408);  
+                    a=(Token)match(input,59,FOLLOW_59_in_load1406);  
                     stream_59.add(a);
 
 
                     }
                     break;
                 case 8 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:119:13: a= 'aconst_null'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:120:13: a= 'aconst_null'
                     {
-                    a=(Token)match(input,37,FOLLOW_37_in_load1426);  
+                    a=(Token)match(input,37,FOLLOW_37_in_load1424);  
                     stream_37.add(a);
 
 
                     }
                     break;
                 case 9 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:120:13: a= 'iload_0'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:121:13: a= 'iload_0'
                     {
-                    a=(Token)match(input,76,FOLLOW_76_in_load1444);  
+                    a=(Token)match(input,76,FOLLOW_76_in_load1442);  
                     stream_76.add(a);
 
 
                     }
                     break;
                 case 10 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:121:13: a= 'iload_1'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:122:13: a= 'iload_1'
                     {
-                    a=(Token)match(input,77,FOLLOW_77_in_load1462);  
+                    a=(Token)match(input,77,FOLLOW_77_in_load1460);  
                     stream_77.add(a);
 
 
                     }
                     break;
                 case 11 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:122:13: a= 'iload_2'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:123:13: a= 'iload_2'
                     {
-                    a=(Token)match(input,78,FOLLOW_78_in_load1480);  
+                    a=(Token)match(input,78,FOLLOW_78_in_load1478);  
                     stream_78.add(a);
 
 
                     }
                     break;
                 case 12 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:123:13: a= 'iload_3'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:124:13: a= 'iload_3'
                     {
-                    a=(Token)match(input,79,FOLLOW_79_in_load1498);  
+                    a=(Token)match(input,79,FOLLOW_79_in_load1496);  
                     stream_79.add(a);
 
 
                     }
                     break;
                 case 13 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:124:13: a= 'aload_0'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:125:13: a= 'aload_0'
                     {
-                    a=(Token)match(input,39,FOLLOW_39_in_load1516);  
+                    a=(Token)match(input,39,FOLLOW_39_in_load1514);  
                     stream_39.add(a);
 
 
                     }
                     break;
                 case 14 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:125:13: a= 'aload_1'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:126:13: a= 'aload_1'
                     {
-                    a=(Token)match(input,40,FOLLOW_40_in_load1534);  
+                    a=(Token)match(input,40,FOLLOW_40_in_load1532);  
                     stream_40.add(a);
 
 
                     }
                     break;
                 case 15 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:126:13: a= 'aload_2'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:127:13: a= 'aload_2'
                     {
-                    a=(Token)match(input,41,FOLLOW_41_in_load1552);  
+                    a=(Token)match(input,41,FOLLOW_41_in_load1550);  
                     stream_41.add(a);
 
 
                     }
                     break;
                 case 16 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:127:13: a= 'aload_3'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:128:13: a= 'aload_3'
                     {
-                    a=(Token)match(input,42,FOLLOW_42_in_load1570);  
+                    a=(Token)match(input,42,FOLLOW_42_in_load1568);  
                     stream_42.add(a);
 
 
@@ -2932,9 +2897,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (BytecodesAST)adaptor.nil();
-            // 129:8: -> ^( LOAD $a)
+            // 130:8: -> ^( LOAD $a)
             {
-                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:129:11: ^( LOAD $a)
+                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:130:11: ^( LOAD $a)
                 {
                 BytecodesAST root_1 = (BytecodesAST)adaptor.nil();
                 root_1 = (BytecodesAST)adaptor.becomeRoot(
@@ -2982,7 +2947,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "loadint"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:132:1: loadint : (a= 'iload' b= INTEIRO |a= 'ldc' b= INTEIRO |a= 'aload' b= INTEIRO ) -> ^( LOAD $a $b) ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:133:1: loadint : (a= 'iload' b= INTEIRO |a= 'ldc' b= INTEIRO |a= 'aload' b= INTEIRO ) -> ^( LOAD $a $b) ;
     public final AssemblerParser.loadint_return loadint() throws RecognitionException {
         AssemblerParser.loadint_return retval = new AssemblerParser.loadint_return();
         retval.start = input.LT(1);
@@ -3001,10 +2966,10 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_38=new RewriteRuleTokenStream(adaptor,"token 38");
 
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:132:9: ( (a= 'iload' b= INTEIRO |a= 'ldc' b= INTEIRO |a= 'aload' b= INTEIRO ) -> ^( LOAD $a $b) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:132:11: (a= 'iload' b= INTEIRO |a= 'ldc' b= INTEIRO |a= 'aload' b= INTEIRO )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:133:9: ( (a= 'iload' b= INTEIRO |a= 'ldc' b= INTEIRO |a= 'aload' b= INTEIRO ) -> ^( LOAD $a $b) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:133:11: (a= 'iload' b= INTEIRO |a= 'ldc' b= INTEIRO |a= 'aload' b= INTEIRO )
             {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:132:11: (a= 'iload' b= INTEIRO |a= 'ldc' b= INTEIRO |a= 'aload' b= INTEIRO )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:133:11: (a= 'iload' b= INTEIRO |a= 'ldc' b= INTEIRO |a= 'aload' b= INTEIRO )
             int alt17=3;
             switch ( input.LA(1) ) {
             case 75:
@@ -3032,39 +2997,39 @@ public TreeAdaptor getTreeAdaptor() {
 
             switch (alt17) {
                 case 1 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:132:13: a= 'iload' b= INTEIRO
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:133:13: a= 'iload' b= INTEIRO
                     {
-                    a=(Token)match(input,75,FOLLOW_75_in_loadint1620);  
+                    a=(Token)match(input,75,FOLLOW_75_in_loadint1618);  
                     stream_75.add(a);
 
 
-                    b=(Token)match(input,INTEIRO,FOLLOW_INTEIRO_in_loadint1626);  
+                    b=(Token)match(input,INTEIRO,FOLLOW_INTEIRO_in_loadint1624);  
                     stream_INTEIRO.add(b);
 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:133:15: a= 'ldc' b= INTEIRO
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:134:15: a= 'ldc' b= INTEIRO
                     {
-                    a=(Token)match(input,93,FOLLOW_93_in_loadint1646);  
+                    a=(Token)match(input,93,FOLLOW_93_in_loadint1644);  
                     stream_93.add(a);
 
 
-                    b=(Token)match(input,INTEIRO,FOLLOW_INTEIRO_in_loadint1652);  
+                    b=(Token)match(input,INTEIRO,FOLLOW_INTEIRO_in_loadint1650);  
                     stream_INTEIRO.add(b);
 
 
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:134:15: a= 'aload' b= INTEIRO
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:135:15: a= 'aload' b= INTEIRO
                     {
-                    a=(Token)match(input,38,FOLLOW_38_in_loadint1672);  
+                    a=(Token)match(input,38,FOLLOW_38_in_loadint1670);  
                     stream_38.add(a);
 
 
-                    b=(Token)match(input,INTEIRO,FOLLOW_INTEIRO_in_loadint1678);  
+                    b=(Token)match(input,INTEIRO,FOLLOW_INTEIRO_in_loadint1676);  
                     stream_INTEIRO.add(b);
 
 
@@ -3087,9 +3052,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (BytecodesAST)adaptor.nil();
-            // 136:11: -> ^( LOAD $a $b)
+            // 137:11: -> ^( LOAD $a $b)
             {
-                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:136:14: ^( LOAD $a $b)
+                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:137:14: ^( LOAD $a $b)
                 {
                 BytecodesAST root_1 = (BytecodesAST)adaptor.nil();
                 root_1 = (BytecodesAST)adaptor.becomeRoot(
@@ -3139,7 +3104,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "store"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:139:1: store : (a= 'istore_0' |a= 'istore_1' |a= 'istore_2' |a= 'istore_3' |a= 'astore_0' |a= 'astore_1' |a= 'astore_2' |a= 'astore_3' ) -> ^( STORE $a) ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:140:1: store : (a= 'istore_0' |a= 'istore_1' |a= 'istore_2' |a= 'istore_3' |a= 'astore_0' |a= 'astore_1' |a= 'astore_2' |a= 'astore_3' ) -> ^( STORE $a) ;
     public final AssemblerParser.store_return store() throws RecognitionException {
         AssemblerParser.store_return retval = new AssemblerParser.store_return();
         retval.start = input.LT(1);
@@ -3160,10 +3125,10 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_89=new RewriteRuleTokenStream(adaptor,"token 89");
 
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:139:7: ( (a= 'istore_0' |a= 'istore_1' |a= 'istore_2' |a= 'istore_3' |a= 'astore_0' |a= 'astore_1' |a= 'astore_2' |a= 'astore_3' ) -> ^( STORE $a) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:139:9: (a= 'istore_0' |a= 'istore_1' |a= 'istore_2' |a= 'istore_3' |a= 'astore_0' |a= 'astore_1' |a= 'astore_2' |a= 'astore_3' )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:140:7: ( (a= 'istore_0' |a= 'istore_1' |a= 'istore_2' |a= 'istore_3' |a= 'astore_0' |a= 'astore_1' |a= 'astore_2' |a= 'astore_3' ) -> ^( STORE $a) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:140:9: (a= 'istore_0' |a= 'istore_1' |a= 'istore_2' |a= 'istore_3' |a= 'astore_0' |a= 'astore_1' |a= 'astore_2' |a= 'astore_3' )
             {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:139:9: (a= 'istore_0' |a= 'istore_1' |a= 'istore_2' |a= 'istore_3' |a= 'astore_0' |a= 'astore_1' |a= 'astore_2' |a= 'astore_3' )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:140:9: (a= 'istore_0' |a= 'istore_1' |a= 'istore_2' |a= 'istore_3' |a= 'astore_0' |a= 'astore_1' |a= 'astore_2' |a= 'astore_3' )
             int alt18=8;
             switch ( input.LA(1) ) {
             case 87:
@@ -3216,72 +3181,72 @@ public TreeAdaptor getTreeAdaptor() {
 
             switch (alt18) {
                 case 1 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:139:11: a= 'istore_0'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:140:11: a= 'istore_0'
                     {
-                    a=(Token)match(input,87,FOLLOW_87_in_store1740);  
+                    a=(Token)match(input,87,FOLLOW_87_in_store1738);  
                     stream_87.add(a);
 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:140:13: a= 'istore_1'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:141:13: a= 'istore_1'
                     {
-                    a=(Token)match(input,88,FOLLOW_88_in_store1758);  
+                    a=(Token)match(input,88,FOLLOW_88_in_store1756);  
                     stream_88.add(a);
 
 
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:141:13: a= 'istore_2'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:142:13: a= 'istore_2'
                     {
-                    a=(Token)match(input,89,FOLLOW_89_in_store1776);  
+                    a=(Token)match(input,89,FOLLOW_89_in_store1774);  
                     stream_89.add(a);
 
 
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:142:13: a= 'istore_3'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:143:13: a= 'istore_3'
                     {
-                    a=(Token)match(input,90,FOLLOW_90_in_store1794);  
+                    a=(Token)match(input,90,FOLLOW_90_in_store1792);  
                     stream_90.add(a);
 
 
                     }
                     break;
                 case 5 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:143:13: a= 'astore_0'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:144:13: a= 'astore_0'
                     {
-                    a=(Token)match(input,45,FOLLOW_45_in_store1812);  
+                    a=(Token)match(input,45,FOLLOW_45_in_store1810);  
                     stream_45.add(a);
 
 
                     }
                     break;
                 case 6 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:144:13: a= 'astore_1'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:145:13: a= 'astore_1'
                     {
-                    a=(Token)match(input,46,FOLLOW_46_in_store1830);  
+                    a=(Token)match(input,46,FOLLOW_46_in_store1828);  
                     stream_46.add(a);
 
 
                     }
                     break;
                 case 7 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:145:13: a= 'astore_2'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:146:13: a= 'astore_2'
                     {
-                    a=(Token)match(input,47,FOLLOW_47_in_store1848);  
+                    a=(Token)match(input,47,FOLLOW_47_in_store1846);  
                     stream_47.add(a);
 
 
                     }
                     break;
                 case 8 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:146:13: a= 'astore_3'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:147:13: a= 'astore_3'
                     {
-                    a=(Token)match(input,48,FOLLOW_48_in_store1866);  
+                    a=(Token)match(input,48,FOLLOW_48_in_store1864);  
                     stream_48.add(a);
 
 
@@ -3303,9 +3268,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (BytecodesAST)adaptor.nil();
-            // 148:9: -> ^( STORE $a)
+            // 149:9: -> ^( STORE $a)
             {
-                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:148:12: ^( STORE $a)
+                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:149:12: ^( STORE $a)
                 {
                 BytecodesAST root_1 = (BytecodesAST)adaptor.nil();
                 root_1 = (BytecodesAST)adaptor.becomeRoot(
@@ -3353,7 +3318,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "storeint"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:151:1: storeint : (a= 'istore' b= INTEIRO |a= 'astore' b= INTEIRO ) -> ^( STORE $a $b) ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:152:1: storeint : (a= 'istore' b= INTEIRO |a= 'astore' b= INTEIRO ) -> ^( STORE $a $b) ;
     public final AssemblerParser.storeint_return storeint() throws RecognitionException {
         AssemblerParser.storeint_return retval = new AssemblerParser.storeint_return();
         retval.start = input.LT(1);
@@ -3371,10 +3336,10 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_86=new RewriteRuleTokenStream(adaptor,"token 86");
 
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:151:10: ( (a= 'istore' b= INTEIRO |a= 'astore' b= INTEIRO ) -> ^( STORE $a $b) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:151:12: (a= 'istore' b= INTEIRO |a= 'astore' b= INTEIRO )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:152:10: ( (a= 'istore' b= INTEIRO |a= 'astore' b= INTEIRO ) -> ^( STORE $a $b) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:152:12: (a= 'istore' b= INTEIRO |a= 'astore' b= INTEIRO )
             {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:151:12: (a= 'istore' b= INTEIRO |a= 'astore' b= INTEIRO )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:152:12: (a= 'istore' b= INTEIRO |a= 'astore' b= INTEIRO )
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -3393,26 +3358,26 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt19) {
                 case 1 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:151:14: a= 'istore' b= INTEIRO
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:152:14: a= 'istore' b= INTEIRO
                     {
-                    a=(Token)match(input,86,FOLLOW_86_in_storeint1920);  
+                    a=(Token)match(input,86,FOLLOW_86_in_storeint1918);  
                     stream_86.add(a);
 
 
-                    b=(Token)match(input,INTEIRO,FOLLOW_INTEIRO_in_storeint1926);  
+                    b=(Token)match(input,INTEIRO,FOLLOW_INTEIRO_in_storeint1924);  
                     stream_INTEIRO.add(b);
 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:152:16: a= 'astore' b= INTEIRO
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:153:16: a= 'astore' b= INTEIRO
                     {
-                    a=(Token)match(input,44,FOLLOW_44_in_storeint1947);  
+                    a=(Token)match(input,44,FOLLOW_44_in_storeint1945);  
                     stream_44.add(a);
 
 
-                    b=(Token)match(input,INTEIRO,FOLLOW_INTEIRO_in_storeint1953);  
+                    b=(Token)match(input,INTEIRO,FOLLOW_INTEIRO_in_storeint1951);  
                     stream_INTEIRO.add(b);
 
 
@@ -3423,7 +3388,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: a, b
+            // elements: b, a
             // token labels: b, a
             // rule labels: retval
             // token list labels: 
@@ -3435,9 +3400,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (BytecodesAST)adaptor.nil();
-            // 154:12: -> ^( STORE $a $b)
+            // 155:12: -> ^( STORE $a $b)
             {
-                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:154:15: ^( STORE $a $b)
+                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:155:15: ^( STORE $a $b)
                 {
                 BytecodesAST root_1 = (BytecodesAST)adaptor.nil();
                 root_1 = (BytecodesAST)adaptor.becomeRoot(
@@ -3487,7 +3452,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "logica"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:157:1: logica : (a= 'iand' |a= 'ior' |a= 'ixor' ) -> ^( LOGICA $a) ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:158:1: logica : (a= 'iand' |a= 'ior' |a= 'ixor' ) -> ^( LOGICA $a) ;
     public final AssemblerParser.logica_return logica() throws RecognitionException {
         AssemblerParser.logica_return retval = new AssemblerParser.logica_return();
         retval.start = input.LT(1);
@@ -3503,10 +3468,10 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_53=new RewriteRuleTokenStream(adaptor,"token 53");
 
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:157:8: ( (a= 'iand' |a= 'ior' |a= 'ixor' ) -> ^( LOGICA $a) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:157:10: (a= 'iand' |a= 'ior' |a= 'ixor' )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:158:8: ( (a= 'iand' |a= 'ior' |a= 'ixor' ) -> ^( LOGICA $a) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:158:10: (a= 'iand' |a= 'ior' |a= 'ixor' )
             {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:157:10: (a= 'iand' |a= 'ior' |a= 'ixor' )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:158:10: (a= 'iand' |a= 'ior' |a= 'ixor' )
             int alt20=3;
             switch ( input.LA(1) ) {
             case 53:
@@ -3534,27 +3499,27 @@ public TreeAdaptor getTreeAdaptor() {
 
             switch (alt20) {
                 case 1 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:157:12: a= 'iand'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:158:12: a= 'iand'
                     {
-                    a=(Token)match(input,53,FOLLOW_53_in_logica2013);  
+                    a=(Token)match(input,53,FOLLOW_53_in_logica2011);  
                     stream_53.add(a);
 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:158:14: a= 'ior'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:159:14: a= 'ior'
                     {
-                    a=(Token)match(input,83,FOLLOW_83_in_logica2032);  
+                    a=(Token)match(input,83,FOLLOW_83_in_logica2030);  
                     stream_83.add(a);
 
 
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:159:14: a= 'ixor'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:160:14: a= 'ixor'
                     {
-                    a=(Token)match(input,92,FOLLOW_92_in_logica2051);  
+                    a=(Token)match(input,92,FOLLOW_92_in_logica2049);  
                     stream_92.add(a);
 
 
@@ -3576,9 +3541,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (BytecodesAST)adaptor.nil();
-            // 161:10: -> ^( LOGICA $a)
+            // 162:10: -> ^( LOGICA $a)
             {
-                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:161:13: ^( LOGICA $a)
+                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:162:13: ^( LOGICA $a)
                 {
                 BytecodesAST root_1 = (BytecodesAST)adaptor.nil();
                 root_1 = (BytecodesAST)adaptor.becomeRoot(
@@ -3626,7 +3591,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "desvio"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:164:1: desvio : (a= 'ifeq' b= ID |a= 'ifne' b= ID |a= 'iflt' b= ID |a= 'ifge' b= ID |a= 'ifgt' b= ID |a= 'ifle' b= ID |a= 'if_icmpeq' b= ID |a= 'if_icmpne' b= ID |a= 'if_icmplt' b= ID |a= 'if_icmpge' b= ID |a= 'if_icmpgt' b= ID |a= 'if_icmple' b= ID |a= 'goto' b= ID ) -> ^( DESVIO $a $b) ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:165:1: desvio : (a= 'ifeq' b= ID |a= 'ifne' b= ID |a= 'iflt' b= ID |a= 'ifge' b= ID |a= 'ifgt' b= ID |a= 'ifle' b= ID |a= 'if_icmpeq' b= ID |a= 'if_icmpne' b= ID |a= 'if_icmplt' b= ID |a= 'if_icmpge' b= ID |a= 'if_icmpgt' b= ID |a= 'if_icmple' b= ID |a= 'goto' b= ID ) -> ^( DESVIO $a $b) ;
     public final AssemblerParser.desvio_return desvio() throws RecognitionException {
         AssemblerParser.desvio_return retval = new AssemblerParser.desvio_return();
         retval.start = input.LT(1);
@@ -3655,10 +3620,10 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_73=new RewriteRuleTokenStream(adaptor,"token 73");
 
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:164:8: ( (a= 'ifeq' b= ID |a= 'ifne' b= ID |a= 'iflt' b= ID |a= 'ifge' b= ID |a= 'ifgt' b= ID |a= 'ifle' b= ID |a= 'if_icmpeq' b= ID |a= 'if_icmpne' b= ID |a= 'if_icmplt' b= ID |a= 'if_icmpge' b= ID |a= 'if_icmpgt' b= ID |a= 'if_icmple' b= ID |a= 'goto' b= ID ) -> ^( DESVIO $a $b) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:164:10: (a= 'ifeq' b= ID |a= 'ifne' b= ID |a= 'iflt' b= ID |a= 'ifge' b= ID |a= 'ifgt' b= ID |a= 'ifle' b= ID |a= 'if_icmpeq' b= ID |a= 'if_icmpne' b= ID |a= 'if_icmplt' b= ID |a= 'if_icmpge' b= ID |a= 'if_icmpgt' b= ID |a= 'if_icmple' b= ID |a= 'goto' b= ID )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:165:8: ( (a= 'ifeq' b= ID |a= 'ifne' b= ID |a= 'iflt' b= ID |a= 'ifge' b= ID |a= 'ifgt' b= ID |a= 'ifle' b= ID |a= 'if_icmpeq' b= ID |a= 'if_icmpne' b= ID |a= 'if_icmplt' b= ID |a= 'if_icmpge' b= ID |a= 'if_icmpgt' b= ID |a= 'if_icmple' b= ID |a= 'goto' b= ID ) -> ^( DESVIO $a $b) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:165:10: (a= 'ifeq' b= ID |a= 'ifne' b= ID |a= 'iflt' b= ID |a= 'ifge' b= ID |a= 'ifgt' b= ID |a= 'ifle' b= ID |a= 'if_icmpeq' b= ID |a= 'if_icmpne' b= ID |a= 'if_icmplt' b= ID |a= 'if_icmpge' b= ID |a= 'if_icmpgt' b= ID |a= 'if_icmple' b= ID |a= 'goto' b= ID )
             {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:164:10: (a= 'ifeq' b= ID |a= 'ifne' b= ID |a= 'iflt' b= ID |a= 'ifge' b= ID |a= 'ifgt' b= ID |a= 'ifle' b= ID |a= 'if_icmpeq' b= ID |a= 'if_icmpne' b= ID |a= 'if_icmplt' b= ID |a= 'if_icmpge' b= ID |a= 'if_icmpgt' b= ID |a= 'if_icmple' b= ID |a= 'goto' b= ID )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:165:10: (a= 'ifeq' b= ID |a= 'ifne' b= ID |a= 'iflt' b= ID |a= 'ifge' b= ID |a= 'ifgt' b= ID |a= 'ifle' b= ID |a= 'if_icmpeq' b= ID |a= 'if_icmpne' b= ID |a= 'if_icmplt' b= ID |a= 'if_icmpge' b= ID |a= 'if_icmpgt' b= ID |a= 'if_icmple' b= ID |a= 'goto' b= ID )
             int alt21=13;
             switch ( input.LA(1) ) {
             case 68:
@@ -3736,169 +3701,169 @@ public TreeAdaptor getTreeAdaptor() {
 
             switch (alt21) {
                 case 1 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:164:12: a= 'ifeq' b= ID
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:165:12: a= 'ifeq' b= ID
                     {
-                    a=(Token)match(input,68,FOLLOW_68_in_desvio2102);  
+                    a=(Token)match(input,68,FOLLOW_68_in_desvio2100);  
                     stream_68.add(a);
 
 
-                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2108);  
+                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2106);  
                     stream_ID.add(b);
 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:165:14: a= 'ifne' b= ID
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:166:14: a= 'ifne' b= ID
                     {
-                    a=(Token)match(input,73,FOLLOW_73_in_desvio2127);  
+                    a=(Token)match(input,73,FOLLOW_73_in_desvio2125);  
                     stream_73.add(a);
 
 
-                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2133);  
+                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2131);  
                     stream_ID.add(b);
 
 
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:166:14: a= 'iflt' b= ID
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:167:14: a= 'iflt' b= ID
                     {
-                    a=(Token)match(input,72,FOLLOW_72_in_desvio2152);  
+                    a=(Token)match(input,72,FOLLOW_72_in_desvio2150);  
                     stream_72.add(a);
 
 
-                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2158);  
+                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2156);  
                     stream_ID.add(b);
 
 
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:167:14: a= 'ifge' b= ID
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:168:14: a= 'ifge' b= ID
                     {
-                    a=(Token)match(input,69,FOLLOW_69_in_desvio2177);  
+                    a=(Token)match(input,69,FOLLOW_69_in_desvio2175);  
                     stream_69.add(a);
 
 
-                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2183);  
+                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2181);  
                     stream_ID.add(b);
 
 
                     }
                     break;
                 case 5 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:168:14: a= 'ifgt' b= ID
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:169:14: a= 'ifgt' b= ID
                     {
-                    a=(Token)match(input,70,FOLLOW_70_in_desvio2202);  
+                    a=(Token)match(input,70,FOLLOW_70_in_desvio2200);  
                     stream_70.add(a);
 
 
-                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2208);  
+                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2206);  
                     stream_ID.add(b);
 
 
                     }
                     break;
                 case 6 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:169:14: a= 'ifle' b= ID
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:170:14: a= 'ifle' b= ID
                     {
-                    a=(Token)match(input,71,FOLLOW_71_in_desvio2227);  
+                    a=(Token)match(input,71,FOLLOW_71_in_desvio2225);  
                     stream_71.add(a);
 
 
-                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2233);  
+                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2231);  
                     stream_ID.add(b);
 
 
                     }
                     break;
                 case 7 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:170:14: a= 'if_icmpeq' b= ID
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:171:14: a= 'if_icmpeq' b= ID
                     {
-                    a=(Token)match(input,62,FOLLOW_62_in_desvio2252);  
+                    a=(Token)match(input,62,FOLLOW_62_in_desvio2250);  
                     stream_62.add(a);
 
 
-                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2258);  
+                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2256);  
                     stream_ID.add(b);
 
 
                     }
                     break;
                 case 8 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:171:14: a= 'if_icmpne' b= ID
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:172:14: a= 'if_icmpne' b= ID
                     {
-                    a=(Token)match(input,67,FOLLOW_67_in_desvio2277);  
+                    a=(Token)match(input,67,FOLLOW_67_in_desvio2275);  
                     stream_67.add(a);
 
 
-                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2283);  
+                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2281);  
                     stream_ID.add(b);
 
 
                     }
                     break;
                 case 9 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:172:14: a= 'if_icmplt' b= ID
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:173:14: a= 'if_icmplt' b= ID
                     {
-                    a=(Token)match(input,66,FOLLOW_66_in_desvio2302);  
+                    a=(Token)match(input,66,FOLLOW_66_in_desvio2300);  
                     stream_66.add(a);
 
 
-                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2308);  
+                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2306);  
                     stream_ID.add(b);
 
 
                     }
                     break;
                 case 10 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:173:14: a= 'if_icmpge' b= ID
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:174:14: a= 'if_icmpge' b= ID
                     {
-                    a=(Token)match(input,63,FOLLOW_63_in_desvio2327);  
+                    a=(Token)match(input,63,FOLLOW_63_in_desvio2325);  
                     stream_63.add(a);
 
 
-                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2333);  
+                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2331);  
                     stream_ID.add(b);
 
 
                     }
                     break;
                 case 11 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:174:14: a= 'if_icmpgt' b= ID
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:175:14: a= 'if_icmpgt' b= ID
                     {
-                    a=(Token)match(input,64,FOLLOW_64_in_desvio2352);  
+                    a=(Token)match(input,64,FOLLOW_64_in_desvio2350);  
                     stream_64.add(a);
 
 
-                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2358);  
+                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2356);  
                     stream_ID.add(b);
 
 
                     }
                     break;
                 case 12 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:175:14: a= 'if_icmple' b= ID
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:176:14: a= 'if_icmple' b= ID
                     {
-                    a=(Token)match(input,65,FOLLOW_65_in_desvio2377);  
+                    a=(Token)match(input,65,FOLLOW_65_in_desvio2375);  
                     stream_65.add(a);
 
 
-                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2383);  
+                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2381);  
                     stream_ID.add(b);
 
 
                     }
                     break;
                 case 13 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:176:14: a= 'goto' b= ID
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:177:14: a= 'goto' b= ID
                     {
-                    a=(Token)match(input,51,FOLLOW_51_in_desvio2402);  
+                    a=(Token)match(input,51,FOLLOW_51_in_desvio2400);  
                     stream_51.add(a);
 
 
-                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2408);  
+                    b=(Token)match(input,ID,FOLLOW_ID_in_desvio2406);  
                     stream_ID.add(b);
 
 
@@ -3909,7 +3874,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: b, a
+            // elements: a, b
             // token labels: b, a
             // rule labels: retval
             // token list labels: 
@@ -3921,9 +3886,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (BytecodesAST)adaptor.nil();
-            // 178:10: -> ^( DESVIO $a $b)
+            // 179:10: -> ^( DESVIO $a $b)
             {
-                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:178:13: ^( DESVIO $a $b)
+                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:179:13: ^( DESVIO $a $b)
                 {
                 BytecodesAST root_1 = (BytecodesAST)adaptor.nil();
                 root_1 = (BytecodesAST)adaptor.becomeRoot(
@@ -3973,7 +3938,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "pilha"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:181:1: pilha : (a= 'pop' |a= 'pop2' |a= 'dup' ) -> ^( PILHA $a) ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:182:1: pilha : (a= 'pop' |a= 'pop2' |a= 'dup' ) -> ^( PILHA $a) ;
     public final AssemblerParser.pilha_return pilha() throws RecognitionException {
         AssemblerParser.pilha_return retval = new AssemblerParser.pilha_return();
         retval.start = input.LT(1);
@@ -3989,10 +3954,10 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_96=new RewriteRuleTokenStream(adaptor,"token 96");
 
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:181:7: ( (a= 'pop' |a= 'pop2' |a= 'dup' ) -> ^( PILHA $a) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:181:9: (a= 'pop' |a= 'pop2' |a= 'dup' )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:182:7: ( (a= 'pop' |a= 'pop2' |a= 'dup' ) -> ^( PILHA $a) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:182:9: (a= 'pop' |a= 'pop2' |a= 'dup' )
             {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:181:9: (a= 'pop' |a= 'pop2' |a= 'dup' )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:182:9: (a= 'pop' |a= 'pop2' |a= 'dup' )
             int alt22=3;
             switch ( input.LA(1) ) {
             case 96:
@@ -4020,27 +3985,27 @@ public TreeAdaptor getTreeAdaptor() {
 
             switch (alt22) {
                 case 1 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:181:11: a= 'pop'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:182:11: a= 'pop'
                     {
-                    a=(Token)match(input,96,FOLLOW_96_in_pilha2469);  
+                    a=(Token)match(input,96,FOLLOW_96_in_pilha2467);  
                     stream_96.add(a);
 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:182:13: a= 'pop2'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:183:13: a= 'pop2'
                     {
-                    a=(Token)match(input,97,FOLLOW_97_in_pilha2487);  
+                    a=(Token)match(input,97,FOLLOW_97_in_pilha2485);  
                     stream_97.add(a);
 
 
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:183:13: a= 'dup'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:184:13: a= 'dup'
                     {
-                    a=(Token)match(input,49,FOLLOW_49_in_pilha2505);  
+                    a=(Token)match(input,49,FOLLOW_49_in_pilha2503);  
                     stream_49.add(a);
 
 
@@ -4062,9 +4027,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (BytecodesAST)adaptor.nil();
-            // 185:9: -> ^( PILHA $a)
+            // 186:9: -> ^( PILHA $a)
             {
-                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:185:12: ^( PILHA $a)
+                // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:186:12: ^( PILHA $a)
                 {
                 BytecodesAST root_1 = (BytecodesAST)adaptor.nil();
                 root_1 = (BytecodesAST)adaptor.becomeRoot(
@@ -4113,7 +4078,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "classe"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:188:1: classe returns [List classe] : (cls+= ID '/' )* (cls+= ID ) ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:189:1: classe returns [List classe] : (cls+= ID '/' )* (cls+= ID ) ;
     public final AssemblerParser.classe_return classe() throws RecognitionException {
         AssemblerParser.classe_return retval = new AssemblerParser.classe_return();
         retval.start = input.LT(1);
@@ -4121,24 +4086,24 @@ public TreeAdaptor getTreeAdaptor() {
 
         BytecodesAST root_0 = null;
 
-        Token char_literal72=null;
+        Token char_literal66=null;
         Token cls=null;
         List list_cls=null;
 
-        BytecodesAST char_literal72_tree=null;
+        BytecodesAST char_literal66_tree=null;
         BytecodesAST cls_tree=null;
 
 
                 retval.classe = new ArrayList();
              
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:192:6: ( (cls+= ID '/' )* (cls+= ID ) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:192:8: (cls+= ID '/' )* (cls+= ID )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:193:6: ( (cls+= ID '/' )* (cls+= ID ) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:193:8: (cls+= ID '/' )* (cls+= ID )
             {
             root_0 = (BytecodesAST)adaptor.nil();
 
 
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:192:8: (cls+= ID '/' )*
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:193:8: (cls+= ID '/' )*
             loop23:
             do {
                 int alt23=2;
@@ -4163,9 +4128,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt23) {
             	case 1 :
-            	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:192:9: cls+= ID '/'
+            	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:193:9: cls+= ID '/'
             	    {
-            	    cls=(Token)match(input,ID,FOLLOW_ID_in_classe2571); 
+            	    cls=(Token)match(input,ID,FOLLOW_ID_in_classe2569); 
             	    cls_tree = 
             	    (BytecodesAST)adaptor.create(cls)
             	    ;
@@ -4175,11 +4140,11 @@ public TreeAdaptor getTreeAdaptor() {
             	    list_cls.add(cls);
 
 
-            	    char_literal72=(Token)match(input,35,FOLLOW_35_in_classe2573); 
-            	    char_literal72_tree = 
-            	    (BytecodesAST)adaptor.create(char_literal72)
+            	    char_literal66=(Token)match(input,35,FOLLOW_35_in_classe2571); 
+            	    char_literal66_tree = 
+            	    (BytecodesAST)adaptor.create(char_literal66)
             	    ;
-            	    adaptor.addChild(root_0, char_literal72_tree);
+            	    adaptor.addChild(root_0, char_literal66_tree);
 
 
             	    }
@@ -4191,10 +4156,10 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:192:25: (cls+= ID )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:192:26: cls+= ID
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:193:25: (cls+= ID )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:193:26: cls+= ID
             {
-            cls=(Token)match(input,ID,FOLLOW_ID_in_classe2582); 
+            cls=(Token)match(input,ID,FOLLOW_ID_in_classe2580); 
             cls_tree = 
             (BytecodesAST)adaptor.create(cls)
             ;
@@ -4243,7 +4208,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "chamadaMetodo"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:195:1: chamadaMetodo returns [String nome, String params, String tipoRetorno] : n= INIT par= '()' tip= VOID ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:196:1: chamadaMetodo returns [String nome, String params, String tipoRetorno] : n= INIT par= '()' tip= VOID ;
     public final AssemblerParser.chamadaMetodo_return chamadaMetodo() throws RecognitionException {
         AssemblerParser.chamadaMetodo_return retval = new AssemblerParser.chamadaMetodo_return();
         retval.start = input.LT(1);
@@ -4265,27 +4230,27 @@ public TreeAdaptor getTreeAdaptor() {
                 retval.tipoRetorno = "";
              
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:201:6: (n= INIT par= '()' tip= VOID )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:201:8: n= INIT par= '()' tip= VOID
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:202:6: (n= INIT par= '()' tip= VOID )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:202:8: n= INIT par= '()' tip= VOID
             {
             root_0 = (BytecodesAST)adaptor.nil();
 
 
-            n=(Token)match(input,INIT,FOLLOW_INIT_in_chamadaMetodo2622); 
+            n=(Token)match(input,INIT,FOLLOW_INIT_in_chamadaMetodo2620); 
             n_tree = 
             (BytecodesAST)adaptor.create(n)
             ;
             adaptor.addChild(root_0, n_tree);
 
 
-            par=(Token)match(input,27,FOLLOW_27_in_chamadaMetodo2628); 
+            par=(Token)match(input,27,FOLLOW_27_in_chamadaMetodo2626); 
             par_tree = 
             (BytecodesAST)adaptor.create(par)
             ;
             adaptor.addChild(root_0, par_tree);
 
 
-            tip=(Token)match(input,VOID,FOLLOW_VOID_in_chamadaMetodo2634); 
+            tip=(Token)match(input,VOID,FOLLOW_VOID_in_chamadaMetodo2632); 
             tip_tree = 
             (BytecodesAST)adaptor.create(tip)
             ;
@@ -4331,7 +4296,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "campo"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:208:1: campo returns [List classe, String campo] : (cls+= ID '/' )+ cmp= ID ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:209:1: campo returns [List classe, String campo] : (cls+= ID '/' )+ cmp= ID ;
     public final AssemblerParser.campo_return campo() throws RecognitionException {
         AssemblerParser.campo_return retval = new AssemblerParser.campo_return();
         retval.start = input.LT(1);
@@ -4340,12 +4305,12 @@ public TreeAdaptor getTreeAdaptor() {
         BytecodesAST root_0 = null;
 
         Token cmp=null;
-        Token char_literal73=null;
+        Token char_literal67=null;
         Token cls=null;
         List list_cls=null;
 
         BytecodesAST cmp_tree=null;
-        BytecodesAST char_literal73_tree=null;
+        BytecodesAST char_literal67_tree=null;
         BytecodesAST cls_tree=null;
 
 
@@ -4353,13 +4318,13 @@ public TreeAdaptor getTreeAdaptor() {
                 retval.campo ="";
              
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:213:6: ( (cls+= ID '/' )+ cmp= ID )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:213:8: (cls+= ID '/' )+ cmp= ID
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:214:6: ( (cls+= ID '/' )+ cmp= ID )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:214:8: (cls+= ID '/' )+ cmp= ID
             {
             root_0 = (BytecodesAST)adaptor.nil();
 
 
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:213:8: (cls+= ID '/' )+
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:214:8: (cls+= ID '/' )+
             int cnt24=0;
             loop24:
             do {
@@ -4379,9 +4344,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt24) {
             	case 1 :
-            	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:213:9: cls+= ID '/'
+            	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:214:9: cls+= ID '/'
             	    {
-            	    cls=(Token)match(input,ID,FOLLOW_ID_in_campo2674); 
+            	    cls=(Token)match(input,ID,FOLLOW_ID_in_campo2672); 
             	    cls_tree = 
             	    (BytecodesAST)adaptor.create(cls)
             	    ;
@@ -4391,11 +4356,11 @@ public TreeAdaptor getTreeAdaptor() {
             	    list_cls.add(cls);
 
 
-            	    char_literal73=(Token)match(input,35,FOLLOW_35_in_campo2676); 
-            	    char_literal73_tree = 
-            	    (BytecodesAST)adaptor.create(char_literal73)
+            	    char_literal67=(Token)match(input,35,FOLLOW_35_in_campo2674); 
+            	    char_literal67_tree = 
+            	    (BytecodesAST)adaptor.create(char_literal67)
             	    ;
-            	    adaptor.addChild(root_0, char_literal73_tree);
+            	    adaptor.addChild(root_0, char_literal67_tree);
 
 
             	    }
@@ -4411,7 +4376,7 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            cmp=(Token)match(input,ID,FOLLOW_ID_in_campo2684); 
+            cmp=(Token)match(input,ID,FOLLOW_ID_in_campo2682); 
             cmp_tree = 
             (BytecodesAST)adaptor.create(cmp)
             ;
@@ -4448,11 +4413,11 @@ public TreeAdaptor getTreeAdaptor() {
 
  
 
-    public static final BitSet FOLLOW_instrucao_in_programa117 = new BitSet(new long[]{0xFFFFF7E020080202L,0x00000007FFDFFFFFL});
+    public static final BitSet FOLLOW_instrucao_in_programa117 = new BitSet(new long[]{0xFFFFFFE020080202L,0x0000000FFFFFFFFFL});
     public static final BitSet FOLLOW_operacao_in_instrucao145 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_definicaoClasse_in_instrucao159 = new BitSet(new long[]{0x0000000040000002L});
     public static final BitSet FOLLOW_30_in_instrucao162 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_label_in_operacao184 = new BitSet(new long[]{0xFFFFF7E000080000L,0x00000007FFDFFFFFL});
+    public static final BitSet FOLLOW_label_in_operacao184 = new BitSet(new long[]{0xFFFFFFE000080000L,0x0000000FFFFFFFFFL});
     public static final BitSet FOLLOW_comando_in_operacao186 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_comando_in_operacao190 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ID_in_label212 = new BitSet(new long[]{0x0000001000000000L});
@@ -4466,151 +4431,144 @@ public TreeAdaptor getTreeAdaptor() {
     public static final BitSet FOLLOW_desvio_in_comando340 = new BitSet(new long[]{0x0000000000080000L});
     public static final BitSet FOLLOW_logica_in_comando358 = new BitSet(new long[]{0x0000000000080000L});
     public static final BitSet FOLLOW_pilha_in_comando376 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_95_in_comando394 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NEWLINE_in_comando410 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_definicaoClasse436 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ID_in_definicaoClasse438 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NEWLINE_in_definicaoClasse440 = new BitSet(new long[]{0x0000000700000000L});
-    public static final BitSet FOLLOW_superClasse_in_definicaoClasse443 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NEWLINE_in_definicaoClasse445 = new BitSet(new long[]{0x0000000300000000L});
-    public static final BitSet FOLLOW_membroClasse_in_definicaoClasse450 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NEWLINE_in_definicaoClasse452 = new BitSet(new long[]{0x0000000300000002L});
-    public static final BitSet FOLLOW_34_in_superClasse513 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_TIPO_REF_in_superClasse515 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_membroClasse536 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ID_in_membroClasse538 = new BitSet(new long[]{0x0000000001800800L});
-    public static final BitSet FOLLOW_tipo_in_membroClasse540 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_membroClasse558 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_INIT_in_membroClasse560 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_membroClasse562 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_VOID_in_membroClasse564 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NEWLINE_in_membroClasse566 = new BitSet(new long[]{0xFFFFF7E000080200L,0x0000000FFFDFFFFFL});
-    public static final BitSet FOLLOW_operacao_in_membroClasse568 = new BitSet(new long[]{0xFFFFF7E000080200L,0x0000000FFFDFFFFFL});
-    public static final BitSet FOLLOW_99_in_membroClasse571 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NEWLINE_in_membroClasse573 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_membroClasse575 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_membroClasse599 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_MAIN_in_membroClasse601 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_membroClasse603 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_VOID_in_membroClasse605 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NEWLINE_in_membroClasse607 = new BitSet(new long[]{0xFFFFFFE000080200L,0x0000000FFFFFFFFFL});
-    public static final BitSet FOLLOW_operacao_in_membroClasse609 = new BitSet(new long[]{0xFFFFFFE000080200L,0x0000000FFFFFFFFFL});
-    public static final BitSet FOLLOW_retorno_in_membroClasse616 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NEWLINE_in_membroClasse618 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_membroClasse620 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_membroClasse654 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ID_in_membroClasse656 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_membroClasse658 = new BitSet(new long[]{0x0000000001800800L});
-    public static final BitSet FOLLOW_tipo_in_membroClasse660 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NEWLINE_in_membroClasse662 = new BitSet(new long[]{0xFFFFFFE000080200L,0x0000000FFFFFFFFFL});
-    public static final BitSet FOLLOW_operacao_in_membroClasse664 = new BitSet(new long[]{0xFFFFFFE000080200L,0x0000000FFFFFFFFFL});
-    public static final BitSet FOLLOW_retorno_in_membroClasse671 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NEWLINE_in_membroClasse673 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_membroClasse675 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_membroClasse709 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ID_in_membroClasse711 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_membroClasse713 = new BitSet(new long[]{0x0000000000800200L});
-    public static final BitSet FOLLOW_parametros_in_membroClasse719 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_membroClasse721 = new BitSet(new long[]{0x0000000001800800L});
-    public static final BitSet FOLLOW_tipo_in_membroClasse723 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NEWLINE_in_membroClasse725 = new BitSet(new long[]{0xFFFFFFE000080200L,0x0000000FFFFFFFFFL});
-    public static final BitSet FOLLOW_operacao_in_membroClasse727 = new BitSet(new long[]{0xFFFFFFE000080200L,0x0000000FFFFFFFFFL});
-    public static final BitSet FOLLOW_retorno_in_membroClasse734 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NEWLINE_in_membroClasse736 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_membroClasse738 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_manipulacaoObjetos832 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_campo_in_manipulacaoObjetos838 = new BitSet(new long[]{0x0000000001800800L});
-    public static final BitSet FOLLOW_tipo_in_manipulacaoObjetos840 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_98_in_manipulacaoObjetos878 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_campo_in_manipulacaoObjetos884 = new BitSet(new long[]{0x0000000001800800L});
-    public static final BitSet FOLLOW_tipo_in_manipulacaoObjetos886 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_82_in_manipulacaoObjetos924 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_classe_in_manipulacaoObjetos930 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_manipulacaoObjetos932 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_chamadaMetodo_in_manipulacaoObjetos938 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_94_in_manipulacaoObjetos999 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_classe_in_manipulacaoObjetos1004 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_aritmetica1082 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_91_in_aritmetica1106 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_80_in_aritmetica1130 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_61_in_aritmetica1154 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_84_in_aritmetica1178 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_74_in_aritmetica1202 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_81_in_aritmetica1226 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_60_in_load1300 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_load1318 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_55_in_load1336 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_load1354 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_load1372 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_58_in_load1390 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_59_in_load1408 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_load1426 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_76_in_load1444 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_77_in_load1462 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_78_in_load1480 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_79_in_load1498 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_load1516 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_load1534 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_load1552 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_load1570 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_75_in_loadint1620 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_INTEIRO_in_loadint1626 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_93_in_loadint1646 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_INTEIRO_in_loadint1652 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_loadint1672 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_INTEIRO_in_loadint1678 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_87_in_store1740 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_88_in_store1758 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_89_in_store1776 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_90_in_store1794 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_store1812 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_store1830 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_store1848 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_store1866 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_86_in_storeint1920 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_INTEIRO_in_storeint1926 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_storeint1947 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_INTEIRO_in_storeint1953 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_53_in_logica2013 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_83_in_logica2032 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_92_in_logica2051 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_68_in_desvio2102 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ID_in_desvio2108 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_73_in_desvio2127 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ID_in_desvio2133 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_72_in_desvio2152 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ID_in_desvio2158 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_69_in_desvio2177 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ID_in_desvio2183 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_70_in_desvio2202 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ID_in_desvio2208 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_71_in_desvio2227 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ID_in_desvio2233 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_62_in_desvio2252 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ID_in_desvio2258 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_67_in_desvio2277 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ID_in_desvio2283 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_66_in_desvio2302 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ID_in_desvio2308 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_63_in_desvio2327 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ID_in_desvio2333 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_64_in_desvio2352 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ID_in_desvio2358 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_desvio2377 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ID_in_desvio2383 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_desvio2402 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ID_in_desvio2408 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_96_in_pilha2469 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_97_in_pilha2487 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_pilha2505 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_classe2571 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_classe2573 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ID_in_classe2582 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INIT_in_chamadaMetodo2622 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_chamadaMetodo2628 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_VOID_in_chamadaMetodo2634 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_campo2674 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_campo2676 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ID_in_campo2684 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_retorno_in_comando394 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_95_in_comando412 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_NEWLINE_in_comando428 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_definicaoClasse454 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ID_in_definicaoClasse456 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_NEWLINE_in_definicaoClasse458 = new BitSet(new long[]{0x0000000700000000L});
+    public static final BitSet FOLLOW_superClasse_in_definicaoClasse461 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_NEWLINE_in_definicaoClasse463 = new BitSet(new long[]{0x0000000300000000L});
+    public static final BitSet FOLLOW_membroClasse_in_definicaoClasse468 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_NEWLINE_in_definicaoClasse470 = new BitSet(new long[]{0x0000000300000002L});
+    public static final BitSet FOLLOW_34_in_superClasse531 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_TIPO_REF_in_superClasse533 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_membroClasse554 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ID_in_membroClasse556 = new BitSet(new long[]{0x0000000001800800L});
+    public static final BitSet FOLLOW_tipo_in_membroClasse558 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_membroClasse576 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_INIT_in_membroClasse578 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_membroClasse580 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_VOID_in_membroClasse582 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_NEWLINE_in_membroClasse584 = new BitSet(new long[]{0xFFFFFFE080080200L,0x0000000FFFFFFFFFL});
+    public static final BitSet FOLLOW_operacao_in_membroClasse586 = new BitSet(new long[]{0xFFFFFFE080080200L,0x0000000FFFFFFFFFL});
+    public static final BitSet FOLLOW_31_in_membroClasse589 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_membroClasse613 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_MAIN_in_membroClasse615 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_membroClasse617 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_VOID_in_membroClasse619 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_NEWLINE_in_membroClasse621 = new BitSet(new long[]{0xFFFFFFE080080200L,0x0000000FFFFFFFFFL});
+    public static final BitSet FOLLOW_operacao_in_membroClasse623 = new BitSet(new long[]{0xFFFFFFE080080200L,0x0000000FFFFFFFFFL});
+    public static final BitSet FOLLOW_31_in_membroClasse627 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_membroClasse660 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ID_in_membroClasse662 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_membroClasse664 = new BitSet(new long[]{0x0000000001800800L});
+    public static final BitSet FOLLOW_tipo_in_membroClasse670 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_NEWLINE_in_membroClasse672 = new BitSet(new long[]{0xFFFFFFE080080200L,0x0000000FFFFFFFFFL});
+    public static final BitSet FOLLOW_operacao_in_membroClasse674 = new BitSet(new long[]{0xFFFFFFE080080200L,0x0000000FFFFFFFFFL});
+    public static final BitSet FOLLOW_31_in_membroClasse677 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_membroClasse711 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ID_in_membroClasse713 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_membroClasse715 = new BitSet(new long[]{0x0000000000800200L});
+    public static final BitSet FOLLOW_parametros_in_membroClasse721 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_membroClasse723 = new BitSet(new long[]{0x0000000001800800L});
+    public static final BitSet FOLLOW_tipo_in_membroClasse729 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_NEWLINE_in_membroClasse731 = new BitSet(new long[]{0xFFFFFFE080080200L,0x0000000FFFFFFFFFL});
+    public static final BitSet FOLLOW_operacao_in_membroClasse733 = new BitSet(new long[]{0xFFFFFFE080080200L,0x0000000FFFFFFFFFL});
+    public static final BitSet FOLLOW_31_in_membroClasse736 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_manipulacaoObjetos830 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_campo_in_manipulacaoObjetos836 = new BitSet(new long[]{0x0000000001800800L});
+    public static final BitSet FOLLOW_tipo_in_manipulacaoObjetos838 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_98_in_manipulacaoObjetos876 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_campo_in_manipulacaoObjetos882 = new BitSet(new long[]{0x0000000001800800L});
+    public static final BitSet FOLLOW_tipo_in_manipulacaoObjetos884 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_82_in_manipulacaoObjetos922 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_classe_in_manipulacaoObjetos928 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_manipulacaoObjetos930 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_chamadaMetodo_in_manipulacaoObjetos936 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_94_in_manipulacaoObjetos997 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_classe_in_manipulacaoObjetos1002 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_aritmetica1080 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_91_in_aritmetica1104 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_80_in_aritmetica1128 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_61_in_aritmetica1152 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_84_in_aritmetica1176 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_74_in_aritmetica1200 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_81_in_aritmetica1224 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_60_in_load1298 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_load1316 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_55_in_load1334 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_load1352 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_load1370 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_58_in_load1388 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_59_in_load1406 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_load1424 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_76_in_load1442 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_77_in_load1460 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_78_in_load1478 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_79_in_load1496 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_load1514 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_load1532 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_load1550 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_load1568 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_75_in_loadint1618 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_INTEIRO_in_loadint1624 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_93_in_loadint1644 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_INTEIRO_in_loadint1650 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_loadint1670 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_INTEIRO_in_loadint1676 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_87_in_store1738 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_88_in_store1756 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_89_in_store1774 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_90_in_store1792 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_store1810 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_store1828 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_store1846 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_store1864 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_86_in_storeint1918 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_INTEIRO_in_storeint1924 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_storeint1945 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_INTEIRO_in_storeint1951 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_53_in_logica2011 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_83_in_logica2030 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_92_in_logica2049 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_68_in_desvio2100 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ID_in_desvio2106 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_73_in_desvio2125 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ID_in_desvio2131 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_72_in_desvio2150 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ID_in_desvio2156 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_69_in_desvio2175 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ID_in_desvio2181 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_70_in_desvio2200 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ID_in_desvio2206 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_71_in_desvio2225 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ID_in_desvio2231 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_62_in_desvio2250 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ID_in_desvio2256 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_67_in_desvio2275 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ID_in_desvio2281 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_66_in_desvio2300 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ID_in_desvio2306 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_63_in_desvio2325 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ID_in_desvio2331 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_64_in_desvio2350 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ID_in_desvio2356 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_desvio2375 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ID_in_desvio2381 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_desvio2400 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ID_in_desvio2406 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_96_in_pilha2467 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_97_in_pilha2485 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_pilha2503 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_classe2569 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_classe2571 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ID_in_classe2580 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INIT_in_chamadaMetodo2620 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_chamadaMetodo2626 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_VOID_in_chamadaMetodo2632 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_campo2672 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_campo2674 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ID_in_campo2682 = new BitSet(new long[]{0x0000000000000002L});
 
 }

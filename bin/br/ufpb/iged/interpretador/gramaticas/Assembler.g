@@ -62,6 +62,7 @@ comando: ( manipulacaoObjetos
               | desvio
               | logica
               | pilha
+              | retorno
               | 'nop'
            )? NEWLINE;
               
@@ -74,13 +75,13 @@ superClasse : '.super' TIPO_REF -> ^(EXTENDS TIPO_REF) ;
 
 membroClasse
     : '.field' ID tipo -> ^(FIELD_DECL ID tipo)
-    | '.method' INIT '()' VOID NEWLINE operacao* 'return' NEWLINE '.end method'
+    | '.method' INIT '()' VOID NEWLINE operacao* '.end method'
 	-> ^(METHOD_DECL INIT ^(BODY operacao*))
-    | '.method' MAIN '()' VOID NEWLINE operacao* ret = retorno NEWLINE '.end method'
-        -> ^(METHOD_DECL MAIN ^(BODY operacao*) $ret)
-    | '.method' ID '()' tipo NEWLINE operacao* ret = retorno NEWLINE '.end method'
+    | '.method' MAIN '()' VOID NEWLINE operacao*  '.end method'
+        -> ^(METHOD_DECL MAIN ^(BODY operacao*) VOID)
+    | '.method' ID '()' ret = tipo NEWLINE operacao* '.end method'
         -> ^(METHOD_DECL ID ^(BODY operacao*) $ret)
-    | '.method' ID '(' params = parametros ')' tipo NEWLINE operacao* ret = retorno NEWLINE '.end method'
+    | '.method' ID '(' params = parametros ')' ret = tipo NEWLINE operacao* '.end method'
         -> ^(METHOD_DECL ID $params ^(BODY operacao*) $ret)
     ;
     
