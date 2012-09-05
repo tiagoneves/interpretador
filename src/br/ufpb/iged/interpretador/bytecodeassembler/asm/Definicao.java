@@ -60,6 +60,9 @@ public class Definicao {
     public static final int ASTORE1 = 0x4c;
     public static final int ASTORE2 = 0x4d;
     public static final int ASTORE3 = 0x4e;
+    public static final int IRETURN = 0xac;
+    public static final int ARETURN = 0xb0;
+    public static final int RETURN = 0xb1;
     public static final int GETFIELD = 0xb4;
     public static final int PUTFIELD = 0xb5;
     public static final int INVOKESPECIAL = 0xb7;
@@ -161,6 +164,9 @@ public class Definicao {
 			new Instrucao("astore_1", Definicao.ASTORE1),
 			new Instrucao("astore_2", Definicao.ASTORE2),
 			new Instrucao("astore_3", Definicao.ASTORE3),
+			new Instrucao("ireturn", Definicao.IRETURN),
+			new Instrucao("areturn", Definicao.ARETURN),
+			new Instrucao("return", Definicao.RETURN),
 			new Instrucao("getfield", Definicao.GETFIELD),
 			new Instrucao("putfield", Definicao.PUTFIELD),
 			new Instrucao("invokespecial", Definicao.INVOKESPECIAL),

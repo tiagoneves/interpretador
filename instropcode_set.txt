@@ -58,6 +58,9 @@ astore_0 4b 75
 astore_1 4c 76
 astore_2 4d 77
 astore_3 4e 78
+ireturn ac 172
+areturn b0 176
+return b1 177
 getfield b4 180
 putfield b5 181
 invokespecial b7 183
