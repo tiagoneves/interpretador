@@ -77,14 +77,14 @@ superClasse : '.super' TIPO_REF -> ^(EXTENDS TIPO_REF) ;
 
 membroClasse
     : '.field' ID tipo -> ^(FIELD_DECL ID tipo)
-    | '.method' INIT '()' VOID NEWLINE operacao* '.end method'
-	-> ^(CONSTR_DECL INIT ^(BODY operacao*))
+    | '.method' INIT (parametros | '(' parametros ')') VOID NEWLINE operacao* '.end method'
+	-> ^(CONSTR_DECL INIT parametros ^(BODY operacao*))
     | '.method' ID (parametros | '(' parametros ')') ret = tipo NEWLINE operacao* '.end method'
         -> ^(METHOD_DECL ID  $ret parametros ^(BODY operacao*))
     ;
    
 parametros
-	: a = '()' -> ^(PARAMS $a)
+	: '()' -> ^(PARAMS VOID)
 	| (
 	       a = ID 
 	     | a = TIPO_REF

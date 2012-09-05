@@ -71,7 +71,7 @@ declaracaoVariavel
     ;
     
 entraNoConstrutor
-	: ^(CONSTR_DECL INIT .)
+	: ^(CONSTR_DECL INIT .+)
 	{
 	   System.out.println("linha "+$INIT.getLine()+
                           ": def method init ");
@@ -88,7 +88,8 @@ entraNoMetodo
 	{
 	   System.out.println("linha "+$ID.getLine()+
                           ": def method "+$ID.text);
-           SimboloMetodo metodo = new SimboloMetodo($ID.text+""+$tipoRet.getText(), null, escopoAtual);
+           SimboloMetodo metodo = new SimboloMetodo($ID.text, null, escopoAtual);
+           metodo.setRetorno($tipoRet.getText());
            metodo.def = $ID;
            $ID.simbolo = metodo;
            escopoAtual.definir(metodo);
