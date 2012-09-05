@@ -18,6 +18,7 @@ tokens {
   PILHA;
   BODY;
   METHOD_DECL;
+  CONSTR_DECL;
   PARAMS;
 }
 
@@ -77,7 +78,7 @@ superClasse : '.super' TIPO_REF -> ^(EXTENDS TIPO_REF) ;
 membroClasse
     : '.field' ID tipo -> ^(FIELD_DECL ID tipo)
     | '.method' INIT '()' VOID NEWLINE operacao* '.end method'
-	-> ^(METHOD_DECL INIT ^(BODY operacao*))
+	-> ^(CONSTR_DECL INIT ^(BODY operacao*))
     | '.method' ID (parametros | '(' parametros ')') ret = tipo NEWLINE operacao* '.end method'
         -> ^(METHOD_DECL ID  $ret parametros ^(BODY operacao*))
     ;
@@ -90,14 +91,6 @@ parametros
 	  )+
 	  -> ^(PARAMS $a)+
 	;
- 
-/*parametros 
-	: 
-	(   a = ID 
-	  | a = TIPO_REF
-	)+
-	-> ^(PARAMS $a)+
-	;*/
 
 retorno : 'areturn' | 'ireturn' | 'return';
              

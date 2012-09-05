@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g 2012-09-04 18:58:36
+// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g 2012-09-04 21:01:22
 
     package br.ufpb.iged.interpretador.parser;
     
@@ -24,11 +24,10 @@ import java.util.HashMap;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class Ref extends TreeFilter {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ARITMETICA", "BODY", "DESVIO", "EXTENDS", "FIELD_DECL", "ID", "INIT", "INT", "INTEIRO", "LABEL", "LOAD", "LOGICA", "MEMBRO_CLASSE", "METHOD_DECL", "NEWLINE", "NULL", "PARAMS", "PILHA", "STORE", "TIPO_REF", "VOID", "WS", "'('", "'()'", "')'", "'.class'", "'.end class'", "'.end method'", "'.field'", "'.method'", "'.super'", "'/'", "':'", "'aconst_null'", "'aload'", "'aload_0'", "'aload_1'", "'aload_2'", "'aload_3'", "'areturn'", "'astore'", "'astore_0'", "'astore_1'", "'astore_2'", "'astore_3'", "'dup'", "'getfield'", "'goto'", "'iadd'", "'iand'", "'iconst_0'", "'iconst_1'", "'iconst_2'", "'iconst_3'", "'iconst_4'", "'iconst_5'", "'iconst_m1'", "'idiv'", "'if_icmpeq'", "'if_icmpge'", "'if_icmpgt'", "'if_icmple'", "'if_icmplt'", "'if_icmpne'", "'ifeq'", "'ifge'", "'ifgt'", "'ifle'", "'iflt'", "'ifne'", "'iinc'", "'iload'", "'iload_0'", "'iload_1'", "'iload_2'", "'iload_3'", "'imul'", "'ineg'", "'invokespecial'", "'ior'", "'irem'", "'ireturn'", "'istore'", "'istore_0'", "'istore_1'", "'istore_2'", "'istore_3'", "'isub'", "'ixor'", "'ldc'", "'new'", "'nop'", "'pop'", "'pop2'", "'putfield'", "'return'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ARITMETICA", "BODY", "CONSTR_DECL", "DESVIO", "EXTENDS", "FIELD_DECL", "ID", "INIT", "INT", "INTEIRO", "LABEL", "LOAD", "LOGICA", "MEMBRO_CLASSE", "METHOD_DECL", "NEWLINE", "NULL", "PARAMS", "PILHA", "STORE", "TIPO_REF", "VOID", "WS", "'('", "'()'", "')'", "'.class'", "'.end class'", "'.end method'", "'.field'", "'.method'", "'.super'", "'/'", "':'", "'aconst_null'", "'aload'", "'aload_0'", "'aload_1'", "'aload_2'", "'aload_3'", "'areturn'", "'astore'", "'astore_0'", "'astore_1'", "'astore_2'", "'astore_3'", "'dup'", "'getfield'", "'goto'", "'iadd'", "'iand'", "'iconst_0'", "'iconst_1'", "'iconst_2'", "'iconst_3'", "'iconst_4'", "'iconst_5'", "'iconst_m1'", "'idiv'", "'if_icmpeq'", "'if_icmpge'", "'if_icmpgt'", "'if_icmple'", "'if_icmplt'", "'if_icmpne'", "'ifeq'", "'ifge'", "'ifgt'", "'ifle'", "'iflt'", "'ifne'", "'iinc'", "'iload'", "'iload_0'", "'iload_1'", "'iload_2'", "'iload_3'", "'imul'", "'ineg'", "'invokespecial'", "'ior'", "'irem'", "'ireturn'", "'istore'", "'istore_0'", "'istore_1'", "'istore_2'", "'istore_3'", "'isub'", "'ixor'", "'ldc'", "'new'", "'nop'", "'pop'", "'pop2'", "'putfield'", "'return'"
     };
 
     public static final int EOF=-1;
-    public static final int T__26=26;
     public static final int T__27=27;
     public static final int T__28=28;
     public static final int T__29=29;
@@ -102,28 +101,30 @@ public class Ref extends TreeFilter {
     public static final int T__97=97;
     public static final int T__98=98;
     public static final int T__99=99;
+    public static final int T__100=100;
     public static final int ARITMETICA=4;
     public static final int BODY=5;
-    public static final int DESVIO=6;
-    public static final int EXTENDS=7;
-    public static final int FIELD_DECL=8;
-    public static final int ID=9;
-    public static final int INIT=10;
-    public static final int INT=11;
-    public static final int INTEIRO=12;
-    public static final int LABEL=13;
-    public static final int LOAD=14;
-    public static final int LOGICA=15;
-    public static final int MEMBRO_CLASSE=16;
-    public static final int METHOD_DECL=17;
-    public static final int NEWLINE=18;
-    public static final int NULL=19;
-    public static final int PARAMS=20;
-    public static final int PILHA=21;
-    public static final int STORE=22;
-    public static final int TIPO_REF=23;
-    public static final int VOID=24;
-    public static final int WS=25;
+    public static final int CONSTR_DECL=6;
+    public static final int DESVIO=7;
+    public static final int EXTENDS=8;
+    public static final int FIELD_DECL=9;
+    public static final int ID=10;
+    public static final int INIT=11;
+    public static final int INT=12;
+    public static final int INTEIRO=13;
+    public static final int LABEL=14;
+    public static final int LOAD=15;
+    public static final int LOGICA=16;
+    public static final int MEMBRO_CLASSE=17;
+    public static final int METHOD_DECL=18;
+    public static final int NEWLINE=19;
+    public static final int NULL=20;
+    public static final int PARAMS=21;
+    public static final int PILHA=22;
+    public static final int STORE=23;
+    public static final int TIPO_REF=24;
+    public static final int VOID=25;
+    public static final int WS=26;
 
     // delegates
     public TreeFilter[] getDelegates() {
@@ -428,7 +429,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:118:5: ( ^( '.class' nome= ID ( ^( EXTENDS sup= TIPO_REF ) )? . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:118:7: ^( '.class' nome= ID ( ^( EXTENDS sup= TIPO_REF ) )? . )
             {
-            match(input,29,FOLLOW_29_in_entraNaClasse221); if (state.failed) return ;
+            match(input,30,FOLLOW_30_in_entraNaClasse221); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             nome=(BytecodesAST)match(input,ID,FOLLOW_ID_in_entraNaClasse225); if (state.failed) return ;
@@ -449,7 +450,7 @@ public class Ref extends TreeFilter {
                         if ( (LA2_4==UP) ) {
                             int LA2_5 = input.LA(5);
 
-                            if ( ((LA2_5 >= ARITMETICA && LA2_5 <= 99)) ) {
+                            if ( ((LA2_5 >= ARITMETICA && LA2_5 <= 100)) ) {
                                 alt2=1;
                             }
                         }
@@ -565,7 +566,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:143:5: ( ^( 'getfield' classe= . . campo= . tipo= . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:143:7: ^( 'getfield' classe= . . campo= . tipo= . )
             {
-            match(input,50,FOLLOW_50_in_getfield311); if (state.failed) return ;
+            match(input,51,FOLLOW_51_in_getfield311); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             classe=(BytecodesAST)input.LT(1);
@@ -617,7 +618,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:150:5: ( ^( 'putfield' classe= . . campo= . tipo= . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:150:7: ^( 'putfield' classe= . . campo= . tipo= . )
             {
-            match(input,98,FOLLOW_98_in_putfield360); if (state.failed) return ;
+            match(input,99,FOLLOW_99_in_putfield360); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             classe=(BytecodesAST)input.LT(1);
@@ -670,7 +671,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:157:5: ( ^( 'invokespecial' classe= . metodo= . args= . tipo= . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:157:7: ^( 'invokespecial' classe= . metodo= . args= . tipo= . )
             {
-            match(input,82,FOLLOW_82_in_invokespecial409); if (state.failed) return ;
+            match(input,83,FOLLOW_83_in_invokespecial409); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             classe=(BytecodesAST)input.LT(1);
@@ -722,7 +723,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:164:3: ( ^( 'new' classe= . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:164:5: ^( 'new' classe= . )
             {
-            match(input,94,FOLLOW_94_in_novaClasse460); if (state.failed) return ;
+            match(input,95,FOLLOW_95_in_novaClasse460); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             classe=(BytecodesAST)input.LT(1);
@@ -1137,14 +1138,14 @@ public class Ref extends TreeFilter {
     static final String DFA1_minS =
         "\1\4\7\uffff\2\2\4\uffff\2\4\2\2\1\4\2\uffff\1\4\2\uffff\4\3";
     static final String DFA1_maxS =
-        "\1\142\7\uffff\2\2\4\uffff\5\143\2\uffff\1\143\2\uffff\4\143";
+        "\1\143\7\uffff\2\2\4\uffff\5\144\2\uffff\1\144\2\uffff\4\144";
     static final String DFA1_acceptS =
         "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\2\uffff\1\14\1\15\1\16\1\17"+
         "\5\uffff\1\10\1\11\1\uffff\1\12\1\13\4\uffff";
     static final String DFA1_specialS =
         "\34\uffff}>";
     static final String[] DFA1_transitionS = {
-            "\1\7\1\uffff\1\12\1\uffff\1\2\4\uffff\1\15\1\10\1\13\5\uffff"+
+            "\1\7\2\uffff\1\12\1\uffff\1\2\4\uffff\1\15\1\10\1\13\5\uffff"+
             "\1\14\1\11\6\uffff\1\1\24\uffff\1\3\37\uffff\1\5\13\uffff\1"+
             "\6\3\uffff\1\4",
             "",
@@ -1160,20 +1161,20 @@ public class Ref extends TreeFilter {
             "",
             "",
             "",
-            "\140\20",
-            "\140\21",
-            "\1\22\1\23\140\24",
-            "\1\25\1\26\140\27",
-            "\140\30",
+            "\141\20",
+            "\141\21",
+            "\1\22\1\23\141\24",
+            "\1\25\1\26\141\27",
+            "\141\30",
             "",
             "",
-            "\140\31",
+            "\141\31",
             "",
             "",
-            "\1\32\140\30",
-            "\1\33\140\31",
-            "\1\23\140\24",
-            "\1\26\140\27"
+            "\1\32\141\30",
+            "\1\33\141\31",
+            "\1\23\141\24",
+            "\1\26\141\27"
     };
 
     static final short[] DFA1_eot = DFA.unpackEncodedString(DFA1_eotS);
@@ -1226,16 +1227,16 @@ public class Ref extends TreeFilter {
     public static final BitSet FOLLOW_logica_in_topdown179 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_pilha_in_topdown189 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_label_in_topdown199 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_entraNaClasse221 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_entraNaClasse225 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000000FFFFFFFFFL});
+    public static final BitSet FOLLOW_30_in_entraNaClasse221 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_entraNaClasse225 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000001FFFFFFFFFL});
     public static final BitSet FOLLOW_EXTENDS_in_entraNaClasse229 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_TIPO_REF_in_entraNaClasse233 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_FIELD_DECL_in_declaracaoVariavel271 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_declaracaoVariavel273 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000000FFFFFFFFFL});
-    public static final BitSet FOLLOW_50_in_getfield311 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_98_in_putfield360 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_82_in_invokespecial409 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_94_in_novaClasse460 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_declaracaoVariavel273 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000001FFFFFFFFFL});
+    public static final BitSet FOLLOW_51_in_getfield311 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_99_in_putfield360 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_83_in_invokespecial409 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_95_in_novaClasse460 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_ARITMETICA_in_aritmetica491 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_LOAD_in_load525 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_LOAD_in_loadint554 = new BitSet(new long[]{0x0000000000000004L});

@@ -29,7 +29,7 @@ options {
 }
 
 topdown : entraNoCorpoMetodo
-        | entraNoMetodoInit
+        | entraNoConstrutor
         | entraNoMetodo
         | entraNaClasse
         | parametros
@@ -38,6 +38,7 @@ topdown : entraNoCorpoMetodo
 
 bottomup : saiDoCorpoMetodo
          | saiDoMetodo
+         | saiDoConstrutor
          | saiDaClasse
          ;
          
@@ -69,8 +70,8 @@ declaracaoVariavel
         }
     ;
     
-entraNoMetodoInit
-	: ^(METHOD_DECL INIT)
+entraNoConstrutor
+	: ^(CONSTR_DECL INIT .)
 	{
 	   System.out.println("linha "+$INIT.getLine()+
                           ": def method init ");
@@ -130,6 +131,14 @@ saiDoMetodo
 	:  METHOD_DECL
 	{
 	   System.out.println("Saindo do metodo: "+escopoAtual);
+           escopoAtual = escopoAtual.obterEscopoEnvolvente(); // pop scope
+	}
+	;
+	
+saiDoConstrutor
+	:  CONSTR_DECL
+	{
+	   System.out.println("Saindo do construtor: "+escopoAtual);
            escopoAtual = escopoAtual.obterEscopoEnvolvente(); // pop scope
 	}
 	;
