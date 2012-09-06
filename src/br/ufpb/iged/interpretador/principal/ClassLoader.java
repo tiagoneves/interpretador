@@ -1,7 +1,9 @@
 package br.ufpb.iged.interpretador.principal;
 
 import java.util.Collection;
+import java.util.List;
 
+import br.ufpb.iged.interpretador.bytecodeassembler.asm.BytecodeAssembler;
 import br.ufpb.iged.interpretador.excecoes.ClassNotFoundException;
 import br.ufpb.iged.interpretador.symboltable.classes.EscopoGlobal;
 import br.ufpb.iged.interpretador.symboltable.classes.Simbolo;
@@ -9,28 +11,25 @@ import br.ufpb.iged.interpretador.symboltable.classes.SimboloClasse;
 
 public class ClassLoader {
 	
-	private EscopoGlobal escopoGlobal;
+	private BytecodeAssembler assembler;
 	
 	private static final String METODO_MAIN = "main(VOID)V";
 	
-	public ClassLoader(EscopoGlobal global) {
+	public ClassLoader(BytecodeAssembler assembler) {
 		
-		escopoGlobal = global;
+		this.assembler = assembler;
 		
 	}
 	
 	public SimboloClasse carregarClasse(String nome) throws ClassNotFoundException{
-    	
-    	Collection<Simbolo> simbs = escopoGlobal.simbolos.values();
-    	
-    	for(Simbolo simb: simbs){
-    		
-    		if (simb.nome.startsWith("L")) {
+		
+		List<SimboloClasse> classes = assembler.getConstantPool();
+    	    	
+    	for(SimboloClasse classe: classes){
+    		  			
+    			if (classe.nome.equals(nome))
+    				return classe;
     			
-    			if (((SimboloClasse)simb).nome.equals(nome))
-    				return (SimboloClasse)simb;
-    			
-    		}
     		
     	}
     	
@@ -38,18 +37,26 @@ public class ClassLoader {
     	
     }
 	
+	public SimboloClasse carregarClasse(int index) throws ClassNotFoundException {
+		
+		SimboloClasse classe = assembler.getConstantPool().get(index);
+		
+		if (classe != null)
+			return classe;
+		
+		throw new ClassNotFoundException("A classe referenciada não pôde ser encontrada");
+		
+	}
+	
 	public SimboloClasse carregarClasseMain() throws ClassNotFoundException{
     	
-    	Collection<Simbolo> simbs = escopoGlobal.simbolos.values();
+		List<SimboloClasse> classes = assembler.getConstantPool();
     	
-    	for(Simbolo simb: simbs){
-    		
-    		if (simb.nome.startsWith("L")) {
+		for(SimboloClasse classe: classes){
     			
-    			if (((SimboloClasse)simb).possuiMetodo(METODO_MAIN, "main"))
-    				return (SimboloClasse)simb;
+    			if (classe.possuiMetodo(METODO_MAIN, "main"))
+    				return classe;
     			
-    		}
     		
     	}
     	

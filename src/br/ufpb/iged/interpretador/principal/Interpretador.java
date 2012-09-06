@@ -107,7 +107,7 @@ public class Interpretador {
 			SimboloMetodo init = (SimboloMetodo) teste.resolver("<init>");
 			init.exibirCodigo();*/
 			
-			loader = new ClassLoader(global);
+			loader = new ClassLoader(assembler);
 			
 			try {
 				
@@ -208,7 +208,7 @@ public class Interpretador {
 		
 	}
 	
-	protected void cpu() {
+	protected void cpu() throws ClassNotFoundException {
 
 		int op1, op2;
 
@@ -217,880 +217,888 @@ public class Interpretador {
 		boolean desvio;
 		
 		Referencia referencia;
-
-		while (pilha[topoPilha].pc < tamanhoCodigo) {
-
-			desvio = false;
-
-			opcode = global.codigo[pilha[topoPilha].pc];
-
-			if (opcode < 0)
-
-				opcode = valorEmByte(opcode);
-
-			switch (opcode) {
-
-			// operações de pilha
-
-			case Definicao.NOP:
-				;
-				break;
-				
-			case Definicao.POP:
-				pilha[topoPilha].sp-- ;
-				break;
-				
-			case Definicao.POP2:
-				pilha[topoPilha].sp -= 2 ;
-				break;
-				
-			case Definicao.DUP: {
-
-				Referencia ref = (Referencia)pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-				
-				pilha[topoPilha].sp++;
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = ref;
-
-			}
-				;
-				break;
-
-			// operações aritméticas
-
-			case Definicao.INEG: {
-
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0 - op1;
-
-			};
-				break;
-
-			case Definicao.IADD: {
-
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
-
-				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-
-				pilha[topoPilha].sp--;
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = op1 + op2;
-
-			}
-				;
-				break;
-
-			case Definicao.ISUB: {
-
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
-
-				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-
-				pilha[topoPilha].sp--;
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = op1 - op2;
-
-			}
-				;
-				break;
-
-			case Definicao.IMUL: {
-
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
-
-				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-
-				pilha[topoPilha].sp--;
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = op1 * op2;
-
-			}
-				;
-				break;
-
-			case Definicao.IDIV: {
-
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
-
-				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-
-				pilha[topoPilha].sp--;
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = op1 / op2;
-
-			}
-				;
-				break;
-
-			case Definicao.IREM: {
-
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
-
-				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-
-				pilha[topoPilha].sp--;
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = op1 % op2;
-
-			}
-				;
-				break;
-
-			case Definicao.IINC: {
-
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = ++op1;
-
-			}
-				;
-				break;
-
-			// operações de empilhamento de constantes
-
-			case Definicao.ICONST0: {
-
-				pilha[topoPilha].sp++;
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
-
-			}
-				;
-				break;
-
-			case Definicao.ICONST1: {
-
-				pilha[topoPilha].sp++;
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 1;
-
-			}
-				;
-				break;
-
-			case Definicao.ICONST2: {
-
-				pilha[topoPilha].sp++;
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 2;
-
-			}
-				;
-				break;
-
-			case Definicao.ICONST3: {
-
-				pilha[topoPilha].sp++;
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 3;
-
-			}
-				;
-				break;
-
-			case Definicao.ICONST4: {
-
-				pilha[topoPilha].sp++;
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 4;
-
-			}
-				;
-				break;
-
-			case Definicao.ICONST5: {
-
-				pilha[topoPilha].sp++;
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 5;
-
-			}
-				;
-				break;
-
-			case Definicao.ICONSTM1: {
-
-				pilha[topoPilha].sp++;
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = -1;
-
-			}
-				;
-				break;
-				
-			case Definicao.ACONSTNULL: {
-
-				pilha[topoPilha].sp++;
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = new Referencia(null);
-
-			}
-				;
-				break;
-
-			case Definicao.LDC: {
-
-				pilha[topoPilha].sp++;
-
-				op1 = obterOperandoInteiro();
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = op1;
-
-			}
-				;
-				break;
-
-			// operações de load
-
-			case Definicao.ILOAD0: {
-
-				pilha[topoPilha].sp++;
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = pilha[topoPilha].variaveis[0];
-
-			}
-				;
-				break;
-
-			case Definicao.ILOAD1: {
-
-				pilha[topoPilha].sp++;
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = pilha[topoPilha].variaveis[1];
-
-			}
-				;
-				break;
-
-			case Definicao.ILOAD2: {
-
-				pilha[topoPilha].sp++;
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = pilha[topoPilha].variaveis[2];
-
-			}
-				;
-				break;
-
-			case Definicao.ILOAD3: {
-
-				pilha[topoPilha].sp++;
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = pilha[topoPilha].variaveis[3];
-
-			}
-				;
-				break;
-
-			case Definicao.ILOAD: {
-
-				pilha[topoPilha].sp++;
-
-				op1 = obterOperandoInteiro();
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = pilha[topoPilha].variaveis[op1];
-
-			}
-				;
-				break;
-				
-			case Definicao.ALOAD0: {
-
-				pilha[topoPilha].sp++;
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = pilha[topoPilha].variaveis[0];
-
-			}
-				;
-				break;
-				
-			case Definicao.ALOAD1: {
-
-				pilha[topoPilha].sp++;
-
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = pilha[topoPilha].variaveis[1];
-
-			}
-				;
-				break;
+		
+		do{
 			
-			case Definicao.ALOAD2: {
+			StackFrame frameAtual = pilha[topoPilha];
 
-				pilha[topoPilha].sp++;
+			while (frameAtual.pc < tamanhoCodigo) {
 
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = pilha[topoPilha].variaveis[2];
+				desvio = false;
 
-			}
-				;
-				break;
-				
-			case Definicao.ALOAD3: {
+				opcode = global.codigo[frameAtual.pc];
 
-				pilha[topoPilha].sp++;
+				if (opcode < 0)
 
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = pilha[topoPilha].variaveis[3];
+					opcode = valorEmByte(opcode);
 
-			}
-				;
-				break;
-				
-			case Definicao.ALOAD: {
+				switch (opcode) {
 
-				pilha[topoPilha].sp++;
+				// operações de pilha
 
-				op1 = obterOperandoInteiro();
+				case Definicao.NOP:
+					;
+					break;
 
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = pilha[topoPilha].variaveis[op1];
+				case Definicao.POP:
+					frameAtual.sp-- ;
+					break;
 
-			}
-				;
-				break;
-				
+				case Definicao.POP2:
+					frameAtual.sp -= 2 ;
+					break;
 
-			// operações de store
+				case Definicao.DUP: {
 
-			case Definicao.ISTORE0: {
+					Referencia ref = (Referencia)frameAtual.pilhaOperandos[frameAtual.sp];
 
-				pilha[topoPilha].variaveis[0] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-				
-				pilha[topoPilha].sp--;
+					frameAtual.sp++;
 
-			}
+					frameAtual.pilhaOperandos[frameAtual.sp] = ref;
+
+				}
 				;
 				break;
 
-			case Definicao.ISTORE1: {
+				// operações aritméticas
 
-				pilha[topoPilha].variaveis[1] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-				
-				pilha[topoPilha].sp--;
+				case Definicao.INEG: {
 
-			}
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = 0 - op1;
+
+				};
+				break;
+
+				case Definicao.IADD: {
+
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp - 1];
+
+					op2 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
+
+					frameAtual.sp--;
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = op1 + op2;
+
+				}
 				;
 				break;
 
-			case Definicao.ISTORE2: {
+				case Definicao.ISUB: {
 
-				pilha[topoPilha].variaveis[2] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-				
-				pilha[topoPilha].sp--;
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp - 1];
 
-			}
+					op2 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
+
+					frameAtual.sp--;
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = op1 - op2;
+
+				}
 				;
 				break;
 
-			case Definicao.ISTORE3: {
+				case Definicao.IMUL: {
 
-				pilha[topoPilha].variaveis[3] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-				
-				pilha[topoPilha].sp--;
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp - 1];
 
-			}
+					op2 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
+
+					frameAtual.sp--;
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = op1 * op2;
+
+				}
 				;
 				break;
 
-			case Definicao.ISTORE: {
+				case Definicao.IDIV: {
 
-				op1 = obterOperandoInteiro();
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp - 1];
 
-				pilha[topoPilha].variaveis[op1] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-				
-				pilha[topoPilha].sp--;
+					op2 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
 
-			}
-				;
-				break;
-				
-			case Definicao.ASTORE0: {
+					frameAtual.sp--;
 
-				pilha[topoPilha].variaveis[0] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-				
-				pilha[topoPilha].sp--;
+					frameAtual.pilhaOperandos[frameAtual.sp] = op1 / op2;
 
-			}
-				;
-				break;
-				
-			case Definicao.ASTORE1: {
-
-				pilha[topoPilha].variaveis[1] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-				
-				pilha[topoPilha].sp--;
-
-			}
-				;
-				break;
-				
-			case Definicao.ASTORE2: {
-
-				pilha[topoPilha].variaveis[2] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-				
-				pilha[topoPilha].sp--;
-
-			}
-				;
-				break;
-				
-			case Definicao.ASTORE3: {
-
-				pilha[topoPilha].variaveis[3] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-				
-				pilha[topoPilha].sp--;
-
-			}
-				;
-				break;
-				
-			case Definicao.ASTORE: {
-
-				op1 = obterOperandoInteiro();
-
-				pilha[topoPilha].variaveis[op1] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-				
-				pilha[topoPilha].sp--;
-
-			}
+				}
 				;
 				break;
 
-			// operações lógicas
+				case Definicao.IREM: {
 
-			case Definicao.IAND: {
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp - 1];
 
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
+					op2 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
 
-				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
+					frameAtual.sp--;
 
-				op1 = op1 & op2;
+					frameAtual.pilhaOperandos[frameAtual.sp] = op1 % op2;
 
-				pilha[topoPilha].sp--;
-
-			}
+				}
 				;
 				break;
 
-			case Definicao.IOR: {
+				case Definicao.IINC: {
 
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
 
-				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
+					frameAtual.pilhaOperandos[frameAtual.sp] = ++op1;
 
-				op1 = op1 | op2;
-
-				pilha[topoPilha].sp--;
-
-			}
+				}
 				;
 				break;
 
-			case Definicao.IXOR: {
+				// operações de empilhamento de constantes
 
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
+				case Definicao.ICONST0: {
 
-				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
+					frameAtual.sp++;
 
-				op1 = op1 ^ op2;
+					frameAtual.pilhaOperandos[frameAtual.sp] = 0;
 
-				pilha[topoPilha].sp--;
-
-			}
+				}
 				;
 				break;
 
-			// operações de desvio condicional
+				case Definicao.ICONST1: {
 
-			case Definicao.IFEQ: {
+					frameAtual.sp++;
 
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
+					frameAtual.pilhaOperandos[frameAtual.sp] = 1;
 
-				if (op1 == 0) {
+				}
+				;
+				break;
 
-					desviar();
+				case Definicao.ICONST2: {
+
+					frameAtual.sp++;
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = 2;
+
+				}
+				;
+				break;
+
+				case Definicao.ICONST3: {
+
+					frameAtual.sp++;
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = 3;
+
+				}
+				;
+				break;
+
+				case Definicao.ICONST4: {
+
+					frameAtual.sp++;
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = 4;
+
+				}
+				;
+				break;
+
+				case Definicao.ICONST5: {
+
+					frameAtual.sp++;
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = 5;
+
+				}
+				;
+				break;
+
+				case Definicao.ICONSTM1: {
+
+					frameAtual.sp++;
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = -1;
+
+				}
+				;
+				break;
+
+				case Definicao.ACONSTNULL: {
+
+					frameAtual.sp++;
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = new Referencia(null);
+
+				}
+				;
+				break;
+
+				case Definicao.LDC: {
+
+					frameAtual.sp++;
+
+					op1 = obterOperandoInteiro(frameAtual);
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = op1;
+
+				}
+				;
+				break;
+
+				// operações de load
+
+				case Definicao.ILOAD0: {
+
+					frameAtual.sp++;
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = frameAtual.variaveis[0];
+
+				}
+				;
+				break;
+
+				case Definicao.ILOAD1: {
+
+					frameAtual.sp++;
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = frameAtual.variaveis[1];
+
+				}
+				;
+				break;
+
+				case Definicao.ILOAD2: {
+
+					frameAtual.sp++;
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = frameAtual.variaveis[2];
+
+				}
+				;
+				break;
+
+				case Definicao.ILOAD3: {
+
+					frameAtual.sp++;
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = frameAtual.variaveis[3];
+
+				}
+				;
+				break;
+
+				case Definicao.ILOAD: {
+
+					frameAtual.sp++;
+
+					op1 = obterOperandoInteiro(frameAtual);
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = frameAtual.variaveis[op1];
+
+				}
+				;
+				break;
+
+				case Definicao.ALOAD0: {
+
+					frameAtual.sp++;
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = frameAtual.variaveis[0];
+
+				}
+				;
+				break;
+
+				case Definicao.ALOAD1: {
+
+					frameAtual.sp++;
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = frameAtual.variaveis[1];
+
+				}
+				;
+				break;
+
+				case Definicao.ALOAD2: {
+
+					frameAtual.sp++;
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = frameAtual.variaveis[2];
+
+				}
+				;
+				break;
+
+				case Definicao.ALOAD3: {
+
+					frameAtual.sp++;
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = frameAtual.variaveis[3];
+
+				}
+				;
+				break;
+
+				case Definicao.ALOAD: {
+
+					frameAtual.sp++;
+
+					op1 = obterOperandoInteiro(frameAtual);
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = frameAtual.variaveis[op1];
+
+				}
+				;
+				break;
+
+
+				// operações de store
+
+				case Definicao.ISTORE0: {
+
+					frameAtual.variaveis[0] = frameAtual.pilhaOperandos[frameAtual.sp];
+
+					frameAtual.sp--;
+
+				}
+				;
+				break;
+
+				case Definicao.ISTORE1: {
+
+					frameAtual.variaveis[1] = frameAtual.pilhaOperandos[frameAtual.sp];
+
+					frameAtual.sp--;
+
+				}
+				;
+				break;
+
+				case Definicao.ISTORE2: {
+
+					frameAtual.variaveis[2] = frameAtual.pilhaOperandos[frameAtual.sp];
+
+					frameAtual.sp--;
+
+				}
+				;
+				break;
+
+				case Definicao.ISTORE3: {
+
+					frameAtual.variaveis[3] = frameAtual.pilhaOperandos[frameAtual.sp];
+
+					frameAtual.sp--;
+
+				}
+				;
+				break;
+
+				case Definicao.ISTORE: {
+
+					op1 = obterOperandoInteiro(frameAtual);
+
+					frameAtual.variaveis[op1] = frameAtual.pilhaOperandos[frameAtual.sp];
+
+					frameAtual.sp--;
+
+				}
+				;
+				break;
+
+				case Definicao.ASTORE0: {
+
+					frameAtual.variaveis[0] = frameAtual.pilhaOperandos[frameAtual.sp];
+
+					frameAtual.sp--;
+
+				}
+				;
+				break;
+
+				case Definicao.ASTORE1: {
+
+					frameAtual.variaveis[1] = frameAtual.pilhaOperandos[frameAtual.sp];
+
+					frameAtual.sp--;
+
+				}
+				;
+				break;
+
+				case Definicao.ASTORE2: {
+
+					frameAtual.variaveis[2] = frameAtual.pilhaOperandos[frameAtual.sp];
+
+					frameAtual.sp--;
+
+				}
+				;
+				break;
+
+				case Definicao.ASTORE3: {
+
+					frameAtual.variaveis[3] = frameAtual.pilhaOperandos[frameAtual.sp];
+
+					frameAtual.sp--;
+
+				}
+				;
+				break;
+
+				case Definicao.ASTORE: {
+
+					op1 = obterOperandoInteiro(frameAtual);
+
+					frameAtual.variaveis[op1] = frameAtual.pilhaOperandos[frameAtual.sp];
+
+					frameAtual.sp--;
+
+				}
+				;
+				break;
+
+				// operações lógicas
+
+				case Definicao.IAND: {
+
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp - 1];
+
+					op2 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
+
+					op1 = op1 & op2;
+
+					frameAtual.sp--;
+
+				}
+				;
+				break;
+
+				case Definicao.IOR: {
+
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp - 1];
+
+					op2 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
+
+					op1 = op1 | op2;
+
+					frameAtual.sp--;
+
+				}
+				;
+				break;
+
+				case Definicao.IXOR: {
+
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp - 1];
+
+					op2 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
+
+					op1 = op1 ^ op2;
+
+					frameAtual.sp--;
+
+				}
+				;
+				break;
+
+				// operações de desvio condicional
+
+				case Definicao.IFEQ: {
+
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
+
+					if (op1 == 0) {
+
+						desviar(frameAtual);
+
+						desvio = true;
+
+					} else {
+
+						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
+
+						frameAtual.pc += 4;
+
+					}
+
+				}
+				;
+				break;
+
+				case Definicao.IFNE: {
+
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
+
+					if (op1 != 0) {
+
+						desviar(frameAtual);
+
+						desvio = true;
+
+					} else {
+
+						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
+
+						frameAtual.pc += 4;
+
+					}
+
+				}
+				;
+				break;
+
+				case Definicao.IFLT: {
+
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
+
+					if (op1 > 0) {
+
+						desviar(frameAtual);
+
+						desvio = true;
+
+					} else {
+
+						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
+
+						frameAtual.pc += 4;
+
+					}
+
+				}
+				;
+				break;
+
+				case Definicao.IFGE: {
+
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
+
+					if (op1 >= 0) {
+
+						desviar(frameAtual);
+
+						desvio = true;
+
+					} else {
+
+						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
+
+						frameAtual.pc += 4;
+
+					}
+
+				}
+				;
+				break;
+
+				case Definicao.IFGT: {
+
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
+
+					if (op1 > 0) {
+
+						desviar(frameAtual);
+
+						desvio = true;
+
+					} else {
+
+						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
+
+						frameAtual.pc += 4;
+
+					}
+
+				}
+				;
+				break;
+
+				case Definicao.IFLE: {
+
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
+
+					if (op1 <= 0) {
+
+						desviar(frameAtual);
+
+						desvio = true;
+
+					} else {
+
+						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
+
+						frameAtual.pc += 4;
+
+					}
+
+				}
+				;
+				break;
+
+				case Definicao.IF_ICMPEQ: {
+
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp - 1];
+
+					op2 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
+
+					frameAtual.sp--;
+
+					if (op1 == op2) {
+
+						desviar(frameAtual);
+
+						desvio = true;
+
+					} else {
+
+						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
+
+						frameAtual.pc += 4;
+
+					}
+
+				}
+				;
+				break;
+
+				case Definicao.IF_ICMPNE: {
+
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp - 1];
+
+					op2 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
+
+					frameAtual.sp--;
+
+					if (op1 != op2) {
+
+						desviar(frameAtual);
+
+						desvio = true;
+
+					} else {
+
+						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
+
+						frameAtual.pc += 4;
+
+					}
+
+				}
+				;
+				break;
+
+				case Definicao.IF_ICMPLT: {
+
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp - 1];
+
+					op2 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
+
+					frameAtual.sp--;
+
+					if (op1 < op2) {
+
+						desviar(frameAtual);
+
+						desvio = true;
+
+					} else {
+
+						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
+
+						frameAtual.pc += 4;
+
+					}
+
+				}
+				;
+				break;
+
+				case Definicao.IF_ICMPGE: {
+
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp - 1];
+
+					op2 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
+
+					frameAtual.sp--;
+
+					if (op1 >= op2) {
+
+						desviar(frameAtual);
+
+						desvio = true;
+
+					} else {
+
+						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
+
+						frameAtual.pc += 4;
+
+					}
+
+				}
+				;
+				break;
+
+				case Definicao.IF_ICMPGT: {
+
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp - 1];
+
+					op2 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
+
+					frameAtual.sp--;
+
+					if (op1 > op2) {
+
+						desviar(frameAtual);
+
+						desvio = true;
+
+					} else {
+
+						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
+
+						frameAtual.pc += 4;
+
+					}
+
+				}
+				;
+				break;
+
+				case Definicao.IF_ICMPLE: {
+
+					op1 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp - 1];
+
+					op2 = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
+
+					frameAtual.sp--;
+
+					if (op1 <= op2) {
+
+						desviar(frameAtual);
+
+						desvio = true;
+
+					} else {
+
+						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
+
+						frameAtual.pc += 4;
+
+					}
+
+				}
+				;
+				break;
+
+				// desvio incondicional
+				case Definicao.GOTO: {
+
+					op1 = obterOperandoInteiro(frameAtual);
+
+					frameAtual.pc = op1;
 
 					desvio = true;
 
-				} else {
-
-					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
-					
-					pilha[topoPilha].pc += 4;
-					
 				}
-
-			}
 				;
 				break;
 
-			case Definicao.IFNE: {
+				//manipulação de objetos
 
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
+				case Definicao.NEW: {
 
-				if (op1 != 0) {
+					op1 = obterOperandoInteiro(frameAtual);
 
-					desviar();
-
-					desvio = true;
-
-				} else {
-
-					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
+					SimboloClasse simboloClasse = loader.carregarClasse(op1);
 					
-					pilha[topoPilha].pc += 4;
-					
-				}
+					Objeto objeto = new Objeto(simboloClasse);
 
-			}
-				;
-				break;
+					heap.add(objeto);
 
-			case Definicao.IFLT: {
-
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-
-				if (op1 > 0) {
-
-					desviar();
-
-					desvio = true;
-
-				} else {
-
-					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
-					
-					pilha[topoPilha].pc += 4;
-					
-				}
-
-			}
-				;
-				break;
-
-			case Definicao.IFGE: {
-
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-
-				if (op1 >= 0) {
-
-					desviar();
-
-					desvio = true;
-
-				} else {
-
-					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
-					
-					pilha[topoPilha].pc += 4;
-					
-				}
-
-			}
-				;
-				break;
-
-			case Definicao.IFGT: {
-
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-
-				if (op1 > 0) {
-
-					desviar();
-
-					desvio = true;
-
-				} else {
-
-					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
-					
-					pilha[topoPilha].pc += 4;
-					
-				}
-
-			}
-				;
-				break;
-
-			case Definicao.IFLE: {
-
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-
-				if (op1 <= 0) {
-
-					desviar();
-
-					desvio = true;
-
-				} else {
-
-					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
-					
-					pilha[topoPilha].pc += 4;
-					
-				}
-
-			}
-				;
-				break;
-
-			case Definicao.IF_ICMPEQ: {
-
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
-
-				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-
-				pilha[topoPilha].sp--;
-
-				if (op1 == op2) {
-
-					desviar();
-
-					desvio = true;
-
-				} else {
-
-					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
-
-					pilha[topoPilha].pc += 4;
+					frameAtual.pilhaOperandos[++frameAtual.sp] = new Referencia(heap.indexOf(objeto));
 
 				}
 
-			}
-				;
-				break;
-
-			case Definicao.IF_ICMPNE: {
-
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
-
-				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-
-				pilha[topoPilha].sp--;
-
-				if (op1 != op2) {
-
-					desviar();
-
-					desvio = true;
-
-				} else {
-
-					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
-
-					pilha[topoPilha].pc += 4;
-
-				}
-
-			}
-				;
-				break;
-
-			case Definicao.IF_ICMPLT: {
-
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
-
-				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-
-				pilha[topoPilha].sp--;
-
-				if (op1 < op2) {
-
-					desviar();
-
-					desvio = true;
-
-				} else {
-
-					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
-
-					pilha[topoPilha].pc += 4;
-
-				}
-
-			}
-				;
-				break;
-
-			case Definicao.IF_ICMPGE: {
-
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
-
-				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-
-				pilha[topoPilha].sp--;
-
-				if (op1 >= op2) {
-
-					desviar();
-
-					desvio = true;
-
-				} else {
-
-					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
-
-					pilha[topoPilha].pc += 4;
-
-				}
-
-			}
-				;
-				break;
-
-			case Definicao.IF_ICMPGT: {
-
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
-
-				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-
-				pilha[topoPilha].sp--;
-
-				if (op1 > op2) {
-
-					desviar();
-
-					desvio = true;
-
-				} else {
-
-					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
-
-					pilha[topoPilha].pc += 4;
-
-				}
-
-			}
-				;
-				break;
-
-			case Definicao.IF_ICMPLE: {
-
-				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
-
-				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-
-				pilha[topoPilha].sp--;
-
-				if (op1 <= op2) {
-
-					desviar();
-
-					desvio = true;
-
-				} else {
-
-					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
-
-					pilha[topoPilha].pc += 4;
-
-				}
-
-			}
-				;
-				break;
-
-			// desvio incondicional
-			case Definicao.GOTO: {
-
-				op1 = obterOperandoInteiro();
-
-				pilha[topoPilha].pc = op1;
-
-				desvio = true;
-
-			}
-				;
-				break;
-				
-			//manpilha[topoPilha].pculação de objetos
-				
-			case Definicao.NEW: {
-				
-				op1 = obterOperandoInteiro();
-				
-				SimboloClasse simboloClasse = assembler.getConstantPool().get(op1);
-				
-				Objeto objeto = new Objeto(simboloClasse);
-				
-				heap.add(objeto);
-				
-				pilha[topoPilha].pilhaOperandos[++pilha[topoPilha].sp] = new Referencia(heap.indexOf(objeto));
-				
-			}
-			
 				;
 				break;	
-				
-			case Definicao.INVOKESPECIAL: {
-				
-				pilha[topoPilha].sp--;
-				
-				pilha[topoPilha].pc += 4;
-				
-			}
-			
+
+				case Definicao.INVOKESPECIAL: {
+
+					frameAtual.sp--;
+
+					frameAtual.pc += 4;
+
+				}
+
 				;
 				break;
-				
-			case Definicao.GETFIELD: {
-				
-				referencia = (Referencia)pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
-				
-				Objeto objeto = heap.get(referencia.getEndereco());
-				
-				op1 = obterOperandoInteiro();
-				
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = null;
-				
-				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = objeto.getMemoriaLocal()[op1];
-				
-			}
-			
+
+				case Definicao.GETFIELD: {
+
+					referencia = (Referencia)frameAtual.pilhaOperandos[frameAtual.sp];
+
+					Objeto objeto = heap.get(referencia.getEndereco());
+
+					op1 = obterOperandoInteiro(frameAtual);
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = null;
+
+					frameAtual.pilhaOperandos[frameAtual.sp] = objeto.getMemoriaLocal()[op1];
+
+				}
+
 				;
 				break;
-				
-			case Definicao.PUTFIELD: {
-				
-				referencia = (Referencia)pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
-				
-				Objeto objeto = heap.get(referencia.getEndereco());
-				
-				op1 = obterOperandoInteiro();
-				
-				objeto.getMemoriaLocal()[op1] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp--];
-				
-			}
-			
+
+				case Definicao.PUTFIELD: {
+
+					referencia = (Referencia)frameAtual.pilhaOperandos[frameAtual.sp - 1];
+
+					Objeto objeto = heap.get(referencia.getEndereco());
+
+					op1 = obterOperandoInteiro(frameAtual);
+
+					objeto.getMemoriaLocal()[op1] = frameAtual.pilhaOperandos[frameAtual.sp--];
+
+				}
+
 				;
 				break;
-				
+
+				}
+						
+
+				if (!desvio)
+
+					frameAtual.pc++;
+
+				// Para testes
+				exibirTela(frameAtual);
 			}
+			
+			topoPilha--;
 
-			if (!desvio)
-
-				pilha[topoPilha].pc++;
-
-			// Para testes
-			exibirTela();
-
-		}
+		} while(topoPilha > -1);
 
 	}
 
-	protected void desviar() {
+	protected void desviar(StackFrame frame) {
 
-		pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 1;
+		frame.pilhaOperandos[frame.sp] = 1;
 
-		int op = obterOperandoInteiro();
+		int op = obterOperandoInteiro(frame);
 
-		pilha[topoPilha].pc = op;
+		frame.pc = op;
 
 	}
 
-	protected int obterOperandoInteiro() {
+	protected int obterOperandoInteiro(StackFrame frame) {
 
-		int op = BytecodeAssembler.obterInteiro(global.codigo, pilha[topoPilha].pc + 1);
+		int op = BytecodeAssembler.obterInteiro(global.codigo, frame.pc + 1);
 
-		pilha[topoPilha].pc += 4;
+		frame.pc += 4;
 
 		return op;
 
@@ -1103,13 +1111,13 @@ public class Interpretador {
 	}
 
 	// Usado somente para testes
-	protected void exibirTela() {
+	protected void exibirTela(StackFrame frame) {
 
 		int i;
 
-		System.out.println("pilha[topoPilha].pc: " + pilha[topoPilha].pc);
+		System.out.println("frameAtual.pc: " + frame.pc);
 
-		System.out.println("pilha[topoPilha].sp: " + pilha[topoPilha].sp);
+		System.out.println("frameAtual.sp: " + frame.sp);
 
 		System.out.print("Memória do código: ");
 
@@ -1121,17 +1129,17 @@ public class Interpretador {
 
 		System.out.print("Memória global das variáveis: ");
 
-		for (i = 0; i < pilha[topoPilha].variaveis.length; i++)
+		for (i = 0; i < frame.variaveis.length; i++)
 
-			System.out.print(pilha[topoPilha].variaveis[i] + " ");
+			System.out.print(frame.variaveis[i] + " ");
 
 		System.out.print("\n");
 
 		System.out.print("Pilha: ");
 
-		for (i = 0; i < pilha[topoPilha].pilhaOperandos.length; i++)
+		for (i = 0; i < frame.pilhaOperandos.length; i++)
 
-			System.out.print(pilha[topoPilha].pilhaOperandos[i] + " ");
+			System.out.print(frame.pilhaOperandos[i] + " ");
 
 		System.out.print("\n\n");
 

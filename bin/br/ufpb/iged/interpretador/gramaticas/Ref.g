@@ -129,7 +129,10 @@ bottomup
 entraNaClasse
     : ^('.class' nome=ID (^(EXTENDS sup=TIPO_REF))? .)
         {
-          simboloClasse = ((SimboloClasse)$nome.simbolo);
+        
+          simboloClasse =(SimboloClasse)tabelaSimbolos.global.resolver("L" + $nome.getText());     
+          if(!assembler.getConstantPool().contains(simboloClasse))   
+          	assembler.getConstantPool().add(simboloClasse);
           if ( $sup!=null ) {
               $sup.simbolo = $sup.escopo.resolver($sup.text);
               simboloClasse.superClasse =
