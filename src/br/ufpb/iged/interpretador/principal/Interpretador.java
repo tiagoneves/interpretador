@@ -23,6 +23,7 @@ import br.ufpb.iged.interpretador.bytecodeassembler.asm.BytecodeAssembler;
 import br.ufpb.iged.interpretador.bytecodeassembler.asm.Definicao;
 import br.ufpb.iged.interpretador.parser.AssemblerLexer;
 import br.ufpb.iged.interpretador.excecoes.AcessoIndevidoMemoriaException;
+import br.ufpb.iged.interpretador.excecoes.ClassNotFoundException;
 import br.ufpb.iged.interpretador.excecoes.LabelException;
 import br.ufpb.iged.interpretador.symboltable.classes.BytecodesAST;
 import br.ufpb.iged.interpretador.symboltable.classes.BytecodesErrorNode;
@@ -36,18 +37,12 @@ import br.ufpb.iged.interpretador.parser.Ref;
 
 public class Interpretador {
 	
-	public static final int TAMANHO_INICIAL_PILHA = 100;
-	
+	public static final int TAMANHO_PILHA = 100;
+		
 	private static final String DIRETORIO_FONTE = "./classes";
 	
-	public int sp = -1;
-	
-	public int ip = 0;
-	
-	private static int tamanhoCodigo;
-	
-	public Object[] pilha = new Object[TAMANHO_INICIAL_PILHA];
-	
+	public static int tamanhoCodigo = 0;
+			
 	public static TabelaSimbolos tabelaSimbolos;
 	
 	static EscopoGlobal global;
@@ -57,6 +52,12 @@ public class Interpretador {
 	public List<Objeto> heap = new ArrayList<Objeto>();
 	
 	private static BytecodeAssembler assembler;
+	
+	private static StackFrame[] pilha = new StackFrame[TAMANHO_PILHA];
+	
+	private static int topoPilha = -1;
+	
+	private static ClassLoader loader;
 
 	public static TreeAdaptor bytecodesAdaptor = new CommonTreeAdaptor() {
 		
@@ -94,7 +95,7 @@ public class Interpretador {
 			//Simbolo classe = tabelaSimbolos.global.resolver("LTeste");
 			//System.out.println("Classe adicionada:" + classe.nome);
 			
-			SimboloClasse classe = (SimboloClasse) tabelaSimbolos.global.resolver("LClasse");
+			/*SimboloClasse classe = (SimboloClasse) tabelaSimbolos.global.resolver("LClasse");
 			SimboloMetodo kioeot = (SimboloMetodo) classe.resolver("kioeot");
 			kioeot.exibirCodigo();
 			
@@ -104,7 +105,27 @@ public class Interpretador {
 			
 			SimboloClasse teste = (SimboloClasse) tabelaSimbolos.global.resolver("LTeste");
 			SimboloMetodo init = (SimboloMetodo) teste.resolver("<init>");
-			init.exibirCodigo();
+			init.exibirCodigo();*/
+			
+			loader = new ClassLoader(global);
+			
+			try {
+				
+				SimboloClasse principal = loader.carregarClasseMain();
+				SimboloMetodo main = (SimboloMetodo) principal.resolver("main");
+				
+				pilha[++topoPilha] = new StackFrame(main.getTamanhoMemoriaLocal()); 
+				
+				global.codigo = main.getCodigo();
+				tamanhoCodigo = main.getCodigo().length;
+				
+				Interpretador interpretador = new Interpretador();
+				
+				interpretador.cpu();
+				
+			} catch (ClassNotFoundException e) {
+				System.out.println(e.getMessage());
+			}
 			
 		} catch (IOException ioe) {
 
@@ -158,9 +179,6 @@ public class Interpretador {
             assembler = carregarClasses();
 	        
 	        global = tabelaSimbolos.global;
-			global.codigo = assembler.obterCodigoMaquina();
-			tamanhoCodigo = assembler.obterTamanhoMemoriaCodigo();
-			global.memoriaGlobal = new Object[assembler.getTamMemoriaGlobal()];
 
 		
 	}
@@ -200,11 +218,11 @@ public class Interpretador {
 		
 		Referencia referencia;
 
-		while (ip < tamanhoCodigo) {
+		while (pilha[topoPilha].pc < tamanhoCodigo) {
 
 			desvio = false;
 
-			opcode = global.codigo[ip];
+			opcode = global.codigo[pilha[topoPilha].pc];
 
 			if (opcode < 0)
 
@@ -219,20 +237,20 @@ public class Interpretador {
 				break;
 				
 			case Definicao.POP:
-				sp-- ;
+				pilha[topoPilha].sp-- ;
 				break;
 				
 			case Definicao.POP2:
-				sp -= 2 ;
+				pilha[topoPilha].sp -= 2 ;
 				break;
 				
 			case Definicao.DUP: {
 
-				Referencia ref = (Referencia)pilha[sp];
+				Referencia ref = (Referencia)pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 				
-				sp++;
+				pilha[topoPilha].sp++;
 
-				pilha[sp] = ref;
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = ref;
 
 			}
 				;
@@ -242,22 +260,22 @@ public class Interpretador {
 
 			case Definicao.INEG: {
 
-				op1 = (Integer) pilha[sp];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
-				pilha[sp] = 0 - op1;
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0 - op1;
 
 			};
 				break;
 
 			case Definicao.IADD: {
 
-				op1 = (Integer) pilha[sp - 1];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
 
-				op2 = (Integer) pilha[sp];
+				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
-				sp--;
+				pilha[topoPilha].sp--;
 
-				pilha[sp] = op1 + op2;
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = op1 + op2;
 
 			}
 				;
@@ -265,13 +283,13 @@ public class Interpretador {
 
 			case Definicao.ISUB: {
 
-				op1 = (Integer) pilha[sp - 1];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
 
-				op2 = (Integer) pilha[sp];
+				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
-				sp--;
+				pilha[topoPilha].sp--;
 
-				pilha[sp] = op1 - op2;
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = op1 - op2;
 
 			}
 				;
@@ -279,13 +297,13 @@ public class Interpretador {
 
 			case Definicao.IMUL: {
 
-				op1 = (Integer) pilha[sp - 1];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
 
-				op2 = (Integer) pilha[sp];
+				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
-				sp--;
+				pilha[topoPilha].sp--;
 
-				pilha[sp] = op1 * op2;
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = op1 * op2;
 
 			}
 				;
@@ -293,13 +311,13 @@ public class Interpretador {
 
 			case Definicao.IDIV: {
 
-				op1 = (Integer) pilha[sp - 1];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
 
-				op2 = (Integer) pilha[sp];
+				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
-				sp--;
+				pilha[topoPilha].sp--;
 
-				pilha[sp] = op1 / op2;
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = op1 / op2;
 
 			}
 				;
@@ -307,13 +325,13 @@ public class Interpretador {
 
 			case Definicao.IREM: {
 
-				op1 = (Integer) pilha[sp - 1];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
 
-				op2 = (Integer) pilha[sp];
+				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
-				sp--;
+				pilha[topoPilha].sp--;
 
-				pilha[sp] = op1 % op2;
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = op1 % op2;
 
 			}
 				;
@@ -321,9 +339,9 @@ public class Interpretador {
 
 			case Definicao.IINC: {
 
-				op1 = (Integer) pilha[sp];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
-				pilha[sp] = ++op1;
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = ++op1;
 
 			}
 				;
@@ -333,9 +351,9 @@ public class Interpretador {
 
 			case Definicao.ICONST0: {
 
-				sp++;
+				pilha[topoPilha].sp++;
 
-				pilha[sp] = 0;
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
 
 			}
 				;
@@ -343,9 +361,9 @@ public class Interpretador {
 
 			case Definicao.ICONST1: {
 
-				sp++;
+				pilha[topoPilha].sp++;
 
-				pilha[sp] = 1;
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 1;
 
 			}
 				;
@@ -353,9 +371,9 @@ public class Interpretador {
 
 			case Definicao.ICONST2: {
 
-				sp++;
+				pilha[topoPilha].sp++;
 
-				pilha[sp] = 2;
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 2;
 
 			}
 				;
@@ -363,9 +381,9 @@ public class Interpretador {
 
 			case Definicao.ICONST3: {
 
-				sp++;
+				pilha[topoPilha].sp++;
 
-				pilha[sp] = 3;
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 3;
 
 			}
 				;
@@ -373,9 +391,9 @@ public class Interpretador {
 
 			case Definicao.ICONST4: {
 
-				sp++;
+				pilha[topoPilha].sp++;
 
-				pilha[sp] = 4;
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 4;
 
 			}
 				;
@@ -383,9 +401,9 @@ public class Interpretador {
 
 			case Definicao.ICONST5: {
 
-				sp++;
+				pilha[topoPilha].sp++;
 
-				pilha[sp] = 5;
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 5;
 
 			}
 				;
@@ -393,9 +411,9 @@ public class Interpretador {
 
 			case Definicao.ICONSTM1: {
 
-				sp++;
+				pilha[topoPilha].sp++;
 
-				pilha[sp] = -1;
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = -1;
 
 			}
 				;
@@ -403,9 +421,9 @@ public class Interpretador {
 				
 			case Definicao.ACONSTNULL: {
 
-				sp++;
+				pilha[topoPilha].sp++;
 
-				pilha[sp] = new Referencia(null);
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = new Referencia(null);
 
 			}
 				;
@@ -413,11 +431,11 @@ public class Interpretador {
 
 			case Definicao.LDC: {
 
-				sp++;
+				pilha[topoPilha].sp++;
 
 				op1 = obterOperandoInteiro();
 
-				pilha[sp] = op1;
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = op1;
 
 			}
 				;
@@ -427,9 +445,9 @@ public class Interpretador {
 
 			case Definicao.ILOAD0: {
 
-				sp++;
+				pilha[topoPilha].sp++;
 
-				pilha[sp] = global.memoriaGlobal[0];
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = pilha[topoPilha].variaveis[0];
 
 			}
 				;
@@ -437,9 +455,9 @@ public class Interpretador {
 
 			case Definicao.ILOAD1: {
 
-				sp++;
+				pilha[topoPilha].sp++;
 
-				pilha[sp] = global.memoriaGlobal[1];
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = pilha[topoPilha].variaveis[1];
 
 			}
 				;
@@ -447,9 +465,9 @@ public class Interpretador {
 
 			case Definicao.ILOAD2: {
 
-				sp++;
+				pilha[topoPilha].sp++;
 
-				pilha[sp] = global.memoriaGlobal[2];
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = pilha[topoPilha].variaveis[2];
 
 			}
 				;
@@ -457,9 +475,9 @@ public class Interpretador {
 
 			case Definicao.ILOAD3: {
 
-				sp++;
+				pilha[topoPilha].sp++;
 
-				pilha[sp] = global.memoriaGlobal[3];
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = pilha[topoPilha].variaveis[3];
 
 			}
 				;
@@ -467,11 +485,11 @@ public class Interpretador {
 
 			case Definicao.ILOAD: {
 
-				sp++;
+				pilha[topoPilha].sp++;
 
 				op1 = obterOperandoInteiro();
 
-				pilha[sp] = global.memoriaGlobal[op1];
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = pilha[topoPilha].variaveis[op1];
 
 			}
 				;
@@ -479,9 +497,9 @@ public class Interpretador {
 				
 			case Definicao.ALOAD0: {
 
-				sp++;
+				pilha[topoPilha].sp++;
 
-				pilha[sp] = global.memoriaGlobal[0];
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = pilha[topoPilha].variaveis[0];
 
 			}
 				;
@@ -489,9 +507,9 @@ public class Interpretador {
 				
 			case Definicao.ALOAD1: {
 
-				sp++;
+				pilha[topoPilha].sp++;
 
-				pilha[sp] = global.memoriaGlobal[1];
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = pilha[topoPilha].variaveis[1];
 
 			}
 				;
@@ -499,9 +517,9 @@ public class Interpretador {
 			
 			case Definicao.ALOAD2: {
 
-				sp++;
+				pilha[topoPilha].sp++;
 
-				pilha[sp] = global.memoriaGlobal[2];
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = pilha[topoPilha].variaveis[2];
 
 			}
 				;
@@ -509,9 +527,9 @@ public class Interpretador {
 				
 			case Definicao.ALOAD3: {
 
-				sp++;
+				pilha[topoPilha].sp++;
 
-				pilha[sp] = global.memoriaGlobal[3];
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = pilha[topoPilha].variaveis[3];
 
 			}
 				;
@@ -519,11 +537,11 @@ public class Interpretador {
 				
 			case Definicao.ALOAD: {
 
-				sp++;
+				pilha[topoPilha].sp++;
 
 				op1 = obterOperandoInteiro();
 
-				pilha[sp] = global.memoriaGlobal[op1];
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = pilha[topoPilha].variaveis[op1];
 
 			}
 				;
@@ -534,9 +552,9 @@ public class Interpretador {
 
 			case Definicao.ISTORE0: {
 
-				global.memoriaGlobal[0] = pilha[sp];
+				pilha[topoPilha].variaveis[0] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 				
-				sp--;
+				pilha[topoPilha].sp--;
 
 			}
 				;
@@ -544,9 +562,9 @@ public class Interpretador {
 
 			case Definicao.ISTORE1: {
 
-				global.memoriaGlobal[1] = pilha[sp];
+				pilha[topoPilha].variaveis[1] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 				
-				sp--;
+				pilha[topoPilha].sp--;
 
 			}
 				;
@@ -554,9 +572,9 @@ public class Interpretador {
 
 			case Definicao.ISTORE2: {
 
-				global.memoriaGlobal[2] = pilha[sp];
+				pilha[topoPilha].variaveis[2] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 				
-				sp--;
+				pilha[topoPilha].sp--;
 
 			}
 				;
@@ -564,9 +582,9 @@ public class Interpretador {
 
 			case Definicao.ISTORE3: {
 
-				global.memoriaGlobal[3] = pilha[sp];
+				pilha[topoPilha].variaveis[3] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 				
-				sp--;
+				pilha[topoPilha].sp--;
 
 			}
 				;
@@ -576,9 +594,9 @@ public class Interpretador {
 
 				op1 = obterOperandoInteiro();
 
-				global.memoriaGlobal[op1] = pilha[sp];
+				pilha[topoPilha].variaveis[op1] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 				
-				sp--;
+				pilha[topoPilha].sp--;
 
 			}
 				;
@@ -586,9 +604,9 @@ public class Interpretador {
 				
 			case Definicao.ASTORE0: {
 
-				global.memoriaGlobal[0] = pilha[sp];
+				pilha[topoPilha].variaveis[0] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 				
-				sp--;
+				pilha[topoPilha].sp--;
 
 			}
 				;
@@ -596,9 +614,9 @@ public class Interpretador {
 				
 			case Definicao.ASTORE1: {
 
-				global.memoriaGlobal[1] = pilha[sp];
+				pilha[topoPilha].variaveis[1] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 				
-				sp--;
+				pilha[topoPilha].sp--;
 
 			}
 				;
@@ -606,9 +624,9 @@ public class Interpretador {
 				
 			case Definicao.ASTORE2: {
 
-				global.memoriaGlobal[2] = pilha[sp];
+				pilha[topoPilha].variaveis[2] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 				
-				sp--;
+				pilha[topoPilha].sp--;
 
 			}
 				;
@@ -616,9 +634,9 @@ public class Interpretador {
 				
 			case Definicao.ASTORE3: {
 
-				global.memoriaGlobal[3] = pilha[sp];
+				pilha[topoPilha].variaveis[3] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 				
-				sp--;
+				pilha[topoPilha].sp--;
 
 			}
 				;
@@ -628,9 +646,9 @@ public class Interpretador {
 
 				op1 = obterOperandoInteiro();
 
-				global.memoriaGlobal[op1] = pilha[sp];
+				pilha[topoPilha].variaveis[op1] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 				
-				sp--;
+				pilha[topoPilha].sp--;
 
 			}
 				;
@@ -640,13 +658,13 @@ public class Interpretador {
 
 			case Definicao.IAND: {
 
-				op1 = (Integer) pilha[sp - 1];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
 
-				op2 = (Integer) pilha[sp];
+				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
 				op1 = op1 & op2;
 
-				sp--;
+				pilha[topoPilha].sp--;
 
 			}
 				;
@@ -654,13 +672,13 @@ public class Interpretador {
 
 			case Definicao.IOR: {
 
-				op1 = (Integer) pilha[sp - 1];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
 
-				op2 = (Integer) pilha[sp];
+				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
 				op1 = op1 | op2;
 
-				sp--;
+				pilha[topoPilha].sp--;
 
 			}
 				;
@@ -668,13 +686,13 @@ public class Interpretador {
 
 			case Definicao.IXOR: {
 
-				op1 = (Integer) pilha[sp - 1];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
 
-				op2 = (Integer) pilha[sp];
+				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
 				op1 = op1 ^ op2;
 
-				sp--;
+				pilha[topoPilha].sp--;
 
 			}
 				;
@@ -684,7 +702,7 @@ public class Interpretador {
 
 			case Definicao.IFEQ: {
 
-				op1 = (Integer) pilha[sp];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
 				if (op1 == 0) {
 
@@ -694,9 +712,9 @@ public class Interpretador {
 
 				} else {
 
-					pilha[sp] = 0;
+					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
 					
-					ip += 4;
+					pilha[topoPilha].pc += 4;
 					
 				}
 
@@ -706,7 +724,7 @@ public class Interpretador {
 
 			case Definicao.IFNE: {
 
-				op1 = (Integer) pilha[sp];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
 				if (op1 != 0) {
 
@@ -716,9 +734,9 @@ public class Interpretador {
 
 				} else {
 
-					pilha[sp] = 0;
+					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
 					
-					ip += 4;
+					pilha[topoPilha].pc += 4;
 					
 				}
 
@@ -728,7 +746,7 @@ public class Interpretador {
 
 			case Definicao.IFLT: {
 
-				op1 = (Integer) pilha[sp];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
 				if (op1 > 0) {
 
@@ -738,9 +756,9 @@ public class Interpretador {
 
 				} else {
 
-					pilha[sp] = 0;
+					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
 					
-					ip += 4;
+					pilha[topoPilha].pc += 4;
 					
 				}
 
@@ -750,7 +768,7 @@ public class Interpretador {
 
 			case Definicao.IFGE: {
 
-				op1 = (Integer) pilha[sp];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
 				if (op1 >= 0) {
 
@@ -760,9 +778,9 @@ public class Interpretador {
 
 				} else {
 
-					pilha[sp] = 0;
+					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
 					
-					ip += 4;
+					pilha[topoPilha].pc += 4;
 					
 				}
 
@@ -772,7 +790,7 @@ public class Interpretador {
 
 			case Definicao.IFGT: {
 
-				op1 = (Integer) pilha[sp];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
 				if (op1 > 0) {
 
@@ -782,9 +800,9 @@ public class Interpretador {
 
 				} else {
 
-					pilha[sp] = 0;
+					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
 					
-					ip += 4;
+					pilha[topoPilha].pc += 4;
 					
 				}
 
@@ -794,7 +812,7 @@ public class Interpretador {
 
 			case Definicao.IFLE: {
 
-				op1 = (Integer) pilha[sp];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
 				if (op1 <= 0) {
 
@@ -804,9 +822,9 @@ public class Interpretador {
 
 				} else {
 
-					pilha[sp] = 0;
+					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
 					
-					ip += 4;
+					pilha[topoPilha].pc += 4;
 					
 				}
 
@@ -816,11 +834,11 @@ public class Interpretador {
 
 			case Definicao.IF_ICMPEQ: {
 
-				op1 = (Integer) pilha[sp - 1];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
 
-				op2 = (Integer) pilha[sp];
+				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
-				sp--;
+				pilha[topoPilha].sp--;
 
 				if (op1 == op2) {
 
@@ -830,9 +848,9 @@ public class Interpretador {
 
 				} else {
 
-					pilha[sp] = 0;
+					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
 
-					ip += 4;
+					pilha[topoPilha].pc += 4;
 
 				}
 
@@ -842,11 +860,11 @@ public class Interpretador {
 
 			case Definicao.IF_ICMPNE: {
 
-				op1 = (Integer) pilha[sp - 1];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
 
-				op2 = (Integer) pilha[sp];
+				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
-				sp--;
+				pilha[topoPilha].sp--;
 
 				if (op1 != op2) {
 
@@ -856,9 +874,9 @@ public class Interpretador {
 
 				} else {
 
-					pilha[sp] = 0;
+					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
 
-					ip += 4;
+					pilha[topoPilha].pc += 4;
 
 				}
 
@@ -868,11 +886,11 @@ public class Interpretador {
 
 			case Definicao.IF_ICMPLT: {
 
-				op1 = (Integer) pilha[sp - 1];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
 
-				op2 = (Integer) pilha[sp];
+				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
-				sp--;
+				pilha[topoPilha].sp--;
 
 				if (op1 < op2) {
 
@@ -882,9 +900,9 @@ public class Interpretador {
 
 				} else {
 
-					pilha[sp] = 0;
+					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
 
-					ip += 4;
+					pilha[topoPilha].pc += 4;
 
 				}
 
@@ -894,11 +912,11 @@ public class Interpretador {
 
 			case Definicao.IF_ICMPGE: {
 
-				op1 = (Integer) pilha[sp - 1];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
 
-				op2 = (Integer) pilha[sp];
+				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
-				sp--;
+				pilha[topoPilha].sp--;
 
 				if (op1 >= op2) {
 
@@ -908,9 +926,9 @@ public class Interpretador {
 
 				} else {
 
-					pilha[sp] = 0;
+					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
 
-					ip += 4;
+					pilha[topoPilha].pc += 4;
 
 				}
 
@@ -920,11 +938,11 @@ public class Interpretador {
 
 			case Definicao.IF_ICMPGT: {
 
-				op1 = (Integer) pilha[sp - 1];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
 
-				op2 = (Integer) pilha[sp];
+				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
-				sp--;
+				pilha[topoPilha].sp--;
 
 				if (op1 > op2) {
 
@@ -934,9 +952,9 @@ public class Interpretador {
 
 				} else {
 
-					pilha[sp] = 0;
+					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
 
-					ip += 4;
+					pilha[topoPilha].pc += 4;
 
 				}
 
@@ -946,11 +964,11 @@ public class Interpretador {
 
 			case Definicao.IF_ICMPLE: {
 
-				op1 = (Integer) pilha[sp - 1];
+				op1 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
 
-				op2 = (Integer) pilha[sp];
+				op2 = (Integer) pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 
-				sp--;
+				pilha[topoPilha].sp--;
 
 				if (op1 <= op2) {
 
@@ -960,9 +978,9 @@ public class Interpretador {
 
 				} else {
 
-					pilha[sp] = 0;
+					pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 0;
 
-					ip += 4;
+					pilha[topoPilha].pc += 4;
 
 				}
 
@@ -975,7 +993,7 @@ public class Interpretador {
 
 				op1 = obterOperandoInteiro();
 
-				ip = op1;
+				pilha[topoPilha].pc = op1;
 
 				desvio = true;
 
@@ -983,7 +1001,7 @@ public class Interpretador {
 				;
 				break;
 				
-			//manipulação de objetos
+			//manpilha[topoPilha].pculação de objetos
 				
 			case Definicao.NEW: {
 				
@@ -995,7 +1013,7 @@ public class Interpretador {
 				
 				heap.add(objeto);
 				
-				pilha[++sp] = new Referencia(heap.indexOf(objeto));
+				pilha[topoPilha].pilhaOperandos[++pilha[topoPilha].sp] = new Referencia(heap.indexOf(objeto));
 				
 			}
 			
@@ -1004,9 +1022,9 @@ public class Interpretador {
 				
 			case Definicao.INVOKESPECIAL: {
 				
-				sp--;
+				pilha[topoPilha].sp--;
 				
-				ip += 4;
+				pilha[topoPilha].pc += 4;
 				
 			}
 			
@@ -1015,15 +1033,15 @@ public class Interpretador {
 				
 			case Definicao.GETFIELD: {
 				
-				referencia = (Referencia)pilha[sp];
+				referencia = (Referencia)pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp];
 				
 				Objeto objeto = heap.get(referencia.getEndereco());
 				
 				op1 = obterOperandoInteiro();
 				
-				pilha[sp] = null;
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = null;
 				
-				pilha[sp] = objeto.getMemoriaLocal()[op1];
+				pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = objeto.getMemoriaLocal()[op1];
 				
 			}
 			
@@ -1032,13 +1050,13 @@ public class Interpretador {
 				
 			case Definicao.PUTFIELD: {
 				
-				referencia = (Referencia)pilha[sp - 1];
+				referencia = (Referencia)pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp - 1];
 				
 				Objeto objeto = heap.get(referencia.getEndereco());
 				
 				op1 = obterOperandoInteiro();
 				
-				objeto.getMemoriaLocal()[op1] = pilha[sp--];
+				objeto.getMemoriaLocal()[op1] = pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp--];
 				
 			}
 			
@@ -1049,10 +1067,10 @@ public class Interpretador {
 
 			if (!desvio)
 
-				ip++;
+				pilha[topoPilha].pc++;
 
 			// Para testes
-			//exibirTela();
+			exibirTela();
 
 		}
 
@@ -1060,19 +1078,19 @@ public class Interpretador {
 
 	protected void desviar() {
 
-		pilha[sp] = 1;
+		pilha[topoPilha].pilhaOperandos[pilha[topoPilha].sp] = 1;
 
 		int op = obterOperandoInteiro();
 
-		ip = op;
+		pilha[topoPilha].pc = op;
 
 	}
 
 	protected int obterOperandoInteiro() {
 
-		int op = BytecodeAssembler.obterInteiro(global.codigo, ip + 1);
+		int op = BytecodeAssembler.obterInteiro(global.codigo, pilha[topoPilha].pc + 1);
 
-		ip += 4;
+		pilha[topoPilha].pc += 4;
 
 		return op;
 
@@ -1089,9 +1107,9 @@ public class Interpretador {
 
 		int i;
 
-		System.out.println("IP: " + ip);
+		System.out.println("pilha[topoPilha].pc: " + pilha[topoPilha].pc);
 
-		System.out.println("SP: " + sp);
+		System.out.println("pilha[topoPilha].sp: " + pilha[topoPilha].sp);
 
 		System.out.print("Memória do código: ");
 
@@ -1103,17 +1121,17 @@ public class Interpretador {
 
 		System.out.print("Memória global das variáveis: ");
 
-		for (i = 0; i < global.memoriaGlobal.length; i++)
+		for (i = 0; i < pilha[topoPilha].variaveis.length; i++)
 
-			System.out.print(global.memoriaGlobal[i] + " ");
+			System.out.print(pilha[topoPilha].variaveis[i] + " ");
 
 		System.out.print("\n");
 
 		System.out.print("Pilha: ");
 
-		for (i = 0; i < pilha.length; i++)
+		for (i = 0; i < pilha[topoPilha].pilhaOperandos.length; i++)
 
-			System.out.print(pilha[i] + " ");
+			System.out.print(pilha[topoPilha].pilhaOperandos[i] + " ");
 
 		System.out.print("\n\n");
 

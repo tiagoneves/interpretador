@@ -4,14 +4,19 @@ public class StackFrame {
 	
 	public static final int TAMANHO_INICIAL_PILHA = 100;
 	
-	private Object[] pilhaOperandos = new Object[TAMANHO_INICIAL_PILHA];
+	public Object[] pilhaOperandos = new Object[TAMANHO_INICIAL_PILHA];
 	
-	private Object[] variaveis;
+	public Object[] variaveis;
+		
+	public int sp = -1;
 	
-	private int sp = -1;
+	public int pc = 0;
 	
-	private int pc = 0;
-	
+	public StackFrame(int tamanhoMemoriaLocal) {
+		
+		this.variaveis = new Object[tamanhoMemoriaLocal];
+		
+	}
 	
 
 }

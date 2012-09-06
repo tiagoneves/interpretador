@@ -13,6 +13,6 @@ public class EscopoGlobal extends EscopoBase {
     public String obterNomeEscopo() { 
     	return "global"; 
     }
-    
+     
     
 }

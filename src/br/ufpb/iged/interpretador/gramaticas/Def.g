@@ -132,7 +132,8 @@ saiDoMetodo
 	:  METHOD_DECL
 	{
 	   System.out.println("Saindo do metodo: "+escopoAtual);
-           escopoAtual = escopoAtual.obterEscopoEnvolvente(); // pop scope
+	   escopoAtual = escopoAtual.obterEscopoEnvolvente(); // pop scope
+           
 	}
 	;
 	

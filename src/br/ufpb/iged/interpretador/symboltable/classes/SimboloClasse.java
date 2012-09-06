@@ -44,6 +44,35 @@ public class SimboloClasse extends SimboloComEscopo implements Tipo {
         return null; // not found
         
     }
+    
+    public SimboloMetodo resolverMetodo(String assinatura, String nome) {
+    	
+        Simbolo s = membros.get(nome);
+        
+        if (s == null)
+        	return null;
+        
+        if (s.toString().equals(assinatura))
+        	return (SimboloMetodo)s;
+        
+        // if not here, check just the superclass chain
+        if ( superClasse != null ) {
+            return superClasse.resolverMetodo(assinatura, nome);
+        }
+        return null; // not found
+        
+    }
+    
+    public boolean possuiMetodo(String assinatura, String nome) {
+    	
+        SimboloMetodo metodo = resolverMetodo(assinatura, nome);
+        
+        if (metodo != null)
+        	return true;
+        
+        return false;
+        
+    }
 
     public Map<String, Simbolo> obterMembros() {
     	

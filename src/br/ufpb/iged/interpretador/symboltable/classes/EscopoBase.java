@@ -7,7 +7,7 @@ public abstract class EscopoBase implements Escopo {
 	
 	private Escopo escopoEnvolvente; // null if global (outermost) scope
 	
-	private Map<String, Simbolo> simbolos = new LinkedHashMap<String, Simbolo>();
+	public Map<String, Simbolo> simbolos = new LinkedHashMap<String, Simbolo>();
 
     public EscopoBase(Escopo parent) { this.escopoEnvolvente = parent;	}
 
