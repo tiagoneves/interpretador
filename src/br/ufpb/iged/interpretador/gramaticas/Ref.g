@@ -16,12 +16,15 @@ options {
     import br.ufpb.iged.interpretador.symboltable.classes.Tipo;
     import br.ufpb.iged.interpretador.bytecodeassembler.asm.BytecodeAssembler;
     import br.ufpb.iged.interpretador.symboltable.classes.SimboloVariavel;
+    import br.ufpb.iged.interpretador.symboltable.classes.SimboloMetodo;
 }
 
 @members {
+    
     TabelaSimbolos tabelaSimbolos;
     SimboloClasse simboloClasse;
     BytecodeAssembler assembler;
+    Escopo escopoAtual;
     public Ref(TreeNodeStream input, TabelaSimbolos tabelaSimbolos,
       BytecodeAssembler assembler) {
         this(input);
@@ -97,7 +100,9 @@ options {
 }
 
 topdown
-    : entraNaClasse
+    :   entraNaClasse
+      | entraNoMetodo
+      | entraNoConstrutor
       | declaracaoVariavel
       | getfield
       | putfield
@@ -112,7 +117,14 @@ topdown
       | logica
       | pilha
       | label
+      | retorno
     ;
+    
+bottomup
+ 	:   saiDoMetodo
+ 	  | saiDoConstrutor
+ 	
+ 	;
     
 entraNaClasse
     : ^('.class' nome=ID (^(EXTENDS sup=TIPO_REF))? .)
@@ -138,6 +150,44 @@ declaracaoVariavel
            System.out.println("linha "+$ID.getLine()+": set var type "+$ID.simbolo);
         }
     ;
+    
+entraNoConstrutor
+	: ^(CONSTR_DECL INIT .+)
+	{
+	  System.out.println("Ref: Entrou no construtor "+$INIT.text);
+	  escopoAtual = (SimboloMetodo)$INIT.simbolo;
+	  BytecodeAssembler.codigo = new byte[BytecodeAssembler.TAMANHO_INICIAL_MEMORIA_CODIGO];
+	  BytecodeAssembler.ip = 0;
+	}
+	;
+    
+entraNoMetodo
+	: ^(METHOD_DECL ID . .+)
+	{
+	  System.out.println("Ref: Entrou no metodo "+$ID.text);
+	  escopoAtual = (SimboloMetodo)$ID.simbolo;
+	  BytecodeAssembler.codigo = new byte[BytecodeAssembler.TAMANHO_INICIAL_MEMORIA_CODIGO];
+	  BytecodeAssembler.ip = 0;
+	}
+	;
+
+saiDoMetodo 
+	:  METHOD_DECL
+	{
+	   System.out.println("Ref: Saindo do metodo... ");
+	   ((SimboloMetodo)escopoAtual).setCodigo(assembler.obterCodigoMaquina());
+	   ((SimboloMetodo)escopoAtual).setTamanhoMemoriaLocal(assembler.obterTamanhoMemoriaCodigo());
+	}
+	;
+	
+saiDoConstrutor
+	:  CONSTR_DECL
+	{
+	    System.out.println("Ref: Saindo do construtor... ");
+	   ((SimboloMetodo)escopoAtual).setCodigo(assembler.obterCodigoMaquina());
+	   ((SimboloMetodo)escopoAtual).setTamanhoMemoriaLocal(assembler.obterTamanhoMemoriaCodigo());
+	}
+	;
     
 getfield
     : ^('getfield' classe = . . campo = . tipo = .)
@@ -229,3 +279,13 @@ label
       assembler.definirLabel($operacao.token);
    }
    ;
+   
+retorno
+	: (   operacao = 'ireturn' 
+	    | operacao = 'areturn' 
+	    | operacao = 'return' 
+	  )
+	{
+	   assembler.escreverOpcode($operacao.getText());
+	}
+	;

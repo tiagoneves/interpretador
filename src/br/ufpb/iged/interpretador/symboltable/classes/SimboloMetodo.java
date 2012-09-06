@@ -11,9 +11,11 @@ public class SimboloMetodo extends SimboloComEscopo{
 	
 	public static final int TAMANHO_INICIAL_MEMORIA_CODIGO = 1024;
 	
-	public byte[] codigo = new byte[TAMANHO_INICIAL_MEMORIA_CODIGO];
+	private byte[] codigo = new byte[TAMANHO_INICIAL_MEMORIA_CODIGO];
 	
 	public Object[] memoriaLocal;
+	
+	private int tamanhoMemoriaLocal;
 
 	public SimboloMetodo(String nome, Tipo tipoRet, Escopo parent) {
         super(nome, tipoRet, parent);
@@ -36,8 +38,43 @@ public class SimboloMetodo extends SimboloComEscopo{
 		this.retorno = retorno;
 	}
 	
+	public byte[] getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(byte[] codigo) {
+		this.codigo = codigo;
+	}
+
+	public int getTamanhoMemoriaLocal() {
+		return tamanhoMemoriaLocal;
+	}
+
+	public void setTamanhoMemoriaLocal(int tamanhoMemoriaLocal) {
+		this.tamanhoMemoriaLocal = tamanhoMemoriaLocal;
+		memoriaLocal = new Object[this.tamanhoMemoriaLocal];
+	}
+
 	public String toString() {
 		return obterNome()+getRetorno();
+	}
+	
+	//para testes
+	public void exibirCodigo() {
+		
+		System.out.println("--------- Método "+this+" ---------");
+		System.out.print("Memória do código: ");
+
+		int i;
+		
+		for (i = 0; i < codigo.length; i++)
+
+			System.out.print(codigo[i] + " ");
+
+		System.out.print("\n");
+		
+		System.out.println("Tamanho da memória local: "+tamanhoMemoriaLocal+"\n\n");
+		
 	}
 	
 }

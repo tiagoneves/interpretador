@@ -29,6 +29,7 @@ import br.ufpb.iged.interpretador.symboltable.classes.BytecodesErrorNode;
 import br.ufpb.iged.interpretador.symboltable.classes.EscopoGlobal;
 import br.ufpb.iged.interpretador.symboltable.classes.Simbolo;
 import br.ufpb.iged.interpretador.symboltable.classes.SimboloClasse;
+import br.ufpb.iged.interpretador.symboltable.classes.SimboloMetodo;
 import br.ufpb.iged.interpretador.symboltable.classes.TabelaSimbolos;
 import br.ufpb.iged.interpretador.parser.Def;
 import br.ufpb.iged.interpretador.parser.Ref;
@@ -85,9 +86,25 @@ public class Interpretador {
 			
 			carregar();
 			
-			Interpretador interpretador = new Interpretador();
+			//Interpretador interpretador = new Interpretador();
 			
-			interpretador.cpu();
+			//interpretador.cpu();
+			
+			//Para testes
+			//Simbolo classe = tabelaSimbolos.global.resolver("LTeste");
+			//System.out.println("Classe adicionada:" + classe.nome);
+			
+			SimboloClasse classe = (SimboloClasse) tabelaSimbolos.global.resolver("LClasse");
+			SimboloMetodo kioeot = (SimboloMetodo) classe.resolver("kioeot");
+			kioeot.exibirCodigo();
+			
+			SimboloClasse principal = (SimboloClasse) tabelaSimbolos.global.resolver("LMain");
+			SimboloMetodo main = (SimboloMetodo) principal.resolver("main");
+			main.exibirCodigo();
+			
+			SimboloClasse teste = (SimboloClasse) tabelaSimbolos.global.resolver("LTeste");
+			SimboloMetodo init = (SimboloMetodo) teste.resolver("<init>");
+			init.exibirCodigo();
 			
 		} catch (IOException ioe) {
 
@@ -144,10 +161,6 @@ public class Interpretador {
 			global.codigo = assembler.obterCodigoMaquina();
 			tamanhoCodigo = assembler.obterTamanhoMemoriaCodigo();
 			global.memoriaGlobal = new Object[assembler.getTamMemoriaGlobal()];
-			
-			//Para testes
-			Simbolo classe = tabelaSimbolos.global.resolver("LTeste");
-			System.out.println("Classe adicionada:" + classe.nome);
 
 		
 	}
@@ -1039,7 +1052,7 @@ public class Interpretador {
 				ip++;
 
 			// Para testes
-			exibirTela();
+			//exibirTela();
 
 		}
 

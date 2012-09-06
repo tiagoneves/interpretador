@@ -34,9 +34,6 @@ topdown : entraNoCorpoMetodo
         | entraNaClasse
         | parametros
         | declaracaoVariavel
-        | operacoesUm
-        | operacoesDois
-        | outrasOperacoes
         ;
 
 bottomup : saiDoCorpoMetodo
@@ -78,7 +75,7 @@ entraNoConstrutor
 	{
 	   System.out.println("linha "+$INIT.getLine()+
                           ": def method init ");
-           SimboloMetodo metodo = new SimboloMetodo("init", null, escopoAtual);
+           SimboloMetodo metodo = new SimboloMetodo($INIT.text, null, escopoAtual);
            metodo.def = $INIT;
            $INIT.simbolo = metodo;
            escopoAtual.definir(metodo);
@@ -115,55 +112,6 @@ parametros
 entraNoCorpoMetodo
     :   BODY {escopoAtual = new EscopoLocal(escopoAtual);} // push scope
     ;
-  
-operacoesUm
-       	:  ^(
-       		(   DESVIO 
-       		  | LABEL
-       		  | ARITMETICA
-       		  | LOAD
-       		  | STORE
-       		  | LOGICA
-       		  | PILHA
-       		) 
-       	        operacao = .
-       	    )
-       	{
-       	   System.out.println("def operacao "+$operacao.getText());
-   	   SimboloMetodo metodo = (SimboloMetodo)escopoAtual.obterEscopoEnvolvente();
-   	   $operacao.simbolo = metodo;
-       	}
-       	;
-       	
-operacoesDois
-       	:  ^(
-       		(   LOAD 
-       		  | STORE
-       		  | DESVIO
-       		)      		 
-       	        operacao = . .
-       	    )
-       	{
-       	   System.out.println("def operacao "+$operacao.getText());
-   	   SimboloMetodo metodo = (SimboloMetodo)escopoAtual.obterEscopoEnvolvente();
-   	   $operacao.simbolo = metodo;
-       	}
-       	;
-  
-outrasOperacoes
-	: (   nome = 'getfield' 
-	    | nome = 'putfield' 
-	    | nome = 'invokespecial' 
-	    | nome = 'ireturn' 
-	    | nome = 'areturn' 
-	    | nome = 'return' 
-	    | nome = 'new')
-	{
-	   System.out.println("def operacao "+$nome.getText());
-   	   SimboloMetodo metodo = (SimboloMetodo)escopoAtual.obterEscopoEnvolvente();
-   	   $nome.simbolo = metodo;
-	}
-	;
     
 saiDoCorpoMetodo
     :   BODY

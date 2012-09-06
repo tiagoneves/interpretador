@@ -13,6 +13,7 @@ import br.ufpb.iged.interpretador.parser.AssemblerParser;
 import br.ufpb.iged.interpretador.excecoes.AcessoIndevidoMemoriaException;
 import br.ufpb.iged.interpretador.excecoes.LabelException;
 import br.ufpb.iged.interpretador.symboltable.classes.SimboloClasse;
+import br.ufpb.iged.interpretador.symboltable.classes.SimboloMetodo;
 
 public class BytecodeAssembler extends AssemblerParser{
 
@@ -30,12 +31,11 @@ public class BytecodeAssembler extends AssemblerParser{
 	protected List<SimboloClasse> constantPool = new ArrayList<SimboloClasse>();
 	
 	public static int ip = 0;
-	public static byte[] codigo = new byte[TAMANHO_INICIAL_MEMORIA_CODIGO];
+	public static byte[] codigo;
 	protected int tamMemoriaGlobalEstruturas = 0;
 	protected int tamMemoriaGlobalReferencias = 0;
 	protected int tamMemoriaGlobal = 0;
 	protected int idProximaClasse = 0;
-
 
 	public BytecodeAssembler(TokenStream lexer, Definicao.Instrucao[] instrucoes) {
 
