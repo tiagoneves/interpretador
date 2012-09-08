@@ -13,7 +13,7 @@ public class SimboloMetodo extends SimboloComEscopo{
 	
 	private byte[] codigo = new byte[TAMANHO_INICIAL_MEMORIA_CODIGO];
 		
-	private int tamanhoMemoriaLocal;
+	private int tamanhoMemoriaLocal = 65536;
 
 	public SimboloMetodo(String nome, Tipo tipoRet, Escopo parent) {
         super(nome, tipoRet, parent);

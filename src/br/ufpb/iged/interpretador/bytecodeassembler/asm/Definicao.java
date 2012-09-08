@@ -63,9 +63,13 @@ public class Definicao {
     public static final int IRETURN = 0xac;
     public static final int ARETURN = 0xb0;
     public static final int RETURN = 0xb1;
+    public static final int GETSTATIC = 0xb2;
+    public static final int PUTSTATIC = 0xb3;
     public static final int GETFIELD = 0xb4;
     public static final int PUTFIELD = 0xb5;
+    public static final int INVOKEVIRTUAL = 0xb6;
     public static final int INVOKESPECIAL = 0xb7;
+    public static final int INVOKESTATIC = 0xb8;
     public static final int NEW = 0xbb;
     
     public static final int ID = AssemblerParser.ID;
@@ -167,9 +171,13 @@ public class Definicao {
 			new Instrucao("ireturn", Definicao.IRETURN),
 			new Instrucao("areturn", Definicao.ARETURN),
 			new Instrucao("return", Definicao.RETURN),
+			new Instrucao("getstatic", Definicao.GETSTATIC),
+			new Instrucao("putstatic", Definicao.PUTSTATIC),
 			new Instrucao("getfield", Definicao.GETFIELD),
 			new Instrucao("putfield", Definicao.PUTFIELD),
+			new Instrucao("invokevirtual", Definicao.INVOKEVIRTUAL),
 			new Instrucao("invokespecial", Definicao.INVOKESPECIAL),
+			new Instrucao("invokestatic", Definicao.INVOKESTATIC),
 			new Instrucao("new", Definicao.NEW)
 
 	};

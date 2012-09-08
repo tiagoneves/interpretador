@@ -71,11 +71,13 @@ declaracaoVariavel
     ;
     
 entraNoConstrutor
-	: ^(CONSTR_DECL INIT .+)
+	: ^(CONSTR_DECL INIT .+ (^(LIMIT lim=INTEIRO))?)
 	{
 	   System.out.println("linha "+$INIT.getLine()+
                           ": def method init ");
            SimboloMetodo metodo = new SimboloMetodo($INIT.text, null, escopoAtual);
+           if (lim != null)
+           	metodo.setTamanhoMemoriaLocal(new Integer(lim.getText()));
            metodo.def = $INIT;
            $INIT.simbolo = metodo;
            escopoAtual.definir(metodo);
@@ -84,11 +86,13 @@ entraNoConstrutor
 	;
 	
 entraNoMetodo
-	: ^(METHOD_DECL ID tipoRet =. .+)
+	: ^(METHOD_DECL ID tipoRet =. .+ (^(LIMIT lim=INTEIRO))?)
 	{
 	   System.out.println("linha "+$ID.getLine()+
                           ": def method "+$ID.text);
            SimboloMetodo metodo = new SimboloMetodo($ID.text, null, escopoAtual);
+           if (lim != null)
+           	metodo.setTamanhoMemoriaLocal(new Integer(lim.getText()));
            metodo.setRetorno($tipoRet.getText());
            metodo.def = $ID;
            $ID.simbolo = metodo;

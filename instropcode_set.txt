@@ -61,7 +61,11 @@ astore_3 4e 78
 ireturn ac 172
 areturn b0 176
 return b1 177
+getstatic b2 178
+putstatic b3 179
 getfield b4 180
 putfield b5 181
+invokevirtual b6 182
 invokespecial b7 183
+invokestatic b8 184
 new bb 187

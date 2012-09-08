@@ -58,7 +58,7 @@ public class Interpretador {
 	private static int topoPilha = -1;
 	
 	private static ClassLoader loader;
-
+	
 	public static TreeAdaptor bytecodesAdaptor = new CommonTreeAdaptor() {
 		
         public Object create(Token token) {
@@ -1022,7 +1022,18 @@ public class Interpretador {
 				}
 
 				;
-				break;	
+				break;
+				
+				case Definicao.INVOKEVIRTUAL: {
+					
+					op1 = obterOperandoInteiro(frameAtual);
+					
+					
+					
+				}
+				
+				;
+				break;
 
 				case Definicao.INVOKESPECIAL: {
 
@@ -1152,5 +1163,6 @@ public class Interpretador {
 
 
 	}
+	
 
 }

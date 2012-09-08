@@ -20,6 +20,7 @@ tokens {
   METHOD_DECL;
   CONSTR_DECL;
   PARAMS;
+  LIMIT;
 }
 
 @header{
@@ -76,12 +77,14 @@ definicaoClasse
 superClasse : '.super' TIPO_REF -> ^(EXTENDS TIPO_REF) ;
 
 membroClasse
-    : '.field' ID tipo -> ^(FIELD_DECL ID tipo)
-    | '.method' INIT (parametros | '(' parametros ')') VOID NEWLINE operacao* '.end method'
-	-> ^(CONSTR_DECL INIT parametros ^(BODY operacao*))
-    | '.method' ID (parametros | '(' parametros ')') ret = tipo NEWLINE operacao* '.end method'
-        -> ^(METHOD_DECL ID  $ret parametros ^(BODY operacao*))
+    : '.field' 'static'? ID tipo -> ^(FIELD_DECL ID tipo)
+    | '.method' INIT (parametros | '(' parametros ')') VOID NEWLINE (limite NEWLINE)? operacao* '.end method'
+	-> ^(CONSTR_DECL INIT parametros limite? ^(BODY operacao*))
+    | '.method' 'static'? ID (parametros | '(' parametros ')') ret = tipo NEWLINE (limite NEWLINE)? operacao* '.end method'
+        -> ^(METHOD_DECL ID $ret parametros limite? ^(BODY operacao*))
     ;
+    
+limite :  '.limit locals' INTEIRO -> ^(LIMIT INTEIRO);  
    
 parametros
 	: '()' -> ^(PARAMS VOID)
@@ -95,9 +98,13 @@ parametros
 retorno : 'areturn' | 'ireturn' | 'return';
              
 manipulacaoObjetos : a = 'getfield' b = campo tipo -> ^('getfield' $b tipo)
+		   | a = 'getstatic' b = campo tipo -> ^('getstatic' $b tipo)
                    | a = 'putfield' b = campo tipo -> ^('putfield' $b tipo)
+                   | a = 'putstatic' b = campo tipo -> ^('putstatic' $b tipo)
                    | a = 'invokespecial' c = classe '/' d = chamadaMetodo
                       -> ^('invokespecial' $c $d)
+                   | a = 'invokestatic' c = classe '/' d = chamadaMetodo
+                      -> ^('invokestatic' $c $d)
                    | a = 'new'c = classe -> ^('new' $c)
                    ;
                 
@@ -231,7 +238,7 @@ INTEIRO : '-'? '0'..'9'+ ;
 
 TIPO_REF: 'L' ID ('/' ID)*;
 
-ID: ('a'..'z' | 'A'..'Z') ('a'..'z' | 'A'..'Z' | '0'..'9' | '.')* ;
+ID: ('a'..'z' | 'A'..'Z') ('a'..'z' | 'A'..'Z' | '0'..'9' | '.')*;
 
 //LETRA: ('a'..'z' | 'A'..'Z');
 

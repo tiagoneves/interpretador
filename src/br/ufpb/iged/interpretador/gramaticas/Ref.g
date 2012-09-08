@@ -65,9 +65,9 @@ options {
     
     }
     
-    private void chamarConstrutorDefault(String nomeClasse) {
+    private void chamarMetodo(String instrucao, String nomeClasse, String nomeMetodo) {
     
-      assembler.escreverOpcode("invokespecial");
+      assembler.escreverOpcode(instrucao);
        
       SimboloClasse simboloClasse =
           (SimboloClasse)tabelaSimbolos.global.resolver("L" + nomeClasse);
@@ -75,9 +75,17 @@ options {
       if(!assembler.getConstantPool().contains(simboloClasse))
       
           assembler.getConstantPool().add(simboloClasse);
+          
+       SimboloMetodo simboloMetodo =
+          (SimboloMetodo) simboloClasse.resolver(nomeMetodo);
     
-       BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo,
-          BytecodeAssembler.ip, assembler.getConstantPool().indexOf(simboloClasse));
+        if (!simboloClasse.getConstantPool().contains(simboloMetodo))
+      
+          simboloClasse.getConstantPool().add(simboloMetodo);
+    
+       BytecodeAssembler.escreverInteiro(
+          BytecodeAssembler.codigo, BytecodeAssembler.ip,
+          simboloClasse.getConstantPool().indexOf(simboloMetodo));
     
   }
   
@@ -105,8 +113,11 @@ topdown
       | entraNoConstrutor
       | declaracaoVariavel
       | getfield
+      | getstatic
       | putfield
+      | putstatic
       | invokespecial
+      | invokestatic
       | novaClasse
       | aritmetica
       | load
@@ -155,7 +166,7 @@ declaracaoVariavel
     ;
     
 entraNoConstrutor
-	: ^(CONSTR_DECL INIT .+)
+	: ^(CONSTR_DECL INIT .+ (^(LIMIT lim=INTEIRO))?)
 	{
 	  System.out.println("Ref: Entrou no construtor "+$INIT.text);
 	  escopoAtual = (SimboloMetodo)$INIT.simbolo;
@@ -165,7 +176,7 @@ entraNoConstrutor
 	;
     
 entraNoMetodo
-	: ^(METHOD_DECL ID . .+)
+	: ^(METHOD_DECL ID . .+ (^(LIMIT lim=INTEIRO))?)
 	{
 	  System.out.println("Ref: Entrou no metodo "+$ID.text);
 	  escopoAtual = (SimboloMetodo)$ID.simbolo;
@@ -199,6 +210,13 @@ getfield
     }
     ;
     
+getstatic
+    : ^('getstatic' classe = . . campo = . tipo = .)
+    {
+      acessarCampo("getstatic", $classe.getText(), $campo.getText());
+    }
+    ;
+    
 putfield
     : ^('putfield' classe = . . campo = . tipo = .)
     {
@@ -206,10 +224,24 @@ putfield
     }
     ;
     
+putstatic
+    : ^('putstatic' classe = . . campo = . tipo = .)
+    {
+      acessarCampo("putstatic", $classe.getText(), $campo.getText());
+    }
+    ;
+    
 invokespecial
     : ^('invokespecial' classe = . metodo = . args = . tipo = .)
     {
-      chamarConstrutorDefault($classe.getText());
+      chamarMetodo("invokespecial", $classe.getText(), $metodo.getText());
+    }
+    ;
+    
+invokestatic
+    : ^('invokestatic' classe = . metodo = . args = . tipo = .)
+    {
+      chamarMetodo("invokestatic", $classe.getText(), $metodo.getText());
     }
     ;
     
@@ -244,14 +276,14 @@ loadint
 store
    : ^(STORE operacao = .)
    {
-      assembler.verificarAumentoMemoriaGlobal($operacao.token);
+      assembler.escreverOpcode($operacao.getText());
    }
    ;
 
 storeint
     : ^(STORE operacao = . operando = .)
     {
-      assembler.verificarAumentoMemoriaGlobal($operacao.token, $operando.token);
+      assembler.escreverOpcode($operacao.token, $operando.token);
     }
     ;
     
