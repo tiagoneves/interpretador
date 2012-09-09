@@ -27,6 +27,12 @@ public class SimboloMetodo extends SimboloComEscopo{
     public String obterNome() {
         return nome+"("+stripBrackets(parametros.keySet().toString())+")";
     }
+    
+    public int obterTamanhoCodigo() {
+    	
+    	return codigo.length;
+    	
+    }
 
 	public String getRetorno() {
 		return retorno;

@@ -10,7 +10,7 @@ public class StackFrame {
 		
 	public int sp = -1;
 	
-	public int pc = 0;
+	public ProgramCounter pc;
 	
 	public StackFrame(int tamanhoMemoriaLocal) {
 		

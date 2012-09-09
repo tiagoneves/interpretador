@@ -40,13 +40,9 @@ public class Interpretador {
 	public static final int TAMANHO_PILHA = 100;
 		
 	private static final String DIRETORIO_FONTE = "./classes";
-	
-	public static int tamanhoCodigo = 0;
-			
+				
 	public static TabelaSimbolos tabelaSimbolos;
-	
-	static EscopoGlobal global;
-	
+		
 	private static StringBuffer entrada;
 	
 	public List<Objeto> heap = new ArrayList<Objeto>();
@@ -116,8 +112,7 @@ public class Interpretador {
 				
 				pilha[++topoPilha] = new StackFrame(main.getTamanhoMemoriaLocal()); 
 				
-				global.codigo = main.getCodigo();
-				tamanhoCodigo = main.getCodigo().length;
+				pilha[topoPilha].pc = new ProgramCounter(main);
 				
 				Interpretador interpretador = new Interpretador();
 				
@@ -177,9 +172,6 @@ public class Interpretador {
 	        tabelaSimbolos = new TabelaSimbolos(); 
             
             assembler = carregarClasses();
-	        
-	        global = tabelaSimbolos.global;
-
 		
 	}
 	
@@ -218,15 +210,23 @@ public class Interpretador {
 		
 		Referencia referencia;
 		
+		SimboloClasse simboloClasse;
+		
+		SimboloMetodo simboloMetodo;
+		
+		int tamanhoCodigo;
+		
 		do{
 			
 			StackFrame frameAtual = pilha[topoPilha];
+			
+			tamanhoCodigo = frameAtual.pc.getSimboloMetodo().obterTamanhoCodigo();
 
-			while (frameAtual.pc < tamanhoCodigo) {
+			while (frameAtual.pc.getInstrucao() < tamanhoCodigo) {
 
 				desvio = false;
 
-				opcode = global.codigo[frameAtual.pc];
+				opcode = frameAtual.pc.obterOpcode();
 
 				if (opcode < 0)
 
@@ -437,7 +437,7 @@ public class Interpretador {
 
 					frameAtual.sp++;
 
-					op1 = obterOperandoInteiro(frameAtual);
+					op1 = frameAtual.pc.obterOperandoInteiro();
 
 					frameAtual.pilhaOperandos[frameAtual.sp] = op1;
 
@@ -491,7 +491,7 @@ public class Interpretador {
 
 					frameAtual.sp++;
 
-					op1 = obterOperandoInteiro(frameAtual);
+					op1 = frameAtual.pc.obterOperandoInteiro();
 
 					frameAtual.pilhaOperandos[frameAtual.sp] = frameAtual.variaveis[op1];
 
@@ -543,7 +543,7 @@ public class Interpretador {
 
 					frameAtual.sp++;
 
-					op1 = obterOperandoInteiro(frameAtual);
+					op1 = frameAtual.pc.obterOperandoInteiro();
 
 					frameAtual.pilhaOperandos[frameAtual.sp] = frameAtual.variaveis[op1];
 
@@ -596,7 +596,7 @@ public class Interpretador {
 
 				case Definicao.ISTORE: {
 
-					op1 = obterOperandoInteiro(frameAtual);
+					op1 = frameAtual.pc.obterOperandoInteiro();
 
 					frameAtual.variaveis[op1] = frameAtual.pilhaOperandos[frameAtual.sp];
 
@@ -648,7 +648,7 @@ public class Interpretador {
 
 				case Definicao.ASTORE: {
 
-					op1 = obterOperandoInteiro(frameAtual);
+					op1 = frameAtual.pc.obterOperandoInteiro();
 
 					frameAtual.variaveis[op1] = frameAtual.pilhaOperandos[frameAtual.sp];
 
@@ -718,7 +718,7 @@ public class Interpretador {
 
 						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
 
-						frameAtual.pc += 4;
+						frameAtual.pc.pularOperando();
 
 					}
 
@@ -740,7 +740,7 @@ public class Interpretador {
 
 						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
 
-						frameAtual.pc += 4;
+						frameAtual.pc.pularOperando();
 
 					}
 
@@ -762,7 +762,7 @@ public class Interpretador {
 
 						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
 
-						frameAtual.pc += 4;
+						frameAtual.pc.pularOperando();
 
 					}
 
@@ -784,7 +784,7 @@ public class Interpretador {
 
 						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
 
-						frameAtual.pc += 4;
+						frameAtual.pc.pularOperando();
 
 					}
 
@@ -806,7 +806,7 @@ public class Interpretador {
 
 						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
 
-						frameAtual.pc += 4;
+						frameAtual.pc.pularOperando();
 
 					}
 
@@ -828,7 +828,7 @@ public class Interpretador {
 
 						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
 
-						frameAtual.pc += 4;
+						frameAtual.pc.pularOperando();
 
 					}
 
@@ -854,7 +854,7 @@ public class Interpretador {
 
 						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
 
-						frameAtual.pc += 4;
+						frameAtual.pc.pularOperando();
 
 					}
 
@@ -880,7 +880,7 @@ public class Interpretador {
 
 						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
 
-						frameAtual.pc += 4;
+						frameAtual.pc.pularOperando();
 
 					}
 
@@ -906,7 +906,7 @@ public class Interpretador {
 
 						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
 
-						frameAtual.pc += 4;
+						frameAtual.pc.pularOperando();
 
 					}
 
@@ -932,7 +932,7 @@ public class Interpretador {
 
 						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
 
-						frameAtual.pc += 4;
+						frameAtual.pc.pularOperando();
 
 					}
 
@@ -958,7 +958,7 @@ public class Interpretador {
 
 						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
 
-						frameAtual.pc += 4;
+						frameAtual.pc.pularOperando();
 
 					}
 
@@ -984,7 +984,7 @@ public class Interpretador {
 
 						frameAtual.pilhaOperandos[frameAtual.sp] = 0;
 
-						frameAtual.pc += 4;
+						frameAtual.pc.pularOperando();
 
 					}
 
@@ -995,9 +995,9 @@ public class Interpretador {
 				// desvio incondicional
 				case Definicao.GOTO: {
 
-					op1 = obterOperandoInteiro(frameAtual);
+					op1 = frameAtual.pc.obterOperandoInteiro();
 
-					frameAtual.pc = op1;
+					frameAtual.pc.jumpTo(op1);
 
 					desvio = true;
 
@@ -1009,9 +1009,9 @@ public class Interpretador {
 
 				case Definicao.NEW: {
 
-					op1 = obterOperandoInteiro(frameAtual);
+					op1 = frameAtual.pc.obterOperandoInteiro();
 
-					SimboloClasse simboloClasse = loader.carregarClasse(op1);
+					simboloClasse = loader.carregarClasse(op1);
 					
 					Objeto objeto = new Objeto(simboloClasse);
 
@@ -1026,9 +1026,19 @@ public class Interpretador {
 				
 				case Definicao.INVOKEVIRTUAL: {
 					
-					op1 = obterOperandoInteiro(frameAtual);
+					op1 = frameAtual.pc.obterOperandoInteiro();
 					
+					op2 = frameAtual.pc.obterOperandoInteiro();
 					
+					simboloClasse = loader.carregarClasse(op1);
+					
+					simboloMetodo = (SimboloMetodo) simboloClasse.getConstantPool().get(op2);
+					
+					pilha[++topoPilha] =  new StackFrame(simboloMetodo.getTamanhoMemoriaLocal());
+					
+					pilha[topoPilha].pc = new ProgramCounter(simboloMetodo);
+					
+					tamanhoCodigo = simboloMetodo.obterTamanhoCodigo();
 					
 				}
 				
@@ -1039,7 +1049,7 @@ public class Interpretador {
 
 					frameAtual.sp--;
 
-					frameAtual.pc += 4;
+					frameAtual.pc.pularOperando();
 
 				}
 
@@ -1052,7 +1062,7 @@ public class Interpretador {
 
 					Objeto objeto = heap.get(referencia.getEndereco());
 
-					op1 = obterOperandoInteiro(frameAtual);
+					op1 = frameAtual.pc.obterOperandoInteiro();
 
 					frameAtual.pilhaOperandos[frameAtual.sp] = null;
 
@@ -1069,7 +1079,7 @@ public class Interpretador {
 
 					Objeto objeto = heap.get(referencia.getEndereco());
 
-					op1 = obterOperandoInteiro(frameAtual);
+					op1 = frameAtual.pc.obterOperandoInteiro();
 
 					objeto.getMemoriaLocal()[op1] = frameAtual.pilhaOperandos[frameAtual.sp--];
 
@@ -1083,7 +1093,7 @@ public class Interpretador {
 
 				if (!desvio)
 
-					frameAtual.pc++;
+					frameAtual.pc.incrementar();
 
 				// Para testes
 				exibirTela(frameAtual);
@@ -1099,21 +1109,12 @@ public class Interpretador {
 
 		frame.pilhaOperandos[frame.sp] = 1;
 
-		int op = obterOperandoInteiro(frame);
+		int op = frame.pc.obterOperandoInteiro();
 
-		frame.pc = op;
-
-	}
-
-	protected int obterOperandoInteiro(StackFrame frame) {
-
-		int op = BytecodeAssembler.obterInteiro(global.codigo, frame.pc + 1);
-
-		frame.pc += 4;
-
-		return op;
+		frame.pc.jumpTo(op);
 
 	}
+
 
 	protected short valorEmByte(short a) {
 
@@ -1132,9 +1133,9 @@ public class Interpretador {
 
 		System.out.print("Memória do código: ");
 
-		for (i = 0; i < global.codigo.length; i++)
+		for (i = 0; i < frame.pc.getSimboloMetodo().getCodigo().length; i++)
 
-			System.out.print(global.codigo[i] + " ");
+			System.out.print(frame.pc.getSimboloMetodo().getCodigo()[i] + " ");
 
 		System.out.print("\n");
 

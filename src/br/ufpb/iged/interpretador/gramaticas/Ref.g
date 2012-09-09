@@ -58,6 +58,12 @@ options {
         if (!simboloClasse.getConstantPool().contains(simboloVariavel))
       
           simboloClasse.getConstantPool().add(simboloVariavel);
+          
+        if (operacao.equals("getstatic") || operacao.equals("putstatic"))
+          
+        	BytecodeAssembler.escreverInteiro(
+          	  BytecodeAssembler.codigo, BytecodeAssembler.ip,
+                  assembler.getConstantPool().indexOf(simboloClasse));
         
         BytecodeAssembler.escreverInteiro(
           BytecodeAssembler.codigo, BytecodeAssembler.ip,
@@ -65,7 +71,7 @@ options {
     
     }
     
-    private void chamarMetodo(String instrucao, String nomeClasse, String nomeMetodo) {
+    private void chamarMetodo(String instrucao, String nomeClasse, String nomeMetodo, String args, String tipoRetorno) {
     
       assembler.escreverOpcode(instrucao);
        
@@ -77,11 +83,15 @@ options {
           assembler.getConstantPool().add(simboloClasse);
           
        SimboloMetodo simboloMetodo =
-          (SimboloMetodo) simboloClasse.resolver(nomeMetodo);
+          (SimboloMetodo) simboloClasse.resolverMetodo(nomeMetodo+"("+args+")"+tipoRetorno, nomeMetodo);
     
         if (!simboloClasse.getConstantPool().contains(simboloMetodo))
       
           simboloClasse.getConstantPool().add(simboloMetodo);
+          
+       BytecodeAssembler.escreverInteiro(
+          BytecodeAssembler.codigo, BytecodeAssembler.ip,
+          assembler.getConstantPool().indexOf(simboloClasse));
     
        BytecodeAssembler.escreverInteiro(
           BytecodeAssembler.codigo, BytecodeAssembler.ip,
@@ -233,26 +243,26 @@ putstatic
     ;
     
 invokespecial
-    : ^('invokespecial' classe = . ^(METHOD_CALL nome = . ^(ARGS a = .) tipoRet = .))
+    : ^('invokespecial' classe = . ^(METHOD_CALL nome = . ^(ARGS a = .) .))
     {
-      System.out.println("chamando metodo "+nome.getText()+a.getText()+tipoRet.getText());
-      //chamarMetodo("invokespecial", $classe.getText(), $metodo.getText());
+      System.out.println("chamando construtor "+$nome.getText()+"("+$a.getText()+")");
+      chamarMetodo("invokespecial", $classe.getText(), $nome.getText(), $a.getText(), "");
     }
     ;
     
 invokestatic
     : ^('invokestatic' classe = . ^(METHOD_CALL nome = . ^(ARGS a = .) tipoRet = .))
     {
-      System.out.println("chamando metodo "+nome.getText()+a.getText()+tipoRet.getText());
-      //chamarMetodo("invokestatic", $classe.getText(), $metodo.getText());
+      System.out.println("chamando metodo "+$nome.getText()+"("+$a.getText()+")"+$tipoRet.getText());
+      chamarMetodo("invokestatic", $classe.getText(), $nome.getText(), $a.getText(), $tipoRet.getText());
     }
     ;
     
 invokevirtual
     : ^('invokevirtual' classe = . ^(METHOD_CALL nome = . ^(ARGS a = .) tipoRet = .))
     {
-      System.out.println("chamando metodo "+nome.getText()+a.getText()+tipoRet.getText());
-      //chamarMetodo("invokevirtual", $classe.getText(), $metodo.getText());
+      System.out.println("chamando metodo "+$nome.getText()+"("+$a.getText()+")"+$tipoRet.getText());
+      chamarMetodo("invokevirtual", $classe.getText(), $nome.getText(), $a.getText(), $tipoRet.getText());
     }
     ;
     
