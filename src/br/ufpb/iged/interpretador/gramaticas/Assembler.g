@@ -21,6 +21,8 @@ tokens {
   CONSTR_DECL;
   PARAMS;
   LIMIT;
+  METHOD_CALL;
+  ARGS;
 }
 
 @header{
@@ -105,6 +107,8 @@ manipulacaoObjetos : a = 'getfield' b = campo tipo -> ^('getfield' $b tipo)
                       -> ^('invokespecial' $c $d)
                    | a = 'invokestatic' c = classe '/' d = chamadaMetodo
                       -> ^('invokestatic' $c $d)
+                    | a = 'invokevirtual' c = classe '/' d = chamadaMetodo
+                      -> ^('invokevirtual' $c $d)
                    | a = 'new'c = classe -> ^('new' $c)
                    ;
                 
@@ -205,18 +209,40 @@ classe returns [List classe]
      : (cls += ID '/')* (cls += ID) {$classe = $cls;}
      ;
 
-chamadaMetodo returns [String nome, String params, String tipoRetorno]
+/*chamadaMetodo returns [String nome, int qtdParametros, String tipoRetorno]
      @init {
         $nome = "";
-        $params = "";
+        $qtdParametros = 0;
         $tipoRetorno = "";
      }
-     : n = INIT par = '()' tip = VOID {
+     : (n = INIT | n = ID) argumentos tip = tipo {
              $nome = $n.text;
-             $params = $par.text;
+             $qtdParametros = $qtd.qtdParams;
              $tipoRetorno = $tip.text;
         }
-     ;
+     ;*/
+     
+chamadaMetodo
+    	:   (n = INIT | n = ID) (argumentos | '(' argumentos ')') tip =  tipo
+    	      -> ^(METHOD_CALL $n argumentos $tip)
+    	;
+     
+argumentos
+	: '()' -> ^(ARGS VOID)
+	| (
+	       a = ID 
+	     | a = TIPO_REF
+	  )+
+	  -> ^(ARGS $a)+
+	;
+     
+contagemParametros returns [int qtdParams]
+	: '()' {$qtdParams = 0;}
+	| (
+	       ID {$qtdParams++;}
+	     | TIPO_REF {$qtdParams++;}
+	  )+
+	;
 
 campo returns [List classe, String campo]
      @init {

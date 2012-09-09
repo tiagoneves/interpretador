@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g 2012-09-08 17:02:15
+// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g 2012-09-08 21:27:27
 
     package br.ufpb.iged.interpretador.parser;
     
@@ -22,12 +22,10 @@ import java.util.HashMap;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class Def extends TreeFilter {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ARITMETICA", "BODY", "CONSTR_DECL", "DESVIO", "EXTENDS", "FIELD_DECL", "ID", "INIT", "INT", "INTEIRO", "LABEL", "LIMIT", "LOAD", "LOGICA", "MEMBRO_CLASSE", "METHOD_DECL", "NEWLINE", "NULL", "PARAMS", "PILHA", "STORE", "TIPO_REF", "VOID", "WS", "'('", "'()'", "')'", "'.class'", "'.end class'", "'.end method'", "'.field'", "'.limit locals'", "'.method'", "'.super'", "'/'", "':'", "'aconst_null'", "'aload'", "'aload_0'", "'aload_1'", "'aload_2'", "'aload_3'", "'areturn'", "'astore'", "'astore_0'", "'astore_1'", "'astore_2'", "'astore_3'", "'dup'", "'getfield'", "'getstatic'", "'goto'", "'iadd'", "'iand'", "'iconst_0'", "'iconst_1'", "'iconst_2'", "'iconst_3'", "'iconst_4'", "'iconst_5'", "'iconst_m1'", "'idiv'", "'if_icmpeq'", "'if_icmpge'", "'if_icmpgt'", "'if_icmple'", "'if_icmplt'", "'if_icmpne'", "'ifeq'", "'ifge'", "'ifgt'", "'ifle'", "'iflt'", "'ifne'", "'iinc'", "'iload'", "'iload_0'", "'iload_1'", "'iload_2'", "'iload_3'", "'imul'", "'ineg'", "'invokespecial'", "'invokestatic'", "'ior'", "'irem'", "'ireturn'", "'istore'", "'istore_0'", "'istore_1'", "'istore_2'", "'istore_3'", "'isub'", "'ixor'", "'ldc'", "'new'", "'nop'", "'pop'", "'pop2'", "'putfield'", "'putstatic'", "'return'", "'static'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ARGS", "ARITMETICA", "BODY", "CONSTR_DECL", "DESVIO", "EXTENDS", "FIELD_DECL", "ID", "INIT", "INT", "INTEIRO", "LABEL", "LIMIT", "LOAD", "LOGICA", "MEMBRO_CLASSE", "METHOD_CALL", "METHOD_DECL", "NEWLINE", "NULL", "PARAMS", "PILHA", "STORE", "TIPO_REF", "VOID", "WS", "'('", "'()'", "')'", "'.class'", "'.end class'", "'.end method'", "'.field'", "'.limit locals'", "'.method'", "'.super'", "'/'", "':'", "'aconst_null'", "'aload'", "'aload_0'", "'aload_1'", "'aload_2'", "'aload_3'", "'areturn'", "'astore'", "'astore_0'", "'astore_1'", "'astore_2'", "'astore_3'", "'dup'", "'getfield'", "'getstatic'", "'goto'", "'iadd'", "'iand'", "'iconst_0'", "'iconst_1'", "'iconst_2'", "'iconst_3'", "'iconst_4'", "'iconst_5'", "'iconst_m1'", "'idiv'", "'if_icmpeq'", "'if_icmpge'", "'if_icmpgt'", "'if_icmple'", "'if_icmplt'", "'if_icmpne'", "'ifeq'", "'ifge'", "'ifgt'", "'ifle'", "'iflt'", "'ifne'", "'iinc'", "'iload'", "'iload_0'", "'iload_1'", "'iload_2'", "'iload_3'", "'imul'", "'ineg'", "'invokespecial'", "'invokestatic'", "'invokevirtual'", "'ior'", "'irem'", "'ireturn'", "'istore'", "'istore_0'", "'istore_1'", "'istore_2'", "'istore_3'", "'isub'", "'ixor'", "'ldc'", "'new'", "'nop'", "'pop'", "'pop2'", "'putfield'", "'putstatic'", "'return'", "'static'"
     };
 
     public static final int EOF=-1;
-    public static final int T__28=28;
-    public static final int T__29=29;
     public static final int T__30=30;
     public static final int T__31=31;
     public static final int T__32=32;
@@ -105,30 +103,35 @@ public class Def extends TreeFilter {
     public static final int T__104=104;
     public static final int T__105=105;
     public static final int T__106=106;
-    public static final int ARITMETICA=4;
-    public static final int BODY=5;
-    public static final int CONSTR_DECL=6;
-    public static final int DESVIO=7;
-    public static final int EXTENDS=8;
-    public static final int FIELD_DECL=9;
-    public static final int ID=10;
-    public static final int INIT=11;
-    public static final int INT=12;
-    public static final int INTEIRO=13;
-    public static final int LABEL=14;
-    public static final int LIMIT=15;
-    public static final int LOAD=16;
-    public static final int LOGICA=17;
-    public static final int MEMBRO_CLASSE=18;
-    public static final int METHOD_DECL=19;
-    public static final int NEWLINE=20;
-    public static final int NULL=21;
-    public static final int PARAMS=22;
-    public static final int PILHA=23;
-    public static final int STORE=24;
-    public static final int TIPO_REF=25;
-    public static final int VOID=26;
-    public static final int WS=27;
+    public static final int T__107=107;
+    public static final int T__108=108;
+    public static final int T__109=109;
+    public static final int ARGS=4;
+    public static final int ARITMETICA=5;
+    public static final int BODY=6;
+    public static final int CONSTR_DECL=7;
+    public static final int DESVIO=8;
+    public static final int EXTENDS=9;
+    public static final int FIELD_DECL=10;
+    public static final int ID=11;
+    public static final int INIT=12;
+    public static final int INT=13;
+    public static final int INTEIRO=14;
+    public static final int LABEL=15;
+    public static final int LIMIT=16;
+    public static final int LOAD=17;
+    public static final int LOGICA=18;
+    public static final int MEMBRO_CLASSE=19;
+    public static final int METHOD_CALL=20;
+    public static final int METHOD_DECL=21;
+    public static final int NEWLINE=22;
+    public static final int NULL=23;
+    public static final int PARAMS=24;
+    public static final int PILHA=25;
+    public static final int STORE=26;
+    public static final int TIPO_REF=27;
+    public static final int VOID=28;
+    public static final int WS=29;
 
     // delegates
     public TreeFilter[] getDelegates() {
@@ -181,7 +184,7 @@ public class Def extends TreeFilter {
                 alt1=3;
                 }
                 break;
-            case 31:
+            case 33:
                 {
                 alt1=4;
                 }
@@ -311,7 +314,7 @@ public class Def extends TreeFilter {
                 alt2=3;
                 }
                 break;
-            case 31:
+            case 33:
                 {
                 alt2=4;
                 }
@@ -397,7 +400,7 @@ public class Def extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:46:5: ( ^( '.class' nome= ID ( ^( EXTENDS sup= TIPO_REF ) )? . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:46:7: ^( '.class' nome= ID ( ^( EXTENDS sup= TIPO_REF ) )? . )
             {
-            match(input,31,FOLLOW_31_in_entraNaClasse197); if (state.failed) return ;
+            match(input,33,FOLLOW_33_in_entraNaClasse197); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             nome=(BytecodesAST)match(input,ID,FOLLOW_ID_in_entraNaClasse201); if (state.failed) return ;
@@ -418,7 +421,7 @@ public class Def extends TreeFilter {
                         if ( (LA3_4==UP) ) {
                             int LA3_5 = input.LA(5);
 
-                            if ( ((LA3_5 >= ARITMETICA && LA3_5 <= 106)) ) {
+                            if ( ((LA3_5 >= ARGS && LA3_5 <= 109)) ) {
                                 alt3=1;
                             }
                         }
@@ -561,6 +564,7 @@ public class Def extends TreeFilter {
 
                     }
                     break;
+                case ARGS:
                 case ARITMETICA:
                 case BODY:
                 case CONSTR_DECL:
@@ -575,6 +579,7 @@ public class Def extends TreeFilter {
                 case LOAD:
                 case LOGICA:
                 case MEMBRO_CLASSE:
+                case METHOD_CALL:
                 case METHOD_DECL:
                 case NEWLINE:
                 case NULL:
@@ -584,8 +589,6 @@ public class Def extends TreeFilter {
                 case TIPO_REF:
                 case VOID:
                 case WS:
-                case 28:
-                case 29:
                 case 30:
                 case 31:
                 case 32:
@@ -663,6 +666,9 @@ public class Def extends TreeFilter {
                 case 104:
                 case 105:
                 case 106:
+                case 107:
+                case 108:
+                case 109:
                     {
                     alt4=1;
                     }
@@ -792,6 +798,7 @@ public class Def extends TreeFilter {
 
                     }
                     break;
+                case ARGS:
                 case ARITMETICA:
                 case BODY:
                 case CONSTR_DECL:
@@ -806,6 +813,7 @@ public class Def extends TreeFilter {
                 case LOAD:
                 case LOGICA:
                 case MEMBRO_CLASSE:
+                case METHOD_CALL:
                 case METHOD_DECL:
                 case NEWLINE:
                 case NULL:
@@ -815,8 +823,6 @@ public class Def extends TreeFilter {
                 case TIPO_REF:
                 case VOID:
                 case WS:
-                case 28:
-                case 29:
                 case 30:
                 case 31:
                 case 32:
@@ -894,6 +900,9 @@ public class Def extends TreeFilter {
                 case 104:
                 case 105:
                 case 106:
+                case 107:
+                case 108:
+                case 109:
                     {
                     alt6=1;
                     }
@@ -1095,7 +1104,7 @@ public class Def extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:128:13: ( '.class' )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g:128:15: '.class'
             {
-            match(input,31,FOLLOW_31_in_saiDaClasse432); if (state.failed) return ;
+            match(input,33,FOLLOW_33_in_saiDaClasse432); if (state.failed) return ;
 
             if ( state.backtracking==1 ) {
                           System.out.println("Saindo da classe.. membros: "+escopoAtual);
@@ -1195,24 +1204,24 @@ public class Def extends TreeFilter {
     public static final BitSet FOLLOW_saiDoMetodo_in_bottomup139 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_saiDoConstrutor_in_bottomup152 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_saiDaClasse_in_bottomup165 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_entraNaClasse197 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_entraNaClasse201 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x000007FFFFFFFFFFL});
+    public static final BitSet FOLLOW_33_in_entraNaClasse197 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_entraNaClasse201 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x00003FFFFFFFFFFFL});
     public static final BitSet FOLLOW_EXTENDS_in_entraNaClasse205 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_TIPO_REF_in_entraNaClasse209 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_FIELD_DECL_in_declaracaoVariavel243 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_declaracaoVariavel245 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x000007FFFFFFFFFFL});
+    public static final BitSet FOLLOW_ID_in_declaracaoVariavel245 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x00003FFFFFFFFFFFL});
     public static final BitSet FOLLOW_CONSTR_DECL_in_entraNoConstrutor280 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_INIT_in_entraNoConstrutor282 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x000007FFFFFFFFFFL});
+    public static final BitSet FOLLOW_INIT_in_entraNoConstrutor282 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x00003FFFFFFFFFFFL});
     public static final BitSet FOLLOW_LIMIT_in_entraNoConstrutor289 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_INTEIRO_in_entraNoConstrutor293 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_METHOD_DECL_in_entraNoMetodo313 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_entraNoMetodo315 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x000007FFFFFFFFFFL});
+    public static final BitSet FOLLOW_ID_in_entraNoMetodo315 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x00003FFFFFFFFFFFL});
     public static final BitSet FOLLOW_LIMIT_in_entraNoMetodo327 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_INTEIRO_in_entraNoMetodo331 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_PARAMS_in_parametros351 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_BODY_in_entraNoCorpoMetodo379 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_BODY_in_saiDoCorpoMetodo405 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_saiDaClasse432 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_saiDaClasse432 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_METHOD_DECL_in_saiDoMetodo482 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_CONSTR_DECL_in_saiDoConstrutor498 = new BitSet(new long[]{0x0000000000000002L});
 

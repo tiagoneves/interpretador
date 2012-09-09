@@ -118,6 +118,7 @@ topdown
       | putstatic
       | invokespecial
       | invokestatic
+      | invokevirtual
       | novaClasse
       | aritmetica
       | load
@@ -232,16 +233,26 @@ putstatic
     ;
     
 invokespecial
-    : ^('invokespecial' classe = . metodo = . args = . tipo = .)
+    : ^('invokespecial' classe = . ^(METHOD_CALL nome = . ^(ARGS a = .) tipoRet = .))
     {
-      chamarMetodo("invokespecial", $classe.getText(), $metodo.getText());
+      System.out.println("chamando metodo "+nome.getText()+a.getText()+tipoRet.getText());
+      //chamarMetodo("invokespecial", $classe.getText(), $metodo.getText());
     }
     ;
     
 invokestatic
-    : ^('invokestatic' classe = . metodo = . args = . tipo = .)
+    : ^('invokestatic' classe = . ^(METHOD_CALL nome = . ^(ARGS a = .) tipoRet = .))
     {
-      chamarMetodo("invokestatic", $classe.getText(), $metodo.getText());
+      System.out.println("chamando metodo "+nome.getText()+a.getText()+tipoRet.getText());
+      //chamarMetodo("invokestatic", $classe.getText(), $metodo.getText());
+    }
+    ;
+    
+invokevirtual
+    : ^('invokevirtual' classe = . ^(METHOD_CALL nome = . ^(ARGS a = .) tipoRet = .))
+    {
+      System.out.println("chamando metodo "+nome.getText()+a.getText()+tipoRet.getText());
+      //chamarMetodo("invokevirtual", $classe.getText(), $metodo.getText());
     }
     ;
     
