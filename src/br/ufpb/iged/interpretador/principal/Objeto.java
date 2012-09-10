@@ -16,57 +16,7 @@ public class Objeto {
 		
 		nome = simboloClasse.obterNome();
 		
-		List<Simbolo> constantPool = simboloClasse.getConstantPool();
-		
-		memoriaLocal = new Object[constantPool.size()];
-		
-		int i;
-		
-		for (i = 0; i < constantPool.size(); i++) {
-			
-			String nomeTipo = constantPool.get(i).getTipo().obterNome();
-			
-			if(nomeTipo.equals("I"))
-				
-				memoriaLocal[i] = new Integer(0);
-			
-			else if (nomeTipo.startsWith("L"))
-				
-				memoriaLocal[i] = new Referencia(new Integer(0));
-				
-			
-		}
-		
-		SimboloClasse parent = simboloClasse.getSuperClasse();
-		
-		while(parent != null) {
-			
-			List<Simbolo> constantPoolParent = parent.getConstantPool();
-			
-			memoriaLocal = 
-					Arrays.copyOf(
-							memoriaLocal, memoriaLocal.length + constantPoolParent.size());
-			
-			int j;
-			
-			for (j = 0; j < constantPoolParent.size(); j++, i++) {
-				
-				String nomeTipo = constantPoolParent.get(j).getTipo().obterNome();
-				
-				if(nomeTipo.equals("I"))
-					
-					memoriaLocal[i] = new Integer(0);
-				
-				else if (nomeTipo.startsWith("L"))
-					
-					memoriaLocal[i] = new Referencia(new Integer(0));
-					
-				
-			}
-			
-			parent = parent.getSuperClasse();
-			
-		}
+		memoriaLocal = new Object[simboloClasse.getFields().length];
 		
 	}
 	

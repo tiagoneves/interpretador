@@ -12,9 +12,28 @@ public class StackFrame {
 	
 	public ProgramCounter pc;
 	
-	public StackFrame(int tamanhoMemoriaLocal) {
+	private int nextParam;
+	
+	public StackFrame(int tamanhoMemoriaLocal, boolean estatico) {
 		
 		this.variaveis = new Object[tamanhoMemoriaLocal];
+		
+		if (estatico)
+			nextParam = 0;
+		else
+			nextParam = 1;
+		
+	}
+	
+	public void inserirValorParametro(Object valor) {
+		
+		variaveis[nextParam++] = valor;
+		
+	}
+	
+	public void inserirThis(Object valor) {
+		
+		variaveis[0] = valor;
 		
 	}
 	

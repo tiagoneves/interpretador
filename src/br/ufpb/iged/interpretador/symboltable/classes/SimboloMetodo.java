@@ -14,7 +14,7 @@ public class SimboloMetodo extends SimboloComEscopo{
 	private byte[] codigo = new byte[TAMANHO_INICIAL_MEMORIA_CODIGO];
 		
 	private int tamanhoMemoriaLocal = 65536;
-
+	
 	public SimboloMetodo(String nome, Tipo tipoRet, Escopo parent) {
         super(nome, tipoRet, parent);
         setRetorno("");
@@ -31,6 +31,45 @@ public class SimboloMetodo extends SimboloComEscopo{
     public int obterTamanhoCodigo() {
     	
     	return codigo.length;
+    	
+    }
+    
+    public int contarParametros() {
+    	
+    	String assinatura = this.toString();
+    	
+    	int indexAbrePar = assinatura.indexOf("(");
+    	
+    	int indexFechaPar = assinatura.indexOf(")");
+    	
+    	String params = assinatura.substring(indexAbrePar + 1, indexFechaPar);
+    	
+    	if (params.equals("VOID"))
+    		return 0;
+    	
+    	int contador = 0;
+    	
+        contador += contarOcorrencias(params, 'I');
+        contador += contarOcorrencias(params, 'L');
+        
+        return contador;
+        
+    	
+    }
+    
+    private int contarOcorrencias(String str, char ch) {
+    	
+    	int i, c;
+    	
+    	for (i = 0, c = 0; i < str.length(); i++) {
+    		
+    		if (str.charAt(i) == ch)
+    			c++;
+    		
+    	}
+    	
+    	return c;
+    		
     	
     }
 

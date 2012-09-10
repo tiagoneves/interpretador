@@ -110,7 +110,7 @@ public class Interpretador {
 				SimboloClasse principal = loader.carregarClasseMain();
 				SimboloMetodo main = (SimboloMetodo) principal.resolver("main");
 				
-				pilha[++topoPilha] = new StackFrame(main.getTamanhoMemoriaLocal()); 
+				pilha[++topoPilha] = new StackFrame(main.getTamanhoMemoriaLocal(), true); 
 				
 				pilha[topoPilha].pc = new ProgramCounter(main);
 				
@@ -1032,14 +1032,27 @@ public class Interpretador {
 					
 					simboloClasse = loader.carregarClasse(op1);
 					
-					simboloMetodo = (SimboloMetodo) simboloClasse.getConstantPool().get(op2);
+					simboloMetodo = (SimboloMetodo) simboloClasse.getMethodArea().get(op2);
 					
-					pilha[++topoPilha] =  new StackFrame(simboloMetodo.getTamanhoMemoriaLocal());
+					pilha[++topoPilha] =  new StackFrame(simboloMetodo.getTamanhoMemoriaLocal(), false);
 					
 					pilha[topoPilha].pc = new ProgramCounter(simboloMetodo);
 					
 					tamanhoCodigo = simboloMetodo.obterTamanhoCodigo();
 					
+					int i;
+					
+					int qtdParams = simboloMetodo.contarParametros();
+					
+					Object obj;
+					
+					for (i = 0; i < qtdParams; i++) {
+						obj = frameAtual.pilhaOperandos[frameAtual.sp - i];
+						frameAtual.inserirValorParametro(obj);
+						
+					}
+					
+					frameAtual.inserirThis(frameAtual.pilhaOperandos[frameAtual.sp - i]);
 				}
 				
 				;
@@ -1047,9 +1060,33 @@ public class Interpretador {
 
 				case Definicao.INVOKESPECIAL: {
 
-					frameAtual.sp--;
-
-					frameAtual.pc.pularOperando();
+					op1 = frameAtual.pc.obterOperandoInteiro();
+					
+					op2 = frameAtual.pc.obterOperandoInteiro();
+					
+					simboloClasse = loader.carregarClasse(op1);
+					
+					simboloMetodo = (SimboloMetodo) simboloClasse.getMethodArea().get(op2);
+					
+					pilha[++topoPilha] =  new StackFrame(simboloMetodo.getTamanhoMemoriaLocal(), false);
+					
+					pilha[topoPilha].pc = new ProgramCounter(simboloMetodo);
+					
+					tamanhoCodigo = simboloMetodo.obterTamanhoCodigo();
+					
+					int i;
+					
+					int qtdParams = simboloMetodo.contarParametros();
+					
+					Object obj;
+					
+					for (i = 0; i < qtdParams; i++) {
+						obj = frameAtual.pilhaOperandos[frameAtual.sp - i];
+						frameAtual.inserirValorParametro(obj);
+						
+					}
+					
+					frameAtual.inserirThis(frameAtual.pilhaOperandos[frameAtual.sp - i]);
 
 				}
 
@@ -1087,9 +1124,75 @@ public class Interpretador {
 
 				;
 				break;
+				
+				//métodos e variáveis estáticas
+				
+				case Definicao.INVOKESTATIC: {
+					
+					op1 = frameAtual.pc.obterOperandoInteiro();
+					
+					op2 = frameAtual.pc.obterOperandoInteiro();
+					
+					simboloClasse = loader.carregarClasse(op1);
+					
+					simboloMetodo = (SimboloMetodo) simboloClasse.getMethodArea().get(op2);
+					
+					pilha[++topoPilha] =  new StackFrame(simboloMetodo.getTamanhoMemoriaLocal(), true);
+					
+					pilha[topoPilha].pc = new ProgramCounter(simboloMetodo);
+					
+					tamanhoCodigo = simboloMetodo.obterTamanhoCodigo();
+					
+					int i;
+					
+					int qtdParams = simboloMetodo.contarParametros();
+					
+					Object obj;
+					
+					for (i = 0; i < qtdParams; i++) {
+						obj = frameAtual.pilhaOperandos[frameAtual.sp - i];
+						frameAtual.inserirValorParametro(obj);
+						
+					}					
+					
+				}
+				
+				;
+				break;
+				
+				case Definicao.GETSTATIC: {
+					
+					op1 = frameAtual.pc.obterOperandoInteiro();
+					
+					op2 = frameAtual.pc.obterOperandoInteiro();
+					
+					simboloClasse = loader.carregarClasse(op1);
+					
+					frameAtual.pilhaOperandos[frameAtual.sp] = null;
+					
+					frameAtual.pilhaOperandos[frameAtual.sp] = simboloClasse.getFields()[op2];
+					
+				}
+				
+				;
+				break;
+				
+				case Definicao.PUTSTATIC: {
+					
+					op1 = frameAtual.pc.obterOperandoInteiro();
+					
+					op2 = frameAtual.pc.obterOperandoInteiro();
+					
+					simboloClasse = loader.carregarClasse(op1);
+					
+					simboloClasse.getFields()[op2] = frameAtual.pilhaOperandos[frameAtual.sp--];
+					
+				}
+				
+				;
+				break;
 
 				}
-						
 
 				if (!desvio)
 

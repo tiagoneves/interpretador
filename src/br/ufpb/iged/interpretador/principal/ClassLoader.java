@@ -27,8 +27,10 @@ public class ClassLoader {
     	    	
     	for(SimboloClasse classe: classes){
     		  			
-    			if (classe.nome.equals(nome))
+    			if (classe.nome.equals(nome)){
+    				classe.alocarMemoriaFields();
     				return classe;
+    			}
     			
     		
     	}
@@ -41,8 +43,10 @@ public class ClassLoader {
 		
 		SimboloClasse classe = assembler.getConstantPool().get(index);
 		
-		if (classe != null)
+		if (classe != null){
+			classe.alocarMemoriaFields();
 			return classe;
+		}
 		
 		throw new ClassNotFoundException("A classe referenciada não pôde ser encontrada");
 		
@@ -54,9 +58,10 @@ public class ClassLoader {
     	
 		for(SimboloClasse classe: classes){
     			
-    			if (classe.possuiMetodo(METODO_MAIN, "main"))
+    			if (classe.possuiMetodo(METODO_MAIN, "main")){
+    				classe.alocarMemoriaFields();
     				return classe;
-    			
+    			}
     		
     	}
     	

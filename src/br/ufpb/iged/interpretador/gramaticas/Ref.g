@@ -85,9 +85,9 @@ options {
        SimboloMetodo simboloMetodo =
           (SimboloMetodo) simboloClasse.resolverMetodo(nomeMetodo+"("+args+")"+tipoRetorno, nomeMetodo);
     
-        if (!simboloClasse.getConstantPool().contains(simboloMetodo))
+        if (!simboloClasse.getMethodArea().contains(simboloMetodo))
       
-          simboloClasse.getConstantPool().add(simboloMetodo);
+          simboloClasse.getMethodArea().add(simboloMetodo);
           
        BytecodeAssembler.escreverInteiro(
           BytecodeAssembler.codigo, BytecodeAssembler.ip,
@@ -95,7 +95,7 @@ options {
     
        BytecodeAssembler.escreverInteiro(
           BytecodeAssembler.codigo, BytecodeAssembler.ip,
-          simboloClasse.getConstantPool().indexOf(simboloMetodo));
+          simboloClasse.getMethodArea().indexOf(simboloMetodo));
     
   }
   

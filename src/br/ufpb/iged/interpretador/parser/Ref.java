@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g 2012-09-08 23:48:38
+// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g 2012-09-10 19:01:19
 
     package br.ufpb.iged.interpretador.parser;
     
@@ -219,9 +219,9 @@ public class Ref extends TreeFilter {
            SimboloMetodo simboloMetodo =
               (SimboloMetodo) simboloClasse.resolverMetodo(nomeMetodo+"("+args+")"+tipoRetorno, nomeMetodo);
         
-            if (!simboloClasse.getConstantPool().contains(simboloMetodo))
+            if (!simboloClasse.getMethodArea().contains(simboloMetodo))
           
-              simboloClasse.getConstantPool().add(simboloMetodo);
+              simboloClasse.getMethodArea().add(simboloMetodo);
               
            BytecodeAssembler.escreverInteiro(
               BytecodeAssembler.codigo, BytecodeAssembler.ip,
@@ -229,7 +229,7 @@ public class Ref extends TreeFilter {
         
            BytecodeAssembler.escreverInteiro(
               BytecodeAssembler.codigo, BytecodeAssembler.ip,
-              simboloClasse.getConstantPool().indexOf(simboloMetodo));
+              simboloClasse.getMethodArea().indexOf(simboloMetodo));
         
       }
       
