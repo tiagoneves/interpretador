@@ -10,20 +10,12 @@ import br.ufpb.iged.interpretador.symboltable.classes.Simbolo;
 import br.ufpb.iged.interpretador.symboltable.classes.SimboloClasse;
 
 public class ClassLoader {
-	
-	private BytecodeAssembler assembler;
-	
+		
 	private static final String METODO_MAIN = "main(VOID)V";
 	
-	public ClassLoader(BytecodeAssembler assembler) {
+	public static SimboloClasse carregarClasse(String nome) throws ClassNotFoundException{
 		
-		this.assembler = assembler;
-		
-	}
-	
-	public SimboloClasse carregarClasse(String nome) throws ClassNotFoundException{
-		
-		List<SimboloClasse> classes = assembler.getConstantPool();
+		List<SimboloClasse> classes = Interpretador.getAssembler().getConstantPool();
     	    	
     	for(SimboloClasse classe: classes){
     		  			
@@ -39,9 +31,9 @@ public class ClassLoader {
     	
     }
 	
-	public SimboloClasse carregarClasse(int index) throws ClassNotFoundException {
+	public static SimboloClasse carregarClasse(int index) throws ClassNotFoundException {
 		
-		SimboloClasse classe = assembler.getConstantPool().get(index);
+		SimboloClasse classe = Interpretador.getAssembler().getConstantPool().get(index);
 		
 		if (classe != null){
 			classe.alocarMemoriaFields();
@@ -52,9 +44,9 @@ public class ClassLoader {
 		
 	}
 	
-	public SimboloClasse carregarClasseMain() throws ClassNotFoundException{
+	public static SimboloClasse carregarClasseMain() throws ClassNotFoundException{
     	
-		List<SimboloClasse> classes = assembler.getConstantPool();
+		List<SimboloClasse> classes = Interpretador.getAssembler().getConstantPool();
     	
 		for(SimboloClasse classe: classes){
     			
