@@ -12,6 +12,9 @@ public class SimboloMetodo extends SimboloComEscopo{
 
 	Map<String, Simbolo> parametros = new LinkedHashMap<String, Simbolo>();
 	
+	private Map<String, SimboloLabel> labels =
+			new HashMap<String, SimboloLabel>();
+	
 	private String retorno;
 	
 	public static final int TAMANHO_INICIAL_MEMORIA_CODIGO = 1024;
@@ -78,6 +81,20 @@ public class SimboloMetodo extends SimboloComEscopo{
     	
     }
 
+    public void definirLabel(Token id, int endereco) throws LabelException {
+
+		SimboloLabel label = labels.get(id.getText());
+
+		if (label != null)
+			throw new LabelException("Label duplicado");
+
+
+		label = new SimboloLabel(id.getText(), endereco);
+
+		labels.put(id.getText(), label);
+
+	}
+    
 	public String getRetorno() {
 		return retorno;
 	}
@@ -100,6 +117,14 @@ public class SimboloMetodo extends SimboloComEscopo{
 
 	public void setTamanhoMemoriaLocal(int tamanhoMemoriaLocal) {
 		this.tamanhoMemoriaLocal = tamanhoMemoriaLocal;
+	}
+
+	public Map<String, SimboloLabel> getLabels() {
+		return labels;
+	}
+
+	public void setLabels(Map<String, SimboloLabel> labels) {
+		this.labels = labels;
 	}
 
 	public String toString() {

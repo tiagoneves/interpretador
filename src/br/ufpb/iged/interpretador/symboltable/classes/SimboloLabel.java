@@ -17,7 +17,7 @@ public class SimboloLabel {
 	String name;
 
 	/** Address in code memory */
-	public int address;
+	public int endereco;
 
 	/** Is this ref'd before def'd. */
 	boolean isForwardRef = false;
@@ -32,19 +32,19 @@ public class SimboloLabel {
 		this.name = name;
 	}
 
-	public SimboloLabel(String name, int address) {
+	public SimboloLabel(String name, int endereco) {
 		this(name);
-		this.address = address;
+		this.endereco = endereco;
 	}
 
-	public SimboloLabel(String name, int address, boolean forward) {
+	public SimboloLabel(String name, int endereco, boolean forward) {
 		this(name);
 		isForwardRef = forward;
 		if (forward) {
 			// if forward reference, then address is address to update
-			addForwardReference(address);
+			addForwardReference(endereco);
 		} else {
-			this.address = address;
+			this.endereco = endereco;
 		}
 	}
 
@@ -64,7 +64,7 @@ public class SimboloLabel {
 			 * System.out.println("updating operand at addr "+
 			 * addr+" to be "+getAddress());
 			 */
-			BytecodeAssembler.escreverInteiro(code, addrToPatch, address);
+			BytecodeAssembler.escreverInteiro(code, addrToPatch, endereco);
 		}
 	}
 
@@ -73,6 +73,6 @@ public class SimboloLabel {
 		if (forwardReferences != null) {
 			refs = "[refs=" + forwardReferences.toString() + "]";
 		}
-		return name + "@" + address + refs;
+		return name + "@" + endereco + refs;
 	}
 }

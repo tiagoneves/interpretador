@@ -9,6 +9,8 @@ tokens {
   MEMBRO_CLASSE;
   FIELD_DECL;
   EXTENDS;
+  RETURN;
+  NEW;
   ARITMETICA;
   LOAD;
   STORE;
@@ -43,7 +45,6 @@ tokens {
   public abstract void escreverOpcode(Token opc, Token op) throws LabelException;
   public abstract void verificarAumentoMemoriaGlobal(Token opc) throws AcessoIndevidoMemoriaException;
   public abstract void verificarAumentoMemoriaGlobal(Token opc, Token op) throws AcessoIndevidoMemoriaException, LabelException;
-  public abstract void definirLabel(Token id) throws LabelException;
   
 }
 
@@ -70,7 +71,7 @@ comando: ( manipulacaoObjetos
               | retorno
               | 'nop'
            )? NEWLINE;
-              
+           
 definicaoClasse
     : '.class' ID NEWLINE (superClasse NEWLINE)? (membroClasse NEWLINE) +
            -> ^('.class' ID superClasse? ^(MEMBRO_CLASSE membroClasse+))
@@ -97,7 +98,13 @@ parametros
 	  -> ^(PARAMS $a)+
 	;
 
-retorno : 'areturn' | 'ireturn' | 'return';
+retorno : 
+        (   a = 'areturn'
+          | a = 'ireturn'
+          | a = 'return'                
+        )
+         -> ^(RETURN $a)
+         ;
              
 manipulacaoObjetos : a = 'getfield' b = campo tipo -> ^('getfield' $b tipo)
 		   | a = 'getstatic' b = campo tipo -> ^('getstatic' $b tipo)
@@ -109,7 +116,7 @@ manipulacaoObjetos : a = 'getfield' b = campo tipo -> ^('getfield' $b tipo)
                       -> ^('invokestatic' $c $d)
                     | a = 'invokevirtual' c = classe '/' d = chamadaMetodo
                       -> ^('invokevirtual' $c $d)
-                   | a = 'new'c = classe -> ^('new' $c)
+                   | a = 'new'c = classe -> ^(NEW $c)
                    ;
                 
   
@@ -208,19 +215,6 @@ classe returns [List classe]
      }
      : (cls += ID '/')* (cls += ID) {$classe = $cls;}
      ;
-
-/*chamadaMetodo returns [String nome, int qtdParametros, String tipoRetorno]
-     @init {
-        $nome = "";
-        $qtdParametros = 0;
-        $tipoRetorno = "";
-     }
-     : (n = INIT | n = ID) argumentos tip = tipo {
-             $nome = $n.text;
-             $qtdParametros = $qtd.qtdParams;
-             $tipoRetorno = $tip.text;
-        }
-     ;*/
      
 chamadaMetodo
     	:   (n = INIT | n = ID) (argumentos | '(' argumentos ')') tip =  tipo

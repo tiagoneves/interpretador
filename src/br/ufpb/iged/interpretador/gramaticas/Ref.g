@@ -123,24 +123,11 @@ topdown
       | entraNoMetodo
       | entraNoConstrutor
       | declaracaoVariavel
-      | getfield
-      | getstatic
-      | putfield
-      | putstatic
-      | invokespecial
-      | invokestatic
-      | invokevirtual
+      | field
+      | invoke
       | novaClasse
-      | aritmetica
-      | load
-      | loadint
-      | store
-      | storeint
-      | desvio
-      | logica
-      | pilha
-      | label
-      | retorno
+      | nenhumoperando
+      | umoperando
     ;
     
 bottomup
@@ -184,7 +171,7 @@ entraNoConstrutor
 	  escopoAtual = (SimboloMetodo)$INIT.simbolo;
 	  BytecodeAssembler.codigo = new byte[BytecodeAssembler.TAMANHO_INICIAL_MEMORIA_CODIGO];
 	  BytecodeAssembler.ip = 0;
-	  BytecodeAssembler.labels = new HashMap<String, SimboloLabel>();
+	  assembler.setMetodoAtual((SimboloMetodo)escopoAtual);
 	}
 	;
     
@@ -195,7 +182,7 @@ entraNoMetodo
 	  escopoAtual = (SimboloMetodo)$ID.simbolo;
 	  BytecodeAssembler.codigo = new byte[BytecodeAssembler.TAMANHO_INICIAL_MEMORIA_CODIGO];
 	  BytecodeAssembler.ip = 0;
-	  BytecodeAssembler.labels = new HashMap<String, SimboloLabel>();
+	  assembler.setMetodoAtual((SimboloMetodo)escopoAtual);
 	}
 	;
 
@@ -216,135 +203,42 @@ saiDoConstrutor
 	   ((SimboloMetodo)escopoAtual).setTamanhoMemoriaLocal(assembler.obterTamanhoMemoriaCodigo());
 	}
 	;
-    
-getfield
-    : ^('getfield' classe = . . campo = . tipo = .)
-    {
-      acessarCampo("getfield", $classe.getText(), $campo.getText());
-    }
-    ;
-    
-getstatic
-    : ^('getstatic' classe = . . campo = . tipo = .)
-    {
-      acessarCampo("getstatic", $classe.getText(), $campo.getText());
-    }
-    ;
-    
-putfield
-    : ^('putfield' classe = . . campo = . tipo = .)
-    {
-      acessarCampo("putfield", $classe.getText(), $campo.getText());
-    }
-    ;
-    
-putstatic
-    : ^('putstatic' classe = . . campo = . tipo = .)
-    {
-      acessarCampo("putstatic", $classe.getText(), $campo.getText());
-    }
-    ;
-    
-invokespecial
-    : ^('invokespecial' classe = . ^(METHOD_CALL nome = . ^(ARGS a = .) .))
-    {
-      System.out.println("chamando construtor "+$nome.getText()+"("+$a.getText()+")");
-      chamarMetodo("invokespecial", $classe.getText(), $nome.getText(), $a.getText(), "");
-    }
-    ;
-    
-invokestatic
-    : ^('invokestatic' classe = . ^(METHOD_CALL nome = . ^(ARGS a = .) tipoRet = .))
-    {
-      System.out.println("chamando metodo "+$nome.getText()+"("+$a.getText()+")"+$tipoRet.getText());
-      chamarMetodo("invokestatic", $classe.getText(), $nome.getText(), $a.getText(), $tipoRet.getText());
-    }
-    ;
-    
-invokevirtual
-    : ^('invokevirtual' classe = . ^(METHOD_CALL nome = . ^(ARGS a = .) tipoRet = .))
-    {
-      System.out.println("chamando metodo "+$nome.getText()+"("+$a.getText()+")"+$tipoRet.getText());
-      chamarMetodo("invokevirtual", $classe.getText(), $nome.getText(), $a.getText(), $tipoRet.getText());
-    }
-    ;
+	
+field 	: ^(('getfield' | 'getstatic' | 'putfield' | 'putstatic') classe = . . campo = . tipo = .)
+        {
+          acessarCampo("getfield", $classe.getText(), $campo.getText());
+        }
+        ;
+        
+invoke 	:  ^((op = 'invokespecial' | op = 'invokestatic' | op = 'invokevirtual') . classe = . ^(METHOD_CALL nome = . ^(ARGS a = .) tipoRet = .))
+        {
+          if ($op.equals("invokespecial")) {
+          	System.out.println("chamando construtor "+$nome.getText()+"("+$a.getText()+")");
+      		chamarMetodo($op.getText(), $classe.getText(), $nome.getText(), $a.getText(), "");
+          } else {
+          	System.out.println("chamando metodo "+$nome.getText()+"("+$a.getText()+")"+$tipoRet.getText());
+          	chamarMetodo($op.getText(), $classe.getText(), $nome.getText(), $a.getText(), $tipoRet.getText());
+          }
+        }
+        ;
     
 novaClasse
-  : ^('new' classe = .)
+  : ^(NEW . classe = .)
   {
     newClass($classe.getText());
   }
   ;
-    
-aritmetica
-    : ^(ARITMETICA operacao = .)
-    {
-      assembler.escreverOpcode($operacao.getText());
-    }
-    ;
-     
-load
-  : ^(LOAD operacao = .)
-  {
-    assembler.escreverOpcode($operacao.getText());
-  }
-  ;
   
-loadint
-    : ^(LOAD operacao = . operando = .)
-    {
-      assembler.escreverOpcode($operacao.token, $operando.token);
-    }
-    ;
-      
-store
-   : ^(STORE operacao = .)
-   {
-      assembler.escreverOpcode($operacao.getText());
-   }
-   ;
-
-storeint
-    : ^(STORE operacao = . operando = .)
-    {
-      assembler.escreverOpcode($operacao.token, $operando.token);
-    }
-    ;
-    
-desvio
-    : ^(DESVIO operacao = . operando = .)
-    {
-      assembler.escreverOpcode($operacao.token, $operando.token);
-    }
-    ;
-    
-logica
-    : ^(LOGICA operacao = .)
-    {
-      assembler.escreverOpcode($operacao.getText());
-    }
-    ;
-    
-pilha
-   : ^(PILHA operacao = .)
-   {
-      assembler.escreverOpcode($operacao.getText());
-   }
-   ;
-
-label
-   : ^(LABEL operacao = .)
-   {
-      assembler.definirLabel($operacao.token);
-   }
-   ;
-   
-retorno
-	: (   operacao = 'ireturn' 
-	    | operacao = 'areturn' 
-	    | operacao = 'return' 
-	  )
+nenhumoperando 
+	: ^((RETURN | ARITMETICA | LOAD | STORE | LOGICA | PILHA) operacao = . )
 	{
-	   assembler.escreverOpcode($operacao.getText());
-	}
+	 assembler.escreverOpcode($operacao.getText());
+	}	
 	;
+	
+umoperando
+        : ^((DESVIO | LOAD | STORE) operacao = . operando = .)
+        {
+         assembler.escreverOpcode($operacao.token, $operando.token);
+        }
+        ;

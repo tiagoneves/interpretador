@@ -21,6 +21,7 @@ options {
 @members {
     TabelaSimbolos tabelaSimbolos;
     Escopo escopoAtual;
+    int contador;
     public Def(TreeNodeStream input, TabelaSimbolos tabelaSimbolos) {
         this(input);
         this.tabelaSimbolos = tabelaSimbolos;
@@ -34,6 +35,11 @@ topdown : entraNoCorpoMetodo
         | entraNaClasse
         | parametros
         | declaracaoVariavel
+        | field
+        | invoke
+        | nenhumoperando
+        | umoperando
+        | label
         ;
 
 bottomup : saiDoCorpoMetodo
@@ -98,6 +104,7 @@ entraNoMetodo
            $ID.simbolo = metodo;
            escopoAtual.definir(metodo);
            escopoAtual = metodo;
+           contador = 0;
         }
 	;
 	
@@ -147,4 +154,42 @@ saiDoConstrutor
 	   System.out.println("Saindo do construtor: "+escopoAtual);
            escopoAtual = escopoAtual.obterEscopoEnvolvente(); // pop scope
 	}
+	
 	;
+	
+field	: ^((a = 'getfield' | a = 'getstatic' | a = 'putfield' | a = 'putstatic') . . . .)
+        {
+           if ($a.equals("getstatic") || $a.equals("putstatic"))
+           	contador += 9;
+           else
+              contador += 5;
+        }
+        ;
+        
+invoke 	: ^(('invokespecial' | 'invokestatic' | 'invokevirtual') . ^(METHOD_CALL . ^(ARGS .) .))
+        {
+          contador += 9;
+        }
+        ;
+        
+nenhumoperando 
+	: ^((RETURN | ARITMETICA | NEW | LOAD | STORE | LOGICA | PILHA) . )
+	{
+	   contador++;
+	}	
+	;
+	
+umoperando
+        : ^((DESVIO | LOAD | STORE) . .)
+        {
+          contador += 5;
+        }
+        ;       
+label
+   : ^(LABEL id = .)
+   {
+      System.out.println("Definindo label "+id.getText()+" no endereço "+contador);
+      SimboloMetodo metodo = (SimboloMetodo) escopoAtual.obterEscopoEnvolvente();
+      metodo.definirLabel($id.token, contador);
+   }
+   ;       

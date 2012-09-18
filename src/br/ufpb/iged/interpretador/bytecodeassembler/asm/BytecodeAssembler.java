@@ -27,10 +27,9 @@ public class BytecodeAssembler extends AssemblerParser{
 	protected Map<String, Integer> enderecosMap =
 			new HashMap<String, Integer>();
 	
-	public static Map<String, SimboloLabel> labels =
-			new HashMap<String, SimboloLabel>();
-	
 	protected List<SimboloClasse> constantPool = new ArrayList<SimboloClasse>();
+	
+	private SimboloMetodo metodoAtual;
 	
 	public static int ip = 0;
 	public static byte[] codigo;
@@ -149,33 +148,19 @@ public class BytecodeAssembler extends AssemblerParser{
 		escreverInteiro(codigo, ip, valor);
 
 	}
-	
-	 public void definirLabel(Token id) throws LabelException {
 
-			SimboloLabel label = labels.get(id.getText());
+	protected int obterEndereco(String id) throws LabelException {
 
-			if (label != null)
-				throw new LabelException("Label duplicado");
+		SimboloLabel label = metodoAtual.getLabels().get(id);
 
+		if (label == null)
 
-			label = new SimboloLabel(id.getText(), ip);
-
-			labels.put(id.getText(), label);
-
-		}
-
-		protected int obterEndereco(String id) throws LabelException {
-
-			SimboloLabel label = labels.get(id);
-
-			if (label == null)
-
-				throw new LabelException("O label referido não existe");
+			throw new LabelException("O label referido não existe");
 
 
-			return label.address;
+		return label.endereco;
 
-		}
+	}
 
 	protected static void verificarAumentoTamanhoMemoria(int indice) {
 
@@ -259,6 +244,14 @@ public class BytecodeAssembler extends AssemblerParser{
 
 	public void setConstantPool(List<SimboloClasse> constantPool) {
 		this.constantPool = constantPool;
+	}
+
+	public SimboloMetodo getMetodoAtual() {
+		return metodoAtual;
+	}
+
+	public void setMetodoAtual(SimboloMetodo metodoAtual) {
+		this.metodoAtual = metodoAtual;
 	}
 
 }
