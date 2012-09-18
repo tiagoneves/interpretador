@@ -13,7 +13,7 @@ public class ProgramCounter {
 		
 		this.simboloMetodo = metodo;
 		
-		instrucao = 0;
+		instrucao = -1;
 		
 	}
 	

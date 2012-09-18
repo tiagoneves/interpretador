@@ -88,6 +88,7 @@ entraNoConstrutor
            $INIT.simbolo = metodo;
            escopoAtual.definir(metodo);
            escopoAtual = metodo;
+           contador = 0;
         }
 	;
 	

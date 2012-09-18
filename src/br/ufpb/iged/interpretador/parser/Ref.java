@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g 2012-09-18 12:35:14
+// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g 2012-09-18 18:25:44
 
     package br.ufpb.iged.interpretador.parser;
     
@@ -1166,7 +1166,7 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "invoke"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:213:1: invoke : ^( (op= 'invokespecial' |op= 'invokestatic' |op= 'invokevirtual' ) . classe= . ^( METHOD_CALL nome= . ^( ARGS a= . ) tipoRet= . ) ) ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:213:1: invoke : ^( (op= 'invokespecial' |op= 'invokestatic' |op= 'invokevirtual' ) classe= . ^( METHOD_CALL nome= . ^( ARGS a= . ) tipoRet= . ) ) ;
     public final void invoke() throws RecognitionException {
         BytecodesAST op=null;
         BytecodesAST classe=null;
@@ -1175,8 +1175,8 @@ public class Ref extends TreeFilter {
         BytecodesAST tipoRet=null;
 
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:213:9: ( ^( (op= 'invokespecial' |op= 'invokestatic' |op= 'invokevirtual' ) . classe= . ^( METHOD_CALL nome= . ^( ARGS a= . ) tipoRet= . ) ) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:213:12: ^( (op= 'invokespecial' |op= 'invokestatic' |op= 'invokevirtual' ) . classe= . ^( METHOD_CALL nome= . ^( ARGS a= . ) tipoRet= . ) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:213:9: ( ^( (op= 'invokespecial' |op= 'invokestatic' |op= 'invokevirtual' ) classe= . ^( METHOD_CALL nome= . ^( ARGS a= . ) tipoRet= . ) ) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:213:12: ^( (op= 'invokespecial' |op= 'invokestatic' |op= 'invokevirtual' ) classe= . ^( METHOD_CALL nome= . ^( ARGS a= . ) tipoRet= . ) )
             {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:213:14: (op= 'invokespecial' |op= 'invokestatic' |op= 'invokevirtual' )
             int alt8=3;
@@ -1232,20 +1232,18 @@ public class Ref extends TreeFilter {
 
 
             match(input, Token.DOWN, null); if (state.failed) return ;
-            matchAny(input); if (state.failed) return ;
-
             classe=(BytecodesAST)input.LT(1);
 
             matchAny(input); if (state.failed) return ;
 
-            match(input,METHOD_CALL,FOLLOW_METHOD_CALL_in_invoke489); if (state.failed) return ;
+            match(input,METHOD_CALL,FOLLOW_METHOD_CALL_in_invoke487); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             nome=(BytecodesAST)input.LT(1);
 
             matchAny(input); if (state.failed) return ;
 
-            match(input,ARGS,FOLLOW_ARGS_in_invoke498); if (state.failed) return ;
+            match(input,ARGS,FOLLOW_ARGS_in_invoke496); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             a=(BytecodesAST)input.LT(1);
@@ -1293,19 +1291,17 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "novaClasse"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:225:1: novaClasse : ^( NEW . classe= . ) ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:225:1: novaClasse : ^( NEW classe= . ) ;
     public final void novaClasse() throws RecognitionException {
         BytecodesAST classe=null;
 
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:226:3: ( ^( NEW . classe= . ) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:226:5: ^( NEW . classe= . )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:226:3: ( ^( NEW classe= . ) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:226:5: ^( NEW classe= . )
             {
-            match(input,NEW,FOLLOW_NEW_in_novaClasse547); if (state.failed) return ;
+            match(input,NEW,FOLLOW_NEW_in_novaClasse545); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
-            matchAny(input); if (state.failed) return ;
-
             classe=(BytecodesAST)input.LT(1);
 
             matchAny(input); if (state.failed) return ;
@@ -1540,10 +1536,10 @@ public class Ref extends TreeFilter {
     public static final BitSet FOLLOW_90_in_invoke461 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_91_in_invoke469 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_92_in_invoke477 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_METHOD_CALL_in_invoke489 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ARGS_in_invoke498 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_NEW_in_novaClasse547 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_set_in_nenhumoperando576 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_set_in_umoperando630 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_METHOD_CALL_in_invoke487 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ARGS_in_invoke496 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_NEW_in_novaClasse545 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_set_in_nenhumoperando572 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_set_in_umoperando626 = new BitSet(new long[]{0x0000000000000004L});
 
 }

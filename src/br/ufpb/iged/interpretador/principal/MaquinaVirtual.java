@@ -25,7 +25,7 @@ public class MaquinaVirtual {
 
 	private short opcode;
 
-	private boolean desvio;
+	private boolean desvio = false;
 	
 	private int tamanhoCodigo;
 	
@@ -35,6 +35,10 @@ public class MaquinaVirtual {
 		do{
 
 			while (frameAtual.pc.getInstrucao() < tamanhoCodigo) {
+				
+				if (!desvio)
+
+					frameAtual.pc.incrementar();
 
 				 executarInstrucao();
 				 
@@ -1002,10 +1006,6 @@ public class MaquinaVirtual {
 		break;
 
 		}
-
-		if (!desvio)
-
-			frameAtual.pc.incrementar();
 		
 	}
 	
@@ -1017,6 +1017,8 @@ public class MaquinaVirtual {
 		
 		tamanhoCodigo = metodo.obterTamanhoCodigo();
 		
+		frameAtual = pilha[topoPilha];
+		
 		int i;
 		
 		int qtdParams = metodo.contarParametros();
@@ -1024,7 +1026,7 @@ public class MaquinaVirtual {
 		Object obj;
 		
 		for (i = 0; i < qtdParams; i++) {
-			obj = frameAtual.pilhaOperandos[frameAtual.sp - i];
+			obj = pilha[topoPilha - 1].pilhaOperandos[pilha[topoPilha - 1].sp - i];
 			frameAtual.inserirValorParametro(obj);
 			
 		}
@@ -1032,9 +1034,7 @@ public class MaquinaVirtual {
 		if (!estatico)
 		
 			frameAtual.inserirThis(frameAtual.pilhaOperandos[frameAtual.sp - i]);
-		
-		frameAtual = pilha[topoPilha];
-		
+				
 		tamanhoCodigo = frameAtual.pc.getSimboloMetodo().obterTamanhoCodigo();
 		
 	}

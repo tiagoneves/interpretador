@@ -210,7 +210,7 @@ field 	: ^(('getfield' | 'getstatic' | 'putfield' | 'putstatic') classe = . . ca
         }
         ;
         
-invoke 	:  ^((op = 'invokespecial' | op = 'invokestatic' | op = 'invokevirtual') . classe = . ^(METHOD_CALL nome = . ^(ARGS a = .) tipoRet = .))
+invoke 	:  ^((op = 'invokespecial' | op = 'invokestatic' | op = 'invokevirtual') classe = . ^(METHOD_CALL nome = . ^(ARGS a = .) tipoRet = .))
         {
           if ($op.equals("invokespecial")) {
           	System.out.println("chamando construtor "+$nome.getText()+"("+$a.getText()+")");
@@ -223,7 +223,7 @@ invoke 	:  ^((op = 'invokespecial' | op = 'invokestatic' | op = 'invokevirtual')
         ;
     
 novaClasse
-  : ^(NEW . classe = .)
+  : ^(NEW classe = .)
   {
     newClass($classe.getText());
   }

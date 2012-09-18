@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g 2012-09-18 12:35:13
+// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g 2012-09-18 18:25:44
 
   package br.ufpb.iged.interpretador.parser;
 
@@ -2289,10 +2289,39 @@ public class AssemblerLexer extends Lexer {
         try {
             int _type = NEWLINE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:265:9: ( '\\n' )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:265:11: '\\n'
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:265:9: ( ( '\\n' )+ )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:265:11: ( '\\n' )+
             {
-            match('\n'); 
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:265:11: ( '\\n' )+
+            int cnt6=0;
+            loop6:
+            do {
+                int alt6=2;
+                int LA6_0 = input.LA(1);
+
+                if ( (LA6_0=='\n') ) {
+                    alt6=1;
+                }
+
+
+                switch (alt6) {
+            	case 1 :
+            	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:265:11: '\\n'
+            	    {
+            	    match('\n'); 
+
+            	    }
+            	    break;
+
+            	default :
+            	    if ( cnt6 >= 1 ) break loop6;
+                        EarlyExitException eee =
+                            new EarlyExitException(6, input);
+                        throw eee;
+                }
+                cnt6++;
+            } while (true);
+
 
             }
 
@@ -2338,9 +2367,9 @@ public class AssemblerLexer extends Lexer {
 
     public void mTokens() throws RecognitionException {
         // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:1:8: ( T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | INIT | INT | VOID | NULL | INTEIRO | TIPO_REF | ID | NEWLINE | WS )
-        int alt6=89;
-        alt6 = dfa6.predict(input);
-        switch (alt6) {
+        int alt7=89;
+        alt7 = dfa7.predict(input);
+        switch (alt7) {
             case 1 :
                 // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:1:10: T__32
                 {
@@ -3059,8 +3088,8 @@ public class AssemblerLexer extends Lexer {
     }
 
 
-    protected DFA6 dfa6 = new DFA6(this);
-    static final String DFA6_eotS =
+    protected DFA7 dfa7 = new DFA7(this);
+    static final String DFA7_eotS =
         "\1\uffff\1\31\4\uffff\11\25\1\uffff\1\73\1\74\1\25\1\uffff\1\25"+
         "\13\uffff\33\25\2\uffff\1\25\1\144\1\uffff\4\25\1\152\6\25\1\uffff"+
         "\11\25\1\176\4\25\1\u0084\1\u0085\1\u0086\1\25\1\u0089\4\25\1\144"+
@@ -3075,9 +3104,9 @@ public class AssemblerLexer extends Lexer {
         "\uffff\1\u0104\1\25\1\uffff\1\u0106\4\uffff\3\25\1\uffff\1\u010a"+
         "\1\uffff\3\25\1\uffff\4\25\1\u0112\1\25\1\u0114\1\uffff\1\u0115"+
         "\2\uffff";
-    static final String DFA6_eofS =
+    static final String DFA7_eofS =
         "\u0116\uffff";
-    static final String DFA6_minS =
+    static final String DFA7_minS =
         "\1\11\1\51\1\uffff\1\143\2\uffff\1\143\1\165\1\145\1\141\1\144\1"+
         "\145\1\157\1\145\1\164\1\uffff\2\56\1\125\1\uffff\1\101\6\uffff"+
         "\1\156\4\uffff\2\157\1\145\1\164\1\160\2\164\1\144\1\157\1\151\1"+
@@ -3098,7 +3127,7 @@ public class AssemblerLexer extends Lexer {
         "\1\56\1\143\1\uffff\1\56\4\uffff\1\143\2\164\1\uffff\1\56\1\uffff"+
         "\2\151\1\165\1\uffff\1\141\1\143\1\141\1\154\1\56\1\154\1\56\1\uffff"+
         "\1\56\2\uffff";
-    static final String DFA6_maxS =
+    static final String DFA7_maxS =
         "\1\172\1\51\1\uffff\1\163\2\uffff\1\163\1\165\1\157\1\170\1\144"+
         "\2\165\1\145\1\164\1\uffff\2\172\1\125\1\uffff\1\172\6\uffff\1\156"+
         "\4\uffff\2\157\1\145\1\164\1\160\2\164\1\156\1\157\1\151\2\156\1"+
@@ -3119,7 +3148,7 @@ public class AssemblerLexer extends Lexer {
         "\1\162\5\uffff\1\172\1\143\1\uffff\1\172\4\uffff\1\143\2\164\1\uffff"+
         "\1\172\1\uffff\2\151\1\165\1\uffff\1\141\1\143\1\141\1\154\1\172"+
         "\1\154\1\172\1\uffff\1\172\2\uffff";
-    static final String DFA6_acceptS =
+    static final String DFA7_acceptS =
         "\2\uffff\1\3\1\uffff\1\13\1\14\11\uffff\1\121\3\uffff\1\125\1\uffff"+
         "\1\127\1\130\1\131\1\2\1\1\1\4\1\uffff\1\7\1\10\1\11\1\12\33\uffff"+
         "\1\122\1\123\47\uffff\1\126\5\uffff\1\31\23\uffff\1\76\5\uffff\1"+
@@ -3132,9 +3161,9 @@ public class AssemblerLexer extends Lexer {
         "\44\1\45\1\47\2\uffff\1\54\3\uffff\1\100\1\102\1\103\1\104\1\105"+
         "\2\uffff\1\32\1\uffff\1\50\1\51\1\52\1\53\3\uffff\1\115\1\uffff"+
         "\1\33\3\uffff\1\116\7\uffff\1\74\1\uffff\1\73\1\75";
-    static final String DFA6_specialS =
+    static final String DFA7_specialS =
         "\u0116\uffff}>";
-    static final String[] DFA6_transitionS = {
+    static final String[] DFA7_transitionS = {
             "\1\27\1\26\2\uffff\1\27\22\uffff\1\27\7\uffff\1\1\1\2\3\uffff"+
             "\1\23\1\3\1\4\12\23\1\5\1\uffff\1\17\4\uffff\10\25\1\20\2\25"+
             "\1\24\1\25\1\22\7\25\1\21\4\25\6\uffff\1\6\2\25\1\7\2\25\1\10"+
@@ -3425,34 +3454,34 @@ public class AssemblerLexer extends Lexer {
             ""
     };
 
-    static final short[] DFA6_eot = DFA.unpackEncodedString(DFA6_eotS);
-    static final short[] DFA6_eof = DFA.unpackEncodedString(DFA6_eofS);
-    static final char[] DFA6_min = DFA.unpackEncodedStringToUnsignedChars(DFA6_minS);
-    static final char[] DFA6_max = DFA.unpackEncodedStringToUnsignedChars(DFA6_maxS);
-    static final short[] DFA6_accept = DFA.unpackEncodedString(DFA6_acceptS);
-    static final short[] DFA6_special = DFA.unpackEncodedString(DFA6_specialS);
-    static final short[][] DFA6_transition;
+    static final short[] DFA7_eot = DFA.unpackEncodedString(DFA7_eotS);
+    static final short[] DFA7_eof = DFA.unpackEncodedString(DFA7_eofS);
+    static final char[] DFA7_min = DFA.unpackEncodedStringToUnsignedChars(DFA7_minS);
+    static final char[] DFA7_max = DFA.unpackEncodedStringToUnsignedChars(DFA7_maxS);
+    static final short[] DFA7_accept = DFA.unpackEncodedString(DFA7_acceptS);
+    static final short[] DFA7_special = DFA.unpackEncodedString(DFA7_specialS);
+    static final short[][] DFA7_transition;
 
     static {
-        int numStates = DFA6_transitionS.length;
-        DFA6_transition = new short[numStates][];
+        int numStates = DFA7_transitionS.length;
+        DFA7_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA6_transition[i] = DFA.unpackEncodedString(DFA6_transitionS[i]);
+            DFA7_transition[i] = DFA.unpackEncodedString(DFA7_transitionS[i]);
         }
     }
 
-    class DFA6 extends DFA {
+    class DFA7 extends DFA {
 
-        public DFA6(BaseRecognizer recognizer) {
+        public DFA7(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 6;
-            this.eot = DFA6_eot;
-            this.eof = DFA6_eof;
-            this.min = DFA6_min;
-            this.max = DFA6_max;
-            this.accept = DFA6_accept;
-            this.special = DFA6_special;
-            this.transition = DFA6_transition;
+            this.decisionNumber = 7;
+            this.eot = DFA7_eot;
+            this.eof = DFA7_eof;
+            this.min = DFA7_min;
+            this.max = DFA7_max;
+            this.accept = DFA7_accept;
+            this.special = DFA7_special;
+            this.transition = DFA7_transition;
         }
         public String getDescription() {
             return "1:1: Tokens : ( T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | INIT | INT | VOID | NULL | INTEIRO | TIPO_REF | ID | NEWLINE | WS );";
