@@ -17,6 +17,7 @@ options {
     import br.ufpb.iged.interpretador.bytecodeassembler.asm.BytecodeAssembler;
     import br.ufpb.iged.interpretador.symboltable.classes.SimboloVariavel;
     import br.ufpb.iged.interpretador.symboltable.classes.SimboloMetodo;
+    import br.ufpb.iged.interpretador.symboltable.classes.SimboloLabel;
 }
 
 @members {
@@ -183,6 +184,7 @@ entraNoConstrutor
 	  escopoAtual = (SimboloMetodo)$INIT.simbolo;
 	  BytecodeAssembler.codigo = new byte[BytecodeAssembler.TAMANHO_INICIAL_MEMORIA_CODIGO];
 	  BytecodeAssembler.ip = 0;
+	  BytecodeAssembler.labels = new HashMap<String, SimboloLabel>();
 	}
 	;
     
@@ -193,6 +195,7 @@ entraNoMetodo
 	  escopoAtual = (SimboloMetodo)$ID.simbolo;
 	  BytecodeAssembler.codigo = new byte[BytecodeAssembler.TAMANHO_INICIAL_MEMORIA_CODIGO];
 	  BytecodeAssembler.ip = 0;
+	  BytecodeAssembler.labels = new HashMap<String, SimboloLabel>();
 	}
 	;
 

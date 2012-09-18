@@ -42,8 +42,6 @@ public class MaquinaVirtual {
 				 
 			}
 							
-			topoPilha--;
-
 		} while(topoPilha > -1);
 			
 		
@@ -961,6 +959,42 @@ public class MaquinaVirtual {
 			SimboloClasse simboloClasse =  ClassLoader.carregarClasse(op1);
 			
 			simboloClasse.getFields()[op2] = frameAtual.pilhaOperandos[frameAtual.sp--];
+			
+		}
+		
+		;
+		break;
+		
+		//retorno de métodos
+		case Definicao.RETURN: {
+			
+			frameAtual = pilha[--topoPilha];
+			
+		}
+		
+		;
+		break;
+		
+		case Definicao.IRETURN: {
+			
+			Integer valor = (Integer) frameAtual.pilhaOperandos[frameAtual.sp];
+			
+			frameAtual = pilha[--topoPilha];
+			
+			frameAtual.pilhaOperandos[frameAtual.sp] = valor;
+			
+		}
+		
+		;
+		break;
+		
+		case Definicao.ARETURN: {
+			
+			Referencia valor = (Referencia) frameAtual.pilhaOperandos[frameAtual.sp];
+			
+			frameAtual = pilha[--topoPilha];
+			
+			frameAtual.pilhaOperandos[frameAtual.sp] = valor;
 			
 		}
 		

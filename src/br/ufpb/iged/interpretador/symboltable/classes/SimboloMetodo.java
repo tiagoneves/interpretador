@@ -1,7 +1,12 @@
 package br.ufpb.iged.interpretador.symboltable.classes;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import org.antlr.runtime.Token;
+
+import br.ufpb.iged.interpretador.excecoes.LabelException;
 
 public class SimboloMetodo extends SimboloComEscopo{
 

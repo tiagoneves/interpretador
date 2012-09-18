@@ -53,7 +53,12 @@ L2:	 	ineg
 	 	isub
 	 	ldc -26
 	 	if_icmplt L2
-	 	ldc 23
+	 	ldc 5
+	 	iconst_3
+	 	iconst_2
+	 	invokestatic Main/uisos(III)I
+	 	ldc 11
+	 	iadd
 	 	ldc -23
 	 	iload 5
 	 	iadd
@@ -152,5 +157,34 @@ L2:	 	ineg
         isub
         istore 20
         return
+.end method
+.method static uisos(III)I
+.limit locals 100
+	ldc 5
+	iconst_2
+	imul
+	ldc 9
+	if_icmpgt L2
+L1: ldc 6
+    iconst_3
+    idiv
+    iload 4
+    ifeq L3
+L2: iconst_3
+    iconst_1
+    iadd
+    istore_3
+    iload_0
+    iload_1
+    isub
+    istore 4 
+    iload_2
+    if_icmpeq L1
+L3: ldc 8
+    iconst_3
+    imul
+    iload 4
+    idiv
+    ireturn
 .end method
 .end class

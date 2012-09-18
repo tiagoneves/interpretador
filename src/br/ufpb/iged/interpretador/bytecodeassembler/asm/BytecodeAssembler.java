@@ -12,6 +12,7 @@ import org.antlr.runtime.Token;
 import br.ufpb.iged.interpretador.parser.AssemblerParser;
 import br.ufpb.iged.interpretador.excecoes.AcessoIndevidoMemoriaException;
 import br.ufpb.iged.interpretador.excecoes.LabelException;
+import br.ufpb.iged.interpretador.symboltable.classes.SimboloLabel;
 import br.ufpb.iged.interpretador.symboltable.classes.SimboloClasse;
 import br.ufpb.iged.interpretador.symboltable.classes.SimboloMetodo;
 
@@ -23,10 +24,11 @@ public class BytecodeAssembler extends AssemblerParser{
 	protected Map<String,Integer> opcodesInstrucoes =
 			new HashMap<String,Integer>();
 
-	protected Map<String, LabelSymbol> labels =
-			new HashMap<String, LabelSymbol>();
 	protected Map<String, Integer> enderecosMap =
 			new HashMap<String, Integer>();
+	
+	public static Map<String, SimboloLabel> labels =
+			new HashMap<String, SimboloLabel>();
 	
 	protected List<SimboloClasse> constantPool = new ArrayList<SimboloClasse>();
 	
@@ -147,33 +149,33 @@ public class BytecodeAssembler extends AssemblerParser{
 		escreverInteiro(codigo, ip, valor);
 
 	}
+	
+	 public void definirLabel(Token id) throws LabelException {
 
-	public void definirLabel(Token id) throws LabelException {
+			SimboloLabel label = labels.get(id.getText());
 
-		LabelSymbol label = labels.get(id.getText());
-
-		if (label != null)
-			throw new LabelException("Label duplicado");
-
-
-		label = new LabelSymbol(id.getText(), ip);
-
-		labels.put(id.getText(), label);
-
-	}
-
-	protected int obterEndereco(String id) throws LabelException {
-
-		LabelSymbol label = labels.get(id);
-
-		if (label == null)
-
-			throw new LabelException("O label referido não existe");
+			if (label != null)
+				throw new LabelException("Label duplicado");
 
 
-		return label.address;
+			label = new SimboloLabel(id.getText(), ip);
 
-	}
+			labels.put(id.getText(), label);
+
+		}
+
+		protected int obterEndereco(String id) throws LabelException {
+
+			SimboloLabel label = labels.get(id);
+
+			if (label == null)
+
+				throw new LabelException("O label referido não existe");
+
+
+			return label.address;
+
+		}
 
 	protected static void verificarAumentoTamanhoMemoria(int indice) {
 
