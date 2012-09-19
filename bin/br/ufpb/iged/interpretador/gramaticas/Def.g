@@ -49,7 +49,7 @@ bottomup : saiDoCorpoMetodo
          ;
          
 entraNaClasse
-    : ^('.class' nome=ID (^(EXTENDS sup=TIPO_REF))? .)
+    : ^('.class' nome=ID (^(EXTENDS sup = .))? .)
         {
            System.out.println("linha "+$nome.getLine()+
                           ": def class "+$nome.text);
@@ -77,17 +77,19 @@ declaracaoVariavel
     ;
     
 entraNoConstrutor
-	: ^(CONSTR_DECL INIT .+ (^(LIMIT lim=INTEIRO))?)
+	: ^(CONSTR_DECL INIT tipoRet =. .+ (^(LIMIT lim=INTEIRO))?)
 	{
 	   System.out.println("linha "+$INIT.getLine()+
                           ": def method init ");
            SimboloMetodo metodo = new SimboloMetodo($INIT.text, null, escopoAtual);
            if (lim != null)
            	metodo.setTamanhoMemoriaLocal(new Integer(lim.getText()));
+           metodo.setRetorno($tipoRet.getText());
            metodo.def = $INIT;
            $INIT.simbolo = metodo;
            escopoAtual.definir(metodo);
            escopoAtual = metodo;
+           contador = 0;
         }
 	;
 	
@@ -157,8 +159,8 @@ saiDoConstrutor
 	
 	;
 	
-field	: ^((a = 'getfield' | a = 'getstatic' | a = 'putfield' | a = 'putstatic') . . . .)
-        {
+field	: ^((a = 'getfield' | a = 'getstatic' | a = 'putfield' | a = 'putstatic') . .)
+        {           
            if ($a.equals("getstatic") || $a.equals("putstatic"))
            	contador += 9;
            else
@@ -166,7 +168,7 @@ field	: ^((a = 'getfield' | a = 'getstatic' | a = 'putfield' | a = 'putstatic') 
         }
         ;
         
-invoke 	: ^(('invokespecial' | 'invokestatic' | 'invokevirtual') . ^(METHOD_CALL . ^(ARGS .) .))
+invoke 	: ^(('invokespecial' | 'invokestatic' | 'invokevirtual') . ^(METHOD_CALL ^(PARAMS .) .))
         {
           contador += 9;
         }

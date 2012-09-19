@@ -110,7 +110,7 @@ L2:	 	ineg
 	    putfield Teste/abc I
 	    ldc 24
 	    putfield Teste/xyz I
-	    putfield Composicao/teste LTeste
+	    putfield Composicao/teste LTeste;
 	    iconst_2
 	    putfield Composicao/basxty I
 	    iconst_3
@@ -120,7 +120,7 @@ L2:	 	ineg
 	    istore 15
 	    aload 14
 	    dup
-	    getfield Composicao/teste LTeste
+	    getfield Composicao/teste LTeste;
 	    dup
 	    getfield Teste/xyz I
 	    iload 15

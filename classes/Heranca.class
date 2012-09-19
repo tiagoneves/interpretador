@@ -1,5 +1,5 @@
 .class Heranca
-.super LTeste
+.super Teste
 .field abfgs I
 .field lovxfd I
 .end class

@@ -1033,7 +1033,7 @@ public class MaquinaVirtual {
 		
 		if (!estatico)
 		
-			frameAtual.inserirThis(frameAtual.pilhaOperandos[frameAtual.sp - i]);
+			frameAtual.inserirThis(pilha[topoPilha - 1].pilhaOperandos[pilha[topoPilha - 1].sp - i]);
 				
 		tamanhoCodigo = frameAtual.pc.getSimboloMetodo().obterTamanhoCodigo();
 		

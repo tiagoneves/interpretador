@@ -44,14 +44,11 @@ options {
         assembler.escreverOpcode(operacao);
       
         SimboloClasse simboloClasse =
-          (SimboloClasse)tabelaSimbolos.global.resolver("L" + nomeClasse);
+          (SimboloClasse)tabelaSimbolos.global.resolver(nomeClasse);
       
         if(!assembler.getConstantPool().contains(simboloClasse))
       
           assembler.getConstantPool().add(simboloClasse);
-    
-        /*BytecodeAssembler.escreverInteiro(BytecodeAssembler.codigo,
-          BytecodeAssembler.ip, assembler.getConstantPool().indexOf(simboloClasse));*/
       
         SimboloVariavel simboloVariavel =
           (SimboloVariavel) simboloClasse.resolver(nomeCampo);
@@ -77,7 +74,7 @@ options {
       assembler.escreverOpcode(instrucao);
        
       SimboloClasse simboloClasse =
-          (SimboloClasse)tabelaSimbolos.global.resolver("L" + nomeClasse);
+          (SimboloClasse)tabelaSimbolos.global.resolver(nomeClasse);
     
       if(!assembler.getConstantPool().contains(simboloClasse))
       
@@ -105,7 +102,7 @@ options {
      assembler.escreverOpcode("new");
        
       SimboloClasse simboloClasse =
-          (SimboloClasse)tabelaSimbolos.global.resolver("L" + nomeClasse);
+          (SimboloClasse)tabelaSimbolos.global.resolver( nomeClasse);
     
       if(!assembler.getConstantPool().contains(simboloClasse))
       
@@ -137,14 +134,14 @@ bottomup
  	;
     
 entraNaClasse
-    : ^('.class' nome=ID (^(EXTENDS sup=TIPO_REF))? .)
+    : ^('.class' nome=ID (^(EXTENDS sup = .))? .)
         {
         
           simboloClasse =(SimboloClasse)tabelaSimbolos.global.resolver("L" + $nome.getText());     
           if(!assembler.getConstantPool().contains(simboloClasse))   
           	assembler.getConstantPool().add(simboloClasse);
           if ( $sup!=null ) {
-              $sup.simbolo = $sup.escopo.resolver($sup.text);
+              $sup.simbolo = $sup.escopo.resolver("L"+$sup.getText());
               simboloClasse.superClasse =
                   (SimboloClasse)$sup.simbolo;
                   System.out.println("linha "+$nome.getLine()+": set "+$nome.text+
@@ -204,28 +201,50 @@ saiDoConstrutor
 	}
 	;
 	
-field 	: ^(('getfield' | 'getstatic' | 'putfield' | 'putstatic') classe = . . campo = . tipo = .)
+field 	: ^((op = 'getfield' | op = 'getstatic' | op = 'putfield' | op = 'putstatic') ref = . tipo = .)
         {
-          acessarCampo("getfield", $classe.getText(), $campo.getText());
+    	   String[] tokens = $ref.getText().split("/");
+    	   String campo = tokens[tokens.length - 1];
+    	   String classe = "L";
+    	
+    	   int i;
+    	
+    	   for (i = 0; i < tokens.length - 1; i++){
+    		if (i == tokens.length - 2)
+    			classe += tokens[i];
+    		else
+        		classe += tokens[i]+"/";
+    	   }
+    	           
+          acessarCampo($op.getText(), classe, campo);
         }
         ;
         
-invoke 	:  ^((op = 'invokespecial' | op = 'invokestatic' | op = 'invokevirtual') classe = . ^(METHOD_CALL nome = . ^(ARGS a = .) tipoRet = .))
-        {
-          if ($op.equals("invokespecial")) {
-          	System.out.println("chamando construtor "+$nome.getText()+"("+$a.getText()+")");
-      		chamarMetodo($op.getText(), $classe.getText(), $nome.getText(), $a.getText(), "");
-          } else {
-          	System.out.println("chamando metodo "+$nome.getText()+"("+$a.getText()+")"+$tipoRet.getText());
-          	chamarMetodo($op.getText(), $classe.getText(), $nome.getText(), $a.getText(), $tipoRet.getText());
-          }
+invoke 	:  ^((op = 'invokespecial' | op = 'invokestatic' | op = 'invokevirtual') ref = . ^(METHOD_CALL ^(PARAMS a = .) tipoRet = .))
+        {   
+           
+           String[] tokens = $ref.getText().split("/");
+    	   String nomeMetodo = tokens[tokens.length - 1];
+    	   String classe = "L";
+    	
+    	   int i;
+    	
+    	   for (i = 0; i < tokens.length - 1; i++){
+    		if (i == tokens.length - 2)
+    			classe += tokens[i];
+    		else
+        		classe += tokens[i]+"/";
+    	   }
+        
+           System.out.println("chamando metodo "+nomeMetodo+"("+$a.getText()+")"+$tipoRet.getText());
+           chamarMetodo($op.getText(), classe, nomeMetodo, $a.getText(), $tipoRet.getText());
         }
         ;
     
 novaClasse
   : ^(NEW classe = .)
   {
-    newClass($classe.getText());
+    newClass("L"+$classe.getText());
   }
   ;
   

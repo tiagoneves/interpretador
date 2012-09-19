@@ -77,12 +77,12 @@ definicaoClasse
            -> ^('.class' ID superClasse? ^(MEMBRO_CLASSE membroClasse+))
     ;
                 
-superClasse : '.super' TIPO_REF -> ^(EXTENDS TIPO_REF) ;
+superClasse : '.super' (b = ID | b = REF)-> ^(EXTENDS $b) ;
 
 membroClasse
     : '.field' 'static'? ID tipo -> ^(FIELD_DECL ID tipo)
-    | '.method' INIT (parametros | '(' parametros ')') VOID NEWLINE (limite NEWLINE)? operacao* '.end method'
-	-> ^(CONSTR_DECL INIT parametros limite? ^(BODY operacao*))
+    | '.method' INIT (parametros | '(' parametros ')') ret = tipo NEWLINE (limite NEWLINE)? operacao* '.end method'
+	-> ^(CONSTR_DECL INIT $ret parametros limite? ^(BODY operacao*))
     | '.method' 'static'? ID (parametros | '(' parametros ')') ret = tipo NEWLINE (limite NEWLINE)? operacao* '.end method'
         -> ^(METHOD_DECL ID $ret parametros limite? ^(BODY operacao*))
     ;
@@ -106,17 +106,17 @@ retorno :
          -> ^(RETURN $a)
          ;
              
-manipulacaoObjetos : a = 'getfield' b = campo tipo -> ^('getfield' $b tipo)
-		   | a = 'getstatic' b = campo tipo -> ^('getstatic' $b tipo)
-                   | a = 'putfield' b = campo tipo -> ^('putfield' $b tipo)
-                   | a = 'putstatic' b = campo tipo -> ^('putstatic' $b tipo)
-                   | a = 'invokespecial' c = classe '/' d = chamadaMetodo
-                      -> ^('invokespecial' $c $d)
-                   | a = 'invokestatic' c = classe '/' d = chamadaMetodo
-                      -> ^('invokestatic' $c $d)
-                    | a = 'invokevirtual' c = classe '/' d = chamadaMetodo
-                      -> ^('invokevirtual' $c $d)
-                   | a = 'new'c = classe -> ^(NEW $c)
+manipulacaoObjetos : a = 'getfield' REF tipo -> ^('getfield' REF tipo)
+		   | a = 'getstatic' REF tipo -> ^('getstatic' REF tipo)
+                   | a = 'putfield' REF tipo -> ^('putfield' REF tipo)
+                   | a = 'putstatic' REF tipo -> ^('putstatic' REF tipo)
+                   | a = 'invokespecial' REF d = parametrosRetorno
+                      -> ^('invokespecial' REF $d)
+                   | a = 'invokestatic' REF d = parametrosRetorno
+                      -> ^('invokestatic' REF $d)
+                    | a = 'invokevirtual' REF d = parametrosRetorno
+                      -> ^('invokevirtual' REF $d)
+                   | a = 'new' (b = ID | b = REF) -> ^(NEW $b)
                    ;
                 
   
@@ -208,27 +208,11 @@ pilha : ( a = 'pop'
         )
         -> ^(PILHA $a)
       ;
-
-classe returns [List classe]
-     @init {
-        $classe = new ArrayList();
-     }
-     : (cls += ID '/')* (cls += ID) {$classe = $cls;}
-     ;
      
-chamadaMetodo
-    	:   (n = INIT | n = ID) (argumentos | '(' argumentos ')') tip =  tipo
-    	      -> ^(METHOD_CALL $n argumentos $tip)
+parametrosRetorno
+    	:   (parametros | '(' parametros ')') tip =  tipo
+    	      -> ^(METHOD_CALL parametros $tip)
     	;
-     
-argumentos
-	: '()' -> ^(ARGS VOID)
-	| (
-	       a = ID 
-	     | a = TIPO_REF
-	  )+
-	  -> ^(ARGS $a)+
-	;
      
 contagemParametros returns [int qtdParams]
 	: '()' {$qtdParams = 0;}
@@ -237,14 +221,6 @@ contagemParametros returns [int qtdParams]
 	     | TIPO_REF {$qtdParams++;}
 	  )+
 	;
-
-campo returns [List classe, String campo]
-     @init {
-        $classe = new ArrayList();
-        $campo="";
-     }
-     : (cls += ID '/')+ cmp = ID {$classe = $cls; $campo = $cmp.text;}
-     ;
 
 INIT : '<init>';
 
@@ -256,7 +232,9 @@ NULL : ('null' | 'NULL');
 
 INTEIRO : '-'? '0'..'9'+ ;
 
-TIPO_REF: 'L' ID ('/' ID)*;
+REF  :  (ID '/')+ ( ID | INIT);
+
+TIPO_REF: 'L'ID ('/' ID)*';';
 
 ID: ('a'..'z' | 'A'..'Z') ('a'..'z' | 'A'..'Z' | '0'..'9' | '.')*;
 
