@@ -105,7 +105,11 @@ L2:	 	ineg
 	    ldc 8
 	    idiv
 	    istore 13
-	    invokevirtual Classe/kioeot(III) I
+	    iconst_4
+	    iconst_2
+	    ldc 12
+	    ldc 6
+	    invokevirtual Classe/kioeot(IIII) I
 	    new Composicao
 	    dup
 	    invokespecial Composicao/<init>() V

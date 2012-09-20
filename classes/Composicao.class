@@ -2,4 +2,7 @@
 .field basxty I
 .field teste LTeste;
 .field jahss I
+.method <init>() V
+	return
+.end method
 .end class

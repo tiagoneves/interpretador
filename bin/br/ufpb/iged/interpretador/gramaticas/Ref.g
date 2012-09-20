@@ -156,7 +156,10 @@ entraNaClasse
 declaracaoVariavel
     : ^(FIELD_DECL ID tip =.)
         {
-           $ID.simbolo.tipo = resolverTipo($tip.getText());
+           if ($tip.getText().startsWith("L"))
+           	$ID.simbolo.tipo = resolverTipo($tip.getText().substring(0, $tip.getText().length() - 1));
+           else
+           	$ID.simbolo.tipo = resolverTipo($tip.getText());
            System.out.println("linha "+$ID.getLine()+": set var type "+$ID.simbolo);
         }
     ;

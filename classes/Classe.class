@@ -13,25 +13,25 @@
     putfield Classe/atr I
     return
 .end method
-.method kioeot(III) I
-    ldc 3
-	ldc 6
-	iadd
-	istore_0
-	iconst_2
-	iconst_3
-	imul
-	istore_1
-	iconst_2
-	iconst_1
-	isub
-	istore_2
-	ldc 25
-	ldc 5
-	idiv
-	istore_3
-	ldc 7
-	iconst_2
+.method kioeot(IIII) I
+    iload_1
+    iconst_2
+    imul
+L2: iload_2
+    if_icmpeq L1
+    iload_0
+    iload 4
+    putfield Classe/atr I
+    iload_2
+    ireturn
+L1: iload_1
+    iconst_2
+    idiv
+    istore_2
+    iconst_3
+    iload_2
+    isub
+    ifeq L2
 	ireturn
 .end method
 .end class
