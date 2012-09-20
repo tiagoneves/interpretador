@@ -1,9 +1,5 @@
 package br.ufpb.iged.interpretador.principal;
 
-import java.util.Arrays;
-import java.util.List;
-
-import br.ufpb.iged.interpretador.symboltable.classes.Simbolo;
 import br.ufpb.iged.interpretador.symboltable.classes.SimboloClasse;
 
 public class Objeto {

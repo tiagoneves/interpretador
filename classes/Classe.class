@@ -3,6 +3,16 @@
 .field fachdf I
 .field zavcui I
 .field lohdg I
+.field attr1 I
+.field atr I
+.method <init>(II) V
+    iload_0
+    iload_1
+    putfield Classe/attr1 I
+    iload_2
+    putfield Classe/atr I
+    return
+.end method
 .method kioeot(III) I
     ldc 3
 	ldc 6

@@ -1,12 +1,8 @@
 package br.ufpb.iged.interpretador.principal;
 
-import java.util.Collection;
 import java.util.List;
 
-import br.ufpb.iged.interpretador.bytecodeassembler.asm.BytecodeAssembler;
 import br.ufpb.iged.interpretador.excecoes.ClassNotFoundException;
-import br.ufpb.iged.interpretador.symboltable.classes.EscopoGlobal;
-import br.ufpb.iged.interpretador.symboltable.classes.Simbolo;
 import br.ufpb.iged.interpretador.symboltable.classes.SimboloClasse;
 
 public class ClassLoader {

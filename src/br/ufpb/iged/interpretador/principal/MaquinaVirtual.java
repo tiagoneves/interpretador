@@ -29,7 +29,8 @@ public class MaquinaVirtual {
 	
 	private int tamanhoCodigo;
 	
-	
+	private Scanner in = new Scanner(System.in);
+		
 	public void cpu() throws ClassNotFoundException {
 		
 		do{
@@ -1089,8 +1090,6 @@ public class MaquinaVirtual {
 
 		System.out
 				.print("Pressione qualquer tecla para ir para a próxima instrução: ");
-
-		Scanner in = new Scanner(System.in);
 
 		in.next();
 

@@ -2,9 +2,6 @@ package br.ufpb.iged.interpretador.principal;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.ANTLRStringStream;
@@ -27,8 +24,6 @@ import br.ufpb.iged.interpretador.excecoes.ClassNotFoundException;
 import br.ufpb.iged.interpretador.excecoes.LabelException;
 import br.ufpb.iged.interpretador.symboltable.classes.BytecodesAST;
 import br.ufpb.iged.interpretador.symboltable.classes.BytecodesErrorNode;
-import br.ufpb.iged.interpretador.symboltable.classes.EscopoGlobal;
-import br.ufpb.iged.interpretador.symboltable.classes.Simbolo;
 import br.ufpb.iged.interpretador.symboltable.classes.SimboloClasse;
 import br.ufpb.iged.interpretador.symboltable.classes.SimboloMetodo;
 import br.ufpb.iged.interpretador.symboltable.classes.TabelaSimbolos;

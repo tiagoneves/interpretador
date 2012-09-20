@@ -1,8 +1,5 @@
 package br.ufpb.iged.interpretador.testes;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.antlr.runtime.*;
 
 import br.ufpb.iged.interpretador.bytecodeassembler.asm.BytecodeAssembler;
@@ -14,7 +11,7 @@ public class Test {
 
     public static void main(String[] args) throws Exception {
     
-       /*CharStream entrada = new ANTLRFileStream("entrada.txt");
+       CharStream entrada = new ANTLRFileStream("entrada.txt");
         
        AssemblerLexer lexer = new AssemblerLexer(entrada);
         
@@ -28,21 +25,21 @@ public class Test {
          System.out.print(BytecodeAssembler.codigo[i] + " ");
     
         
-        }*/
+        }
     	
     	String a = "oieerere/fldlfkf/Classe/xyz";
-    	String [] tokens = a.split("/");
-    	String campo = tokens[tokens.length - 1];
+    	String [] toks = a.split("/");
+    	String campo = toks[toks.length - 1];
     	System.out.println(campo);
     	String classe = "L";
     	
     	int i;
     	
-    	for (i = 0; i < tokens.length - 1; i++){
-    		if (i == tokens.length - 2)
-    			classe += tokens[i];
+    	for (i = 0; i < toks.length - 1; i++){
+    		if (i == toks.length - 2)
+    			classe += toks[i];
     		else
-        		classe += tokens[i]+"/";
+        		classe += toks[i]+"/";
     	}
     	
     	System.out.println(classe);

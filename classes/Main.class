@@ -79,8 +79,14 @@ L2:	 	ineg
 	    astore 11
 	    new Classe
 	    dup
-	    invokespecial Classe/<init>() V
 	    iconst_3
+	    ldc 8
+	    invokespecial Classe/<init>(II) V
+	    pop2
+	    getfield Classe/attr1 I
+	    pop
+	    dup
+	    getfield Classe/atr I
 	    putfield Classe/asdf I
 	    iconst_5 
 	    putfield Classe/zavcui I
