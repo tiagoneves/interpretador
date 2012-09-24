@@ -120,6 +120,7 @@ L2:	 	ineg
 	    putfield Teste/abc I
 	    ldc 24
 	    putfield Teste/xyz I
+	    pop
 	    putfield Composicao/teste LTeste;
 	    iconst_2
 	    putfield Composicao/basxty I

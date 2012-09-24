@@ -33,22 +33,19 @@ public class MaquinaVirtual {
 		
 	public void cpu() throws ClassNotFoundException {
 		
-		do{
 
-			while (frameAtual.pc.getInstrucao() < tamanhoCodigo) {
+		while (frameAtual.pc.getInstrucao() < tamanhoCodigo && topoPilha > -1) {
 				
-				if (!desvio)
+			if (!desvio)
 
-					frameAtual.pc.incrementar();
+				frameAtual.pc.incrementar();
 
-				 executarInstrucao();
+			executarInstrucao();
 				 
-				 exibirTela(frameAtual);
+			exibirTela(frameAtual);
 				 
-			}
-							
-		} while(topoPilha > -1);
-			
+		}
+										
 		
 	}
 	
@@ -973,7 +970,11 @@ public class MaquinaVirtual {
 		//retorno de métodos
 		case Definicao.RETURN: {
 			
-			frameAtual = pilha[--topoPilha];
+			topoPilha--;
+			
+			if (topoPilha > -1)
+			
+				frameAtual = pilha[topoPilha];
 			
 		}
 		

@@ -2,4 +2,7 @@
 .super Teste
 .field abfgs I
 .field lovxfd I
+.method <init>() V
+	return
+.end method
 .end class
