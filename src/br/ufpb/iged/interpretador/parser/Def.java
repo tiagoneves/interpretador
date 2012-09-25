@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g 2012-09-20 18:36:17
+// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Def.g 2012-09-24 21:32:12
 
     package br.ufpb.iged.interpretador.parser;
     
@@ -1056,8 +1056,8 @@ public class Def extends TreeFilter {
             	  System.out.println("linha "+pars.getLine()+": def "+pars.getText());
                       pars.escopo = escopoAtual;
                       SimboloVariavel par = new SimboloVariavel(pars.getText(),null);
-                      par.def = pars;            // track AST location of def's ID
-                      pars.simbolo = par;         // track in AST
+                      par.def = pars;            
+                      pars.simbolo = par;         
                       escopoAtual.definir(par);
             	}
 
@@ -1117,7 +1117,7 @@ public class Def extends TreeFilter {
 
             if ( state.backtracking==1 ) {
                     System.out.println("locals: "+escopoAtual);
-                    escopoAtual = escopoAtual.obterEscopoEnvolvente();    // pop scope
+                    escopoAtual = escopoAtual.obterEscopoEnvolvente();    
                     }
 
             }
@@ -1148,7 +1148,7 @@ public class Def extends TreeFilter {
 
             if ( state.backtracking==1 ) {
                           System.out.println("Saindo da classe.. membros: "+escopoAtual);
-                          escopoAtual = escopoAtual.obterEscopoEnvolvente(); // pop scope
+                          escopoAtual = escopoAtual.obterEscopoEnvolvente(); 
                         }
 
             }
@@ -1179,7 +1179,7 @@ public class Def extends TreeFilter {
 
             if ( state.backtracking==1 ) {
             	   System.out.println("Saindo do metodo: "+escopoAtual);
-            	   escopoAtual = escopoAtual.obterEscopoEnvolvente(); // pop scope
+            	   escopoAtual = escopoAtual.obterEscopoEnvolvente(); 
                        
             	}
 
@@ -1211,7 +1211,7 @@ public class Def extends TreeFilter {
 
             if ( state.backtracking==1 ) {
             	   System.out.println("Saindo do construtor: "+escopoAtual);
-                       escopoAtual = escopoAtual.obterEscopoEnvolvente(); // pop scope
+                       escopoAtual = escopoAtual.obterEscopoEnvolvente(); 
             	}
 
             }

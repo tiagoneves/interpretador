@@ -116,28 +116,28 @@ parametros
 	  System.out.println("linha "+$pars.getLine()+": def "+$pars.getText());
           $pars.escopo = escopoAtual;
           SimboloVariavel par = new SimboloVariavel($pars.getText(),null);
-          par.def = $pars;            // track AST location of def's ID
-          $pars.simbolo = par;         // track in AST
+          par.def = $pars;            
+          $pars.simbolo = par;         
           escopoAtual.definir(par);
 	}
 	;
 		
 entraNoCorpoMetodo
-    :   BODY {escopoAtual = new EscopoLocal(escopoAtual);} // push scope
+    :   BODY {escopoAtual = new EscopoLocal(escopoAtual);} 
     ;
     
 saiDoCorpoMetodo
     :   BODY
         {
         System.out.println("locals: "+escopoAtual);
-        escopoAtual = escopoAtual.obterEscopoEnvolvente();    // pop scope
+        escopoAtual = escopoAtual.obterEscopoEnvolvente();    
         }
     ;
     
 saiDaClasse : '.class'
             {
               System.out.println("Saindo da classe.. membros: "+escopoAtual);
-              escopoAtual = escopoAtual.obterEscopoEnvolvente(); // pop scope
+              escopoAtual = escopoAtual.obterEscopoEnvolvente(); 
             }
             ;
             
@@ -145,7 +145,7 @@ saiDoMetodo
 	:  METHOD_DECL
 	{
 	   System.out.println("Saindo do metodo: "+escopoAtual);
-	   escopoAtual = escopoAtual.obterEscopoEnvolvente(); // pop scope
+	   escopoAtual = escopoAtual.obterEscopoEnvolvente(); 
            
 	}
 	;
@@ -154,7 +154,7 @@ saiDoConstrutor
 	:  CONSTR_DECL
 	{
 	   System.out.println("Saindo do construtor: "+escopoAtual);
-           escopoAtual = escopoAtual.obterEscopoEnvolvente(); // pop scope
+           escopoAtual = escopoAtual.obterEscopoEnvolvente(); 
 	}
 	
 	;

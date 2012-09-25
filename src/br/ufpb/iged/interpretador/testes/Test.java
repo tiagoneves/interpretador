@@ -48,7 +48,22 @@ public class Test {
     	String c = "L"+b.substring(0, b.length() - 1);
     	
     	System.out.println(c);
+    	
+    	/*String t1 = "uisos(III)I";
+    	String t2 = " main(VOID)V";
+    	String t3 = "<init>(VOID)V";
+    	String t4 = "<init>(II)V";
+    	String t5 = "kioeot(IIII)I";
+    	String t6 = "refs(LClasse;LComposicao;IILHeranca;)I";
+    	
+    	System.out.println("Params 1: "+contarParametros(t1));
+    	System.out.println("Params 2: "+contarParametros(t2));
+    	System.out.println("Params 3: "+contarParametros(t3));
+    	System.out.println("Params 4: "+contarParametros(t4));
+    	System.out.println("Params 5: "+contarParametros(t5));
+    	System.out.println("Params 6: "+contarParametros(t6));*/
         
     }
+    
     
 }

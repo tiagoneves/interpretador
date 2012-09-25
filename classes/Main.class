@@ -79,6 +79,8 @@ L2:	 	ineg
 	    astore 11
 	    new Classe
 	    dup
+	    astore 12
+	    dup
 	    iconst_3
 	    ldc 8
 	    invokespecial Classe/<init>(II) V
@@ -99,18 +101,20 @@ L2:	 	ineg
 	    getfield Classe/lohdg I
 	    iconst_4
 	    imul
-	    istore 12
+	    istore 13
 	    dup
 	    getfield Classe/fachdf I
 	    ldc 8
 	    idiv
-	    istore 13
+	    istore 14
 	    iconst_4
 	    iconst_2
 	    ldc 12
 	    ldc 6
 	    invokevirtual Classe/kioeot(IIII) I
 	    new Composicao
+	    dup
+	    astore 15
 	    dup
 	    invokespecial Composicao/<init>() V
 	    new Teste
@@ -126,19 +130,21 @@ L2:	 	ineg
 	    putfield Composicao/basxty I
 	    iconst_3
 	    putfield Composicao/jahss I
-	    astore 14
+	    astore 16
 	    ldc 8
-	    istore 15
-	    aload 14
+	    istore 17
+	    aload 16
 	    dup
 	    getfield Composicao/teste LTeste;
 	    dup
 	    getfield Teste/xyz I
-	    iload 15
+	    iload 17
 	    idiv
-	    istore 16
+	    istore 18
 	    pop2
         new Heranca
+        dup
+        astore 19
         dup
         invokespecial Heranca/<init>() V
         iconst_3
@@ -149,24 +155,24 @@ L2:	 	ineg
         putfield Heranca/abc I
         ldc 9
         putfield Heranca/xyz I
-        astore 17
+        astore 20
         iconst_4
-        istore 18
-        aload 17
+        istore 21
+        aload 20
         dup
         getfield Heranca/abfgs I
-        aload 17
+        aload 20
         getfield Heranca/abc I
         imul
-        istore 19
+        istore 22
         dup
         getfield Heranca/lovxfd I
-        aload 17
+        aload 20
         getfield Heranca/xyz I
         idiv
-        iload 18
+        iload 21
         isub
-        istore 20
+        istore 23
         return
 .end method
 .method static uisos(III)I
@@ -197,5 +203,8 @@ L3: ldc 8
     iload 4
     idiv
     ireturn
+.end method
+.method static refs(LClasse;LComposicao;IILHeranca;)I
+	ireturn
 .end method
 .end class

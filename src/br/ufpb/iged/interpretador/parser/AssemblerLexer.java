@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g 2012-09-20 18:36:16
+// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g 2012-09-24 21:32:11
 
   package br.ufpb.iged.interpretador.parser;
 
@@ -1951,8 +1951,8 @@ public class AssemblerLexer extends Lexer {
         try {
             int _type = INIT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:225:6: ( '<init>' )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:225:8: '<init>'
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:216:6: ( '<init>' )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:216:8: '<init>'
             {
             match("<init>"); 
 
@@ -1974,8 +1974,8 @@ public class AssemblerLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:227:5: ( 'I' )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:227:7: 'I'
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:218:5: ( 'I' )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:218:7: 'I'
             {
             match('I'); 
 
@@ -1995,8 +1995,8 @@ public class AssemblerLexer extends Lexer {
         try {
             int _type = VOID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:229:6: ( 'V' )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:229:8: 'V'
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:220:6: ( 'V' )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:220:8: 'V'
             {
             match('V'); 
 
@@ -2016,10 +2016,10 @@ public class AssemblerLexer extends Lexer {
         try {
             int _type = NULL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:231:6: ( ( 'null' | 'NULL' ) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:231:8: ( 'null' | 'NULL' )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:222:6: ( ( 'null' | 'NULL' ) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:222:8: ( 'null' | 'NULL' )
             {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:231:8: ( 'null' | 'NULL' )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:222:8: ( 'null' | 'NULL' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -2038,7 +2038,7 @@ public class AssemblerLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:231:9: 'null'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:222:9: 'null'
                     {
                     match("null"); 
 
@@ -2047,7 +2047,7 @@ public class AssemblerLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:231:18: 'NULL'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:222:18: 'NULL'
                     {
                     match("NULL"); 
 
@@ -2075,10 +2075,10 @@ public class AssemblerLexer extends Lexer {
         try {
             int _type = INTEIRO;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:233:9: ( ( '-' )? ( '0' .. '9' )+ )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:233:11: ( '-' )? ( '0' .. '9' )+
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:224:9: ( ( '-' )? ( '0' .. '9' )+ )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:224:11: ( '-' )? ( '0' .. '9' )+
             {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:233:11: ( '-' )?
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:224:11: ( '-' )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -2087,7 +2087,7 @@ public class AssemblerLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:233:11: '-'
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:224:11: '-'
                     {
                     match('-'); 
 
@@ -2097,7 +2097,7 @@ public class AssemblerLexer extends Lexer {
             }
 
 
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:233:16: ( '0' .. '9' )+
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:224:16: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -2152,10 +2152,10 @@ public class AssemblerLexer extends Lexer {
         try {
             int _type = REF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:235:6: ( ( ID '/' )+ ( ID | INIT ) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:235:9: ( ID '/' )+ ( ID | INIT )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:226:6: ( ( ID '/' )+ ( ID | INIT ) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:226:9: ( ID '/' )+ ( ID | INIT )
             {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:235:9: ( ID '/' )+
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:226:9: ( ID '/' )+
             int cnt4=0;
             loop4:
             do {
@@ -2163,7 +2163,7 @@ public class AssemblerLexer extends Lexer {
                 alt4 = dfa4.predict(input);
                 switch (alt4) {
             	case 1 :
-            	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:235:10: ID '/'
+            	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:226:10: ID '/'
             	    {
             	    mID(); 
 
@@ -2183,7 +2183,7 @@ public class AssemblerLexer extends Lexer {
             } while (true);
 
 
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:235:19: ( ID | INIT )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:226:19: ( ID | INIT )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -2202,7 +2202,7 @@ public class AssemblerLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:235:21: ID
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:226:21: ID
                     {
                     mID(); 
 
@@ -2210,7 +2210,7 @@ public class AssemblerLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:235:26: INIT
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:226:26: INIT
                     {
                     mINIT(); 
 
@@ -2237,44 +2237,84 @@ public class AssemblerLexer extends Lexer {
         try {
             int _type = TIPO_REF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:237:9: ( 'L' ID ( '/' ID )* ';' )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:237:11: 'L' ID ( '/' ID )* ';'
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:228:9: ( ( 'L' ID ( '/' ID )* ';' | INT )+ )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:228:11: ( 'L' ID ( '/' ID )* ';' | INT )+
             {
-            match('L'); 
-
-            mID(); 
-
-
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:237:17: ( '/' ID )*
-            loop6:
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:228:11: ( 'L' ID ( '/' ID )* ';' | INT )+
+            int cnt7=0;
+            loop7:
             do {
-                int alt6=2;
-                int LA6_0 = input.LA(1);
+                int alt7=3;
+                int LA7_0 = input.LA(1);
 
-                if ( (LA6_0=='/') ) {
-                    alt6=1;
+                if ( (LA7_0=='L') ) {
+                    alt7=1;
+                }
+                else if ( (LA7_0=='I') ) {
+                    alt7=2;
                 }
 
 
-                switch (alt6) {
+                switch (alt7) {
             	case 1 :
-            	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:237:18: '/' ID
+            	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:228:12: 'L' ID ( '/' ID )* ';'
             	    {
-            	    match('/'); 
+            	    match('L'); 
 
             	    mID(); 
+
+
+            	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:228:18: ( '/' ID )*
+            	    loop6:
+            	    do {
+            	        int alt6=2;
+            	        int LA6_0 = input.LA(1);
+
+            	        if ( (LA6_0=='/') ) {
+            	            alt6=1;
+            	        }
+
+
+            	        switch (alt6) {
+            	    	case 1 :
+            	    	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:228:19: '/' ID
+            	    	    {
+            	    	    match('/'); 
+
+            	    	    mID(); 
+
+
+            	    	    }
+            	    	    break;
+
+            	    	default :
+            	    	    break loop6;
+            	        }
+            	    } while (true);
+
+
+            	    match(';'); 
+
+            	    }
+            	    break;
+            	case 2 :
+            	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:228:33: INT
+            	    {
+            	    mINT(); 
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop6;
+            	    if ( cnt7 >= 1 ) break loop7;
+                        EarlyExitException eee =
+                            new EarlyExitException(7, input);
+                        throw eee;
                 }
+                cnt7++;
             } while (true);
 
-
-            match(';'); 
 
             }
 
@@ -2292,8 +2332,8 @@ public class AssemblerLexer extends Lexer {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:239:3: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '.' )* )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:239:5: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '.' )*
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:230:3: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '.' )* )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:230:5: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '.' )*
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                 input.consume();
@@ -2305,18 +2345,18 @@ public class AssemblerLexer extends Lexer {
             }
 
 
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:239:27: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '.' )*
-            loop7:
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:230:27: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '.' )*
+            loop8:
             do {
-                int alt7=2;
-                int LA7_0 = input.LA(1);
+                int alt8=2;
+                int LA8_0 = input.LA(1);
 
-                if ( (LA7_0=='.'||(LA7_0 >= '0' && LA7_0 <= '9')||(LA7_0 >= 'A' && LA7_0 <= 'Z')||(LA7_0 >= 'a' && LA7_0 <= 'z')) ) {
-                    alt7=1;
+                if ( (LA8_0=='.'||(LA8_0 >= '0' && LA8_0 <= '9')||(LA8_0 >= 'A' && LA8_0 <= 'Z')||(LA8_0 >= 'a' && LA8_0 <= 'z')) ) {
+                    alt8=1;
                 }
 
 
-                switch (alt7) {
+                switch (alt8) {
             	case 1 :
             	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:
             	    {
@@ -2334,7 +2374,7 @@ public class AssemblerLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop7;
+            	    break loop8;
                 }
             } while (true);
 
@@ -2355,24 +2395,24 @@ public class AssemblerLexer extends Lexer {
         try {
             int _type = NEWLINE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:243:9: ( ( '\\n' )+ )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:243:11: ( '\\n' )+
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:234:9: ( ( '\\n' )+ )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:234:11: ( '\\n' )+
             {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:243:11: ( '\\n' )+
-            int cnt8=0;
-            loop8:
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:234:11: ( '\\n' )+
+            int cnt9=0;
+            loop9:
             do {
-                int alt8=2;
-                int LA8_0 = input.LA(1);
+                int alt9=2;
+                int LA9_0 = input.LA(1);
 
-                if ( (LA8_0=='\n') ) {
-                    alt8=1;
+                if ( (LA9_0=='\n') ) {
+                    alt9=1;
                 }
 
 
-                switch (alt8) {
+                switch (alt9) {
             	case 1 :
-            	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:243:11: '\\n'
+            	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:234:11: '\\n'
             	    {
             	    match('\n'); 
 
@@ -2380,12 +2420,12 @@ public class AssemblerLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt8 >= 1 ) break loop8;
+            	    if ( cnt9 >= 1 ) break loop9;
                         EarlyExitException eee =
-                            new EarlyExitException(8, input);
+                            new EarlyExitException(9, input);
                         throw eee;
                 }
-                cnt8++;
+                cnt9++;
             } while (true);
 
 
@@ -2405,8 +2445,8 @@ public class AssemblerLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:245:4: ( ( ' ' | '\\t' | '\\r' ) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:245:6: ( ' ' | '\\t' | '\\r' )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:236:4: ( ( ' ' | '\\t' | '\\r' ) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:236:6: ( ' ' | '\\t' | '\\r' )
             {
             if ( input.LA(1)=='\t'||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -2433,9 +2473,9 @@ public class AssemblerLexer extends Lexer {
 
     public void mTokens() throws RecognitionException {
         // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:1:8: ( T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | INIT | INT | VOID | NULL | INTEIRO | REF | TIPO_REF | ID | NEWLINE | WS )
-        int alt9=89;
-        alt9 = dfa9.predict(input);
-        switch (alt9) {
+        int alt10=89;
+        alt10 = dfa10.predict(input);
+        switch (alt10) {
             case 1 :
                 // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Assembler.g:1:10: T__33
                 {
@@ -3155,7 +3195,7 @@ public class AssemblerLexer extends Lexer {
 
 
     protected DFA4 dfa4 = new DFA4(this);
-    protected DFA9 dfa9 = new DFA9(this);
+    protected DFA10 dfa10 = new DFA10(this);
     static final String DFA4_eotS =
         "\1\uffff\1\2\1\uffff\1\2\1\uffff";
     static final String DFA4_eofS =
@@ -3206,64 +3246,65 @@ public class AssemblerLexer extends Lexer {
             this.transition = DFA4_transition;
         }
         public String getDescription() {
-            return "()+ loopback of 235:9: ( ID '/' )+";
+            return "()+ loopback of 226:9: ( ID '/' )+";
         }
     }
-    static final String DFA9_eotS =
-        "\1\uffff\1\30\3\uffff\11\44\1\uffff\1\75\1\76\1\44\1\uffff\2\44"+
-        "\12\uffff\5\44\2\uffff\27\44\2\uffff\2\44\1\uffff\4\44\1\155\6\44"+
-        "\1\uffff\11\44\1\u0081\4\44\1\u0087\1\u0088\1\u0089\1\44\1\u008c"+
-        "\4\44\1\uffff\1\44\2\uffff\4\44\1\uffff\2\44\1\u009a\1\u009b\1\u009c"+
-        "\1\44\1\u009e\1\uffff\1\u00a0\1\u00a1\1\u00a2\1\u00a3\1\u00a4\1"+
-        "\u00a5\1\u00a6\1\44\1\u00a8\1\u00a9\1\44\1\uffff\1\u00ab\2\44\1"+
-        "\u00ae\1\u00af\3\uffff\1\u00b0\1\u00b1\1\uffff\4\44\1\u00b0\1\45"+
-        "\1\uffff\1\44\1\u00bb\4\44\3\uffff\1\44\11\uffff\1\u00c3\2\uffff"+
-        "\1\44\1\uffff\2\44\4\uffff\4\44\1\45\2\uffff\1\44\2\uffff\1\44\1"+
-        "\u00d2\3\44\3\uffff\2\44\1\u00df\2\44\1\u00e2\1\u00e3\5\uffff\1"+
-        "\u00e4\2\uffff\2\44\6\uffff\2\44\1\u00f9\2\uffff\2\44\7\uffff\1"+
-        "\u0100\1\44\13\uffff\3\44\5\uffff\1\u0109\1\44\1\uffff\1\u010b\4"+
-        "\uffff\3\44\1\uffff\1\u010f\1\uffff\3\44\1\uffff\4\44\1\u0117\1"+
-        "\44\1\u0119\1\uffff\1\u011a\2\uffff";
-    static final String DFA9_eofS =
-        "\u011b\uffff";
-    static final String DFA9_minS =
+    static final String DFA10_eotS =
+        "\1\uffff\1\30\3\uffff\11\44\1\uffff\1\75\1\100\1\44\1\uffff\2\44"+
+        "\12\uffff\5\44\2\uffff\27\44\1\uffff\1\44\1\146\1\uffff\2\44\1\uffff"+
+        "\4\44\1\157\6\44\1\uffff\11\44\1\u0083\4\44\1\u0089\1\u008a\1\u008b"+
+        "\1\44\1\u008e\3\44\1\uffff\1\44\1\uffff\1\44\1\uffff\4\44\1\uffff"+
+        "\2\44\1\u009c\1\u009d\1\u009e\1\44\1\u00a0\1\uffff\1\u00a2\1\u00a3"+
+        "\1\u00a4\1\u00a5\1\u00a6\1\u00a7\1\u00a8\1\44\1\u00aa\1\u00ab\1"+
+        "\44\1\uffff\1\u00ad\2\44\1\u00b0\1\u00b1\3\uffff\1\u00b2\1\u00b3"+
+        "\1\uffff\4\44\1\u00b2\1\45\1\uffff\1\44\1\u00bd\4\44\3\uffff\1\44"+
+        "\11\uffff\1\u00c5\2\uffff\1\44\1\uffff\2\44\4\uffff\4\44\1\45\2"+
+        "\uffff\1\44\2\uffff\1\44\1\u00d4\3\44\3\uffff\2\44\1\u00e1\2\44"+
+        "\1\u00e4\1\u00e5\5\uffff\1\u00e6\2\uffff\2\44\6\uffff\2\44\1\u00fb"+
+        "\2\uffff\2\44\7\uffff\1\u0102\1\44\13\uffff\3\44\5\uffff\1\u010b"+
+        "\1\44\1\uffff\1\u010d\4\uffff\3\44\1\uffff\1\u0111\1\uffff\3\44"+
+        "\1\uffff\4\44\1\u0119\1\44\1\u011b\1\uffff\1\u011c\2\uffff";
+    static final String DFA10_eofS =
+        "\u011d\uffff";
+    static final String DFA10_minS =
         "\1\11\1\51\1\uffff\1\143\1\uffff\11\56\1\uffff\3\56\1\uffff\2\56"+
-        "\5\uffff\1\156\4\uffff\5\56\2\uffff\27\56\2\uffff\2\56\1\144\13"+
-        "\56\1\151\27\56\1\74\1\56\1\uffff\1\40\4\56\1\uffff\7\56\1\143\13"+
-        "\56\1\uffff\5\56\3\uffff\2\56\1\uffff\6\56\1\143\6\56\3\uffff\1"+
-        "\56\1\uffff\1\155\7\uffff\1\56\2\uffff\1\56\1\uffff\2\56\4\uffff"+
-        "\5\56\2\uffff\1\56\1\60\1\uffff\5\56\1\160\1\60\1\uffff\7\56\5\uffff"+
-        "\1\56\1\60\1\uffff\2\56\1\60\1\145\4\uffff\3\56\1\60\1\uffff\2\56"+
-        "\7\uffff\2\56\10\uffff\2\145\1\uffff\3\56\5\uffff\2\56\1\uffff\1"+
-        "\56\4\uffff\3\56\1\uffff\1\56\1\uffff\3\56\1\uffff\7\56\1\uffff"+
-        "\1\56\2\uffff";
-    static final String DFA9_maxS =
+        "\5\uffff\1\156\4\uffff\5\56\2\uffff\27\56\1\uffff\2\56\1\uffff\2"+
+        "\56\1\144\13\56\1\151\26\56\1\uffff\1\56\1\74\1\56\1\40\4\56\1\uffff"+
+        "\7\56\1\143\13\56\1\uffff\5\56\3\uffff\2\56\1\uffff\6\56\1\143\6"+
+        "\56\3\uffff\1\56\1\uffff\1\155\7\uffff\1\56\2\uffff\1\56\1\uffff"+
+        "\2\56\4\uffff\5\56\2\uffff\1\56\1\60\1\uffff\5\56\1\160\1\60\1\uffff"+
+        "\7\56\5\uffff\1\56\1\60\1\uffff\2\56\1\60\1\145\4\uffff\3\56\1\60"+
+        "\1\uffff\2\56\7\uffff\2\56\10\uffff\2\145\1\uffff\3\56\5\uffff\2"+
+        "\56\1\uffff\1\56\4\uffff\3\56\1\uffff\1\56\1\uffff\3\56\1\uffff"+
+        "\7\56\1\uffff\1\56\2\uffff";
+    static final String DFA10_maxS =
         "\1\172\1\51\1\uffff\1\163\1\uffff\11\172\1\uffff\3\172\1\uffff\2"+
-        "\172\5\uffff\1\156\4\uffff\5\172\2\uffff\27\172\2\uffff\2\172\1"+
-        "\144\13\172\1\151\31\172\1\uffff\1\40\4\172\1\uffff\7\172\1\143"+
-        "\13\172\1\uffff\5\172\3\uffff\2\172\1\uffff\6\172\1\155\6\172\3"+
-        "\uffff\1\172\1\uffff\1\155\7\uffff\1\172\2\uffff\1\172\1\uffff\2"+
-        "\172\4\uffff\5\172\2\uffff\1\172\1\63\1\uffff\5\172\1\160\1\63\1"+
-        "\uffff\7\172\5\uffff\1\172\1\63\1\uffff\2\172\1\155\1\156\4\uffff"+
-        "\3\172\1\63\1\uffff\2\172\7\uffff\2\172\10\uffff\2\164\1\uffff\3"+
-        "\172\5\uffff\2\172\1\uffff\1\172\4\uffff\3\172\1\uffff\1\172\1\uffff"+
-        "\3\172\1\uffff\7\172\1\uffff\1\172\2\uffff";
-    static final String DFA9_acceptS =
+        "\172\5\uffff\1\156\4\uffff\5\172\2\uffff\27\172\1\uffff\2\172\1"+
+        "\uffff\2\172\1\144\13\172\1\151\26\172\1\uffff\3\172\1\40\4\172"+
+        "\1\uffff\7\172\1\143\13\172\1\uffff\5\172\3\uffff\2\172\1\uffff"+
+        "\6\172\1\155\6\172\3\uffff\1\172\1\uffff\1\155\7\uffff\1\172\2\uffff"+
+        "\1\172\1\uffff\2\172\4\uffff\5\172\2\uffff\1\172\1\63\1\uffff\5"+
+        "\172\1\160\1\63\1\uffff\7\172\5\uffff\1\172\1\63\1\uffff\2\172\1"+
+        "\155\1\156\4\uffff\3\172\1\63\1\uffff\2\172\7\uffff\2\172\10\uffff"+
+        "\2\164\1\uffff\3\172\5\uffff\2\172\1\uffff\1\172\4\uffff\3\172\1"+
+        "\uffff\1\172\1\uffff\3\172\1\uffff\7\172\1\uffff\1\172\2\uffff";
+    static final String DFA10_acceptS =
         "\2\uffff\1\3\1\uffff\1\13\11\uffff\1\120\3\uffff\1\124\2\uffff\1"+
         "\130\1\131\1\2\1\1\1\4\1\uffff\1\7\1\10\1\11\1\12\5\uffff\1\127"+
-        "\1\125\27\uffff\1\121\1\122\50\uffff\1\126\5\uffff\1\30\23\uffff"+
-        "\1\75\5\uffff\1\107\1\110\1\111\2\uffff\1\112\15\uffff\1\33\1\34"+
-        "\1\35\1\uffff\1\45\1\uffff\1\54\1\55\1\56\1\57\1\60\1\61\1\62\1"+
-        "\uffff\1\70\1\71\1\uffff\1\76\2\uffff\1\105\1\106\1\123\1\113\5"+
-        "\uffff\1\5\1\6\2\uffff\1\15\7\uffff\1\63\7\uffff\1\14\1\16\1\17"+
-        "\1\20\1\21\2\uffff\1\23\4\uffff\1\64\1\65\1\66\1\67\4\uffff\1\100"+
-        "\2\uffff\1\116\1\117\1\22\1\24\1\25\1\26\1\27\2\uffff\1\36\1\37"+
-        "\1\40\1\41\1\42\1\43\1\44\1\46\2\uffff\1\53\3\uffff\1\77\1\101\1"+
-        "\102\1\103\1\104\2\uffff\1\31\1\uffff\1\47\1\50\1\51\1\52\3\uffff"+
-        "\1\114\1\uffff\1\32\3\uffff\1\115\7\uffff\1\73\1\uffff\1\72\1\74";
-    static final String DFA9_specialS =
-        "\u011b\uffff}>";
-    static final String[] DFA9_transitionS = {
+        "\1\125\27\uffff\1\121\2\uffff\1\122\45\uffff\1\126\10\uffff\1\30"+
+        "\23\uffff\1\75\5\uffff\1\107\1\110\1\111\2\uffff\1\112\15\uffff"+
+        "\1\33\1\34\1\35\1\uffff\1\45\1\uffff\1\54\1\55\1\56\1\57\1\60\1"+
+        "\61\1\62\1\uffff\1\70\1\71\1\uffff\1\76\2\uffff\1\105\1\106\1\123"+
+        "\1\113\5\uffff\1\5\1\6\2\uffff\1\15\7\uffff\1\63\7\uffff\1\14\1"+
+        "\16\1\17\1\20\1\21\2\uffff\1\23\4\uffff\1\64\1\65\1\66\1\67\4\uffff"+
+        "\1\100\2\uffff\1\116\1\117\1\22\1\24\1\25\1\26\1\27\2\uffff\1\36"+
+        "\1\37\1\40\1\41\1\42\1\43\1\44\1\46\2\uffff\1\53\3\uffff\1\77\1"+
+        "\101\1\102\1\103\1\104\2\uffff\1\31\1\uffff\1\47\1\50\1\51\1\52"+
+        "\3\uffff\1\114\1\uffff\1\32\3\uffff\1\115\7\uffff\1\73\1\uffff\1"+
+        "\72\1\74";
+    static final String DFA10_specialS =
+        "\u011d\uffff}>";
+    static final String[] DFA10_transitionS = {
             "\1\26\1\25\2\uffff\1\26\22\uffff\1\26\7\uffff\1\1\1\2\3\uffff"+
             "\1\22\1\3\1\uffff\12\22\1\4\1\uffff\1\16\4\uffff\10\24\1\17"+
             "\2\24\1\23\1\24\1\21\7\24\1\20\4\24\6\uffff\1\5\2\24\1\6\2\24"+
@@ -3289,206 +3330,210 @@ public class AssemblerLexer extends Lexer {
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\73\25\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\74\6\43",
             "",
+            "\1\43\1\45\12\43\7\uffff\10\43\1\77\2\43\1\76\16\43\6\uffff"+
+            "\32\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
-            "\1\43\1\45\12\43\7\uffff\24\43\1\77\5\43\6\uffff\32\43",
+            "\1\43\1\45\12\43\7\uffff\24\43\1\101\5\43\6\uffff\32\43",
             "",
-            "\1\43\1\45\12\43\7\uffff\32\100\6\uffff\32\100",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\101",
-            "",
-            "",
-            "",
-            "",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\16\43\1\102\13\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\16\43\1\103\13\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\104\25\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\105\6\43",
+            "\1\43\1\45\12\43\7\uffff\32\102\6\uffff\32\102",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
             "",
             "",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\17\43\1\106\12\43",
+            "",
+            "",
+            "",
+            "\1\103",
+            "",
+            "",
+            "",
+            "",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\16\43\1\104\13\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\16\43\1\105\13\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\106\25\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\107\6\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\110\6\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\3\43\1\111\11\43\1\112"+
-            "\14\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\16\43\1\113\13\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\10\43\1\114\21\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\4\uffff\1\115\1\uffff\4\43\1"+
-            "\116\1\43\1\117\4\43\1\120\1\43\1\121\14\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\15\43\1\122\14\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\16\43\1\123\13\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\24\43\1\124\5\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\125\20\43\1\126"+
-            "\4\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\21\43\1\127\10\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\130\25\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\131\1\132\5"+
-            "\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\16\43\1\133\13\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\2\43\1\134\27\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\26\43\1\135\3\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\17\43\1\136\12\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\13\43\1\137\16\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\17\43\1\140\12\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\141\6\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\142\6\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\1\143\31\43",
-            "",
-            "",
-            "\1\43\1\45\12\43\7\uffff\13\43\1\144\16\43\6\uffff\32\43",
-            "\1\146\1\145\12\146\1\uffff\1\147\5\uffff\32\146\6\uffff\32"+
-            "\146",
-            "\1\150",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\15\43\1\151\14\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\1\152\31\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\153\6\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\16\43\1\154\13\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\5\43\1\156\14\43\1\157"+
+            "",
+            "",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\17\43\1\110\12\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\111\6\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\112\6\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\3\43\1\113\11\43\1\114"+
+            "\14\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\16\43\1\115\13\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\10\43\1\116\21\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\4\uffff\1\117\1\uffff\4\43\1"+
+            "\120\1\43\1\121\4\43\1\122\1\43\1\123\14\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\15\43\1\124\14\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\16\43\1\125\13\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\24\43\1\126\5\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\127\20\43\1\130"+
+            "\4\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\21\43\1\131\10\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\132\25\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\133\1\134\5"+
+            "\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\16\43\1\135\13\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\2\43\1\136\27\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\26\43\1\137\3\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\17\43\1\140\12\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\13\43\1\141\16\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\17\43\1\142\12\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\143\6\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\144\6\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\1\145\31\43",
+            "",
+            "\1\43\1\45\12\43\7\uffff\32\102\6\uffff\32\102",
+            "\1\43\1\45\12\43\7\uffff\10\43\1\77\2\43\1\76\16\43\6\uffff"+
+            "\32\43",
+            "",
+            "\1\43\1\45\12\43\7\uffff\13\43\1\147\16\43\6\uffff\32\43",
+            "\1\151\1\150\12\151\1\uffff\1\146\5\uffff\32\151\6\uffff\32"+
+            "\151",
+            "\1\152",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\15\43\1\153\14\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\1\154\31\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\155\6\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\16\43\1\156\13\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\5\43\1\160\14\43\1\161"+
             "\7\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\16\43\1\160\13\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\3\43\1\161\26\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\3\43\1\162\26\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\15\43\1\163\14\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\25\43\1\164\4\43",
-            "\1\165",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\20\43\1\166\11\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\167\16\43\1\170"+
-            "\6\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\16\43\1\162\13\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\3\43\1\163\26\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\3\43\1\164\26\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\15\43\1\165\14\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\25\43\1\166\4\43",
+            "\1\167",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\20\43\1\170\11\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\171\16\43\1\172"+
             "\6\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\173\25\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\2\43\1\174\27\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\1\175\31\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\13\43\1\176\16\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\6\43\1\177\23\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\16\43\1\u0080\13\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\173\16\43\1\174"+
+            "\6\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\175\25\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\2\43\1\176\27\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\1\177\31\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\13\43\1\u0080\16\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\6\43\1\u0081\23\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\16\43\1\u0082\13\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\14\43\1\u0082\6\43\1"+
-            "\u0083\6\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\16\43\1\u0084\13\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\1\43\1\u0085\30\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\21\43\1\u0086\10\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\14\43\1\u0084\6\43\1"+
+            "\u0085\6\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\16\43\1\u0086\13\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\1\43\1\u0087\30\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\21\43\1\u0088\10\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\13\43\1\u008a\16\43",
-            "\1\43\1\45\2\43\1\u008b\7\43\7\uffff\32\43\6\uffff\32\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\5\43\1\u008d\14\43\1"+
-            "\u008e\7\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\24\43\1\u008f\5\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\u0090\6\43",
-            "\1\43\1\45\12\43\7\uffff\13\43\1\u0091\16\43\6\uffff\32\43",
-            "\1\45\4\uffff\32\u0092\6\uffff\32\u0092",
-            "\1\146\1\145\12\146\1\uffff\1\147\5\uffff\32\146\6\uffff\32"+
-            "\146",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\13\43\1\u008c\16\43",
+            "\1\43\1\45\2\43\1\u008d\7\43\7\uffff\32\43\6\uffff\32\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\5\43\1\u008f\14\43\1"+
+            "\u0090\7\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\24\43\1\u0091\5\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\u0092\6\43",
             "",
-            "\1\u0093",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\22\43\1\u0094\7\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\3\43\1\u0095\26\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\24\43\1\u0096\5\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\21\43\1\u0097\10\43",
+            "\1\43\1\45\12\43\7\uffff\13\43\1\u0093\16\43\6\uffff\32\43",
+            "\1\45\4\uffff\32\u0094\6\uffff\32\u0094",
+            "\1\151\1\150\12\151\1\uffff\1\146\5\uffff\32\151\6\uffff\32"+
+            "\151",
+            "\1\u0095",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\22\43\1\u0096\7\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\3\43\1\u0097\26\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\24\43\1\u0098\5\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\21\43\1\u0099\10\43",
             "",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\10\43\1\u0098\21\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\u0099\6\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\10\43\1\u009a\21\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\u009b\6\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\22\43\1\u009d\7\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\22\43\1\u009f\7\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
-            "\1\u009f",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
+            "\1\u00a1",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\3\43\1\u00a7\26\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\12\43\1\u00aa\17\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\3\43\1\u00a9\26\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\12\43\1\u00ac\17\43",
             "",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\24\43\1\u00ac\5\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\21\43\1\u00ad\10\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
-            "",
-            "",
-            "",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\24\43\1\u00ae\5\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\21\43\1\u00af\10\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
             "",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\10\43\1\u00b2\21\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\u00b3\6\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\21\43\1\u00b4\10\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\10\43\1\u00b5\21\43",
+            "",
+            "",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
-            "\1\u00b6\1\145\12\u00b6\1\uffff\1\147\5\uffff\32\u00b6\6\uffff"+
-            "\32\u00b6",
-            "\1\u00b7\11\uffff\1\u00b8",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\u00b9\6\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\4\uffff\1\u00ba\1\uffff\32\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\21\43\1\u00bc\10\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\u00bd\25\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\u00be\25\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\1\u00bf\31\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
+            "",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\10\43\1\u00b4\21\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\u00b5\6\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\21\43\1\u00b6\10\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\10\43\1\u00b7\21\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
+            "\1\u00b8\1\150\12\u00b8\1\uffff\1\146\5\uffff\32\u00b8\6\uffff"+
+            "\32\u00b8",
+            "\1\u00b9\11\uffff\1\u00ba",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\u00bb\6\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\4\uffff\1\u00bc\1\uffff\32\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\21\43\1\u00be\10\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\u00bf\25\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\u00c0\25\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\1\u00c1\31\43",
             "",
             "",
             "",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\u00c0\6\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\u00c2\6\43",
             "",
-            "\1\u00c1",
-            "",
-            "",
+            "\1\u00c3",
             "",
             "",
             "",
             "",
             "",
-            "\1\43\1\45\12\43\7\uffff\32\43\4\uffff\1\u00c2\1\uffff\32\43",
             "",
             "",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\u00c4\25\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\4\uffff\1\u00c4\1\uffff\32\43",
             "",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\21\43\1\u00c5\10\43",
+            "",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\u00c6\25\43",
             "",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\21\43\1\u00c7\10\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\u00c8\25\43",
             "",
             "",
             "",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\u00c7\25\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\1\u00c8\31\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\15\43\1\u00c9\14\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\2\43\1\u00ca\27\43",
-            "\1\u00b6\1\145\12\u00b6\1\uffff\1\147\5\uffff\32\u00b6\6\uffff"+
-            "\32\u00b6",
+            "",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\u00c9\25\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\1\u00ca\31\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\15\43\1\u00cb\14\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\2\43\1\u00cc\27\43",
+            "\1\u00b8\1\150\12\u00b8\1\uffff\1\146\5\uffff\32\u00b8\6\uffff"+
+            "\32\u00b8",
             "",
             "",
-            "\1\43\1\45\12\43\7\uffff\32\43\4\uffff\1\u00cb\1\uffff\32\43",
-            "\1\u00cc\1\u00cd\1\u00ce\1\u00cf",
+            "\1\43\1\45\12\43\7\uffff\32\43\4\uffff\1\u00cd\1\uffff\32\43",
+            "\1\u00ce\1\u00cf\1\u00d0\1\u00d1",
             "",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\15\43\1\u00d0\14\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\4\uffff\1\u00d1\1\uffff\32\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\13\43\1\u00d3\16\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\u00d4\6\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\4\uffff\1\u00d5\1\uffff\32\43",
-            "\1\u00d6",
-            "\1\u00d7\1\u00d8\1\u00d9\1\u00da",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\15\43\1\u00d2\14\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\4\uffff\1\u00d3\1\uffff\32\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\13\43\1\u00d5\16\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\u00d6\6\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\4\uffff\1\u00d7\1\uffff\32\43",
+            "\1\u00d8",
+            "\1\u00d9\1\u00da\1\u00db\1\u00dc",
             "",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\22\43\1\u00db\2\43\1"+
-            "\u00dc\4\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\15\43\1\u00dd\14\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\4\uffff\1\u00de\1\uffff\32\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\13\43\1\u00e0\16\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\u00e1\6\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\22\43\1\u00dd\2\43\1"+
+            "\u00de\4\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\15\43\1\u00df\14\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\4\uffff\1\u00e0\1\uffff\32\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\13\43\1\u00e2\16\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\u00e3\6\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
             "",
@@ -3497,25 +3542,25 @@ public class AssemblerLexer extends Lexer {
             "",
             "",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
-            "\1\u00e5\1\u00e6\1\u00e7\1\u00e8",
+            "\1\u00e7\1\u00e8\1\u00e9\1\u00ea",
             "",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\3\43\1\u00e9\26\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\10\43\1\u00ea\21\43",
-            "\1\u00eb\1\u00ec\1\u00ed\1\u00ee\1\u00ef\1\u00f0\67\uffff\1"+
-            "\u00f1",
-            "\1\u00f2\1\uffff\1\u00f3\4\uffff\1\u00f4\1\uffff\1\u00f5",
-            "",
-            "",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\3\43\1\u00eb\26\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\10\43\1\u00ec\21\43",
+            "\1\u00ed\1\u00ee\1\u00ef\1\u00f0\1\u00f1\1\u00f2\67\uffff\1"+
+            "\u00f3",
+            "\1\u00f4\1\uffff\1\u00f5\4\uffff\1\u00f6\1\uffff\1\u00f7",
             "",
             "",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\17\43\1\u00f6\3\43\1"+
-            "\u00f7\6\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\10\43\1\u00f8\21\43",
+            "",
+            "",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\17\43\1\u00f8\3\43\1"+
+            "\u00f9\6\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\10\43\1\u00fa\21\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
-            "\1\u00fa\1\u00fb\1\u00fc\1\u00fd",
+            "\1\u00fc\1\u00fd\1\u00fe\1\u00ff",
             "",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\3\43\1\u00fe\26\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\10\43\1\u00ff\21\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\3\43\1\u0100\26\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\10\43\1\u0101\21\43",
             "",
             "",
             "",
@@ -3524,7 +3569,7 @@ public class AssemblerLexer extends Lexer {
             "",
             "",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\2\43\1\u0101\27\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\2\43\1\u0103\27\43",
             "",
             "",
             "",
@@ -3533,41 +3578,41 @@ public class AssemblerLexer extends Lexer {
             "",
             "",
             "",
-            "\1\u0102\16\uffff\1\u0103",
             "\1\u0104\16\uffff\1\u0105",
+            "\1\u0106\16\uffff\1\u0107",
             "",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\u0106\25\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\1\u0107\31\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\21\43\1\u0108\10\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\4\43\1\u0108\25\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\1\u0109\31\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\21\43\1\u010a\10\43",
             "",
-            "",
-            "",
-            "",
-            "",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\2\43\1\u010a\27\43",
-            "",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
             "",
             "",
             "",
             "",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\2\43\1\u010c\27\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\u010d\6\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\u010e\6\43",
             "",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
             "",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\10\43\1\u0110\21\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\10\43\1\u0111\21\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\24\43\1\u0112\5\43",
             "",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\1\u0113\31\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\2\43\1\u0114\27\43",
+            "",
+            "",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\2\43\1\u010e\27\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\u010f\6\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\23\43\1\u0110\6\43",
+            "",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
+            "",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\10\43\1\u0112\21\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\10\43\1\u0113\21\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\24\43\1\u0114\5\43",
+            "",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\1\u0115\31\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\13\43\1\u0116\16\43",
-            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\2\43\1\u0116\27\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\1\u0117\31\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\13\43\1\u0118\16\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
+            "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\13\43\1\u011a\16\43",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
             "",
             "\1\43\1\45\12\43\7\uffff\32\43\6\uffff\32\43",
@@ -3575,34 +3620,34 @@ public class AssemblerLexer extends Lexer {
             ""
     };
 
-    static final short[] DFA9_eot = DFA.unpackEncodedString(DFA9_eotS);
-    static final short[] DFA9_eof = DFA.unpackEncodedString(DFA9_eofS);
-    static final char[] DFA9_min = DFA.unpackEncodedStringToUnsignedChars(DFA9_minS);
-    static final char[] DFA9_max = DFA.unpackEncodedStringToUnsignedChars(DFA9_maxS);
-    static final short[] DFA9_accept = DFA.unpackEncodedString(DFA9_acceptS);
-    static final short[] DFA9_special = DFA.unpackEncodedString(DFA9_specialS);
-    static final short[][] DFA9_transition;
+    static final short[] DFA10_eot = DFA.unpackEncodedString(DFA10_eotS);
+    static final short[] DFA10_eof = DFA.unpackEncodedString(DFA10_eofS);
+    static final char[] DFA10_min = DFA.unpackEncodedStringToUnsignedChars(DFA10_minS);
+    static final char[] DFA10_max = DFA.unpackEncodedStringToUnsignedChars(DFA10_maxS);
+    static final short[] DFA10_accept = DFA.unpackEncodedString(DFA10_acceptS);
+    static final short[] DFA10_special = DFA.unpackEncodedString(DFA10_specialS);
+    static final short[][] DFA10_transition;
 
     static {
-        int numStates = DFA9_transitionS.length;
-        DFA9_transition = new short[numStates][];
+        int numStates = DFA10_transitionS.length;
+        DFA10_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA9_transition[i] = DFA.unpackEncodedString(DFA9_transitionS[i]);
+            DFA10_transition[i] = DFA.unpackEncodedString(DFA10_transitionS[i]);
         }
     }
 
-    class DFA9 extends DFA {
+    class DFA10 extends DFA {
 
-        public DFA9(BaseRecognizer recognizer) {
+        public DFA10(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 9;
-            this.eot = DFA9_eot;
-            this.eof = DFA9_eof;
-            this.min = DFA9_min;
-            this.max = DFA9_max;
-            this.accept = DFA9_accept;
-            this.special = DFA9_special;
-            this.transition = DFA9_transition;
+            this.decisionNumber = 10;
+            this.eot = DFA10_eot;
+            this.eof = DFA10_eof;
+            this.min = DFA10_min;
+            this.max = DFA10_max;
+            this.accept = DFA10_accept;
+            this.special = DFA10_special;
+            this.transition = DFA10_transition;
         }
         public String getDescription() {
             return "1:1: Tokens : ( T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | INIT | INT | VOID | NULL | INTEIRO | REF | TIPO_REF | ID | NEWLINE | WS );";

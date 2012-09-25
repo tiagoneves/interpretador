@@ -44,7 +44,7 @@ public class SimboloMetodo extends SimboloComEscopo{
     
     public int contarParametros() {
     	
-    	String assinatura = this.toString();
+    	String assinatura = toString();
     	
     	int indexAbrePar = assinatura.indexOf("(");
     	
@@ -55,29 +55,21 @@ public class SimboloMetodo extends SimboloComEscopo{
     	if (params.equals("VOID"))
     		return 0;
     	
-    	int contador = 0;
-    	
-        contador += contarOcorrencias(params, 'I');
-        contador += contarOcorrencias(params, 'L');
-        
-        return contador;
-        
-    	
-    }
-    
-    private int contarOcorrencias(String str, char ch) {
-    	
     	int i, c;
     	
-    	for (i = 0, c = 0; i < str.length(); i++) {
+    	for (i = 0, c = 0; i < params.length(); i++) {
     		
-    		if (str.charAt(i) == ch)
+    		if (params.charAt(i) == 'I'){
     			c++;
+    		} else if (params.charAt(i) == 'L'){
+    			while(params.charAt(i) != ';')
+    				i++;
+    			c++;
+    		}
     		
     	}
     	
     	return c;
-    		
     	
     }
 

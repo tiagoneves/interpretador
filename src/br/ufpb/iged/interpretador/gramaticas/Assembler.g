@@ -92,8 +92,7 @@ limite :  '.limit locals' INTEIRO -> ^(LIMIT INTEIRO);
 parametros
 	: '()' -> ^(PARAMS VOID)
 	| (
-	       a = ID 
-	     | a = TIPO_REF
+	      a = TIPO_REF
 	  )+
 	  -> ^(PARAMS $a)+
 	;
@@ -213,14 +212,6 @@ parametrosRetorno
     	:   (parametros | '(' parametros ')') tip =  tipo
     	      -> ^(METHOD_CALL parametros $tip)
     	;
-     
-contagemParametros returns [int qtdParams]
-	: '()' {$qtdParams = 0;}
-	| (
-	       ID {$qtdParams++;}
-	     | TIPO_REF {$qtdParams++;}
-	  )+
-	;
 
 INIT : '<init>';
 
@@ -234,7 +225,7 @@ INTEIRO : '-'? '0'..'9'+ ;
 
 REF  :  (ID '/')+ ( ID | INIT);
 
-TIPO_REF: 'L'ID ('/' ID)*';';
+TIPO_REF: ('L'ID ('/' ID)*';' | INT)+;
 
 ID: ('a'..'z' | 'A'..'Z') ('a'..'z' | 'A'..'Z' | '0'..'9' | '.')*;
 
