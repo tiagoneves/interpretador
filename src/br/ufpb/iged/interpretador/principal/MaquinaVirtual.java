@@ -76,12 +76,12 @@ public class MaquinaVirtual {
 			break;
 
 		case Definicao.DUP: {
-
-			Referencia ref = (Referencia)frameAtual.pilhaOperandos[frameAtual.sp];
-
-			frameAtual.sp++;
-
-			frameAtual.pilhaOperandos[frameAtual.sp] = ref;
+			
+			Object valor = frameAtual.pilhaOperandos[frameAtual.sp];
+			
+			frameAtual.pilhaOperandos[++frameAtual.sp] = null;
+			
+			frameAtual.pilhaOperandos[frameAtual.sp] = valor;
 
 		}
 		;

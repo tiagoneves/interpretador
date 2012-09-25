@@ -173,6 +173,13 @@ L2:	 	ineg
         iload 21
         isub
         istore 23
+        aload 19
+        iload 23
+        iload 22
+        aload 15
+        aload 12
+        invokestatic Main/refs(LClasse;LComposicao;IILHeranca;) I
+        istore 24
         return
 .end method
 .method static uisos(III)I
@@ -205,6 +212,48 @@ L3: ldc 8
     ireturn
 .end method
 .method static refs(LClasse;LComposicao;IILHeranca;)I
-	ireturn
+    aload_0
+    getfield Classe/attr1 I
+    istore 5
+    aload_1
+    dup
+    getfield Composicao/jahss I
+    iload 5
+    imul
+    istore 5
+    dup
+    getfield Composicao/teste LTeste;
+    dup
+    getfield Teste/abc I
+    istore 8
+    getfield Teste/xyz I
+    iload 8
+    idiv
+    istore 6
+    pop
+L2: iload 5
+    iload 6
+    iadd
+    istore 7
+    iload_2
+    iload_3
+    isub
+    iload 7
+    iadd
+    istore 7
+    aload 4
+    dup
+    getfield Heranca/abfgs I
+    istore 9
+    getfield Heranca/xyz I
+    iload 9
+    irem
+    ifeq L1
+    goto L2
+L1: iload 7
+    iload 6
+    isub
+    iinc
+    ireturn
 .end method
 .end class
