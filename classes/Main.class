@@ -254,6 +254,21 @@ L1: iload 7
     iload 6
     isub
     iinc
+    invokestatic Main/campos_estaticos(I) I
     ireturn
+.end method
+.method static campos_estaticos(I)I
+    ldc 240
+	putstatic Teste/kadls I
+	ldc 8
+	dup
+	putstatic Teste/iqowd I
+	getstatic Teste/kadls I
+	iload_0
+	idiv
+	dup
+	getstatic Teste/iqowd I
+	imul
+	ireturn
 .end method
 .end class

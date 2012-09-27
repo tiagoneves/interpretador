@@ -157,7 +157,7 @@ public class Interpretador {
 			CommonTreeNodeStream nos = new CommonTreeNodeStream(bytecodesAdaptor, tree);
 			nos.setTokenStream(tokens);
 			Def def = new Def(nos, tabelaSimbolos);       
-			def.downup(tree);                          		   
+			def.downup(tree);
 		    nos.reset();
 		    Ref ref = new Ref(nos, tabelaSimbolos, parser);
 			ref.downup(tree);

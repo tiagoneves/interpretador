@@ -80,7 +80,7 @@ definicaoClasse
 superClasse : '.super' (b = ID | b = REF)-> ^(EXTENDS $b) ;
 
 membroClasse
-    : '.field' 'static'? ID tipo -> ^(FIELD_DECL ID tipo)
+    : '.field' st = 'static'? ID tipo -> ^(FIELD_DECL $st? ID tipo)
     | '.method' INIT (parametros | '(' parametros ')') ret = tipo NEWLINE (limite NEWLINE)? operacao* '.end method'
 	-> ^(CONSTR_DECL INIT $ret parametros limite? ^(BODY operacao*))
     | '.method' 'static'? ID (parametros | '(' parametros ')') ret = tipo NEWLINE (limite NEWLINE)? operacao* '.end method'
@@ -91,9 +91,7 @@ limite :  '.limit locals' INTEIRO -> ^(LIMIT INTEIRO);
    
 parametros
 	: '()' -> ^(PARAMS VOID)
-	| (
-	      a = TIPO_REF
-	  )+
+	| ( a = INT | a = TIPO_REF)
 	  -> ^(PARAMS $a)+
 	;
 
@@ -227,9 +225,7 @@ REF  :  (ID '/')+ ( ID | INIT);
 
 TIPO_REF: ('L'ID ('/' ID)*';' | INT)+;
 
-ID: ('a'..'z' | 'A'..'Z') ('a'..'z' | 'A'..'Z' | '0'..'9' | '.')*;
-
-//LETRA: ('a'..'z' | 'A'..'Z');
+ID: ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '0'..'9' | '.' | '_')*;
 
 NEWLINE : '\n'+;
 

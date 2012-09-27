@@ -10,10 +10,12 @@ public class Objeto {
 	
 	public Objeto(SimboloClasse simboloClasse) {
 		
+		memoriaLocal = new Object[0];
+		
 		nome = simboloClasse.obterNome();
 		
-		memoriaLocal = new Object[simboloClasse.getFields().length];
-		
+		simboloClasse.alocarMemoriaVariaveis(this, false);
+				
 	}
 	
 	public String getNome() {

@@ -64,11 +64,12 @@ entraNaClasse
     ;
 
 declaracaoVariavel
-    : ^(FIELD_DECL ID tipo =.)
+    : ^(FIELD_DECL (st =.)? ID tipo =.)
         {
           System.out.println("linha "+$ID.getLine()+": def "+$ID.text);
           $tipo.escopo = escopoAtual;
-          SimboloVariavel variavel = new SimboloVariavel($ID.text,null);
+          boolean estatico = $st != null;
+          SimboloVariavel variavel = new SimboloVariavel($ID.text,null,estatico);
           variavel.def = $ID;
           $ID.simbolo = variavel;
           escopoAtual.definir(variavel);

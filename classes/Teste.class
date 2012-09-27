@@ -1,6 +1,8 @@
 .class Teste
 .field abc I
 .field xyz I
+.field static kadls I
+.field static iqowd I
 .method <init>() V
 	return
 .end method

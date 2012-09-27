@@ -65,7 +65,7 @@ options {
         
         BytecodeAssembler.escreverInteiro(
           BytecodeAssembler.codigo, BytecodeAssembler.ip,
-          simboloClasse.getConstantPool().indexOf(simboloVariavel));
+          simboloClasse.obterIdentificadorVariavel(simboloVariavel));
     
     }
     
@@ -154,7 +154,7 @@ entraNaClasse
     ;
     
 declaracaoVariavel
-    : ^(FIELD_DECL ID tip =.)
+    : ^(FIELD_DECL .? ID tip =.)
         {
            if ($tip.getText().startsWith("L"))
            	$ID.simbolo.tipo = resolverTipo($tip.getText().substring(0, $tip.getText().length() - 1));

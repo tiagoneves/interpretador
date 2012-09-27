@@ -960,8 +960,8 @@ public class MaquinaVirtual {
 			
 			SimboloClasse simboloClasse =  ClassLoader.carregarClasse(op1);
 			
-			simboloClasse.getFields()[op2] = frameAtual.pilhaOperandos[frameAtual.sp--];
-			
+			simboloClasse.alterarCampo(op2, frameAtual.pilhaOperandos[frameAtual.sp--]);
+									
 		}
 		
 		;

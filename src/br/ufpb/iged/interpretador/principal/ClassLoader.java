@@ -16,7 +16,7 @@ public class ClassLoader {
     	for(SimboloClasse classe: classes){
     		  			
     			if (classe.nome.equals(nome)){
-    				classe.alocarMemoriaFields();
+    				classe.alocarMemoriaVariaveis(null, true);
     				return classe;
     			}
     			
@@ -32,7 +32,7 @@ public class ClassLoader {
 		SimboloClasse classe = Interpretador.getAssembler().getConstantPool().get(index);
 		
 		if (classe != null){
-			classe.alocarMemoriaFields();
+			classe.alocarMemoriaVariaveis(null, true);
 			return classe;
 		}
 		
@@ -47,7 +47,7 @@ public class ClassLoader {
 		for(SimboloClasse classe: classes){
     			
     			if (classe.possuiMetodo(METODO_MAIN, "main")){
-    				classe.alocarMemoriaFields();
+    				classe.alocarMemoriaVariaveis(null, true);
     				return classe;
     			}
     		

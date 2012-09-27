@@ -2,6 +2,7 @@ package br.ufpb.iged.interpretador.symboltable.classes;
 
 import java.util.*;
 
+import br.ufpb.iged.interpretador.principal.Objeto;
 import br.ufpb.iged.interpretador.principal.Referencia;
 
 public class SimboloClasse extends SimboloComEscopo implements Tipo {
@@ -13,11 +14,11 @@ public class SimboloClasse extends SimboloComEscopo implements Tipo {
     /** List of all fields and methods */
     public Map<String,Simbolo> membros=new LinkedHashMap<String,Simbolo>();
     
-    protected List<Simbolo> constantPool = new ArrayList<Simbolo> ();
+    protected List<SimboloVariavel> constantPool = new ArrayList<SimboloVariavel> ();
     
     protected List<SimboloMetodo> methodArea = new ArrayList<SimboloMetodo>();
     
-    private Object[] fields;
+    private Object[] fields = null;
     
     protected int proximoElementoConstPool = 0;
 
@@ -26,6 +27,8 @@ public class SimboloClasse extends SimboloComEscopo implements Tipo {
         super(nome, escopoEnvolvente);
         
         this.superClasse = superClasse;
+        
+        fields = null;
         
     }
 
@@ -80,8 +83,82 @@ public class SimboloClasse extends SimboloComEscopo implements Tipo {
         
     }
     
+    public void alocarMemoriaVariaveis(Objeto objeto, boolean estaticas) {
+    	
+    	if (!estaticas || (estaticas && (fields == null))) {
+    		
+    		Object[] variaveis = new Object[obterQuantidadeVariaveis(estaticas)];
+	    	
+	    	definirTiposVariaveis(variaveis, 0, estaticas);
+	    	
+	    	
+	    	if (estaticas)
+	    		fields = variaveis;
+        	else {
+        		objeto.setMemoriaLocal(variaveis);
+        	}
+	    	
+    	
+    	}
+    	
+    		
+    }
+    
+    public int definirTiposVariaveis(Object[] vars, int i, boolean estaticas) {
+    	
+    	for (SimboloVariavel variavel : constantPool) {
+			
+			if (variavel.isEstatico() == estaticas) {
+				
+				String nomeTipo = variavel.getTipo().obterNome();
+				
+				if(nomeTipo.equals("I")) {
+					
+					vars[i] = new Integer(0);
+					
+					i++;
+				
+				} else if (nomeTipo.startsWith("L")) {
+					
+					vars[i] = new Referencia(new Integer(0));
+					
+					i++;
+					
+				}
+				
+			}
+			
+		}
+    	
+    	return i;
+    	
+    }
+    
+    public int obterIdentificadorVariavel(SimboloVariavel variavel) {
+    	
+    	int i = 0;
+    	
+    	boolean estatico = variavel.isEstatico();
+    	
+    	for (SimboloVariavel var : constantPool) {
+    		
+    		if (var.isEstatico() == estatico){
+    			
+    			if (var == variavel)
+    			   return i;
+    			else
+    				i++;
+    		}
+    		
+    	}
+    	
+    	return i;
+    	
+    }
+    
     public void alocarMemoriaFields() {
     	
+    	 	
     	fields = new Object[constantPool.size()];
 		
 		int i;
@@ -105,7 +182,7 @@ public class SimboloClasse extends SimboloComEscopo implements Tipo {
 		
 		while(parent != null) {
 			
-			List<Simbolo> constantPoolParent = parent.getConstantPool();
+			List<SimboloVariavel> constantPoolParent = parent.getConstantPool();
 			
 			fields = 
 					Arrays.copyOf(
@@ -133,6 +210,27 @@ public class SimboloClasse extends SimboloComEscopo implements Tipo {
 		}
     	
     }
+    
+    public int obterQuantidadeVariaveis(boolean estaticas) {
+    	
+    	int c = 0;
+    	
+    	for (SimboloVariavel variavel : constantPool) {
+    		
+    		if (variavel.isEstatico() == estaticas)
+    			c++;
+    		
+    	}
+    	
+    	return c;
+    	
+    }
+    
+    public void alterarCampo(int index, Object valor) {
+    	
+    	fields[index] = valor;
+    	
+    }
 
     public Map<String, Simbolo> obterMembros() {
     	
@@ -151,11 +249,11 @@ public class SimboloClasse extends SimboloComEscopo implements Tipo {
 		return nome;
 	}
 
-	public List<Simbolo>  getConstantPool() {
+	public List<SimboloVariavel>  getConstantPool() {
 		return constantPool;
 	}
 
-	public void setConstantPool(List<Simbolo> constantPool) {
+	public void setConstantPool(List<SimboloVariavel> constantPool) {
 		this.constantPool = constantPool;
 	}
 
