@@ -6,4 +6,12 @@
 .method <init>() V
 	return
 .end method
+.method jdkfjkd(III) I
+    iload_1
+    iload_2
+    idiv
+    iload_3
+    isub
+	ireturn
+.end method
 .end class

@@ -38,7 +38,7 @@ public abstract class SimboloComEscopo extends Simbolo implements Escopo {
     	
         obterMembros().put(simbolo.nome, simbolo);
         
-        simbolo.escopo = this; // track the Escopo in each Simbolo
+        simbolo.escopo = this; 
         
     }
 
@@ -60,9 +60,6 @@ public abstract class SimboloComEscopo extends Simbolo implements Escopo {
     	
     }
 
-    /** Indicate how subclasses store Escopo members. Allows us to
-     *  factor out common code in this class.
-     */
     public abstract Map<String, Simbolo> obterMembros();
     
 }

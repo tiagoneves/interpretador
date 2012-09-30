@@ -33,7 +33,7 @@ public class SimboloMetodo extends SimboloComEscopo{
     }
 
     public String obterNome() {
-        return nome+"("+stripBrackets(parametros.keySet().toString())+")";
+        return nome;
     }
     
     public int obterTamanhoCodigo() {
@@ -120,7 +120,7 @@ public class SimboloMetodo extends SimboloComEscopo{
 	}
 
 	public String toString() {
-		return obterNome()+getRetorno();
+		return obterNome();
 	}
 	
 	//para testes

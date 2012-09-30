@@ -30,7 +30,7 @@ public class Simbolo {
         return s+getNome();
     }
 
-    public static String stripBrackets(String s) {
+    public static String eliminarParenteses(String s) {
         return s.substring(1,s.length()-1);
     }
 

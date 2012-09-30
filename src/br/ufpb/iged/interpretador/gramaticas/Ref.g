@@ -81,7 +81,7 @@ options {
           assembler.getConstantPool().add(simboloClasse);
           
        SimboloMetodo simboloMetodo =
-          (SimboloMetodo) simboloClasse.resolverMetodo(nomeMetodo+"("+args+")"+tipoRetorno, nomeMetodo);
+          (SimboloMetodo) simboloClasse.resolver(nomeMetodo+"("+args+")"+tipoRetorno);
     
         if (!simboloClasse.getMethodArea().contains(simboloMetodo))
       
@@ -165,7 +165,7 @@ declaracaoVariavel
     ;
     
 entraNoConstrutor
-	: ^(CONSTR_DECL INIT .+ (^(LIMIT lim=INTEIRO))?)
+	: ^(CONSTR_DECL INIT . ^(PARAMS .) (^(LIMIT lim=INTEIRO))? .)
 	{
 	  System.out.println("Ref: Entrou no construtor "+$INIT.text);
 	  escopoAtual = (SimboloMetodo)$INIT.simbolo;
@@ -176,7 +176,7 @@ entraNoConstrutor
 	;
     
 entraNoMetodo
-	: ^(METHOD_DECL ID . .+ (^(LIMIT lim=INTEIRO))?)
+	: ^(METHOD_DECL ID . ^(PARAMS .) (^(LIMIT lim=INTEIRO))? .)
 	{
 	  System.out.println("Ref: Entrou no metodo "+$ID.text);
 	  escopoAtual = (SimboloMetodo)$ID.simbolo;

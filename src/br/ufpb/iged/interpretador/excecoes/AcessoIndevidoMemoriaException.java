@@ -2,21 +2,18 @@ package br.ufpb.iged.interpretador.excecoes;
 
 public class AcessoIndevidoMemoriaException extends Exception{
 
-/**
-*
-*/
-private static final long serialVersionUID = 2321754267568937083L;
+	private static final long serialVersionUID = 2321754267568937083L;
 
-public AcessoIndevidoMemoriaException() {
+	public AcessoIndevidoMemoriaException() {
 
-super("Acesso indevido à memória");
+		super("Acesso indevido à memória");
 
-}
+	}
 
-public AcessoIndevidoMemoriaException(String msg) {
+	public AcessoIndevidoMemoriaException(String msg) {
 
-super(msg);
+		super(msg);
 
-}
+	}
 
 }

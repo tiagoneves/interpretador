@@ -1,6 +1,21 @@
 .class Main
 .method static main() V
 .limit locals 100
+        new Heranca
+        invokespecial Heranca/<init>() V     
+        ldc 6
+        iconst_3
+        iconst_2
+        invokevirtual Heranca/ashdhdf(III)V
+        pop2
+        pop
+        dup
+        getfield Heranca/lovxfd I
+        iconst_2
+        ldc 24
+        invokevirtual Heranca/jdkfjkd(III)I
+        pop2
+        pop2
         ldc 3
 		ldc 6
 		iadd

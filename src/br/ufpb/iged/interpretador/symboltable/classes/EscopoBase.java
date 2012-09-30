@@ -5,7 +5,7 @@ import java.util.Map;
 
 public abstract class EscopoBase implements Escopo {
 	
-	private Escopo escopoEnvolvente; // null if global (outermost) scope
+	private Escopo escopoEnvolvente; 
 	
 	public Map<String, Simbolo> simbolos = new LinkedHashMap<String, Simbolo>();
 
@@ -16,9 +16,8 @@ public abstract class EscopoBase implements Escopo {
     	Simbolo s = simbolos.get(nome);
     	
         if ( s!=null ) return s;
-		// if not here, check any enclosing scope
 		if ( obterEscopoPai() != null ) return obterEscopoPai().resolver(nome);
-		return null; // not found
+		return null; 
 		
 	}
 
@@ -26,7 +25,7 @@ public abstract class EscopoBase implements Escopo {
 		
 		simbolos.put(simbolo.nome, simbolo);
 		
-		simbolo.escopo = this; // track the scope in each symbol
+		simbolo.escopo = this; 
 		
 	}
 

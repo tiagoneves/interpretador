@@ -5,9 +5,9 @@ import org.antlr.runtime.Token;
 
 public class BytecodesAST extends CommonTree {
 	
-    public Escopo escopo;   // set by Def.g; ID lives in which scope?
+    public Escopo escopo;   
     
-    public Simbolo simbolo; // set by Ref.g; point at def in symbol table 
+    public Simbolo simbolo; 
     
     public BytecodesAST(Token t) { 
     	super(t); 

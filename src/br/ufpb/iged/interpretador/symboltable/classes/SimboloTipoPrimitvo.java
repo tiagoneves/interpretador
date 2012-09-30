@@ -10,7 +10,6 @@ public class SimboloTipoPrimitvo extends Simbolo implements Tipo {
 
 	@Override
 	public String obterNome() {
-		// TODO Auto-generated method stub
 		return nome;
 		
 	}

@@ -102,7 +102,7 @@ public class Interpretador {
 	public static void executarMain() throws ClassNotFoundException {
 						
 		SimboloClasse principal = ClassLoader.carregarClasseMain();
-		SimboloMetodo main = (SimboloMetodo) principal.resolver("main");
+		SimboloMetodo main = (SimboloMetodo) principal.resolver("main(VOID)V");
 			
 		vm.iniciarNovoMetodo(main, true);
 		vm.cpu();	

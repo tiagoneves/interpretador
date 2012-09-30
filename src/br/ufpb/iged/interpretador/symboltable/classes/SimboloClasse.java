@@ -6,12 +6,9 @@ import br.ufpb.iged.interpretador.principal.Objeto;
 import br.ufpb.iged.interpretador.principal.Referencia;
 
 public class SimboloClasse extends SimboloComEscopo implements Tipo {
-    /** This is the superclass not escopoEnvolvente field. We still record
-     *  the enclosing Escopo so we can push in and pop out of class defs.
-     */
+   
     public SimboloClasse superClasse;
     
-    /** List of all fields and methods */
     public Map<String,Simbolo> membros=new LinkedHashMap<String,Simbolo>();
     
     protected List<SimboloVariavel> constantPool = new ArrayList<SimboloVariavel> ();
@@ -34,47 +31,29 @@ public class SimboloClasse extends SimboloComEscopo implements Tipo {
 
     public Escopo obterEscopoPai() {
     	
-        if ( superClasse==null ) return escopoEnvolvente; // globals
+        if ( superClasse==null ) return escopoEnvolvente; 
         
-        return superClasse; // if not root object, return super
+        return superClasse; 
         
     }
 
-    /** For a.b, only look in a's class hierarchy to resolve b, not globals */
     public Simbolo resolverMembro(String nome) {
     	
         Simbolo s = membros.get(nome);
         
         if ( s!=null ) return s;
-        // if not here, check just the superclass chain
+        
         if ( superClasse != null ) {
             return superClasse.resolverMembro(nome);
         }
-        return null; // not found
+        return null;
         
     }
     
-    public SimboloMetodo resolverMetodo(String assinatura, String nome) {
-    	
-        Simbolo s = membros.get(nome);
-        
-        if (s == null)
-        	return null;
-        
-        if (s.toString().equals(assinatura))
-        	return (SimboloMetodo)s;
-        
-        // if not here, check just the superclass chain
-        if ( superClasse != null ) {
-            return superClasse.resolverMetodo(assinatura, nome);
-        }
-        return null; // not found
-        
-    }
     
-    public boolean possuiMetodo(String assinatura, String nome) {
+    public boolean possuiMetodo(String assinatura) {
     	
-        SimboloMetodo metodo = resolverMetodo(assinatura, nome);
+        Simbolo metodo = (SimboloMetodo)resolver(assinatura);
         
         if (metodo != null)
         	return true;
@@ -240,12 +219,11 @@ public class SimboloClasse extends SimboloComEscopo implements Tipo {
         
     public String toString() {
         return "class "+nome+":{"+
-               stripBrackets(membros.keySet().toString())+"}";
+        		eliminarParenteses(membros.keySet().toString())+"}";
     }
 
 	@Override
 	public String obterNome() {
-		// TODO Auto-generated method stub
 		return nome;
 	}
 

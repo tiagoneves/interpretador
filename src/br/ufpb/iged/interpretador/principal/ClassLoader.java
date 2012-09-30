@@ -46,7 +46,7 @@ public class ClassLoader {
     	
 		for(SimboloClasse classe: classes){
     			
-    			if (classe.possuiMetodo(METODO_MAIN, "main")){
+    			if (classe.possuiMetodo(METODO_MAIN)){
     				classe.alocarMemoriaVariaveis(null, true);
     				return classe;
     			}

@@ -8,6 +8,6 @@ public class BytecodesErrorNode extends BytecodesAST {
     public BytecodesErrorNode(TokenStream input, Token start, Token stop,
                             RecognitionException e)
     {
-	super(start); // no need to record anything for this example
+	super(start); 
     }
 }

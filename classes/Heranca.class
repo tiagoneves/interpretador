@@ -5,4 +5,16 @@
 .method <init>() V
 	return
 .end method
+.method ashdhdf(III) V
+	iload_1
+	iload_2
+	imul
+	iload_3
+	iadd
+	istore 4
+	iload_0
+	iload 4
+	putfield Heranca/lovxfd I
+	return
+.end method 
 .end class

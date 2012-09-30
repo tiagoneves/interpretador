@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g 2012-09-26 21:32:09
+// $ANTLR 3.4 C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g 2012-09-29 22:01:23
 
     package br.ufpb.iged.interpretador.parser;
     
@@ -217,7 +217,7 @@ public class Ref extends TreeFilter {
               assembler.getConstantPool().add(simboloClasse);
               
            SimboloMetodo simboloMetodo =
-              (SimboloMetodo) simboloClasse.resolverMetodo(nomeMetodo+"("+args+")"+tipoRetorno, nomeMetodo);
+              (SimboloMetodo) simboloClasse.resolver(nomeMetodo+"("+args+")"+tipoRetorno);
         
             if (!simboloClasse.getMethodArea().contains(simboloMetodo))
           
@@ -366,8 +366,7 @@ public class Ref extends TreeFilter {
             reportError(re);
             recover(input,re);
         } catch (LabelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
         finally {
@@ -622,194 +621,61 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "entraNoConstrutor"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:167:1: entraNoConstrutor : ^( CONSTR_DECL INIT ( . )+ ( ^( LIMIT lim= INTEIRO ) )? ) ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:167:1: entraNoConstrutor : ^( CONSTR_DECL INIT . ^( PARAMS . ) ( ^( LIMIT lim= INTEIRO ) )? . ) ;
     public final void entraNoConstrutor() throws RecognitionException {
         BytecodesAST lim=null;
         BytecodesAST INIT2=null;
 
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:168:2: ( ^( CONSTR_DECL INIT ( . )+ ( ^( LIMIT lim= INTEIRO ) )? ) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:168:4: ^( CONSTR_DECL INIT ( . )+ ( ^( LIMIT lim= INTEIRO ) )? )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:168:2: ( ^( CONSTR_DECL INIT . ^( PARAMS . ) ( ^( LIMIT lim= INTEIRO ) )? . ) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:168:4: ^( CONSTR_DECL INIT . ^( PARAMS . ) ( ^( LIMIT lim= INTEIRO ) )? . )
             {
             match(input,CONSTR_DECL,FOLLOW_CONSTR_DECL_in_entraNoConstrutor285); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             INIT2=(BytecodesAST)match(input,INIT,FOLLOW_INIT_in_entraNoConstrutor287); if (state.failed) return ;
 
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:168:23: ( . )+
-            int cnt5=0;
-            loop5:
-            do {
-                int alt5=2;
-                switch ( input.LA(1) ) {
-                case LIMIT:
-                    {
-                    int LA5_1 = input.LA(2);
+            matchAny(input); if (state.failed) return ;
 
-                    if ( (true) ) {
-                        alt5=1;
-                    }
-                    else if ( (true) ) {
-                        alt5=2;
-                    }
+            match(input,PARAMS,FOLLOW_PARAMS_in_entraNoConstrutor292); if (state.failed) return ;
+
+            match(input, Token.DOWN, null); if (state.failed) return ;
+            matchAny(input); if (state.failed) return ;
+
+            match(input, Token.UP, null); if (state.failed) return ;
 
 
-                    }
-                    break;
-                case ARGS:
-                case ARITMETICA:
-                case BODY:
-                case CONSTR_DECL:
-                case DESVIO:
-                case EXTENDS:
-                case FIELD_DECL:
-                case ID:
-                case INIT:
-                case INT:
-                case INTEIRO:
-                case LABEL:
-                case LOAD:
-                case LOGICA:
-                case MEMBRO_CLASSE:
-                case METHOD_CALL:
-                case METHOD_DECL:
-                case NEW:
-                case NEWLINE:
-                case NULL:
-                case PARAMS:
-                case PILHA:
-                case REF:
-                case RETURN:
-                case STORE:
-                case TIPO_REF:
-                case VOID:
-                case WS:
-                case 33:
-                case 34:
-                case 35:
-                case 36:
-                case 37:
-                case 38:
-                case 39:
-                case 40:
-                case 41:
-                case 42:
-                case 43:
-                case 44:
-                case 45:
-                case 46:
-                case 47:
-                case 48:
-                case 49:
-                case 50:
-                case 51:
-                case 52:
-                case 53:
-                case 54:
-                case 55:
-                case 56:
-                case 57:
-                case 58:
-                case 59:
-                case 60:
-                case 61:
-                case 62:
-                case 63:
-                case 64:
-                case 65:
-                case 66:
-                case 67:
-                case 68:
-                case 69:
-                case 70:
-                case 71:
-                case 72:
-                case 73:
-                case 74:
-                case 75:
-                case 76:
-                case 77:
-                case 78:
-                case 79:
-                case 80:
-                case 81:
-                case 82:
-                case 83:
-                case 84:
-                case 85:
-                case 86:
-                case 87:
-                case 88:
-                case 89:
-                case 90:
-                case 91:
-                case 92:
-                case 93:
-                case 94:
-                case 95:
-                case 96:
-                case 97:
-                case 98:
-                case 99:
-                case 100:
-                case 101:
-                case 102:
-                case 103:
-                case 104:
-                case 105:
-                case 106:
-                case 107:
-                case 108:
-                case 109:
-                case 110:
-                case 111:
-                    {
-                    alt5=1;
-                    }
-                    break;
-                case UP:
-                    {
-                    alt5=2;
-                    }
-                    break;
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:168:37: ( ^( LIMIT lim= INTEIRO ) )?
+            int alt5=2;
+            int LA5_0 = input.LA(1);
 
+            if ( (LA5_0==LIMIT) ) {
+                int LA5_1 = input.LA(2);
+
+                if ( (LA5_1==DOWN) ) {
+                    int LA5_3 = input.LA(3);
+
+                    if ( (LA5_3==INTEIRO) ) {
+                        int LA5_4 = input.LA(4);
+
+                        if ( (LA5_4==UP) ) {
+                            int LA5_5 = input.LA(5);
+
+                            if ( ((LA5_5 >= ARGS && LA5_5 <= 111)) ) {
+                                alt5=1;
+                            }
+                        }
+                    }
                 }
-
-                switch (alt5) {
-            	case 1 :
-            	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:168:23: .
-            	    {
-            	    matchAny(input); if (state.failed) return ;
-
-            	    }
-            	    break;
-
-            	default :
-            	    if ( cnt5 >= 1 ) break loop5;
-            	    if (state.backtracking>0) {state.failed=true; return ;}
-                        EarlyExitException eee =
-                            new EarlyExitException(5, input);
-                        throw eee;
-                }
-                cnt5++;
-            } while (true);
-
-
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:168:26: ( ^( LIMIT lim= INTEIRO ) )?
-            int alt6=2;
-            int LA6_0 = input.LA(1);
-
-            if ( (LA6_0==LIMIT) ) {
-                alt6=1;
             }
-            switch (alt6) {
+            switch (alt5) {
                 case 1 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:168:27: ^( LIMIT lim= INTEIRO )
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:168:38: ^( LIMIT lim= INTEIRO )
                     {
-                    match(input,LIMIT,FOLLOW_LIMIT_in_entraNoConstrutor294); if (state.failed) return ;
+                    match(input,LIMIT,FOLLOW_LIMIT_in_entraNoConstrutor299); if (state.failed) return ;
 
                     match(input, Token.DOWN, null); if (state.failed) return ;
-                    lim=(BytecodesAST)match(input,INTEIRO,FOLLOW_INTEIRO_in_entraNoConstrutor298); if (state.failed) return ;
+                    lim=(BytecodesAST)match(input,INTEIRO,FOLLOW_INTEIRO_in_entraNoConstrutor303); if (state.failed) return ;
 
                     match(input, Token.UP, null); if (state.failed) return ;
 
@@ -819,6 +685,8 @@ public class Ref extends TreeFilter {
 
             }
 
+
+            matchAny(input); if (state.failed) return ;
 
             match(input, Token.UP, null); if (state.failed) return ;
 
@@ -849,196 +717,61 @@ public class Ref extends TreeFilter {
 
 
     // $ANTLR start "entraNoMetodo"
-    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:178:1: entraNoMetodo : ^( METHOD_DECL ID . ( . )+ ( ^( LIMIT lim= INTEIRO ) )? ) ;
+    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:178:1: entraNoMetodo : ^( METHOD_DECL ID . ^( PARAMS . ) ( ^( LIMIT lim= INTEIRO ) )? . ) ;
     public final void entraNoMetodo() throws RecognitionException {
         BytecodesAST lim=null;
         BytecodesAST ID3=null;
 
         try {
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:179:2: ( ^( METHOD_DECL ID . ( . )+ ( ^( LIMIT lim= INTEIRO ) )? ) )
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:179:4: ^( METHOD_DECL ID . ( . )+ ( ^( LIMIT lim= INTEIRO ) )? )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:179:2: ( ^( METHOD_DECL ID . ^( PARAMS . ) ( ^( LIMIT lim= INTEIRO ) )? . ) )
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:179:4: ^( METHOD_DECL ID . ^( PARAMS . ) ( ^( LIMIT lim= INTEIRO ) )? . )
             {
-            match(input,METHOD_DECL,FOLLOW_METHOD_DECL_in_entraNoMetodo321); if (state.failed) return ;
+            match(input,METHOD_DECL,FOLLOW_METHOD_DECL_in_entraNoMetodo328); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
-            ID3=(BytecodesAST)match(input,ID,FOLLOW_ID_in_entraNoMetodo323); if (state.failed) return ;
+            ID3=(BytecodesAST)match(input,ID,FOLLOW_ID_in_entraNoMetodo330); if (state.failed) return ;
 
             matchAny(input); if (state.failed) return ;
 
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:179:23: ( . )+
-            int cnt7=0;
-            loop7:
-            do {
-                int alt7=2;
-                switch ( input.LA(1) ) {
-                case LIMIT:
-                    {
-                    int LA7_1 = input.LA(2);
+            match(input,PARAMS,FOLLOW_PARAMS_in_entraNoMetodo335); if (state.failed) return ;
 
-                    if ( (true) ) {
-                        alt7=1;
-                    }
-                    else if ( (true) ) {
-                        alt7=2;
-                    }
+            match(input, Token.DOWN, null); if (state.failed) return ;
+            matchAny(input); if (state.failed) return ;
+
+            match(input, Token.UP, null); if (state.failed) return ;
 
 
-                    }
-                    break;
-                case ARGS:
-                case ARITMETICA:
-                case BODY:
-                case CONSTR_DECL:
-                case DESVIO:
-                case EXTENDS:
-                case FIELD_DECL:
-                case ID:
-                case INIT:
-                case INT:
-                case INTEIRO:
-                case LABEL:
-                case LOAD:
-                case LOGICA:
-                case MEMBRO_CLASSE:
-                case METHOD_CALL:
-                case METHOD_DECL:
-                case NEW:
-                case NEWLINE:
-                case NULL:
-                case PARAMS:
-                case PILHA:
-                case REF:
-                case RETURN:
-                case STORE:
-                case TIPO_REF:
-                case VOID:
-                case WS:
-                case 33:
-                case 34:
-                case 35:
-                case 36:
-                case 37:
-                case 38:
-                case 39:
-                case 40:
-                case 41:
-                case 42:
-                case 43:
-                case 44:
-                case 45:
-                case 46:
-                case 47:
-                case 48:
-                case 49:
-                case 50:
-                case 51:
-                case 52:
-                case 53:
-                case 54:
-                case 55:
-                case 56:
-                case 57:
-                case 58:
-                case 59:
-                case 60:
-                case 61:
-                case 62:
-                case 63:
-                case 64:
-                case 65:
-                case 66:
-                case 67:
-                case 68:
-                case 69:
-                case 70:
-                case 71:
-                case 72:
-                case 73:
-                case 74:
-                case 75:
-                case 76:
-                case 77:
-                case 78:
-                case 79:
-                case 80:
-                case 81:
-                case 82:
-                case 83:
-                case 84:
-                case 85:
-                case 86:
-                case 87:
-                case 88:
-                case 89:
-                case 90:
-                case 91:
-                case 92:
-                case 93:
-                case 94:
-                case 95:
-                case 96:
-                case 97:
-                case 98:
-                case 99:
-                case 100:
-                case 101:
-                case 102:
-                case 103:
-                case 104:
-                case 105:
-                case 106:
-                case 107:
-                case 108:
-                case 109:
-                case 110:
-                case 111:
-                    {
-                    alt7=1;
-                    }
-                    break;
-                case UP:
-                    {
-                    alt7=2;
-                    }
-                    break;
+            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:179:35: ( ^( LIMIT lim= INTEIRO ) )?
+            int alt6=2;
+            int LA6_0 = input.LA(1);
 
+            if ( (LA6_0==LIMIT) ) {
+                int LA6_1 = input.LA(2);
+
+                if ( (LA6_1==DOWN) ) {
+                    int LA6_3 = input.LA(3);
+
+                    if ( (LA6_3==INTEIRO) ) {
+                        int LA6_4 = input.LA(4);
+
+                        if ( (LA6_4==UP) ) {
+                            int LA6_5 = input.LA(5);
+
+                            if ( ((LA6_5 >= ARGS && LA6_5 <= 111)) ) {
+                                alt6=1;
+                            }
+                        }
+                    }
                 }
-
-                switch (alt7) {
-            	case 1 :
-            	    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:179:23: .
-            	    {
-            	    matchAny(input); if (state.failed) return ;
-
-            	    }
-            	    break;
-
-            	default :
-            	    if ( cnt7 >= 1 ) break loop7;
-            	    if (state.backtracking>0) {state.failed=true; return ;}
-                        EarlyExitException eee =
-                            new EarlyExitException(7, input);
-                        throw eee;
-                }
-                cnt7++;
-            } while (true);
-
-
-            // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:179:26: ( ^( LIMIT lim= INTEIRO ) )?
-            int alt8=2;
-            int LA8_0 = input.LA(1);
-
-            if ( (LA8_0==LIMIT) ) {
-                alt8=1;
             }
-            switch (alt8) {
+            switch (alt6) {
                 case 1 :
-                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:179:27: ^( LIMIT lim= INTEIRO )
+                    // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:179:36: ^( LIMIT lim= INTEIRO )
                     {
-                    match(input,LIMIT,FOLLOW_LIMIT_in_entraNoMetodo332); if (state.failed) return ;
+                    match(input,LIMIT,FOLLOW_LIMIT_in_entraNoMetodo342); if (state.failed) return ;
 
                     match(input, Token.DOWN, null); if (state.failed) return ;
-                    lim=(BytecodesAST)match(input,INTEIRO,FOLLOW_INTEIRO_in_entraNoMetodo336); if (state.failed) return ;
+                    lim=(BytecodesAST)match(input,INTEIRO,FOLLOW_INTEIRO_in_entraNoMetodo346); if (state.failed) return ;
 
                     match(input, Token.UP, null); if (state.failed) return ;
 
@@ -1048,6 +781,8 @@ public class Ref extends TreeFilter {
 
             }
 
+
+            matchAny(input); if (state.failed) return ;
 
             match(input, Token.UP, null); if (state.failed) return ;
 
@@ -1084,7 +819,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:190:2: ( METHOD_DECL )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:190:5: METHOD_DECL
             {
-            match(input,METHOD_DECL,FOLLOW_METHOD_DECL_in_saiDoMetodo356); if (state.failed) return ;
+            match(input,METHOD_DECL,FOLLOW_METHOD_DECL_in_saiDoMetodo368); if (state.failed) return ;
 
             if ( state.backtracking==1 ) {
             	   System.out.println("Ref: Saindo do metodo... ");
@@ -1116,7 +851,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:199:2: ( CONSTR_DECL )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:199:5: CONSTR_DECL
             {
-            match(input,CONSTR_DECL,FOLLOW_CONSTR_DECL_in_saiDoConstrutor372); if (state.failed) return ;
+            match(input,CONSTR_DECL,FOLLOW_CONSTR_DECL_in_saiDoConstrutor384); if (state.failed) return ;
 
             if ( state.backtracking==1 ) {
             	    System.out.println("Ref: Saindo do construtor... ");
@@ -1153,63 +888,63 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:207:10: ^( (op= 'getfield' |op= 'getstatic' |op= 'putfield' |op= 'putstatic' ) ref= . tipo= . )
             {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:207:12: (op= 'getfield' |op= 'getstatic' |op= 'putfield' |op= 'putstatic' )
-            int alt9=4;
+            int alt7=4;
             switch ( input.LA(1) ) {
             case 57:
                 {
-                alt9=1;
+                alt7=1;
                 }
                 break;
             case 58:
                 {
-                alt9=2;
+                alt7=2;
                 }
                 break;
             case 108:
                 {
-                alt9=3;
+                alt7=3;
                 }
                 break;
             case 109:
                 {
-                alt9=4;
+                alt7=4;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 9, 0, input);
+                    new NoViableAltException("", 7, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt9) {
+            switch (alt7) {
                 case 1 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:207:13: op= 'getfield'
                     {
-                    op=(BytecodesAST)match(input,57,FOLLOW_57_in_field393); if (state.failed) return ;
+                    op=(BytecodesAST)match(input,57,FOLLOW_57_in_field405); if (state.failed) return ;
 
                     }
                     break;
                 case 2 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:207:31: op= 'getstatic'
                     {
-                    op=(BytecodesAST)match(input,58,FOLLOW_58_in_field401); if (state.failed) return ;
+                    op=(BytecodesAST)match(input,58,FOLLOW_58_in_field413); if (state.failed) return ;
 
                     }
                     break;
                 case 3 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:207:50: op= 'putfield'
                     {
-                    op=(BytecodesAST)match(input,108,FOLLOW_108_in_field409); if (state.failed) return ;
+                    op=(BytecodesAST)match(input,108,FOLLOW_108_in_field421); if (state.failed) return ;
 
                     }
                     break;
                 case 4 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:207:68: op= 'putstatic'
                     {
-                    op=(BytecodesAST)match(input,109,FOLLOW_109_in_field417); if (state.failed) return ;
+                    op=(BytecodesAST)match(input,109,FOLLOW_109_in_field429); if (state.failed) return ;
 
                     }
                     break;
@@ -1276,51 +1011,51 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:226:12: ^( (op= 'invokespecial' |op= 'invokestatic' |op= 'invokevirtual' ) ref= . ^( METHOD_CALL ^( PARAMS a= . ) tipoRet= . ) )
             {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:226:14: (op= 'invokespecial' |op= 'invokestatic' |op= 'invokevirtual' )
-            int alt10=3;
+            int alt8=3;
             switch ( input.LA(1) ) {
             case 90:
                 {
-                alt10=1;
+                alt8=1;
                 }
                 break;
             case 91:
                 {
-                alt10=2;
+                alt8=2;
                 }
                 break;
             case 92:
                 {
-                alt10=3;
+                alt8=3;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 10, 0, input);
+                    new NoViableAltException("", 8, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt10) {
+            switch (alt8) {
                 case 1 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:226:15: op= 'invokespecial'
                     {
-                    op=(BytecodesAST)match(input,90,FOLLOW_90_in_invoke474); if (state.failed) return ;
+                    op=(BytecodesAST)match(input,90,FOLLOW_90_in_invoke486); if (state.failed) return ;
 
                     }
                     break;
                 case 2 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:226:38: op= 'invokestatic'
                     {
-                    op=(BytecodesAST)match(input,91,FOLLOW_91_in_invoke482); if (state.failed) return ;
+                    op=(BytecodesAST)match(input,91,FOLLOW_91_in_invoke494); if (state.failed) return ;
 
                     }
                     break;
                 case 3 :
                     // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:226:60: op= 'invokevirtual'
                     {
-                    op=(BytecodesAST)match(input,92,FOLLOW_92_in_invoke490); if (state.failed) return ;
+                    op=(BytecodesAST)match(input,92,FOLLOW_92_in_invoke502); if (state.failed) return ;
 
                     }
                     break;
@@ -1333,10 +1068,10 @@ public class Ref extends TreeFilter {
 
             matchAny(input); if (state.failed) return ;
 
-            match(input,METHOD_CALL,FOLLOW_METHOD_CALL_in_invoke500); if (state.failed) return ;
+            match(input,METHOD_CALL,FOLLOW_METHOD_CALL_in_invoke512); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
-            match(input,PARAMS,FOLLOW_PARAMS_in_invoke503); if (state.failed) return ;
+            match(input,PARAMS,FOLLOW_PARAMS_in_invoke515); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             a=(BytecodesAST)input.LT(1);
@@ -1401,7 +1136,7 @@ public class Ref extends TreeFilter {
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:248:3: ( ^( NEW classe= . ) )
             // C:\\Users\\Tiago\\Git\\IGED\\interpretador\\src\\br\\ufpb\\iged\\interpretador\\gramaticas\\Ref.g:248:5: ^( NEW classe= . )
             {
-            match(input,NEW,FOLLOW_NEW_in_novaClasse552); if (state.failed) return ;
+            match(input,NEW,FOLLOW_NEW_in_novaClasse564); if (state.failed) return ;
 
             match(input, Token.DOWN, null); if (state.failed) return ;
             classe=(BytecodesAST)input.LT(1);
@@ -1625,25 +1360,27 @@ public class Ref extends TreeFilter {
     public static final BitSet FOLLOW_ID_in_declaracaoVariavel250 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000FFFFFFFFFFFFL});
     public static final BitSet FOLLOW_CONSTR_DECL_in_entraNoConstrutor285 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_INIT_in_entraNoConstrutor287 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000FFFFFFFFFFFFL});
-    public static final BitSet FOLLOW_LIMIT_in_entraNoConstrutor294 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_INTEIRO_in_entraNoConstrutor298 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_METHOD_DECL_in_entraNoMetodo321 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_entraNoMetodo323 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000FFFFFFFFFFFFL});
-    public static final BitSet FOLLOW_LIMIT_in_entraNoMetodo332 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_INTEIRO_in_entraNoMetodo336 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_METHOD_DECL_in_saiDoMetodo356 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CONSTR_DECL_in_saiDoConstrutor372 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_field393 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_58_in_field401 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_108_in_field409 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_109_in_field417 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_90_in_invoke474 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_91_in_invoke482 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_92_in_invoke490 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_METHOD_CALL_in_invoke500 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_PARAMS_in_invoke503 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_NEW_in_novaClasse552 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_set_in_nenhumoperando579 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_set_in_umoperando633 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_PARAMS_in_entraNoConstrutor292 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_LIMIT_in_entraNoConstrutor299 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_INTEIRO_in_entraNoConstrutor303 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_METHOD_DECL_in_entraNoMetodo328 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_entraNoMetodo330 = new BitSet(new long[]{0xFFFFFFFFFFFFFFF0L,0x0000FFFFFFFFFFFFL});
+    public static final BitSet FOLLOW_PARAMS_in_entraNoMetodo335 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_LIMIT_in_entraNoMetodo342 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_INTEIRO_in_entraNoMetodo346 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_METHOD_DECL_in_saiDoMetodo368 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CONSTR_DECL_in_saiDoConstrutor384 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_field405 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_58_in_field413 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_108_in_field421 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_109_in_field429 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_90_in_invoke486 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_91_in_invoke494 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_92_in_invoke502 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_METHOD_CALL_in_invoke512 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_PARAMS_in_invoke515 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_NEW_in_novaClasse564 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_set_in_nenhumoperando591 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_set_in_umoperando645 = new BitSet(new long[]{0x0000000000000004L});
 
 }

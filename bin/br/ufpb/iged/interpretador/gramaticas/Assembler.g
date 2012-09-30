@@ -92,7 +92,7 @@ limite :  '.limit locals' INTEIRO -> ^(LIMIT INTEIRO);
 parametros
 	: '()' -> ^(PARAMS VOID)
 	| ( a = INT | a = TIPO_REF)
-	  -> ^(PARAMS $a)+
+	  -> ^(PARAMS $a)
 	;
 
 retorno : 
