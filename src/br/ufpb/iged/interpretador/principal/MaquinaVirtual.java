@@ -21,6 +21,8 @@ public class MaquinaVirtual {
 		
 	public List<Objeto> heap = new ArrayList<Objeto>();
 	
+	private List<SimboloClasse> areaClasses = new ArrayList<SimboloClasse>();
+	
 	private int op1, op2;
 
 	private short opcode;
@@ -30,6 +32,12 @@ public class MaquinaVirtual {
 	private int tamanhoCodigo;
 	
 	private Scanner in = new Scanner(System.in);
+	
+	public MaquinaVirtual(List<SimboloClasse> areaClasses) {
+		
+		setAreaClasses(areaClasses);
+		
+	}
 		
 	public void cpu() throws ClassNotFoundException {
 		
@@ -1127,6 +1135,14 @@ public class MaquinaVirtual {
 
 	public void setTamanhoCodigo(int tamanhoCodigo) {
 		this.tamanhoCodigo = tamanhoCodigo;
+	}
+
+	public List<SimboloClasse> getAreaClasses() {
+		return areaClasses;
+	}
+
+	public void setAreaClasses(List<SimboloClasse> areaClasses) {
+		this.areaClasses = areaClasses;
 	}
 	
 

@@ -70,7 +70,7 @@ public class Interpretador {
 			
 			carregar();
 			
-			vm = new MaquinaVirtual();
+			vm = new MaquinaVirtual(Interpretador.getAssembler().getConstantPool());
 			
 			executarMain();
 			

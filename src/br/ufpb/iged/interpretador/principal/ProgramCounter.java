@@ -66,5 +66,9 @@ public class ProgramCounter {
 	public void setInstrucao(int instrucao) {
 		this.instrucao = instrucao;
 	}
+	
+	public String toString() {
+		return new Integer(instrucao).toString();
+	}
 
 }

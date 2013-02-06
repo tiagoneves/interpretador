@@ -11,7 +11,7 @@ public class ClassLoader {
 	
 	public static SimboloClasse carregarClasse(String nome) throws ClassNotFoundException{
 		
-		List<SimboloClasse> classes = Interpretador.getAssembler().getConstantPool();
+		List<SimboloClasse> classes = Interpretador.getVm().getAreaClasses();
     	    	
     	for(SimboloClasse classe: classes){
     		  			
@@ -29,7 +29,7 @@ public class ClassLoader {
 	
 	public static SimboloClasse carregarClasse(int index) throws ClassNotFoundException {
 		
-		SimboloClasse classe = Interpretador.getAssembler().getConstantPool().get(index);
+		SimboloClasse classe = Interpretador.getVm().getAreaClasses().get(index);
 		
 		if (classe != null){
 			classe.alocarMemoriaVariaveis(null, true);
@@ -42,7 +42,7 @@ public class ClassLoader {
 	
 	public static SimboloClasse carregarClasseMain() throws ClassNotFoundException{
     	
-		List<SimboloClasse> classes = Interpretador.getAssembler().getConstantPool();
+		List<SimboloClasse> classes = Interpretador.getVm().getAreaClasses();
     	
 		for(SimboloClasse classe: classes){
     			
