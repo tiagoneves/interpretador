@@ -42,6 +42,10 @@ public class Interpretador {
 	
 	private static MaquinaVirtual vm;
 	
+	private static CommonTokenStream tokens = new CommonTokenStream();
+	
+	private static CommonTree tree = new CommonTree();
+	
 	public static TreeAdaptor bytecodesAdaptor = new CommonTreeAdaptor() {
 		
         public Object create(Token token) {
@@ -78,10 +82,6 @@ public class Interpretador {
 
 			System.out.println(ioe.getMessage());
 
-		} catch (RecognitionException re) {
-			
-			System.out.println(re.getMessage());
-
 		} catch (LabelException le) {
 			
 			System.out.println(le.getMessage());
@@ -91,6 +91,10 @@ public class Interpretador {
 			System.out.println(aime.getMessage());
 		
 		} catch (ClassNotFoundException e) {
+			
+			System.out.println(e.getMessage());
+			
+		} catch (RecognitionException e) {
 			
 			System.out.println(e.getMessage());
 			
@@ -110,8 +114,8 @@ public class Interpretador {
 	}
 
 	public static void carregar() 
-			throws IOException, RecognitionException, LabelException, 
-				AcessoIndevidoMemoriaException {
+			throws IOException, LabelException, 
+				AcessoIndevidoMemoriaException, RecognitionException {
 		
 		    entrada = new StringBuffer();
 		
@@ -128,7 +132,13 @@ public class Interpretador {
 					ANTLRFileStream input = 
 							new ANTLRFileStream(DIRETORIO_FONTE+"/"+arquivos[i]);
 					
-					entrada.append(input.toString());
+					//entrada.append(input.toString());
+					
+						
+						System.err.println("Analisando arquivo "+arquivos[i]);
+						
+						parse(input);
+						
 					
 				}
 			
@@ -137,13 +147,31 @@ public class Interpretador {
 			
 	        tabelaSimbolos = new TabelaSimbolos(); 
             
-            setAssembler(carregarClasses());
+            montar();
 		
 	}
 	
-	public static BytecodeAssembler carregarClasses() throws RecognitionException, LabelException, AcessoIndevidoMemoriaException {
+	public static void parse(ANTLRFileStream input) throws RecognitionException{
 		
-			BytecodeAssembler parser = null;
+		StringBuffer entrada = new StringBuffer();
+		entrada.append(input.toString());
+		
+		CharStream inputChar = new ANTLRStringStream(entrada.toString());
+		
+		AssemblerLexer lexer = new AssemblerLexer(inputChar);
+		CommonTokenStream toks = new CommonTokenStream(lexer);
+		BytecodeAssembler parser = new BytecodeAssembler(toks, Definicao.instrucoes);
+		parser.setTreeAdaptor(bytecodesAdaptor);
+		RuleReturnScope r = parser.programa(); 
+		CommonTree arv = (CommonTree)r.getTree();
+		tokens.getTokens().addAll(toks.getTokens());
+		tree.addChild(arv);
+		
+	}
+	
+	public static void montar() throws LabelException, AcessoIndevidoMemoriaException {
+		
+			/*BytecodeAssembler parser = null;
 				
 			CharStream input = new ANTLRStringStream(entrada.toString());
 			
@@ -151,18 +179,18 @@ public class Interpretador {
 			CommonTokenStream tokens = new CommonTokenStream(lexer);
 			parser = new BytecodeAssembler(tokens, Definicao.instrucoes);
 			parser.setTreeAdaptor(bytecodesAdaptor);
-			RuleReturnScope r = parser.programa();  
-			CommonTree tree = (CommonTree)r.getTree();    
+			RuleReturnScope r = parser.programa();  			
+			CommonTree tree = (CommonTree)r.getTree(); */
 		   
+		    assembler = new BytecodeAssembler(tokens, Definicao.instrucoes);
+		
 			CommonTreeNodeStream nos = new CommonTreeNodeStream(bytecodesAdaptor, tree);
 			nos.setTokenStream(tokens);
 			Def def = new Def(nos, tabelaSimbolos);       
 			def.downup(tree);
 		    nos.reset();
-		    Ref ref = new Ref(nos, tabelaSimbolos, parser);
+		    Ref ref = new Ref(nos, tabelaSimbolos, assembler);
 			ref.downup(tree);
-			
-		    return parser;
 		
 	}
 	

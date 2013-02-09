@@ -1081,7 +1081,7 @@ public class MaquinaVirtual {
 
 		System.out.print("\n");
 
-		System.out.print("Memória global das variáveis: ");
+		System.out.print("Memória das variáveis: ");
 
 		for (i = 0; i < frame.variaveis.length; i++)
 
